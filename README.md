@@ -1,4 +1,4 @@
-# pms
+# pes
 Automate project evolution system for universities
 
 ## Initialise project
