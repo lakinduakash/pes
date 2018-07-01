@@ -12,6 +12,7 @@ import { MatButtonModule, MatSidenavModule, MatIconModule, MatListModule,MatCard
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AddProjectComponent } from './shared/add-project/add-project.component';
 import { AppRoutingModule } from './app-routing.module';
+import { ProjectCardComponent } from './shared/project-card/project-card.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { AppRoutingModule } from './app-routing.module';
     SideNavComponent,
     DashboardComponent,
     AddProjectComponent,
+    ProjectCardComponent,
   ],
   imports: [
     BrowserModule,MatToolbarModule, BrowserAnimationsModule, LayoutModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule,MatCardModule, AppRoutingModule
