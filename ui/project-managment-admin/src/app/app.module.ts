@@ -8,10 +8,22 @@ import {LoginComponent} from './login/login.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SideNavComponent} from './side-nav/side-nav.component';
 import {LayoutModule} from '@angular/cdk/layout';
-import {MatButtonModule, MatCardModule, MatIconModule, MatListModule, MatSidenavModule} from '@angular/material';
-import {DashboardComponent} from './dashboard/dashboard.component';
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatDialogModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatNativeDateModule,
+  MatSidenavModule
+} from '@angular/material';
+import {DashboardComponent, DialogOverviewExampleDialog} from './dashboard/dashboard.component';
 import {AppRoutingModule} from './app-routing.module';
 import {SharedModule} from "./shared/shared.module";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
@@ -20,6 +32,7 @@ import {SharedModule} from "./shared/shared.module";
     LoginComponent,
     SideNavComponent,
     DashboardComponent,
+    DialogOverviewExampleDialog
   ],
   imports: [
     BrowserModule,
@@ -32,10 +45,18 @@ import {SharedModule} from "./shared/shared.module";
     MatListModule,
     MatCardModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    MatDialogModule,
+    FormsModule,
+    HttpClientModule,
+    MatNativeDateModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DialogOverviewExampleDialog]
 })
 export class AppModule {
 }
