@@ -9,6 +9,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "mongodb": "^3.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.5"
   }
 }
