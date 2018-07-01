@@ -10,9 +10,8 @@ import {SideNavComponent} from './side-nav/side-nav.component';
 import {LayoutModule} from '@angular/cdk/layout';
 import {MatButtonModule, MatCardModule, MatIconModule, MatListModule, MatSidenavModule} from '@angular/material';
 import {DashboardComponent} from './dashboard/dashboard.component';
-import {AddProjectComponent} from './shared/add-project/add-project.component';
 import {AppRoutingModule} from './app-routing.module';
-import {ProjectCardComponent} from './shared/project-card/project-card.component';
+import {SharedModule} from "./shared/shared.module";
 
 
 @NgModule({
@@ -21,8 +20,6 @@ import {ProjectCardComponent} from './shared/project-card/project-card.component
     LoginComponent,
     SideNavComponent,
     DashboardComponent,
-    AddProjectComponent,
-    ProjectCardComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +31,8 @@ import {ProjectCardComponent} from './shared/project-card/project-card.component
     MatIconModule,
     MatListModule,
     MatCardModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
