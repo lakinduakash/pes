@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {AddProjectComponent} from "../shared/add-project/add-project.component";
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
+  @ViewChild('addNew') addProject: AddProjectComponent;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  addNewProject() {
+    console.log("clicked")
   }
 
 }
