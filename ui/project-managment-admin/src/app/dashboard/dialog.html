@@ -6,5 +6,5 @@
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancel</button>
-  <button mat-button [mat-dialog-close]="data.name" cdkFocusInitial>Create</button>
+  <button mat-button [mat-dialog-close]="data.name" cdkFocusInitial (click)="onCreateClick()">Create</button>
 </div>

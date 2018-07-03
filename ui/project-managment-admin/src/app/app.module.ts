@@ -26,6 +26,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {RenameTitleBarService} from "./services/rename-title-bar.service";
 import {ProjectService} from "./services/project.service";
 import {ProjectCardComponent} from "./shared/project-card/project-card.component";
+import {AddProjectComponent} from "./shared/add-project/add-project.component";
 
 @NgModule({
   declarations: [
@@ -58,7 +59,7 @@ import {ProjectCardComponent} from "./shared/project-card/project-card.component
     RenameTitleBarService, ProjectService
   ],
   bootstrap: [AppComponent],
-  entryComponents: [DialogOverviewExampleDialog, ProjectCardComponent]
+  entryComponents: [DialogOverviewExampleDialog, ProjectCardComponent, AddProjectComponent]
 })
 export class AppModule {
 }

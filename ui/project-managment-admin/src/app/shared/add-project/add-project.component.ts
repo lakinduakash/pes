@@ -8,6 +8,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 export class AddProjectComponent implements OnInit {
 
   @Output() addProject = new EventEmitter();
+  @Output() name = "Add new project";
 
   constructor() { }
 
