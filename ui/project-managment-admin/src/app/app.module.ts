@@ -24,7 +24,8 @@ import {SharedModule} from "./shared/shared.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {RenameTitleBarService} from "./services/rename-title-bar.service";
-
+import {ProjectService} from "./services/project.service";
+import {ProjectCardComponent} from "./shared/project-card/project-card.component";
 
 @NgModule({
   declarations: [
@@ -51,13 +52,13 @@ import {RenameTitleBarService} from "./services/rename-title-bar.service";
     MatNativeDateModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
   ],
   providers: [
-    RenameTitleBarService
+    RenameTitleBarService, ProjectService
   ],
   bootstrap: [AppComponent],
-  entryComponents: [DialogOverviewExampleDialog]
+  entryComponents: [DialogOverviewExampleDialog, ProjectCardComponent]
 })
 export class AppModule {
 }
