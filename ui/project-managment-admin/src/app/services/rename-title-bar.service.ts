@@ -7,7 +7,7 @@ import {Observable} from "rxjs/internal/Observable";
 })
 export class RenameTitleBarService {
 
-  private navTitle$: BehaviorSubject<string> = new BehaviorSubject<string>('Default nav title');
+  private navTitle$: BehaviorSubject<string> = new BehaviorSubject<string>('Project Evaluation System');
 
 
   constructor() {
