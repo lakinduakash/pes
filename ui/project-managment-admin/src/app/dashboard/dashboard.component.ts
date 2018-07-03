@@ -1,6 +1,7 @@
 import {Component, Inject, OnInit, ViewChild} from '@angular/core';
 import {AddProjectComponent} from "../shared/add-project/add-project.component";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material";
+import {RenameTitleBarService} from "../services/rename-title-bar.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -11,13 +12,15 @@ export class DashboardComponent implements OnInit {
 
   @ViewChild('addNew') addProject: AddProjectComponent;
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, private renameTitleBar: RenameTitleBarService) {
   }
 
   ngOnInit() {
+    this.renameTitleBar.setTitle("Project Dashboard");
   }
 
   addNewProject() {
+    this.renameTitleBar.setTitle("Project Dashboard");
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
       width: '250px',
       data: {name: "a"}

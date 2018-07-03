@@ -24,6 +24,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {SharedModule} from "./shared/shared.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import {RenameTitleBarService} from "./services/rename-title-bar.service";
 
 
 @NgModule({
@@ -54,7 +55,9 @@ import {HttpClientModule} from "@angular/common/http";
     MatFormFieldModule,
     MatInputModule
   ],
-  providers: [],
+  providers: [
+    RenameTitleBarService
+  ],
   bootstrap: [AppComponent],
   entryComponents: [DialogOverviewExampleDialog]
 })
