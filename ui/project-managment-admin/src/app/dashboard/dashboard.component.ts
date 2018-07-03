@@ -28,6 +28,7 @@ export class DashboardComponent implements OnInit {
   componentRef: ComponentRef<AddProjectComponent>;
 
   projectList: ProjectCard[];
+  data: number = 0;
 
   constructor(public dialog: MatDialog, private renameTitleBar: RenameTitleBarService, private projectService: ProjectService, private resolver: ComponentFactoryResolver) {
   }
@@ -35,11 +36,13 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.renameTitleBar.setTitle("Project Dashboard");
     this.projectList = this.projectService.getProjectList();
+
+    this.createComponent();
     console.log(this.projectList)
+
   }
 
   addNewProject() {
-
 
   }
 
@@ -70,10 +73,16 @@ export class DashboardComponent implements OnInit {
 
   createComponent() {
     //this.container.clear();
+    this.data++;
     const factory: ComponentFactory<AddProjectComponent> = this.resolver.resolveComponentFactory(AddProjectComponent);
     this.componentRef = this.container.createComponent(factory);
-    this.componentRef.instance.addProject.subscribe(next => this.onAddNewProjectClick())
+    let instance = this.componentRef.instance;
+    instance.name = 'New project ' + this.data;
+    instance.addProject.subscribe(next => this.onAddNewProjectClick())
+
   }
+
+
 
 }
 
@@ -97,6 +106,7 @@ export class DialogOverviewExampleDialog {
   onCreateClick() {
     this.createClick.emit()
   }
+
 
 }
 

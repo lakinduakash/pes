@@ -1,6 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import 'hammerjs';
 
 
 import {AppComponent} from './app.component';
@@ -12,12 +13,14 @@ import {
   MatCardModule,
   MatDialogModule,
   MatFormFieldModule,
+  MatGridListModule,
   MatIconModule,
   MatInputModule,
   MatListModule,
   MatNativeDateModule,
   MatSidenavModule
 } from '@angular/material';
+
 import {DashboardComponent, DialogOverviewExampleDialog} from './dashboard/dashboard.component';
 import {AppRoutingModule} from './app-routing.module';
 import {SharedModule} from "./shared/shared.module";
@@ -54,6 +57,7 @@ import {AddProjectComponent} from "./shared/add-project/add-project.component";
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
+    MatGridListModule
   ],
   providers: [
     RenameTitleBarService, ProjectService

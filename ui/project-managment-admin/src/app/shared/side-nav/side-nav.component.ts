@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
-import {Subscription} from "rxjs/internal/Subscription";
 import {RenameTitleBarService} from "../../services/rename-title-bar.service";
 
 
@@ -17,8 +16,6 @@ export class SideNavComponent implements OnInit {
     .pipe(
       map(result => result.matches)
     );
-
-  titleChangeSub: Subscription;
 
   navTitle;
 
