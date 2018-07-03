@@ -1,7 +1,6 @@
+import {ComponentFixture, fakeAsync, TestBed} from '@angular/core/testing';
 
-import { fakeAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { SideNavComponent } from './side-nav.component';
+import {SideNavComponent} from './side-nav.component';
 
 describe('SideNavComponent', () => {
   let component: SideNavComponent;

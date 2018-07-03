@@ -3,7 +3,7 @@ import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {Subscription} from "rxjs/internal/Subscription";
-import {RenameTitleBarService} from "../services/rename-title-bar.service";
+import {RenameTitleBarService} from "../../services/rename-title-bar.service";
 
 
 @Component({

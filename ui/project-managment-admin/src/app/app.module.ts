@@ -6,7 +6,6 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {AppComponent} from './app.component';
 import {LoginComponent} from './login/login.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {SideNavComponent} from './side-nav/side-nav.component';
 import {LayoutModule} from '@angular/cdk/layout';
 import {
   MatButtonModule,
@@ -31,7 +30,6 @@ import {RenameTitleBarService} from "./services/rename-title-bar.service";
   declarations: [
     AppComponent,
     LoginComponent,
-    SideNavComponent,
     DashboardComponent,
     DialogOverviewExampleDialog
   ],

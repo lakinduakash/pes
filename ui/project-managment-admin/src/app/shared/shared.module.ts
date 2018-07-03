@@ -7,11 +7,13 @@ import {AddProjectComponent} from "./add-project/add-project.component";
 
 import {ProjectCardComponent} from "./project-card/project-card.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {SideNavComponent} from "./side-nav/side-nav.component";
 
 @NgModule({
   declarations: [
     AddProjectComponent,
     ProjectCardComponent,
+    SideNavComponent
   ],
   imports: [
     BrowserModule,
@@ -28,6 +30,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
   exports: [
     AddProjectComponent,
     ProjectCardComponent,
+    SideNavComponent
   ]
 })
 export class SharedModule {
