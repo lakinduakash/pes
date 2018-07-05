@@ -1,20 +1,20 @@
 import {
   Component,
-  ComponentFactory,
   ComponentFactoryResolver,
   ComponentRef,
   EventEmitter,
   Inject,
+  Injector,
   OnInit,
   Output,
-  ViewChild,
-  ViewContainerRef
+  ViewChild
 } from '@angular/core';
 import {AddProjectComponent} from "../shared/add-project/add-project.component";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material";
 import {RenameTitleBarService} from "../services/rename-title-bar.service";
 import {ProjectService} from "../services/project.service";
 import {ProjectCard} from "../model/project-card";
+import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 
 @Component({
   selector: 'app-dashboard',
@@ -24,26 +24,70 @@ import {ProjectCard} from "../model/project-card";
 export class DashboardComponent implements OnInit {
 
   @ViewChild('addNew') addProject: AddProjectComponent;
-  @ViewChild('container', {read: ViewContainerRef}) container: ViewContainerRef;
   componentRef: ComponentRef<AddProjectComponent>;
 
   projectList: ProjectCard[];
   data: number = 0;
+  card = ["a", "b", "c"];
+  cols = 5;
 
-  constructor(public dialog: MatDialog, private renameTitleBar: RenameTitleBarService, private projectService: ProjectService, private resolver: ComponentFactoryResolver) {
+  constructor(
+    public dialog: MatDialog,
+    private renameTitleBar: RenameTitleBarService,
+    private projectService: ProjectService,
+    private resolver: ComponentFactoryResolver,
+    private injector: Injector,
+    private breakpointObserver: BreakpointObserver) {
+
+    breakpointObserver.observe([
+      Breakpoints.XSmall,
+    ]).subscribe(result => {
+      if (result.matches) {
+        this.cols = 1
+      }
+    });
+
+    breakpointObserver.observe([
+      Breakpoints.Small
+    ]).subscribe(result => {
+      if (result.matches) {
+        this.cols = 2
+      }
+    });
+
+    breakpointObserver.observe([
+      Breakpoints.Medium
+    ]).subscribe(result => {
+      if (result.matches) {
+        this.cols = 3
+      }
+    });
+
+    breakpointObserver.observe([
+      Breakpoints.Large
+    ]).subscribe(result => {
+      if (result.matches) {
+        this.cols = 5
+      }
+    });
+
+    breakpointObserver.observe([
+      Breakpoints.XLarge
+    ]).subscribe(result => {
+      if (result.matches) {
+        this.cols = 6
+      }
+    });
   }
 
   ngOnInit() {
     this.renameTitleBar.setTitle("Project Dashboard");
     this.projectList = this.projectService.getProjectList();
 
-    this.createComponent();
     console.log(this.projectList)
-
   }
 
   addNewProject() {
-
   }
 
   createDialog() {
@@ -61,7 +105,8 @@ export class DashboardComponent implements OnInit {
     });
 
     dialogRef.componentInstance.createClick.subscribe(next => {
-      this.createComponent();
+      this.card.push("d+" + this.data++);
+      this.card.reverse();
       this.addNewProject()
     });
 
@@ -70,18 +115,6 @@ export class DashboardComponent implements OnInit {
   onAddNewProjectClick() {
     this.createDialog()
   }
-
-  createComponent() {
-    //this.container.clear();
-    this.data++;
-    const factory: ComponentFactory<AddProjectComponent> = this.resolver.resolveComponentFactory(AddProjectComponent);
-    this.componentRef = this.container.createComponent(factory);
-    let instance = this.componentRef.instance;
-    instance.name = 'New project ' + this.data;
-    instance.addProject.subscribe(next => this.onAddNewProjectClick())
-
-  }
-
 
 
 }
