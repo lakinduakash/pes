@@ -7,11 +7,15 @@ import {AddProjectComponent} from "./add-project/add-project.component";
 
 import {ProjectCardComponent} from "./project-card/project-card.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {SideNavComponent} from "./side-nav/side-nav.component";
+import {DashboardCardHolderComponent} from './dashboard-card-holder/dashboard-card-holder.component';
 
 @NgModule({
   declarations: [
     AddProjectComponent,
     ProjectCardComponent,
+    SideNavComponent,
+    DashboardCardHolderComponent
   ],
   imports: [
     BrowserModule,
@@ -28,6 +32,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
   exports: [
     AddProjectComponent,
     ProjectCardComponent,
+    SideNavComponent,
+    DashboardCardHolderComponent
   ]
 })
 export class SharedModule {

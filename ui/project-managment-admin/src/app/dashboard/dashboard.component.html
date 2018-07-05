@@ -1,4 +1,13 @@
-<div class="wrapper">
-  <app-add-project class="box" #addNew (addProject)="addNewProject()"></app-add-project>
-</div>
+<!--<div class="wrapper">
+  <app-add-project #addNew (addProject)="onAddNewProjectClick()" ></app-add-project>
 
+  <ng-template #container>
+  </ng-template>
+
+</div>-->
+
+<mat-grid-list [cols]="cols" rowHeight=250>
+  <mat-grid-tile *ngFor="let name of card" align="center">
+    <app-dashboard-card-holder [cardName]="name" (addProject)="onAddNewProjectClick()"></app-dashboard-card-holder>
+  </mat-grid-tile>
+</mat-grid-list>

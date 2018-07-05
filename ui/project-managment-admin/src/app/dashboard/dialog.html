@@ -1,10 +1,10 @@
 <h1 mat-dialog-title>Enter Project name</h1>
 <div mat-dialog-content>
   <mat-form-field>
-    <input matInput placeholder="Input">
+    <input matInput placeholder="Project name">
   </mat-form-field>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancel</button>
-  <button mat-button [mat-dialog-close]="data.name" cdkFocusInitial>Create</button>
+  <button mat-button [mat-dialog-close]="data.name" cdkFocusInitial (click)="onCreateClick()">Create</button>
 </div>

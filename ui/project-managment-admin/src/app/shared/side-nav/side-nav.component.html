@@ -3,8 +3,6 @@
     #drawer
     class="sidenav"
     fixedInViewport="true"
-    [attr.role]='navigation'
-    [mode]='over'
     [opened]="false">
     <mat-toolbar color="primary">Menu</mat-toolbar>
     <mat-nav-list>
@@ -22,7 +20,7 @@
         (click)="drawer.toggle()">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>Project Management</span>
+      <span>{{navTitle}}</span>
     </mat-toolbar>
   </mat-sidenav-content>
 </mat-sidenav-container>

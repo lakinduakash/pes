@@ -16,3 +16,15 @@
   padding: 20px;
   font-size: 150%;
 }
+
+app-dashboard-card-holder {
+  height: 300px;
+  width: 300px;
+  margin: 0 auto;
+  position: relative;
+}
+
+mat-grid-list {
+  margin-top: 5px;
+}
+
