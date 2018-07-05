@@ -22,7 +22,7 @@ import {
   MatSidenavModule
 } from '@angular/material';
 
-import {DashboardComponent, DialogOverviewExampleDialog} from './dashboard/dashboard.component';
+import {DashboardComponent} from './dashboard/dashboard-component/dashboard.component';
 import {AppRoutingModule} from './app-routing.module';
 import {SharedModule} from "./shared/shared.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -31,6 +31,7 @@ import {RenameTitleBarService} from "./services/rename-title-bar.service";
 import {ProjectService} from "./services/project.service";
 import {ProjectCardComponent} from "./shared/project-card/project-card.component";
 import {AddProjectComponent} from "./shared/add-project/add-project.component";
+import {DialogOverviewExampleDialog} from "./dashboard/add-project-dialog/add-project-dialog.component";
 
 @NgModule({
   declarations: [
