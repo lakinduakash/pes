@@ -25,7 +25,7 @@ export class DashboardCardHolderComponent implements OnInit {
 
   @Output('addProject') addProject = new EventEmitter();
 
-  @Input() set cardName(name: String) {
+  @Input() set cardName(name: string) {
     const factory: ComponentFactory<AddProjectComponent> = this.resolver.resolveComponentFactory(AddProjectComponent);
     this.componentRef = this.container.createComponent(factory);
     this.componentRef.instance.name = name;
