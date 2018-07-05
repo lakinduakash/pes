@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {ProjectCard} from "../model/project-card";
+import {ProjectCard} from "../core/model/project-card";
 
 @Injectable({
   providedIn: 'root'
