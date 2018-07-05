@@ -16,6 +16,7 @@ import {
   MatGridListModule,
   MatIconModule,
   MatInputModule,
+  MatListItem,
   MatListModule,
   MatNativeDateModule,
   MatSidenavModule
@@ -63,7 +64,7 @@ import {AddProjectComponent} from "./shared/add-project/add-project.component";
     RenameTitleBarService, ProjectService
   ],
   bootstrap: [AppComponent],
-  entryComponents: [DialogOverviewExampleDialog, ProjectCardComponent, AddProjectComponent]
+  entryComponents: [DialogOverviewExampleDialog, ProjectCardComponent, AddProjectComponent, MatListItem]
 })
 export class AppModule {
 }
