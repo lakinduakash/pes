@@ -1,20 +1,11 @@
-import {
-  Component,
-  ComponentFactoryResolver,
-  ComponentRef,
-  EventEmitter,
-  Inject,
-  Injector,
-  OnInit,
-  Output,
-  ViewChild
-} from '@angular/core';
-import {AddProjectComponent} from "../shared/add-project/add-project.component";
-import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material";
-import {RenameTitleBarService} from "../services/rename-title-bar.service";
-import {ProjectService} from "../services/project.service";
-import {ProjectCard} from "../model/project-card";
+import {Component, ComponentFactoryResolver, ComponentRef, Injector, OnInit, ViewChild} from '@angular/core';
+import {AddProjectComponent} from "../../shared/add-project/add-project.component";
+import {MatDialog} from "@angular/material";
+import {RenameTitleBarService} from "../../services/rename-title-bar.service";
+import {ProjectService} from "../../services/project.service";
+import {ProjectCard} from "../../core/model/project-card";
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
+import {DialogOverviewExampleDialog} from "../add-project-dialog/add-project-dialog.component";
 
 @Component({
   selector: 'app-dashboard',
@@ -119,30 +110,3 @@ export class DashboardComponent implements OnInit {
 
 }
 
-
-@Component({
-  selector: 'dialog-overview-example-dialog',
-  templateUrl: 'dialog.html'
-})
-export class DialogOverviewExampleDialog {
-
-  @Output() createClick = new EventEmitter();
-  constructor(
-    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {
-  }
-
-  onNoClick(): void {
-    this.dialogRef.close()
-  }
-
-  onCreateClick() {
-    this.createClick.emit()
-  }
-
-
-}
-
-export class DialogData {
-  name: String;
-}
