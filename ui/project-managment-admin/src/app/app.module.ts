@@ -12,8 +12,8 @@ import {SharedModule} from "./shared/shared.module";
 import {HttpClientModule} from "@angular/common/http";
 import {RenameTitleBarService} from "./services/rename-title-bar.service";
 import {ProjectService} from "./services/project.service";
-import {ProjectCardComponent} from "./shared/project-card/project-card.component";
-import {AddProjectComponent} from "./shared/add-project/add-project.component";
+import {ProjectCardComponent} from "./dashboard/project-card/project-card.component";
+import {AddProjectComponent} from "./dashboard/add-project-card/add-project.component";
 import {DialogOverviewExampleDialog} from "./dashboard/add-project-dialog/add-project-dialog.component";
 import {DashboardModule} from "./dashboard/dashboard.module";
 

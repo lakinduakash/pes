@@ -4,12 +4,18 @@ import {DashboardComponent} from "./dashboard-component/dashboard.component";
 import {DialogOverviewExampleDialog} from "./add-project-dialog/add-project-dialog.component";
 import {
   MatButtonModule,
+  MatCardModule,
   MatDialogModule,
   MatFormFieldModule,
   MatGridListModule,
-  MatInputModule
+  MatIconModule,
+  MatInputModule,
+  MatListModule
 } from "@angular/material";
 import {SharedModule} from "../shared/shared.module";
+import {DashboardCardHolderComponent} from "./dashboard-card-holder/dashboard-card-holder.component";
+import {ProjectCardComponent} from "./project-card/project-card.component";
+import {AddProjectComponent} from "./add-project-card/add-project.component";
 
 @NgModule({
   imports: [
@@ -19,11 +25,18 @@ import {SharedModule} from "../shared/shared.module";
     MatInputModule,
     MatDialogModule,
     MatFormFieldModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCardModule,
+    MatIconModule,
+    MatButtonModule,
+    MatListModule,
   ],
   declarations: [
     DashboardComponent,
-    DialogOverviewExampleDialog,]
+    DialogOverviewExampleDialog,
+    AddProjectComponent,
+    ProjectCardComponent,
+    DashboardCardHolderComponent]
 })
 export class DashboardModule {
 }
