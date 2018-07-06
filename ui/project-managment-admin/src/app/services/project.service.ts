@@ -7,16 +7,27 @@ import {ProjectCard} from "../core/model/project-card";
 export class ProjectService {
 
   id = 0;
+  ex = [{id: this.id, owner: "Lakindu", cardTitle: "2nd Year", description: " blah blah blah"}, {
+    id: this.id,
+    owner: "Ayesh",
+    cardTitle: "3rd year",
+    description: "blag blah blah"
+  }];
 
   constructor() {
   }
 
-  createProject(projectName) {
+  createProject(projectCard) {
     this.id++;
-    return {id: this.id, name: projectName} as ProjectCard
+    return {
+      id: this.id,
+      owner: projectCard.owner,
+      cardTitle: projectCard.cardTitle,
+      description: projectCard.description
+    } as ProjectCard
   }
 
   getProjectList() {
-    return [{id: this.id, name: "p1"}, {id: this.id, name: "p2"}]
+    return this.ex as ProjectCard[]
   }
 }

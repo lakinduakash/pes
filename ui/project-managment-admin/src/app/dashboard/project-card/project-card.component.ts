@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {ProjectCard} from "../../core/model/project-card";
 
 @Component({
   selector: 'app-project-card',
@@ -7,9 +8,21 @@ import {Component, OnInit} from '@angular/core';
 })
 export class ProjectCardComponent implements OnInit {
 
+  @Input("card") cardDetails: ProjectCard;
+
+  id;
+  cardTitle;
+  description;
+  owner;
+
+
   constructor() { }
 
   ngOnInit() {
+    this.id = this.cardDetails.id;
+    this.cardTitle = this.cardDetails.cardTitle;
+    this.description = this.cardDetails.description;
+    this.owner = this.cardDetails.owner;
   }
 
 }

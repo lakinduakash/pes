@@ -17,10 +17,10 @@
   font-size: 150%;
 }
 
-app-dashboard-card-holder {
+.project-card {
   height: 300px;
   width: 300px;
-  margin: 0 auto;
+  padding-top: 10px;
   position: relative;
 }
 

@@ -1,0 +1,9 @@
+.project-card {
+  margin: 10px 10px 10px 40px;
+  max-width: 170px;
+  min-height: 170px;
+}
+
+mat-card-content {
+  align-content: center;
+}

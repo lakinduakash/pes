@@ -10,7 +10,8 @@ import {
   ViewChild,
   ViewContainerRef
 } from '@angular/core';
-import {AddProjectComponent} from "../add-project-card/add-project.component";
+import {ProjectCardComponent} from "../project-card/project-card.component";
+import {ProjectCard} from "../../core/model/project-card";
 
 @Component({
   selector: 'app-dashboard-card-holder',
@@ -19,20 +20,16 @@ import {AddProjectComponent} from "../add-project-card/add-project.component";
 })
 export class DashboardCardHolderComponent implements OnInit {
 
-  componentRef: ComponentRef<AddProjectComponent>;
+  componentRef: ComponentRef<ProjectCardComponent>;
 
   @ViewChild('container', {read: ViewContainerRef}) container: ViewContainerRef;
 
   @Output('addProject') addProject = new EventEmitter();
 
-  @Input() set cardName(name: string) {
-    const factory: ComponentFactory<AddProjectComponent> = this.resolver.resolveComponentFactory(AddProjectComponent);
+  @Input() set projectCard(details: ProjectCard) {
+    const factory: ComponentFactory<ProjectCardComponent> = this.resolver.resolveComponentFactory(ProjectCardComponent);
     this.componentRef = this.container.createComponent(factory);
-    this.componentRef.instance.name = name;
-    this.componentRef.instance.addProject.subscribe(next => {
-      this.addProject.emit();
-      console.log("clicked")
-    })
+    this.componentRef.instance.cardDetails = details
 
   }
 

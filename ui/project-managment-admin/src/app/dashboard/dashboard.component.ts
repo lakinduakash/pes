@@ -19,7 +19,6 @@ export class DashboardComponent implements OnInit {
 
   projectList: ProjectCard[];
   data: number = 0;
-  card = ["a", "b", "c"];
   cols = 5;
 
   constructor(
@@ -97,8 +96,13 @@ export class DashboardComponent implements OnInit {
     });
 
     dialogRef.componentInstance.createClick.subscribe(next => {
-      this.card.push("d+" + this.data++);
-      this.card.reverse();
+
+      this.projectList.push({
+        id: 2,
+        owner: "Lakindu",
+        cardTitle: "2nd Year",
+        description: " blah blah blah"
+      } as ProjectCard);
       this.addNewProject();
       this.snackBar.open("Project created", "Dismiss", {
         duration: 2000,
