@@ -82,6 +82,7 @@ export class DashboardComponent implements OnInit {
   }
 
   createDialog() {
+
     this.renameTitleBar.setTitle("Add Project");
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
       width: '250px',
@@ -96,10 +97,16 @@ export class DashboardComponent implements OnInit {
 
     dialogRef.componentInstance.createClick.subscribe(next => {
 
-      if (dialogRef.componentInstance.data.name === "") {
-        dialogRef.componentInstance.isEmpty = true;
-
+      for (let entry of this.projectList) {
+        if (entry.cardTitle === dialogRef.componentInstance.data.name) {
+          dialogRef.componentInstance.duplicateProject = true;
+          this.snackBar.open("Please choose different name", "Ok", {
+            duration: 2000,
+          }).onAction().subscribe((next) => this.snackBar.dismiss());
+          return;
+        }
       }
+
 
       this.projectList.push({
         id: 2,

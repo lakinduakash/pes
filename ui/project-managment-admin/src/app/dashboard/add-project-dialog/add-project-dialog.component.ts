@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Inject, Output} from "@angular/core";
+import {Component, EventEmitter, Inject, Input, Output} from "@angular/core";
 import {MAT_DIALOG_DATA, MatDialogRef, MatSnackBar} from "@angular/material";
 
 @Component({
@@ -23,7 +23,8 @@ export class DialogOverviewExampleDialog {
 
   @Output() createClick = new EventEmitter();
 
-  isEmpty = false;
+  @Input("duplicate") duplicateProject: boolean = false;
+
 
 
 
@@ -39,19 +40,23 @@ export class DialogOverviewExampleDialog {
   }
 
   onCreateClick() {
+    console.log(this.duplicateProject);
     if (this.data.name === ("".trim())) {
-      this.isEmpty = true;
       this.snackBar.open("Name is required", "Ok", {
         duration: 2000,
       }).onAction().subscribe((next) => this.snackBar.dismiss());
     }
+    else if (this.duplicateProject) {
+      console.log(this.duplicateProject);
+      this.snackBar.open("Please choose different name", "Ok", {
+        duration: 2000,
+      }).onAction().subscribe((next) => this.snackBar.dismiss());
+    }
+
     else {
-      this.isEmpty = false;
       this.createClick.emit();
       this.dialogRef.close()
     }
-
-    console.log(this.isEmpty)
   }
 
 
