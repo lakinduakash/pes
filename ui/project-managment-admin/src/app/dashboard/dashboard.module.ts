@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {DashboardComponent} from "./dashboard-component/dashboard.component";
+import {DashboardComponent} from "./dashboard.component";
 import {DialogOverviewExampleDialog} from "./add-project-dialog/add-project-dialog.component";
 import {
   MatButtonModule,
@@ -10,7 +10,8 @@ import {
   MatGridListModule,
   MatIconModule,
   MatInputModule,
-  MatListModule
+  MatListModule,
+  MatSnackBarModule
 } from "@angular/material";
 import {SharedModule} from "../shared/shared.module";
 import {DashboardCardHolderComponent} from "./dashboard-card-holder/dashboard-card-holder.component";
@@ -30,6 +31,7 @@ import {AddProjectComponent} from "./add-project-card/add-project.component";
     MatIconModule,
     MatButtonModule,
     MatListModule,
+    MatSnackBarModule
   ],
   declarations: [
     DashboardComponent,

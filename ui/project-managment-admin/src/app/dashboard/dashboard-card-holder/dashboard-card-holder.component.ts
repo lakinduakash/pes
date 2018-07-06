@@ -10,7 +10,7 @@ import {
   ViewChild,
   ViewContainerRef
 } from '@angular/core';
-import {AddProjectComponent} from "../add-project/add-project.component";
+import {AddProjectComponent} from "../add-project-card/add-project.component";
 
 @Component({
   selector: 'app-dashboard-card-holder',

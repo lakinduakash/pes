@@ -1,11 +1,11 @@
 import {Component, ComponentFactoryResolver, ComponentRef, Injector, OnInit, ViewChild} from '@angular/core';
-import {AddProjectComponent} from "../../shared/add-project/add-project.component";
-import {MatDialog} from "@angular/material";
-import {RenameTitleBarService} from "../../services/rename-title-bar.service";
-import {ProjectService} from "../../services/project.service";
-import {ProjectCard} from "../../core/model/project-card";
+import {AddProjectComponent} from "./add-project-card/add-project.component";
+import {MatDialog, MatSnackBar} from "@angular/material";
+import {RenameTitleBarService} from "../services/rename-title-bar.service";
+import {ProjectService} from "../services/project.service";
+import {ProjectCard} from "../core/model/project-card";
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
-import {DialogOverviewExampleDialog} from "../add-project-dialog/add-project-dialog.component";
+import {DialogOverviewExampleDialog} from "./add-project-dialog/add-project-dialog.component";
 
 @Component({
   selector: 'app-dashboard',
@@ -28,7 +28,8 @@ export class DashboardComponent implements OnInit {
     private projectService: ProjectService,
     private resolver: ComponentFactoryResolver,
     private injector: Injector,
-    private breakpointObserver: BreakpointObserver) {
+    private breakpointObserver: BreakpointObserver,
+    private snackBar: MatSnackBar) {
 
     breakpointObserver.observe([
       Breakpoints.XSmall,
@@ -98,7 +99,12 @@ export class DashboardComponent implements OnInit {
     dialogRef.componentInstance.createClick.subscribe(next => {
       this.card.push("d+" + this.data++);
       this.card.reverse();
-      this.addNewProject()
+      this.addNewProject();
+      this.snackBar.open("Project created", "Dismiss", {
+        duration: 2000,
+      }).onAction().subscribe((next) => this.snackBar.dismiss());
+
+
     });
 
   }
@@ -107,6 +113,7 @@ export class DashboardComponent implements OnInit {
     this.createDialog()
   }
 
-
 }
+
+
 
