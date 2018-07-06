@@ -4,6 +4,8 @@
   min-height: 170px;
 }
 
-mat-card-content {
-  align-content: center;
+.card-title {
+  font-size: medium;
+  font-weight: bold;
+  font-style: normal;
 }

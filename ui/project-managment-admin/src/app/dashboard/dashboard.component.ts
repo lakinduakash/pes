@@ -1,4 +1,4 @@
-import {Component, ComponentFactoryResolver, ComponentRef, Injector, OnInit, ViewChild} from '@angular/core';
+import {Component, ComponentFactoryResolver, Injector, OnInit, ViewChild} from '@angular/core';
 import {AddProjectComponent} from "./add-project-card/add-project.component";
 import {MatDialog, MatSnackBar} from "@angular/material";
 import {RenameTitleBarService} from "../services/rename-title-bar.service";
@@ -15,7 +15,6 @@ import {DialogOverviewExampleDialog} from "./add-project-dialog/add-project-dial
 export class DashboardComponent implements OnInit {
 
   @ViewChild('addNew') addProject: AddProjectComponent;
-  componentRef: ComponentRef<AddProjectComponent>;
 
   projectList: ProjectCard[];
   data: number = 0;
@@ -29,6 +28,7 @@ export class DashboardComponent implements OnInit {
     private injector: Injector,
     private breakpointObserver: BreakpointObserver,
     private snackBar: MatSnackBar) {
+
 
     breakpointObserver.observe([
       Breakpoints.XSmall,
@@ -85,23 +85,27 @@ export class DashboardComponent implements OnInit {
     this.renameTitleBar.setTitle("Add Project");
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
       width: '250px',
-      data: {name: "a"}
-
+      data: {name: "", description: ""}
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
       this.renameTitleBar.setTitle("Project Dashboard");
 
     });
 
+
     dialogRef.componentInstance.createClick.subscribe(next => {
+
+      if (dialogRef.componentInstance.data.name === "") {
+        dialogRef.componentInstance.isEmpty = true;
+
+      }
 
       this.projectList.push({
         id: 2,
         owner: "Lakindu",
-        cardTitle: "2nd Year",
-        description: " blah blah blah"
+        cardTitle: dialogRef.componentInstance.data.name,
+        description: dialogRef.componentInstance.data.description,
       } as ProjectCard);
       this.addNewProject();
       this.snackBar.open("Project created", "Dismiss", {

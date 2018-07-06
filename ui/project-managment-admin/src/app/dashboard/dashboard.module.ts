@@ -17,6 +17,7 @@ import {SharedModule} from "../shared/shared.module";
 import {DashboardCardHolderComponent} from "./dashboard-card-holder/dashboard-card-holder.component";
 import {ProjectCardComponent} from "./project-card/project-card.component";
 import {AddProjectComponent} from "./add-project-card/add-project.component";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   imports: [
@@ -31,7 +32,8 @@ import {AddProjectComponent} from "./add-project-card/add-project.component";
     MatIconModule,
     MatButtonModule,
     MatListModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    FormsModule
   ],
   declarations: [
     DashboardComponent,
