@@ -136,7 +136,7 @@ export class DashboardComponent implements OnInit {
       i++;
     }
 
-    this.projectList.splice(i, 1);
+
   }
 
 }

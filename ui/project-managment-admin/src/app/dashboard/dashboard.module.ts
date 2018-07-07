@@ -11,7 +11,8 @@ import {
   MatIconModule,
   MatInputModule,
   MatListModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatTooltipModule
 } from "@angular/material";
 import {SharedModule} from "../shared/shared.module";
 import {DashboardCardHolderComponent} from "./dashboard-card-holder/dashboard-card-holder.component";
@@ -33,14 +34,16 @@ import {FormsModule} from "@angular/forms";
     MatButtonModule,
     MatListModule,
     MatSnackBarModule,
-    FormsModule
+    FormsModule,
+    MatTooltipModule
   ],
   declarations: [
     DashboardComponent,
     DialogOverviewExampleDialog,
     AddProjectComponent,
     ProjectCardComponent,
-    DashboardCardHolderComponent]
+    DashboardCardHolderComponent],
+  entryComponents: []
 })
 export class DashboardModule {
 }
