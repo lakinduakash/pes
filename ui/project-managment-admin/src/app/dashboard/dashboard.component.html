@@ -7,9 +7,8 @@
 </div>-->
 
 <mat-grid-list [cols]="cols" rowHeight=250>
-  <mat-grid-tile *ngFor="let card of projectList" align="center">
-    <app-dashboard-card-holder class="project-card" [projectCard]="card"
-                               (addProject)="onAddNewProjectClick()"></app-dashboard-card-holder>
+  <mat-grid-tile *ngFor="let card of projectList">
+    <app-dashboard-card-holder class="project-card" [projectCard]="card"></app-dashboard-card-holder>
   </mat-grid-tile>
   <mat-grid-tile>
     <app-add-project class="project-card" (addProject)="onAddNewProjectClick()"></app-add-project>

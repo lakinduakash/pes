@@ -3,10 +3,9 @@
   height: 100%;
 }
 
-app-add-project {
-  height: 100px;
-  width: 100px;
-  background: #222;
-  position: absolute;
-  left: 100px;
+app-project-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }

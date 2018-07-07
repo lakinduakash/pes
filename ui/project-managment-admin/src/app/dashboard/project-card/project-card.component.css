@@ -1,13 +1,15 @@
 .project-card {
-  margin: 10px 10px 10px 40px;
+  margin: 10px 10px 10px 10px;
   max-width: 170px;
   min-height: 170px;
   background-color: aliceblue;
+  width: 100%;
 }
 
 .project-card-header-title {
   font-size: medium;
 }
+
 mat-card-content {
   align-content: center;
 }
