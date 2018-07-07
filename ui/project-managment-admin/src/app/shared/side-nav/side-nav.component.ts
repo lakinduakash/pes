@@ -17,16 +17,16 @@ export class SideNavComponent implements OnInit {
       map(result => result.matches)
     );
 
-  navTitle;
+  private navTitle;
 
   constructor(private breakpointObserver: BreakpointObserver, private renameNavBarService: RenameTitleBarService) {
   }
 
   ngOnInit() {
     this.renameNavBarService.getTitle()
-      .subscribe((navTitl: string) => {
-        this.navTitle = navTitl;
-        console.log(navTitl)
+      .subscribe((navTitle: string) => {
+        this.navTitle = navTitle;
+        console.log(navTitle)
       });
   }
 
