@@ -6,9 +6,9 @@ import {ProjectCard} from "../core/model/project-card";
 })
 export class ProjectService {
 
-  id = 0;
-  ex = [{id: this.id, owner: "Lakindu", cardTitle: "2nd Year", description: " blah blah blah"}, {
-    id: this.id,
+  id = 3;
+  ex = [{id: 1, owner: "Lakindu", cardTitle: "2nd Year", description: " blah blah blah"}, {
+    id: 2,
     owner: "Ayesh",
     cardTitle: "3rd year",
     description: "blag blah blah"

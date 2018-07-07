@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ProjectCard} from "../../core/model/project-card";
 
 @Component({
@@ -9,6 +9,7 @@ import {ProjectCard} from "../../core/model/project-card";
 export class ProjectCardComponent implements OnInit {
 
   @Input("card") cardDetails: ProjectCard;
+  @Output("remove") remove = new EventEmitter();
 
   id;
   cardTitle;
@@ -23,6 +24,10 @@ export class ProjectCardComponent implements OnInit {
     this.cardTitle = this.cardDetails.cardTitle;
     this.description = this.cardDetails.description;
     this.owner = this.cardDetails.owner;
+  }
+
+  removeProject() {
+    this.remove.emit(this.id);
   }
 
 }

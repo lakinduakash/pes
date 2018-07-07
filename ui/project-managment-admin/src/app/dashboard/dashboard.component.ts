@@ -19,6 +19,7 @@ export class DashboardComponent implements OnInit {
   projectList: ProjectCard[];
   data: number = 0;
   cols = 5;
+  id = 3;
 
   constructor(
     public dialog: MatDialog,
@@ -107,9 +108,8 @@ export class DashboardComponent implements OnInit {
         }
       }
 
-
       this.projectList.push({
-        id: 2,
+        id: this.id++,
         owner: "Lakindu",
         cardTitle: dialogRef.componentInstance.data.name,
         description: dialogRef.componentInstance.data.description,
@@ -126,6 +126,17 @@ export class DashboardComponent implements OnInit {
 
   onAddNewProjectClick() {
     this.createDialog()
+  }
+
+  removeProject(res) {
+    let i = 0;
+    for (let entry of this.projectList) {
+      if (entry.id == res)
+        break;
+      i++;
+    }
+
+    this.projectList.splice(i, 1);
   }
 
 }
