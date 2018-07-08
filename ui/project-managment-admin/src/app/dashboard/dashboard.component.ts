@@ -18,10 +18,10 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
       state('in', style({transform: 'translateY(0)'})),
       transition('void => *', [
         style({transform: 'translateY(-100%)'}),
-        animate(200)
+        animate(170)
       ]),
       transition('* => void', [
-        animate(200, style({transform: 'translateY(100%)'}))
+        animate(120, style({transform: 'translateY(100%)'}))
       ])
     ])
   ]
