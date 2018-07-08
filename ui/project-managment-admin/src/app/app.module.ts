@@ -16,6 +16,9 @@ import {ProjectCardComponent} from "./dashboard/project-card/project-card.compon
 import {AddProjectComponent} from "./dashboard/add-project-card/add-project.component";
 import {DialogOverviewExampleDialog} from "./dashboard/add-project-dialog/add-project-dialog.component";
 import {DashboardModule} from "./dashboard/dashboard.module";
+import {AngularFireModule} from "angularfire2";
+import {AngularFireDatabaseModule} from "angularfire2/database-deprecated";
+import {environment} from "../environments/environment";
 
 @NgModule({
   declarations: [
@@ -29,7 +32,9 @@ import {DashboardModule} from "./dashboard/dashboard.module";
     AppRoutingModule,
     SharedModule,
     HttpClientModule,
-    DashboardModule
+    DashboardModule,
+    AngularFireModule.initializeApp(environment.firebase, 'myApp'),
+    AngularFireDatabaseModule
   ],
   providers: [
     RenameTitleBarService, ProjectService
