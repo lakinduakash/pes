@@ -7,15 +7,30 @@ import {ProjectCard} from "../core/model/project-card";
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 import {DialogOverviewExampleDialog} from "./add-project-dialog/add-project-dialog.component";
 import {RemoveProjectDialogComponent} from "./remove-dialog/remove-project-dialog.component";
+import {animate, state, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.css'],
+  animations: [
+    trigger('flyInOut', [
+      state('in', style({transform: 'translateY(0)'})),
+      transition('void => *', [
+        style({transform: 'translateY(-100%)'}),
+        animate(200)
+      ]),
+      transition('* => void', [
+        animate(200, style({transform: 'translateY(100%)'}))
+      ])
+    ])
+  ]
 })
 export class DashboardComponent implements OnInit {
 
   @ViewChild('addNew') addProject: AddProjectComponent;
+
+  state = 'in1col';
 
   projectList: ProjectCard[];
   data: number = 0;
@@ -141,10 +156,14 @@ export class DashboardComponent implements OnInit {
       width: '250px'
     });
 
-
+    let temp = this.projectList[i];
     dialogRef.componentInstance.projectName = this.projectList[i].cardTitle;
-
-    dialogRef.componentInstance.yesClick.subscribe(next => this.projectList.splice(i, 1))
+    dialogRef.componentInstance.yesClick.subscribe(next => {
+      this.projectList.splice(i, 1);
+      this.snackBar.open(`Project ${temp.cardTitle} removed`, "Undo", {
+        duration: 2000,
+      }).onAction().subscribe((next) => this.projectList.splice(i, 0, temp));
+    })
 
 
   }
