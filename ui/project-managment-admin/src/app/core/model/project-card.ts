@@ -1,7 +1,7 @@
 export class ProjectCard {
   id: number;
-  owner: String;
-  cardTitle: String;
-  description: String;
+  owner: string;
+  cardTitle: string;
+  description: string;
 
 }

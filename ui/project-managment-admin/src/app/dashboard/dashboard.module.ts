@@ -19,6 +19,7 @@ import {DashboardCardHolderComponent} from "./dashboard-card-holder/dashboard-ca
 import {ProjectCardComponent} from "./project-card/project-card.component";
 import {AddProjectComponent} from "./add-project-card/add-project.component";
 import {FormsModule} from "@angular/forms";
+import {RemoveProjectDialogComponent} from "./remove-dialog/remove-project-dialog.component";
 
 @NgModule({
   imports: [
@@ -42,8 +43,9 @@ import {FormsModule} from "@angular/forms";
     DialogOverviewExampleDialog,
     AddProjectComponent,
     ProjectCardComponent,
-    DashboardCardHolderComponent],
-  entryComponents: []
+    DashboardCardHolderComponent,
+    RemoveProjectDialogComponent],
+  entryComponents: [RemoveProjectDialogComponent]
 })
 export class DashboardModule {
 }

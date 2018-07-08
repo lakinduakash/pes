@@ -17,7 +17,7 @@ export class SideNavComponent implements OnInit {
       map(result => result.matches)
     );
 
-  private navTitle;
+  navTitle;
 
   constructor(private breakpointObserver: BreakpointObserver, private renameNavBarService: RenameTitleBarService) {
   }

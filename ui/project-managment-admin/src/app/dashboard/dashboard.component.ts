@@ -6,6 +6,7 @@ import {ProjectService} from "../services/project.service";
 import {ProjectCard} from "../core/model/project-card";
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 import {DialogOverviewExampleDialog} from "./add-project-dialog/add-project-dialog.component";
+import {RemoveProjectDialogComponent} from "./remove-dialog/remove-project-dialog.component";
 
 @Component({
   selector: 'app-dashboard',
@@ -135,6 +136,15 @@ export class DashboardComponent implements OnInit {
         break;
       i++;
     }
+
+    const dialogRef = this.dialog.open(RemoveProjectDialogComponent, {
+      width: '250px'
+    });
+
+
+    dialogRef.componentInstance.projectName = this.projectList[i].cardTitle;
+
+    dialogRef.componentInstance.yesClick.subscribe(next => this.projectList.splice(i, 1))
 
 
   }

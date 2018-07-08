@@ -4,25 +4,25 @@ import {MatDialogRef} from "@angular/material";
 @Component({
   selector: 'dialog-remove-project',
   template: `
-    <h1 mat-dialog-title>Enter Project name</h1>
+    <h1 mat-dialog-title>Are you sure to delete {{projectName}}?</h1>
     <div mat-dialog-content>
-      <mat-form-field>
-        <input matInput placeholder="Project name" [(ngModel)]="data.name">
-      </mat-form-field>
+      <p>Every reltated data to this project will be lost</p>
+
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="onNoClick()">Cancel</button>
-      <button mat-button cdkFocusInitial (click)="onCreateClick()">Create</button>
+      <button mat-button cdkFocusInitial (click)="onYesClick()">Delete</button>
     </div>
   `
 })
-export class RemoveProjectDialog {
+export class RemoveProjectDialogComponent {
 
   @Output() yesClick = new EventEmitter();
+  projectName = "";
 
 
   constructor(
-    public dialogRef: MatDialogRef<RemoveProjectDialog>) {
+    public dialogRef: MatDialogRef<RemoveProjectDialogComponent>) {
 
   }
 
