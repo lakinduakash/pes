@@ -8,6 +8,7 @@ import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 import {DialogOverviewExampleDialog} from "./add-project-dialog/add-project-dialog.component";
 import {RemoveProjectDialogComponent} from "./remove-dialog/remove-project-dialog.component";
 import {animate, state, style, transition, trigger} from "@angular/animations";
+import {FirebaseListObservable} from "angularfire2/database-deprecated";
 
 @Component({
   selector: 'app-dashboard',
@@ -21,7 +22,7 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
         animate(170)
       ]),
       transition('* => void', [
-        animate(120, style({transform: 'translateY(100%)'}))
+        animate(120, style({transform: 'translateY(-100%)'}))
       ])
     ])
   ]
@@ -32,7 +33,8 @@ export class DashboardComponent implements OnInit {
 
   state = 'in1col';
 
-  projectList: ProjectCard[];
+  projectList: FirebaseListObservable<ProjectCard[]>;
+
   data: number = 0;
   cols = 5;
   id = 3;
@@ -91,11 +93,12 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.renameTitleBar.setTitle("Project Dashboard");
     this.projectList = this.projectService.getProjectList();
-
-    console.log(this.projectList)
+    this.projectList.subscribe(next => console.log(next))
   }
 
-  addNewProject() {
+  addNewProject(card) {
+
+    this.projectService.createProject(card)
   }
 
   createDialog() {
@@ -124,13 +127,14 @@ export class DashboardComponent implements OnInit {
         }
       }
 
-      this.projectList.push({
+      let card: ProjectCard = {
         id: this.id++,
         owner: "Lakindu",
         cardTitle: dialogRef.componentInstance.data.name,
         description: dialogRef.componentInstance.data.description,
-      } as ProjectCard);
-      this.addNewProject();
+      } as ProjectCard;
+
+      this.addNewProject(card);
       this.snackBar.open("Project created", "Dismiss", {
         duration: 2000,
       }).onAction().subscribe((next) => this.snackBar.dismiss());
@@ -157,13 +161,13 @@ export class DashboardComponent implements OnInit {
     });
 
     let temp = this.projectList[i];
-    dialogRef.componentInstance.projectName = this.projectList[i].cardTitle;
-    dialogRef.componentInstance.yesClick.subscribe(next => {
-      this.projectList.splice(i, 1);
-      this.snackBar.open(`Project ${temp.cardTitle} removed`, "Undo", {
-        duration: 2000,
-      }).onAction().subscribe((next) => this.projectList.splice(i, 0, temp));
-    })
+    // dialogRef.componentInstance.projectName = this.projectList[i].cardTitle;
+    // dialogRef.componentInstance.yesClick.subscribe(next => {
+    //   this.projectList.splice(i, 1);
+    //   this.snackBar.open(`Project ${temp.cardTitle} removed`, "Undo", {
+    //     duration: 2000,
+    //   }).onAction().subscribe((next) => this.projectList.splice(i, 0, temp));
+    //})
 
 
   }
