@@ -8,7 +8,6 @@ import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 import {DialogOverviewExampleDialog} from "./add-project-dialog/add-project-dialog.component";
 import {RemoveProjectDialogComponent} from "./remove-dialog/remove-project-dialog.component";
 import {animate, state, style, transition, trigger} from "@angular/animations";
-import {FirebaseListObservable} from "angularfire2/database-deprecated";
 
 @Component({
   selector: 'app-dashboard',
@@ -33,7 +32,7 @@ export class DashboardComponent implements OnInit {
 
   state = 'in1col';
 
-  projectList: FirebaseListObservable<ProjectCard[]>;
+  projectList: ProjectCard[];
 
   data: number = 0;
   cols = 5;
@@ -92,8 +91,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.renameTitleBar.setTitle("Project Dashboard");
-    this.projectList = this.projectService.getProjectList();
-    this.projectList.subscribe(next => console.log(next))
+    this.projectService.getProjectList().subscribe(next => this.projectList = next)
   }
 
   addNewProject(card) {
@@ -160,15 +158,30 @@ export class DashboardComponent implements OnInit {
       width: '250px'
     });
 
-    let temp = this.projectList[i];
-    // dialogRef.componentInstance.projectName = this.projectList[i].cardTitle;
-    // dialogRef.componentInstance.yesClick.subscribe(next => {
-    //   this.projectList.splice(i, 1);
-    //   this.snackBar.open(`Project ${temp.cardTitle} removed`, "Undo", {
-    //     duration: 2000,
-    //   }).onAction().subscribe((next) => this.projectList.splice(i, 0, temp));
-    //})
+    let undoPressed: boolean = false;
 
+    let temp = this.projectList[i];
+    dialogRef.componentInstance.projectName = this.projectList[i].cardTitle;
+    dialogRef.componentInstance.yesClick.subscribe(next => {
+      this.projectList.splice(i, 1);
+      this.snackBar.open(`Project ${temp.cardTitle} removed`, "Undo", {
+        duration: 2000,
+      }).onAction().subscribe((next) => {
+          this.projectList.splice(i, 0, temp);
+          undoPressed = true
+        }, error1 => console.log(error1),
+        () => {
+          if (!undoPressed) this.projectService.deleteProject(temp.id)
+        });
+    })
+
+
+
+  }
+
+  trackProjectCard(index, card) {
+
+    return card ? card.id : undefined;
 
   }
 
