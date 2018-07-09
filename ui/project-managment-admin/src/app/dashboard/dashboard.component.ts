@@ -36,7 +36,7 @@ export class DashboardComponent implements OnInit {
 
   data: number = 0;
   cols = 5;
-  id = 3;
+  id = 1001;
 
   constructor(
     public dialog: MatDialog,
@@ -181,7 +181,7 @@ export class DashboardComponent implements OnInit {
 
   trackProjectCard(index, card) {
 
-    return card ? card.id : undefined;
+    return card.id;
 
   }
 

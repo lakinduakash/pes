@@ -12,4 +12,8 @@
 
 mat-card-content {
   align-content: center;
+  max-height: 50px;
+  min-height: 50px;
+  overflow-wrap: break-word;
+
 }

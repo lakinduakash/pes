@@ -10,8 +10,10 @@ import {MAT_DIALOG_DATA, MatDialogRef, MatSnackBar} from "@angular/material";
         <input matInput placeholder="Project name" [(ngModel)]="data.name">
       </mat-form-field>
       <mat-form-field class="example-full-width">
-        <textarea matInput placeholder="Description" [(ngModel)]="data.description"></textarea>
+        <textarea #inputDes matInput placeholder="Description" maxlength="50" [(ngModel)]="data.description"></textarea>
+        <mat-hint align="end">{{inputDes.value?.length || 0}}/50</mat-hint>
       </mat-form-field>
+
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="onNoClick()">Cancel</button>
