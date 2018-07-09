@@ -28,21 +28,40 @@ export class ProjectService {
   createProject(projectCard) {
     this.fireDb.list('/project').push(projectCard);
 
-    return {
-      id: projectCard.id,
-      owner: projectCard.owner,
-      cardTitle: projectCard.cardTitle,
-      description: projectCard.description
-    } as ProjectCard
+    this.getLastId().subscribe(next => {
+      projectCard.id = next as number;
+      console.log(projectCard);
+      this.fireStore.collection('project').add(projectCard);
+      this.updateLastId()
+
+    });
+
+    return projectCard
+  }
+
+  deleteProject(id: number) {
+    this.fireStore.collection('project').ref.where('id', '==', id).onSnapshot(
+      next => next.docs.forEach(item =>
+        this.fireStore.collection('project').ref.doc(item.id).delete()))
   }
 
   getProjectList() {
     let ref = this.fireStore.collection('project');
 
-    this.updateLastId();
+    let sub = new Subject<ProjectCard[]>();
 
-    ref.ref.where("id", '==', 5).onSnapshot(next => console.log(next.docs[0].id));
-    return this.projectList = this.fireDb.list('/project').valueChanges() as FirebaseListObservable<ProjectCard[]>
+
+    ref.ref.onSnapshot(next => {
+      let arr: ProjectCard[] = [];
+
+      next.docs.forEach(
+        item => arr.push(item.data() as ProjectCard)
+      );
+      sub.next(arr)
+    });
+
+    return sub.asObservable()
+
   }
 
 
@@ -59,8 +78,7 @@ export class ProjectService {
 
   private updateLastId() {
     this.getLastId().subscribe(next => {
-      let last_id = next;
-      console.log('lastId ' + last_id);
+      let last_id = next as number + 1;
       this.fireStore.collection('lastProjectId').doc('DhUGQJCUsgHpUMtCMshh').update({last_id: last_id})
     })
   }
