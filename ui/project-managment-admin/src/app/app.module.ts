@@ -19,6 +19,8 @@ import {DashboardModule} from "./dashboard/dashboard.module";
 import {AngularFireModule} from "angularfire2";
 import {AngularFireDatabaseModule} from "angularfire2/database-deprecated";
 import {environment} from "../environments/environment";
+import {AngularFireDatabase} from "angularfire2/database";
+import {AngularFirestore, AngularFirestoreModule} from "angularfire2/firestore";
 
 @NgModule({
   declarations: [
@@ -34,10 +36,11 @@ import {environment} from "../environments/environment";
     HttpClientModule,
     DashboardModule,
     AngularFireModule.initializeApp(environment.firebase, 'myApp'),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    AngularFirestoreModule
   ],
   providers: [
-    RenameTitleBarService, ProjectService
+    RenameTitleBarService, ProjectService, AngularFireDatabase, AngularFirestore
   ],
   bootstrap: [AppComponent],
   entryComponents: [DialogOverviewExampleDialog, ProjectCardComponent, AddProjectComponent]
