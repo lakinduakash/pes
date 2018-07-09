@@ -1,7 +1,7 @@
 
 
 <mat-grid-list [cols]="cols" rowHeight=250>
-  <mat-grid-tile *ngFor="let card of projectList |async" [@flyInOut]="state">
+  <mat-grid-tile *ngFor="let card of projectList; trackBy:trackProjectCard" [@flyInOut]="state">
     <app-dashboard-card-holder (remove)="removeProject($event)" class="project-card"
                                [projectCard]="card"></app-dashboard-card-holder>
   </mat-grid-tile>
