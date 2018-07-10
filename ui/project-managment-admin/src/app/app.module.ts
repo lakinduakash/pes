@@ -22,12 +22,15 @@ import {environment} from "../environments/environment";
 import {AngularFireDatabase} from "angularfire2/database";
 import {AngularFirestore, AngularFirestoreModule} from "angularfire2/firestore";
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
+import {AuthGuardService} from "./services/auth-guard.service";
+import {SignupComponent} from './signup/signup.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +45,7 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
     AngularFirestoreModule
   ],
   providers: [
-    RenameTitleBarService, ProjectService, AngularFireDatabase, AngularFirestore
+    RenameTitleBarService, ProjectService, AngularFireDatabase, AngularFirestore, AuthGuardService
   ],
   bootstrap: [AppComponent],
   entryComponents: [DialogOverviewExampleDialog, ProjectCardComponent, AddProjectComponent]
