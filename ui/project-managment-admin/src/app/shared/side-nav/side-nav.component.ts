@@ -26,7 +26,6 @@ export class SideNavComponent implements OnInit {
     this.renameNavBarService.getTitle()
       .subscribe((navTitle: string) => {
         this.navTitle = navTitle;
-        console.log(navTitle)
       });
   }
 
