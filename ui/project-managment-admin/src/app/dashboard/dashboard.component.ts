@@ -34,6 +34,8 @@ export class DashboardComponent implements OnInit {
 
   projectList: ProjectCard[];
 
+  list: ProjectCard[] = [];
+
   data: number = 0;
   cols = 5;
   id = 1001;
@@ -91,7 +93,27 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.renameTitleBar.setTitle("Project Dashboard");
-    this.projectService.getProjectList().subscribe(next => this.projectList = next)
+    this.projectService.getProjectList().subscribe(next => {
+      this.projectList = next;
+      this.updateList();
+
+    })
+  }
+
+  updateList() {
+    for (let a of this.projectList) {
+      let needAdded: boolean = true;
+      let needToRemove: boolean = false;
+      for (let b of this.list) {
+        if (a.id == b.id) {
+          needAdded = false;
+          break
+        }
+
+      }
+      if (needAdded)
+        this.list.push(a)
+    }
   }
 
   addNewProject(card) {
@@ -148,7 +170,7 @@ export class DashboardComponent implements OnInit {
 
   removeProject(res) {
     let i = 0;
-    for (let entry of this.projectList) {
+    for (let entry of this.list) {
       if (entry.id == res)
         break;
       i++;
@@ -160,14 +182,14 @@ export class DashboardComponent implements OnInit {
 
     let undoPressed: boolean = false;
 
-    let temp = this.projectList[i];
-    dialogRef.componentInstance.projectName = this.projectList[i].cardTitle;
+    let temp = this.list[i];
+    dialogRef.componentInstance.projectName = this.list[i].cardTitle;
     dialogRef.componentInstance.yesClick.subscribe(next => {
-      this.projectList.splice(i, 1);
+      this.list.splice(i, 1);
       this.snackBar.open(`Project ${temp.cardTitle} removed`, "Undo", {
         duration: 2000,
       }).onAction().subscribe((next) => {
-          this.projectList.splice(i, 0, temp);
+          this.list.splice(i, 0, temp);
           undoPressed = true
         }, error1 => console.log(error1),
         () => {
