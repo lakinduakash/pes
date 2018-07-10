@@ -96,7 +96,6 @@ export class DashboardComponent implements OnInit {
     this.projectService.getProjectList().subscribe(next => {
       this.projectList = next;
       this.updateList();
-
     })
   }
 
@@ -198,12 +197,6 @@ export class DashboardComponent implements OnInit {
     })
 
 
-
-  }
-
-  trackProjectCard(index, card) {
-
-    return card.id;
 
   }
 
