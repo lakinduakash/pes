@@ -21,11 +21,13 @@ import {AngularFireDatabaseModule} from "angularfire2/database-deprecated";
 import {environment} from "../environments/environment";
 import {AngularFireDatabase} from "angularfire2/database";
 import {AngularFirestore, AngularFirestoreModule} from "angularfire2/firestore";
+import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
