@@ -42,7 +42,6 @@ export class DialogOverviewExampleDialog {
   }
 
   onCreateClick() {
-    console.log(this.duplicateProject);
     if (this.data.name === ("".trim())) {
       this.snackBar.open("Name is required", "Ok", {
         duration: 2000,
