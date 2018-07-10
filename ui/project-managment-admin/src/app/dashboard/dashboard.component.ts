@@ -26,6 +26,7 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
     ])
   ]
 })
+
 export class DashboardComponent implements OnInit {
 
   @ViewChild('addNew') addProject: AddProjectComponent;
@@ -50,46 +51,21 @@ export class DashboardComponent implements OnInit {
     private snackBar: MatSnackBar) {
 
 
-    breakpointObserver.observe([
-      Breakpoints.XSmall,
-    ]).subscribe(result => {
-      if (result.matches) {
-        this.cols = 1
-      }
-    });
+    let breakPoints = [
+      {breakPointType: Breakpoints.XSmall, col: 1},
+      {breakPointType: Breakpoints.Small, col: 2},
+      {breakPointType: Breakpoints.Medium, col: 3},
+      {breakPointType: Breakpoints.Large, col: 5},
+      {breakPointType: Breakpoints.XLarge, col: 6}
+    ];
 
-    breakpointObserver.observe([
-      Breakpoints.Small
-    ]).subscribe(result => {
+    breakPoints.map(val => this.breakpointObserver.observe([val.breakPointType]).subscribe(result => {
       if (result.matches) {
-        this.cols = 2
+        this.cols = val.col
       }
-    });
-
-    breakpointObserver.observe([
-      Breakpoints.Medium
-    ]).subscribe(result => {
-      if (result.matches) {
-        this.cols = 3
-      }
-    });
-
-    breakpointObserver.observe([
-      Breakpoints.Large
-    ]).subscribe(result => {
-      if (result.matches) {
-        this.cols = 5
-      }
-    });
-
-    breakpointObserver.observe([
-      Breakpoints.XLarge
-    ]).subscribe(result => {
-      if (result.matches) {
-        this.cols = 6
-      }
-    });
+    }))
   }
+
 
   ngOnInit() {
     this.renameTitleBar.setTitle("Project Dashboard");
@@ -148,10 +124,11 @@ export class DashboardComponent implements OnInit {
 
       let card: ProjectCard = {
         id: this.id++,
-        owner: "Lakindu",
+        owner: "Lakindu Akash",
         cardTitle: dialogRef.componentInstance.data.name,
         description: dialogRef.componentInstance.data.description,
       } as ProjectCard;
+
 
       this.addNewProject(card);
       this.snackBar.open("Project created", "Dismiss", {
