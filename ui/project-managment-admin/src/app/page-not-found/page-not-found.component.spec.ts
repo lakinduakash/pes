@@ -19,7 +19,8 @@ describe('PageNotFoundComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create el', () => {
     expect(component).toBeTruthy();
   });
 });
+
