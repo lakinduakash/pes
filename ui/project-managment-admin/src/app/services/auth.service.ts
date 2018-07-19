@@ -34,7 +34,4 @@ export class AuthService {
     this.fireAuth.createUserWithEmailAndPassword(email, password)
   }
 
-  invalidate() {
-    this.fireAuth.signInAnonymously();
-  }
 }
