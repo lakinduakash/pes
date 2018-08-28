@@ -25,6 +25,7 @@ export class DashboardCardHolderComponent implements OnInit {
   @ViewChild('container', {read: ViewContainerRef}) container: ViewContainerRef;
 
   @Output('remove') remove = new EventEmitter();
+  @Output('openProject') openProject = new EventEmitter();
 
   @Input() set projectCard(details: ProjectCard) {
     const factory: ComponentFactory<ProjectCardComponent> = this.resolver.resolveComponentFactory(ProjectCardComponent);
@@ -32,6 +33,10 @@ export class DashboardCardHolderComponent implements OnInit {
     this.componentRef.instance.cardDetails = details;
     this.componentRef.instance.remove.subscribe(next => {
       this.remove.emit(next);
+    });
+
+    this.componentRef.instance.open.subscribe(next => {
+      this.openProject.emit(next)
     })
 
 

@@ -24,6 +24,7 @@ import {AngularFirestore, AngularFirestoreModule} from "angularfire2/firestore";
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {AuthGuardService} from "./services/auth-guard.service";
 import {SignupComponent} from './signup/signup.component';
+import {ProjectModule} from "./project/project.module";
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import {SignupComponent} from './signup/signup.component';
     DashboardModule,
     AngularFireModule.initializeApp(environment.firebase, 'myApp'),
     AngularFireDatabaseModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    ProjectModule
   ],
   providers: [
     RenameTitleBarService, ProjectService, AngularFireDatabase, AngularFirestore, AuthGuardService

@@ -10,6 +10,7 @@ export class ProjectCardComponent implements OnInit {
 
   @Input("card") cardDetails: ProjectCard;
   @Output("remove") remove = new EventEmitter();
+  @Output("open") open = new EventEmitter<number>();
 
   id;
   cardTitle;
@@ -28,6 +29,10 @@ export class ProjectCardComponent implements OnInit {
 
   removeProject() {
     this.remove.emit(this.id);
+  }
+
+  openProject() {
+    this.open.emit(this.id)
   }
 
 }

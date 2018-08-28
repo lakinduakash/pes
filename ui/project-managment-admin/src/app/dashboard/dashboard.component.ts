@@ -177,6 +177,10 @@ export class DashboardComponent implements OnInit {
 
   }
 
+  openProject(id: number) {
+    console.log("project id:" + id)
+  }
+
 }
 
 
