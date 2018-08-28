@@ -9,7 +9,7 @@ import {ProjectMainViewComponentComponent} from "./project/project-main-view-com
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
   {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuardService]},
-  {path: 'project', component: ProjectMainViewComponentComponent, canActivate: [AuthGuardService]},
+  {path: 'project/:id', component: ProjectMainViewComponentComponent, canActivate: [AuthGuardService]},
   {path: '**', component: PageNotFoundComponent}
 ];
 
