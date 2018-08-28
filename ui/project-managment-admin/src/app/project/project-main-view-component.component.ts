@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-project-main-view-component',
@@ -7,10 +8,16 @@ import {Component, OnInit} from '@angular/core';
 })
 export class ProjectMainViewComponentComponent implements OnInit {
 
-  constructor() {
+  id: string;
+
+  constructor(private route: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit() {
+    console.log("hello");
+    this.route.paramMap.subscribe(next => this.id = next.get('id'))
+
+
   }
 
 }

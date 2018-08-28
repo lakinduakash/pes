@@ -8,6 +8,7 @@ import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 import {DialogOverviewExampleDialog} from "./add-project-dialog/add-project-dialog.component";
 import {RemoveProjectDialogComponent} from "./remove-dialog/remove-project-dialog.component";
 import {animate, state, style, transition, trigger} from "@angular/animations";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-dashboard',
@@ -42,6 +43,7 @@ export class DashboardComponent implements OnInit {
   id = 1001;
 
   constructor(
+    public router: Router,
     public dialog: MatDialog,
     private renameTitleBar: RenameTitleBarService,
     private projectService: ProjectService,
@@ -178,7 +180,8 @@ export class DashboardComponent implements OnInit {
   }
 
   openProject(id: number) {
-    console.log("project id:" + id)
+    console.log("project id:" + id);
+    this.router.navigate(['/project/', id]);
   }
 
 }
