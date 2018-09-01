@@ -16,9 +16,12 @@
     </div>
   </mat-card-subtitle>
   <mat-divider></mat-divider>
-  <app-attribute></app-attribute>
-  <button mat-stroked-button color="primary" class="button-space">Add criteria</button>
-  <button mat-stroked-button color="secondary" class="button-space">Remove criteria</button>
+  <div *ngFor="let a of attr">
+    <app-attribute></app-attribute>
+  </div>
+  <button mat-stroked-button color="primary" class="button-space" (click)="onAddCriteriaClick()">Add criteria</button>
+  <button mat-stroked-button color="secondary" class="button-space" (click)="onRemoveCriteriaClick()">Remove criteria
+  </button>
 
   <div>
 
