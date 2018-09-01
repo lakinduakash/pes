@@ -5,3 +5,8 @@
 mat-form-field {
   width: 100%;
 }
+
+.button-space {
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
