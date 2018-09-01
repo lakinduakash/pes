@@ -11,8 +11,13 @@
   </mat-card-subtitle>
 
   <div class="section-space">
-    <app-section></app-section>
-    <button mat-stroked-button color="primary" class="button-space">Add section</button>
+    <div *ngFor="let s of sectionList">
+      <app-section></app-section>
+    </div>
+
+    <button mat-stroked-button color="primary" class="button-space" (click)="onAddSectionClick()">Add section</button>
+    <button mat-stroked-button color="primary" class="button-space" (click)="onRemoveSectionClick()">Remove section
+    </button>
   </div>
 </mat-card>
 
