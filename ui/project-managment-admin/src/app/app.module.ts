@@ -34,8 +34,7 @@ import {EvalFormModule} from "./eval-form/eval-form.module";
     LoginComponent,
     PageNotFoundComponent,
     SignupComponent,
-    TestComponentComponent,
-    TestComponent
+    TestComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,7 +48,8 @@ import {EvalFormModule} from "./eval-form/eval-form.module";
     AngularFireDatabaseModule,
     AngularFirestoreModule,
     ProjectModule,
-    EvalFormModule
+    EvalFormModule,
+
   ],
   providers: [
     RenameTitleBarService, ProjectService, AngularFireDatabase, AngularFirestore, AuthGuardService
