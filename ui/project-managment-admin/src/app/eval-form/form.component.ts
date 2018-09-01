@@ -11,8 +11,8 @@ export class FormComponent implements OnInit {
   @Input("sections") sectionList: Section[];
   @Input("formModel") form: FormModel;
 
-  title;
-  description;
+  formTitle;
+  formDesc;
   id;
 
 
@@ -21,8 +21,8 @@ export class FormComponent implements OnInit {
 
   ngOnInit() {
     if (this.form != undefined) {
-      this.title = this.form.name;
-      this.description = this.form.description;
+      this.formTitle = this.form.name;
+      this.formDesc = this.form.description;
       this.id = this.form.id;
     }
   }
@@ -52,6 +52,22 @@ export class FormComponent implements OnInit {
 
   renderSection() {
 
+  }
+
+  onSave() {
+    if (this.sectionList != undefined) {
+      if (this.form != undefined) {
+        this.form = {
+          id: this.id,
+          description: this.formDesc,
+          sections: this.sectionList,
+          name: this.formTitle
+        } as FormModel
+      }
+      else {
+
+      }
+    }
   }
 
 }

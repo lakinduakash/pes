@@ -1,12 +1,12 @@
 <mat-card class="form-main">
   <mat-card-title>
     <mat-form-field floatLabel="never">
-      <input matInput placeholder="Form Title">
+      <input [(ngModel)]="formTitle" matInput placeholder="Form Title">
     </mat-form-field>
   </mat-card-title>
   <mat-card-subtitle>
     <mat-form-field floatLabel="never">
-      <textarea matInput placeholder="Form Description"></textarea>
+      <textarea [(ngModel)]="formDesc" matInput placeholder="Form Description"></textarea>
     </mat-form-field>
   </mat-card-subtitle>
 
