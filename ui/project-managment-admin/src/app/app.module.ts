@@ -26,6 +26,7 @@ import {AuthGuardService} from "./services/auth-guard.service";
 import {SignupComponent} from './signup/signup.component';
 import {ProjectModule} from "./project/project.module";
 import {TestComponentComponent} from './test-component/test-component.component';
+import {TestComponent} from './test/test.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import {TestComponentComponent} from './test-component/test-component.component'
     LoginComponent,
     PageNotFoundComponent,
     SignupComponent,
-    TestComponentComponent
+    TestComponentComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,
