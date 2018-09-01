@@ -25,13 +25,15 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {AuthGuardService} from "./services/auth-guard.service";
 import {SignupComponent} from './signup/signup.component';
 import {ProjectModule} from "./project/project.module";
+import {TestComponentComponent} from './test-component/test-component.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     PageNotFoundComponent,
-    SignupComponent
+    SignupComponent,
+    TestComponentComponent
   ],
   imports: [
     BrowserModule,
