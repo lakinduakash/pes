@@ -38,6 +38,8 @@ export class FormComponent implements OnInit {
       this.sectionList.push(mSection)
     }
 
+    console.log(this.sectionList)
+
 
   }
 

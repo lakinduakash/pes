@@ -12,7 +12,7 @@
 
   <div class="section-space">
     <div *ngFor="let s of sectionList">
-      <app-section></app-section>
+      <app-section [section]="s"></app-section>
     </div>
 
     <button mat-stroked-button color="primary" class="button-space" (click)="onAddSectionClick()">Add section</button>

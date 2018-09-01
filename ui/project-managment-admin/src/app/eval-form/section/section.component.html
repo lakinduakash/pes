@@ -16,7 +16,7 @@
     </div>
   </mat-card-subtitle>
   <mat-divider></mat-divider>
-  <div *ngFor="let a of attr">
+  <div *ngFor="let a of section.attr">
     <app-attribute></app-attribute>
   </div>
   <button mat-stroked-button color="primary" class="button-space" (click)="onAddCriteriaClick()">Add criteria</button>

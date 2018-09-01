@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {SectionAttribute} from "../../core/model/form-model";
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Section, SectionAttribute} from "../../core/model/form-model";
 
 @Component({
   selector: 'app-section',
@@ -8,29 +8,34 @@ import {SectionAttribute} from "../../core/model/form-model";
 })
 export class SectionComponent implements OnInit {
 
-  @Input() attr: SectionAttribute[];
+
+  @Input("section") section: Section;
+  @Output("criteriaAdd") crAdd = new EventEmitter();
 
   constructor() {
   }
 
   ngOnInit() {
+
   }
 
   onAddCriteriaClick() {
     let a = new SectionAttribute();
-    if (this.attr != undefined) {
-      this.attr.push(a)
+    if (this.section.attr != undefined) {
+      this.section.attr.push(a)
     }
     else {
-      this.attr = [];
-      this.attr.push(a)
+      this.section.attr = [];
+      this.section.attr.push(a)
 
     }
+
+    this.crAdd.emit();
   }
 
   onRemoveCriteriaClick() {
-    if (this.attr != undefined && this.attr.length > 0)
-      this.attr.splice(this.attr.length - 1, 1)
+    if (this.section.attr != undefined && this.section.attr.length > 0)
+      this.section.attr.splice(this.section.attr.length - 1, 1)
 
   }
 
