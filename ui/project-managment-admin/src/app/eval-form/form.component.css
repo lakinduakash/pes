@@ -1,3 +1,7 @@
 .form-main {
   max-width: 90%;
 }
+
+mat-form-field {
+  width: 100%;
+}
