@@ -1,10 +1,19 @@
 <mat-card class="form-main">
-  <mat-card-header>
-    <mat-card-title>Hi</mat-card-title>
-    <mat-card-subtitle>sub title</mat-card-subtitle>
-  </mat-card-header>
+  <mat-card-title>
+    <mat-form-field floatLabel="never">
+      <input matInput placeholder="Form Title">
+    </mat-form-field>
+  </mat-card-title>
+  <mat-card-subtitle>
+    <mat-form-field floatLabel="never">
+      <textarea matInput placeholder="Form Description"></textarea>
+    </mat-form-field>
+  </mat-card-subtitle>
 
-  <div>
-
+  <div class="section-space">
+    <app-section></app-section>
+    <app-section></app-section>
+    <app-section></app-section>
   </div>
 </mat-card>
+
