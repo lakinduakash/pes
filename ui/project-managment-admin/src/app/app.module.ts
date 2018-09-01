@@ -25,8 +25,8 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {AuthGuardService} from "./services/auth-guard.service";
 import {SignupComponent} from './signup/signup.component';
 import {ProjectModule} from "./project/project.module";
-import {TestComponentComponent} from './test-component/test-component.component';
 import {TestComponent} from './test/test.component';
+import {EvalFormModule} from "./eval-form/eval-form.module";
 
 @NgModule({
   declarations: [
@@ -48,7 +48,8 @@ import {TestComponent} from './test/test.component';
     AngularFireModule.initializeApp(environment.firebase, 'myApp'),
     AngularFireDatabaseModule,
     AngularFirestoreModule,
-    ProjectModule
+    ProjectModule,
+    EvalFormModule
   ],
   providers: [
     RenameTitleBarService, ProjectService, AngularFireDatabase, AngularFirestore, AuthGuardService
