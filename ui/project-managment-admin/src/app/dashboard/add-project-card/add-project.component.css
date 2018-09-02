@@ -1,0 +1,12 @@
+.example-card {
+  margin: 10px 10px 10px 10px;
+  max-width: 170px;
+  min-height: 170px;
+  width: 100%;
+}
+
+.card-title {
+  font-size: medium;
+  font-weight: bold;
+  font-style: normal;
+}

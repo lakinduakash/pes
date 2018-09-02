@@ -1,0 +1,29 @@
+<mat-card class="section-main">
+
+  <mat-card-title>
+    <div class="sec-input-field sec-title">
+      <mat-form-field floatLabel="never">
+        <input matInput placeholder="Section title">
+      </mat-form-field>
+    </div>
+
+  </mat-card-title>
+  <mat-card-subtitle>
+    <div class="sec-input-field sec-subTitle">
+      <mat-form-field floatLabel="never">
+        <textarea matInput placeholder="Section description"></textarea>
+      </mat-form-field>
+    </div>
+  </mat-card-subtitle>
+  <mat-divider></mat-divider>
+  <div *ngFor="let a of section.attr">
+    <app-attribute></app-attribute>
+  </div>
+  <button mat-stroked-button color="primary" class="button-space" (click)="onAddCriteriaClick()">Add criteria</button>
+  <button mat-stroked-button color="secondary" class="button-space" (click)="onRemoveCriteriaClick()">Remove criteria
+  </button>
+
+  <div>
+
+  </div>
+</mat-card>
