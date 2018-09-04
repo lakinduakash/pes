@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormModel, Section} from "../core/model/form-model";
-import {ProjectService} from "../services/project.service";
+import {FormService} from "../services/form.service";
 
 @Component({
   selector: 'app-form',
@@ -17,7 +17,7 @@ export class FormComponent implements OnInit {
   id;
 
 
-  constructor(private projectService: ProjectService) {
+  constructor(private formService: FormService) {
   }
 
   ngOnInit() {
@@ -68,7 +68,7 @@ export class FormComponent implements OnInit {
           sections: this.sectionList,
           name: this.formTitle
         } as FormModel;
-        this.projectService.saveForm(this.form)
+        this.formService.saveForm(this.form)
       }
       else {
         this.form = {
@@ -77,7 +77,7 @@ export class FormComponent implements OnInit {
           sections: this.sectionList,
           name: this.formTitle
         } as FormModel;
-        this.projectService.saveForm(this.form)
+        this.formService.saveForm(this.form)
 
       }
     }
