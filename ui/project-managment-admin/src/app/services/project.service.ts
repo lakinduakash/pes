@@ -5,19 +5,13 @@ import {AngularFireDatabase} from "angularfire2/database";
 import {AngularFirestore} from "angularfire2/firestore";
 import {from} from "rxjs/internal/observable/from";
 import {Subject} from "rxjs/internal/Subject";
+import {FormModel} from "../core/model/form-model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectService {
 
-  id = 3;
-  ex = [{id: 1, owner: "Lakindu", cardTitle: "2nd Year", description: " blah blah blah"}, {
-    id: 2,
-    owner: "Ayesh",
-    cardTitle: "3rd year",
-    description: "blag blah blah"
-  }];
 
   projectList: FirebaseListObservable<ProjectCard[]>;
 
@@ -26,7 +20,8 @@ export class ProjectService {
   }
 
   createProject(projectCard) {
-    this.fireDb.list('/project').push(projectCard);
+    //this.fireDb.list('/project').push(projectCard);
+    console.log(projectCard);
 
     this.getLastId().subscribe(next => {
       projectCard.id = next as number;
@@ -74,6 +69,16 @@ export class ProjectService {
     });
 
     return ass
+  }
+
+  saveForm(form: FormModel) {
+
+    //let f=JSON.stringify(form)
+    //let k = f.replace(/\\/g, "");
+
+
+    let i = this.fireStore.collection("form").add(form);
+    console.log(i)
   }
 
   private updateLastId() {
