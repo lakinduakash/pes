@@ -12,10 +12,20 @@ export class SectionComponent implements OnInit {
   @Input("section") section: Section;
   @Output("criteriaAdd") crAdd = new EventEmitter();
 
+  secDesc;
+  secTitle;
+
+
+
+
   constructor() {
   }
 
   ngOnInit() {
+    if (this.section != undefined) {
+      this.secDesc = this.section.description;
+      this.secTitle = this.section.name
+    }
 
   }
 
@@ -37,6 +47,11 @@ export class SectionComponent implements OnInit {
     if (this.section.attr != undefined && this.section.attr.length > 0)
       this.section.attr.splice(this.section.attr.length - 1, 1)
 
+  }
+
+  saveFormDetails() {
+    this.section.name = this.secTitle;
+    this.section.description = this.secDesc
   }
 
 }
