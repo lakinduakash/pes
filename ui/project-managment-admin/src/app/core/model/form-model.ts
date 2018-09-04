@@ -1,4 +1,5 @@
 export class FormModel {
+  $key: string;
   id: number;
   name: string;
   description: string;
@@ -8,6 +9,7 @@ export class FormModel {
 }
 
 export class Section {
+  $key: string;
   id: number;
   name: string;
   description: string;
@@ -19,6 +21,7 @@ export class Section {
 }
 
 export class SectionAttribute {
+  $key: string;
   criteria: string;
   maxMark: number;
   currentMark: number;
