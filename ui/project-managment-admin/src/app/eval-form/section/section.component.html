@@ -3,7 +3,7 @@
   <mat-card-title>
     <div class="sec-input-field sec-title">
       <mat-form-field floatLabel="never">
-        <input matInput placeholder="Section title">
+        <input matInput [(ngModel)]="secTitle" (keyup)="saveFormDetails()" placeholder="Section title">
       </mat-form-field>
     </div>
 
@@ -11,7 +11,8 @@
   <mat-card-subtitle>
     <div class="sec-input-field sec-subTitle">
       <mat-form-field floatLabel="never">
-        <textarea matInput placeholder="Section description"></textarea>
+        <textarea matInput [(ngModel)]="secDesc" (keyup)="saveFormDetails()"
+                  placeholder="Section description"></textarea>
       </mat-form-field>
     </div>
   </mat-card-subtitle>
