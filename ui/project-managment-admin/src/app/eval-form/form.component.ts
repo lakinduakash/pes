@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormModel, Section} from "../core/model/form-model";
+import {ProjectService} from "../services/project.service";
 
 @Component({
   selector: 'app-form',
@@ -16,7 +17,7 @@ export class FormComponent implements OnInit {
   id;
 
 
-  constructor() {
+  constructor(private projectService: ProjectService) {
   }
 
   ngOnInit() {
@@ -54,17 +55,29 @@ export class FormComponent implements OnInit {
 
   }
 
-  onSave() {
+  onSaveFormClick() {
     if (this.sectionList != undefined) {
+
+      this.sectionList = this.sectionList.map((obj) => {
+        return Object.assign({}, obj)
+      });
       if (this.form != undefined) {
         this.form = {
           id: this.id,
           description: this.formDesc,
           sections: this.sectionList,
           name: this.formTitle
-        } as FormModel
+        } as FormModel;
+        this.projectService.saveForm(this.form)
       }
       else {
+        this.form = {
+          id: this.id,
+          description: this.formDesc,
+          sections: this.sectionList,
+          name: this.formTitle
+        } as FormModel;
+        this.projectService.saveForm(this.form)
 
       }
     }
