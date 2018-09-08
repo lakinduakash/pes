@@ -31,6 +31,7 @@ export class SectionComponent implements OnInit {
 
   onAddCriteriaClick() {
     let a = new SectionAttribute();
+    a = Object.assign({}, a);
     if (this.section.attr != undefined) {
       this.section.attr.push(a)
     }

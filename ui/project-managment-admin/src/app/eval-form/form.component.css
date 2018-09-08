@@ -1,5 +1,11 @@
 .form-main {
-  max-width: 90%;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.form-main-sm {
+  margin-left: 0;
+  margin-right: 0;
 }
 
 mat-form-field {
