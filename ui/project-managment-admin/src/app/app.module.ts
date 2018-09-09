@@ -17,7 +17,6 @@ import {AddProjectComponent} from "./dashboard/add-project-card/add-project.comp
 import {DialogOverviewExampleDialog} from "./dashboard/add-project-dialog/add-project-dialog.component";
 import {DashboardModule} from "./dashboard/dashboard.module";
 import {AngularFireModule} from "angularfire2";
-import {AngularFireDatabaseModule} from "angularfire2/database-deprecated";
 import {environment} from "../environments/environment";
 import {AngularFireDatabase} from "angularfire2/database";
 import {AngularFirestore, AngularFirestoreModule} from "angularfire2/firestore";
@@ -45,7 +44,6 @@ import {EvalFormModule} from "./eval-form/eval-form.module";
     HttpClientModule,
     DashboardModule,
     AngularFireModule.initializeApp(environment.firebase, 'myApp'),
-    AngularFireDatabaseModule,
     AngularFirestoreModule,
     ProjectModule,
     EvalFormModule,
