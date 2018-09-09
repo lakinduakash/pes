@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {ProjectCard} from "../core/model/project-card";
-import {FirebaseListObservable} from "angularfire2/database-deprecated";
 import {AngularFireDatabase} from "angularfire2/database";
 import {AngularFirestore} from "angularfire2/firestore";
 import {from} from "rxjs/internal/observable/from";
@@ -13,7 +12,6 @@ import {FormModel} from "../core/model/form-model";
 export class ProjectService {
 
 
-  projectList: FirebaseListObservable<ProjectCard[]>;
 
   constructor(public fireDb: AngularFireDatabase, public fireStore: AngularFirestore) {
 
