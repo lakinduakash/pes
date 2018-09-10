@@ -17,7 +17,6 @@ import {AddProjectComponent} from "./dashboard/add-project-card/add-project.comp
 import {DialogOverviewExampleDialog} from "./dashboard/add-project-dialog/add-project-dialog.component";
 import {DashboardModule} from "./dashboard/dashboard.module";
 import {AngularFireModule} from "angularfire2";
-import {AngularFireDatabaseModule} from "angularfire2/database-deprecated";
 import {environment} from "../environments/environment";
 import {AngularFireDatabase} from "angularfire2/database";
 import {AngularFirestore, AngularFirestoreModule} from "angularfire2/firestore";
@@ -25,13 +24,16 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {AuthGuardService} from "./services/auth-guard.service";
 import {SignupComponent} from './signup/signup.component';
 import {ProjectModule} from "./project/project.module";
+import {TestComponent} from './test/test.component';
+import {EvalFormModule} from "./eval-form/eval-form.module";
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     PageNotFoundComponent,
-    SignupComponent
+    SignupComponent,
+    TestComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,9 +44,10 @@ import {ProjectModule} from "./project/project.module";
     HttpClientModule,
     DashboardModule,
     AngularFireModule.initializeApp(environment.firebase, 'myApp'),
-    AngularFireDatabaseModule,
     AngularFirestoreModule,
-    ProjectModule
+    ProjectModule,
+    EvalFormModule,
+
   ],
   providers: [
     RenameTitleBarService, ProjectService, AngularFireDatabase, AngularFirestore, AuthGuardService

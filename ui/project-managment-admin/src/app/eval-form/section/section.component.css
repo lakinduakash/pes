@@ -1,0 +1,24 @@
+.section-main {
+  margin-top: 5px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.sec-title {
+  font-size: large;
+}
+
+.sec-subTitle {
+  font-size: medium;
+}
+
+.button-space {
+  margin-bottom: 5px;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+
+
