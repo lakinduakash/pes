@@ -71,8 +71,6 @@ export class ProjectService {
 
   saveForm(form: FormModel) {
 
-    //let f=JSON.stringify(form)
-    //let k = f.replace(/\\/g, "");
 
 
     let i = this.fireStore.collection("form").add(form);
