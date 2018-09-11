@@ -12,4 +12,16 @@ export class FormService {
   saveForm(form) {
     this.fireStore.collection('form').add(form)
   }
+
+  getLastId() {
+
+  }
+
+  updateLastId() {
+
+  }
+
+  getForm(id) {
+
+  }
 }

@@ -4,4 +4,9 @@
 
 .attribute {
   font-size: small;
+  margin-right: 5px;
+}
+
+.attribute > mat-form-field {
+  margin-right: 5px;
 }
