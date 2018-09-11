@@ -1,0 +1,13 @@
+.sidenav-container {
+  height: 100%;
+  width: 100%;
+}
+
+.sidenav {
+  width: 200px;
+  box-shadow: 3px 0 6px rgba(0,0,0,.24);
+}
+
+.mat-list-item.active1 {
+  background-color: cyan;
+}
