@@ -28,6 +28,8 @@ import {ProjectModule} from "./project/project.module";
 import {TestComponent} from './test/test.component';
 import {EvalFormModule} from "./eval-form/eval-form.module";
 import {NgDragDropModule} from "ng-drag-drop";
+import {EvalFormParserModule} from "./eval-form-parser/eval-form-parser.module";
+import {FormViewComponent} from "./eval-form-parser/form-view/form-view.component";
 
 @NgModule({
   declarations: [
@@ -36,6 +38,7 @@ import {NgDragDropModule} from "ng-drag-drop";
     PageNotFoundComponent,
     SignupComponent,
     TestComponent,
+    FormViewComponent
   ],
   imports: [
     BrowserModule,
