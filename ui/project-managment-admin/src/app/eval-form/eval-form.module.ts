@@ -3,7 +3,14 @@ import {CommonModule} from '@angular/common';
 import {FormComponent} from './form.component';
 import {SectionComponent} from './section/section.component';
 import {AttributeComponent} from './attribute/attribute.component';
-import {MatButtonModule, MatCardModule, MatDividerModule, MatFormFieldModule, MatInputModule} from "@angular/material";
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatDividerModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatInputModule
+} from "@angular/material";
 import {FormsModule} from "@angular/forms";
 
 @NgModule({
@@ -14,6 +21,7 @@ import {FormsModule} from "@angular/forms";
     MatInputModule,
     MatDividerModule,
     MatButtonModule,
+    MatIconModule,
     FormsModule
   ],
   declarations: [FormComponent, SectionComponent, AttributeComponent],

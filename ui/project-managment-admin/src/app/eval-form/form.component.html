@@ -12,12 +12,10 @@
 
   <div class="section-space">
     <div *ngFor="let s of sectionList">
-      <app-section [section]="s"></app-section>
+      <app-section [section]="s" (deleteSection)="deleteSection($event)"></app-section>
     </div>
 
     <button mat-stroked-button color="primary" class="button-space" (click)="onAddSectionClick()">Add section</button>
-    <button mat-stroked-button color="primary" class="button-space" (click)="onRemoveSectionClick()">Remove section
-    </button>
   </div>
   <br>
   <button mat-stroked-button color="primary" class="button-space" (click)="onSaveFormClick()">Save form</button>
