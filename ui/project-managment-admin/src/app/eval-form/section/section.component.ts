@@ -11,6 +11,7 @@ export class SectionComponent implements OnInit {
 
   @Input("section") section: Section;
   @Output("criteriaAdd") crAdd = new EventEmitter();
+  @Output('deleteSection') deleteSection = new EventEmitter();
 
   secDesc;
   secTitle;
@@ -53,6 +54,10 @@ export class SectionComponent implements OnInit {
   saveFormDetails() {
     this.section.name = this.secTitle;
     this.section.description = this.secDesc
+  }
+
+  delete() {
+    this.deleteSection.emit(this.section.id)
   }
 
 }
