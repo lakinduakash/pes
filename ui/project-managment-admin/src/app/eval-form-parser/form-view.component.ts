@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormModel, Section} from "../core/model/form-model";
 import {FormService} from "../services/form.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 
 @Component({
@@ -10,7 +11,9 @@ import {FormService} from "../services/form.service";
 })
 export class FormViewComponent implements OnInit {
 
-  constructor(private formService:FormService) { }
+  @Input('eval-form')evalForm
+
+  constructor(private formService:FormService,private route: ActivatedRoute, private router: Router) { }
 
   form:FormModel
   sectionList:Section[];
@@ -18,8 +21,13 @@ export class FormViewComponent implements OnInit {
   title
   description
 
+  private routeId: string;
+
   ngOnInit() {
-    this.formService.getForm(5).subscribe(next=>{this.form=next.data() as FormModel; this.printForm()},error1 => console.log(error1))
+    this.route.paramMap.subscribe(next => this.routeId = next.get('id'))
+    console.log(this.routeId)
+
+    this.formService.getForm(this.routeId).subscribe(next=>{this.form=next.data() as FormModel; this.printForm()},error1 => console.log(error1))
 
   }
 
@@ -30,5 +38,7 @@ export class FormViewComponent implements OnInit {
     this.title=this.form.name
     this.description=this.form.description
   }
+
+
 
 }
