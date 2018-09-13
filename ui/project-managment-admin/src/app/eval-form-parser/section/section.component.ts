@@ -10,9 +10,17 @@ export class SectionComponent implements OnInit {
 
   @Input('section')section:Section
 
+  title
+  description
+
+  attributeList
+
   constructor() { }
 
   ngOnInit() {
+    this.title=this.section.name
+    this.description=this.section.description
+    this.attributeList=this.section.attr
   }
 
 }
