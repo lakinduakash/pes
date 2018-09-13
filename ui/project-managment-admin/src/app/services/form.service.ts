@@ -26,12 +26,12 @@ export class FormService {
 
   getForm(id) {
 
-    return this.fireStore.collection('form').doc("zQ5ZKIx7pGR5deB3lKOP").get()
+    return this.fireStore.collection('form').doc(id).get()
 
   }
 
   getAllForm()
   {
-
+    return this.fireStore.collection('form').get()
   }
 }
