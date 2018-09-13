@@ -55,9 +55,9 @@ export class FormComponent implements OnInit {
   onSaveFormClick() {
     if (this.sectionList != undefined) {
 
-      this.sectionList = this.sectionList.map((obj) => {
-        return Object.assign({}, obj)
-      });
+      // this.sectionList = this.sectionList.map((obj) => {
+      //   return Object.assign({}, obj)
+      // });
       if (this.form != undefined) {
         this.form = {
           id: this.id,

@@ -10,7 +10,7 @@ export class FormService {
   }
 
   saveForm(form) {
-    this.fireStore.collection('form').add(form)
+    this.fireStore.collection('form').add(JSON.parse(JSON.stringify(form)))
   }
 
   getLastId() {
