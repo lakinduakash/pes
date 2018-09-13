@@ -20,5 +20,16 @@ mat-form-field {
   margin-left: 5px;
 }
 
+.delete {
+  float: right;
+  opacity: 0.2;
+  transition: 0.3s;
+}
+
+.delete:hover {
+  opacity: 1;
+}
+
+
 
 
