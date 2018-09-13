@@ -20,6 +20,7 @@ import {AngularFireModule} from "angularfire2";
 import {environment} from "../environments/environment";
 import {AngularFireDatabase} from "angularfire2/database";
 import {AngularFirestore, AngularFirestoreModule} from "angularfire2/firestore";
+import {AngularFireAuthModule} from "angularfire2/auth";
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {AuthGuardService} from "./services/auth-guard.service";
 import {SignupComponent} from './signup/signup.component';
@@ -45,6 +46,7 @@ import {EvalFormModule} from "./eval-form/eval-form.module";
     DashboardModule,
     AngularFireModule.initializeApp(environment.firebase, 'myApp'),
     AngularFirestoreModule,
+    AngularFireAuthModule,
     ProjectModule,
     EvalFormModule,
 
