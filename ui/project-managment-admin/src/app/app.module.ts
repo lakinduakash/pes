@@ -27,6 +27,7 @@ import {SignupComponent} from './signup/signup.component';
 import {ProjectModule} from "./project/project.module";
 import {TestComponent} from './test/test.component';
 import {EvalFormModule} from "./eval-form/eval-form.module";
+import {NgDragDropModule} from "ng-drag-drop";
 
 @NgModule({
   declarations: [
@@ -49,6 +50,8 @@ import {EvalFormModule} from "./eval-form/eval-form.module";
     AngularFireAuthModule,
     ProjectModule,
     EvalFormModule,
+    NgDragDropModule.forRoot()
+
 
   ],
   providers: [
