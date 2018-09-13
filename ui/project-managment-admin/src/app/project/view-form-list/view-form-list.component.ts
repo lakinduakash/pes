@@ -19,10 +19,12 @@ export class ViewFormListComponent implements OnInit {
 
   initList(docs){
 
-    docs.docs.forEach(item=> this.formList.push(item.data() as FormModel))
-
+    docs.docs.forEach(item=> this.formList.push(item.ref.id))
     console.log(this.formList)
 
+
   }
+
+
 
 }
