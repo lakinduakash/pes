@@ -58,6 +58,7 @@ export class FormComponent implements OnInit {
       // this.sectionList = this.sectionList.map((obj) => {
       //   return Object.assign({}, obj)
       // });
+
       if (this.form != undefined) {
         this.form = {
           id: this.id,
@@ -65,7 +66,7 @@ export class FormComponent implements OnInit {
           sections: this.sectionList,
           name: this.formTitle
         } as FormModel;
-        this.formService.saveForm(this.form)
+        this.formService.saveForm(this.form).subscribe(next=>(console.log("saved")),error=>console.log("error)"))
       }
       else {
         this.form = {
