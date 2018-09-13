@@ -23,11 +23,10 @@
 
   <mat-divider></mat-divider>
   <div *ngFor="let a of section.attr">
-    <app-attribute></app-attribute>
+    <app-attribute (delete)="deleteCriteria($event)" [sectionAttribute]="a"></app-attribute>
   </div>
   <button mat-stroked-button color="primary" class="button-space" (click)="onAddCriteriaClick()">Add criteria</button>
-  <button mat-stroked-button color="secondary" class="button-space" (click)="onRemoveCriteriaClick()">Remove criteria
-  </button>
+
 
   <div>
 

@@ -11,9 +11,15 @@
   </mat-card-subtitle>
 
   <div class="section-space">
+    <ul droppable="true">
+
+    </ul>
     <div *ngFor="let s of sectionList">
+
       <app-section [section]="s" (deleteSection)="deleteSection($event)"></app-section>
+
     </div>
+
 
     <button mat-stroked-button color="primary" class="button-space" (click)="onAddSectionClick()">Add section</button>
   </div>
