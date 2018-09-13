@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import { FormViewComponent } from './form-view/form-view.component';
-import { SectionComponent } from './section/section.component';
+import { FormViewComponent } from './form-view.component';
+
 import {
   MatButtonModule,
   MatCardModule,
@@ -11,7 +11,8 @@ import {
   MatInputModule
 } from "@angular/material";
 import {FormsModule} from "@angular/forms";
-import { AttributeComponent } from './attribute/attribute.component';
+import {SectionComponent} from "./section/section.component";
+import {AttributeComponent} from "./attribute/attribute.component";
 
 @NgModule({
   imports: [
@@ -24,7 +25,7 @@ import { AttributeComponent } from './attribute/attribute.component';
     MatIconModule,
     FormsModule,
   ],
-  declarations: [FormViewComponent, SectionComponent, AttributeComponent],
+  declarations: [FormViewComponent,SectionComponent,AttributeComponent],
   exports:[FormViewComponent]
 })
 export class EvalFormParserModule {
