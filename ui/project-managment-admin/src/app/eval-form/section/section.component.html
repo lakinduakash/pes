@@ -1,6 +1,9 @@
 <mat-card class="section-main">
 
   <mat-card-title>
+    <button class="delete" mat-icon-button (click)="delete()">
+      <mat-icon aria-label="Delete icon">delete</mat-icon>
+    </button>
     <div class="sec-input-field sec-title">
       <mat-form-field floatLabel="never">
         <input matInput [(ngModel)]="secTitle" (keyup)="saveFormDetails()" placeholder="Section title">
@@ -16,6 +19,8 @@
       </mat-form-field>
     </div>
   </mat-card-subtitle>
+
+
   <mat-divider></mat-divider>
   <div *ngFor="let a of section.attr">
     <app-attribute></app-attribute>
@@ -27,4 +32,5 @@
   <div>
 
   </div>
+
 </mat-card>
