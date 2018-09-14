@@ -1,35 +1,80 @@
 import { Injectable } from '@angular/core';
-import {FirebaseAuth} from "@angular/fire";
-import {Observable, of} from "rxjs";
-import {delay, tap} from "rxjs/operators";
+import { Router } from '@angular/router';
 
-@Injectable({
-  providedIn: 'root'
-})
+import { auth } from 'firebase/app';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+
+import { Observable, of } from 'rxjs';
+import { switchMap} from 'rxjs/operators';
+
+interface User {
+  uid: string;
+  email: string;
+  photoURL?: string;
+  displayName?: string;
+  favoriteColor?: string;
+}
+
+
+@Injectable()
 export class AuthService {
 
-  constructor(private fireAuth: FirebaseAuth) {
+  user: Observable<User>;
+
+  constructor(
+    private afAuth: AngularFireAuth,
+    private afs: AngularFirestore,
+    private router: Router
+  ) {
+
+    //// Get auth data, then get firestore user document || null
+    this.user = this.afAuth.authState.pipe(
+      switchMap(user => {
+        if (user) {
+          return this.afs.doc<User>(`usersC/${user.uid}`).valueChanges()
+        } else {
+          return of(null)
+        }
+      })
+    )
   }
 
-  isLoggedIn = false;
 
-  // store the URL so we can redirect after logging in
-  redirectUrl: string;
 
-  login(email, password): Observable<boolean> {
+  googleLogin() {
+    const provider = new auth.GoogleAuthProvider();
+    return this.oAuthLogin(provider);
+  }
 
-    return of(true).pipe(
-      delay(1000),
-      tap(val => this.isLoggedIn = true)
-    );
+  private oAuthLogin(provider) {
+    return this.afAuth.auth.signInWithPopup(provider)
+      .then((credential) => {
+        this.updateUserData(credential.user)
+      })
   }
 
 
-  logout(): void {
-    this.isLoggedIn = false;
+  private updateUserData(user) {
+    // Sets user data to firestore on login
+
+    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`usersC/${user.uid}`);
+
+    const data: User = {
+      uid: user.uid,
+      email: user.email,
+      displayName: user.displayName,
+      photoURL: user.photoURL
+    };
+
+    return userRef.set(data, { merge: true })
+
   }
 
-  signUp(email, password) {
-    this.fireAuth.createUserWithEmailAndPassword(email, password)
+
+  signOut() {
+    this.afAuth.auth.signOut().then(() => {
+      this.router.navigate(['/']);
+    });
   }
 }
