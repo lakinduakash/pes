@@ -60,7 +60,7 @@ import {EvalFormParserModule} from "./eval-form-parser/eval-form-parser.module";
 
   ],
   providers: [
-    RenameTitleBarService, ProjectService, AngularFireDatabase, AngularFirestore, AuthGuardService
+    RenameTitleBarService, ProjectService,AngularFireDatabase, AngularFirestore, AuthGuardService
   ],
   bootstrap: [AppComponent],
   entryComponents: [DialogOverviewExampleDialog, ProjectCardComponent, AddProjectComponent]
