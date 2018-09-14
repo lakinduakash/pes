@@ -1,8 +1,7 @@
-import {Injectable} from '@angular/core';
-import {Observable} from "rxjs/internal/Observable";
-import {of} from "rxjs/internal/observable/of";
+import { Injectable } from '@angular/core';
+import {FirebaseAuth} from "@angular/fire";
+import {Observable, of} from "rxjs";
 import {delay, tap} from "rxjs/operators";
-import {FirebaseAuth} from "angularfire2";
 
 @Injectable({
   providedIn: 'root'
@@ -33,5 +32,4 @@ export class AuthService {
   signUp(email, password) {
     this.fireAuth.createUserWithEmailAndPassword(email, password)
   }
-
 }
