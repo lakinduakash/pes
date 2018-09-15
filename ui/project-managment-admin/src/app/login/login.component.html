@@ -11,6 +11,8 @@
             <mat-form-field class="example-full-width">
               <input matInput placeholder="Username" [(ngModel)]="email" name="username" required>
             </mat-form-field>
+
+            <mat-error>{{emailVerifiedStatus}}</mat-error>
           </td>
         </tr>
         <tr>
@@ -22,6 +24,7 @@
 
     <div fxLayoutAlign="center">
       <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+      <mat-error>{{errorMassage}}</mat-error>
     </div>
 
 
