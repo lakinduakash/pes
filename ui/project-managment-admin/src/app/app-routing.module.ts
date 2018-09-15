@@ -7,6 +7,9 @@ import {ProjectMainViewComponentComponent} from "./project/project-main-view-com
 import {TestComponent} from "./test/test.component";
 import {SignupComponent} from "./signup/signup.component";
 import {LoginComponent} from "./login/login.component";
+
+import { ProjectMainComponent } from './project/project-main/project-main.component';
+
 import {FormViewComponent} from "./eval-form-parser/form-view.component";
 import {ViewFormListComponent} from "./project/view-form-list/view-form-list.component";
 import {AuthGuard} from "./auth/auth.guard";
@@ -22,6 +25,7 @@ const routes: Routes = [
   {path: 'list-form', component: ViewFormListComponent,canActivate:[AuthGuard]},
   {path: 'signup', component: SignupComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'project-main', component: ProjectMainComponent},
   {path: '**', component: PageNotFoundComponent}
 ];
 

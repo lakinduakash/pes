@@ -13,6 +13,8 @@ import {
   MatInputModule
 } from "@angular/material";
 import {FormsModule} from "@angular/forms";
+
+import { AddEvaluatorComponent } from './add-evaluator/add-evaluator.component';
 import {NgDragDropModule} from 'ng-drag-drop';
 
 
@@ -28,7 +30,7 @@ import {NgDragDropModule} from 'ng-drag-drop';
     FormsModule,
     NgDragDropModule
   ],
-  declarations: [FormComponent, SectionComponent, AttributeComponent],
+  declarations: [FormComponent, SectionComponent, AttributeComponent, AddEvaluatorComponent],
   exports: [FormComponent]
 })
 export class EvalFormModule {
