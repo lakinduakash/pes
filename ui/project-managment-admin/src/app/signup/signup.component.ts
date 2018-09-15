@@ -14,9 +14,10 @@ export class SignupComponent implements OnInit {
   signupStates=['ALREADY_R','ERROR','VERIFICATION_SEND','SIGNUP'];
 
   state=this.signupStates[3];
+  isHandest$;
 
 
-  constructor(private fb:FormBuilder,private auth:AuthService) {
+  constructor(private fb:FormBuilder,private auth:AuthService,private breakPointObserver:BreakpointObserver) {
 
     this.signupFormGroup=fb.group({
       fName:['',Validators.compose([Validators.required,Validators.maxLength(15),Validators.minLength(1)])],
@@ -32,6 +33,8 @@ export class SignupComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.breakPointObserver.observe(Breakpoints.HandsetPortrait).subscribe(next=>this.isHandest$=next.matches)
 
   }
 
@@ -75,6 +78,7 @@ import {AbstractControl} from '@angular/forms';
 import {AuthService} from "../auth/auth.service";
 import {User} from "../core/model/user";
 import {fromPromise} from "rxjs/internal-compatibility";
+import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 export class PasswordValidation {
 
   static MatchPassword(AC: AbstractControl) {

@@ -28,9 +28,15 @@ export class LoginComponent implements OnInit {
   emailSentMassage="";
   errorMassage="";
 
-  constructor(private authService:AuthService,private router:Router,private breakPointObserver:BreakpointObserver,private authf:AngularFireAuth) { }
+  constructor(private authService:AuthService,private router:Router,private breakPointObserver:BreakpointObserver,private authf:AngularFireAuth) {
+    this.authf.user.subscribe(next=>{
+      if(next !=null)
+        this.router.navigate(['/dashboard'])
+    })
+  }
 
   ngOnInit() {
+
     this.breakPointObserver.observe(Breakpoints.HandsetPortrait).subscribe(next=>this.isHandest$=next.matches)
   }
 
