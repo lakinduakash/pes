@@ -62,8 +62,9 @@ export class ProjectService {
     let ass = new Subject();
 
     let ob = from(this.fireStore.collection('lastProjectId').ref.doc('DhUGQJCUsgHpUMtCMshh').get());
+
     ob.subscribe(next => {
-      ass.next(next.data().last_id)
+      ass.next(next.data().last_id);
     });
 
     return ass

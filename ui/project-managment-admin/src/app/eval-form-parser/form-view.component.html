@@ -1,0 +1,14 @@
+<mat-card>
+  <mat-card-title>
+    {{title}}
+  </mat-card-title>
+  <mat-card-subtitle>
+    {{description}}
+  </mat-card-subtitle>
+
+  <div *ngFor="let sec of sectionList">
+    <app-section-parser [section]="sec"> </app-section-parser>
+  </div>
+
+</mat-card>
+

@@ -21,6 +21,18 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>{{navTitle}}</span>
+
+
+      <mat-menu #menu="matMenu" >
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>dialpad</mat-icon>
+          <span>Log out</span>
+        </button>
+      </mat-menu>
+
+      <button class="menu-button" mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
     </mat-toolbar>
   </mat-sidenav-content>
 </mat-sidenav-container>

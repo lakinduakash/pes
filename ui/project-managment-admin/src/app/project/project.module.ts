@@ -2,6 +2,10 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {ProjectMainViewComponentComponent} from './project-main-view-component.component';
 import {FormCreatorComponent} from './form-creator/form-creator.component';
+import { ViewFormListComponent } from './view-form-list/view-form-list.component';
+import {MatListModule} from "@angular/material";
+import {RouterModule} from "@angular/router";
+
 
 import {MatButtonModule,
   MatCardModule,
@@ -19,6 +23,7 @@ import { ProjectMainComponent } from './project-main/project-main.component';
 @NgModule({
   imports: [
     CommonModule,
+
     MatGridListModule,
     MatInputModule,
     MatDialogModule,
@@ -33,6 +38,10 @@ import { ProjectMainComponent } from './project-main/project-main.component';
 
   ],
   declarations: [ProjectMainViewComponentComponent, FormCreatorComponent, ProjectMainComponent]
+    MatListModule,
+    RouterModule
+  ],
+  declarations: [ProjectMainViewComponentComponent, FormCreatorComponent, ViewFormListComponent]
 })
 export class ProjectModule {
 }

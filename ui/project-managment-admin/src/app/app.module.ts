@@ -16,16 +16,31 @@ import {ProjectCardComponent} from "./dashboard/project-card/project-card.compon
 import {AddProjectComponent} from "./dashboard/add-project-card/add-project.component";
 import {DialogOverviewExampleDialog} from "./dashboard/add-project-dialog/add-project-dialog.component";
 import {DashboardModule} from "./dashboard/dashboard.module";
-import {AngularFireModule} from "angularfire2";
+
 import {environment} from "../environments/environment";
-import {AngularFireDatabase} from "angularfire2/database";
-import {AngularFirestore, AngularFirestoreModule} from "angularfire2/firestore";
+import {AngularFireDatabase} from "@angular/fire/database";
+import {AngularFirestore, AngularFirestoreModule} from "@angular/fire/firestore";
+
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
-import {AuthGuardService} from "./services/auth-guard.service";
 import {SignupComponent} from './signup/signup.component';
 import {ProjectModule} from "./project/project.module";
 import {TestComponent} from './test/test.component';
 import {EvalFormModule} from "./eval-form/eval-form.module";
+import {NgDragDropModule} from "ng-drag-drop";
+import {MatButtonModule, MatCardModule, MatInputModule, MatProgressSpinnerModule} from "@angular/material";
+import {EvalFormParserModule} from "./eval-form-parser/eval-form-parser.module";
+
+
+
+import {AngularFireModule} from '@angular/fire';
+import {AngularFireAuthModule} from '@angular/fire/auth';
+
+import {AuthModule} from "./auth/auth.module";
+import {AuthGuard} from "./auth/auth.guard";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {FlexLayoutModule} from "@angular/flex-layout";
+
+
 
 @NgModule({
   declarations: [
@@ -37,6 +52,11 @@ import {EvalFormModule} from "./eval-form/eval-form.module";
   ],
   imports: [
     BrowserModule,
+    MatCardModule,
+    MatInputModule,
+    MatButtonModule,
+    FormsModule,
+    MatProgressSpinnerModule,
     BrowserAnimationsModule,
     LayoutModule,
     AppRoutingModule,
@@ -45,12 +65,19 @@ import {EvalFormModule} from "./eval-form/eval-form.module";
     DashboardModule,
     AngularFireModule.initializeApp(environment.firebase, 'myApp'),
     AngularFirestoreModule,
+    AngularFireAuthModule,
     ProjectModule,
     EvalFormModule,
+    EvalFormParserModule,
+    NgDragDropModule.forRoot(),
+    AuthModule,
+    FlexLayoutModule,
+    ReactiveFormsModule
+
 
   ],
   providers: [
-    RenameTitleBarService, ProjectService, AngularFireDatabase, AngularFirestore, AuthGuardService
+    RenameTitleBarService, ProjectService,AngularFireDatabase, AngularFirestore,AuthGuard,
   ],
   bootstrap: [AppComponent],
   entryComponents: [DialogOverviewExampleDialog, ProjectCardComponent, AddProjectComponent]
