@@ -25,7 +25,7 @@ const routes: Routes = [
   {path: 'list-form', component: ViewFormListComponent,canActivate:[AuthGuard]},
   {path: 'signup', component: SignupComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'project-main', component: ProjectMainComponent},
+  {path: 'project-main', component: ProjectMainComponent,canActivate:[AuthGuard]},
   {path: '**', component: PageNotFoundComponent}
 ];
 
