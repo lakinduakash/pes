@@ -7,6 +7,7 @@ import {ProjectMainViewComponentComponent} from "./project/project-main-view-com
 import {TestComponent} from "./test/test.component";
 import {SignupComponent} from "./signup/signup.component";
 import {LoginComponent} from "./login/login.component";
+import { ProjectMainComponent } from './project/project-main/project-main.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: 'test', component: TestComponent},
   {path: 'signup', component: SignupComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'project-main', component: ProjectMainComponent},
   {path: '**', component: PageNotFoundComponent}
 ];
 
