@@ -1,6 +1,8 @@
 <div class="container">
   <mat-card [class.mat-elevation-z0]="isHandest$" >
 
+    <div *ngIf="state==signupStates[3] || state==signupStates[0] || state==signupStates[1]">
+
     <mat-card-title fxLayoutAlign="center">Signup-Project Evaluation System</mat-card-title>
 
     <form [formGroup]="signupFormGroup" fxLayoutAlign="center" class="example-form" (ngSubmit)="postData(signupFormGroup)">
@@ -27,7 +29,9 @@
             <mat-form-field class="example-full-width">
               <input matInput placeholder="email" formControlName="email" name="username" required>
 
+
             </mat-form-field>
+            <mat-error *ngIf="state==signupStates[0]">Email already registered</mat-error>
           </td>
         </tr>
         <tr>
@@ -46,7 +50,17 @@
 
         <tr fxLayoutAlign="center">
           <td>
-            <button  mat-raised-button type="submit" [disabled]="signupFormGroup.invalid" color="primary">Signup</button>
+            <button  mat-raised-button type="submit" [disabled]="signupFormGroup.invalid||showSpinner" color="primary">Signup</button>
+
+          </td>
+        </tr>
+
+        <tr fxLayoutAlign="center">
+          <td>
+            <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+            <div *ngIf="state==signupStates[1]">
+              <p style="color: red"> Some error occurred, retry </p>
+            </div>
 
           </td>
         </tr>
@@ -55,7 +69,15 @@
 
 
     </form>
-    <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+
+    </div>
+
+    <div *ngIf="state==signupStates[2]">
+
+      <mat-card-title fxLayoutAlign="center">Verification email sent, check your mail box</mat-card-title>
+
+    </div>
+
 
 
 

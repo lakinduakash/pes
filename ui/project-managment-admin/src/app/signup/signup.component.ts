@@ -9,9 +9,14 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 export class SignupComponent implements OnInit {
 
   signupFormGroup:FormGroup;
+  showSpinner=false;
+
+  signupStates=['ALREADY_R','ERROR','VERIFICATION_SEND','SIGNUP'];
+
+  state=this.signupStates[3];
 
 
-  constructor(private fb:FormBuilder) {
+  constructor(private fb:FormBuilder,private auth:AuthService) {
 
     this.signupFormGroup=fb.group({
       fName:['',Validators.compose([Validators.required,Validators.maxLength(15),Validators.minLength(1)])],
@@ -30,19 +35,45 @@ export class SignupComponent implements OnInit {
 
   }
 
-  signup()
+  updateUserData(user,data)
   {
+    const u:User={
+      uid: user.uid,
+    email: user.email,
+    displayName: data.value.fName+data.value.lName
 
+
+  };
+    fromPromise(this.auth.updateUserData(user,u)).subscribe(next=>{
+      console.log("succsess");
+      this.auth.sendVerificationEmail();
+      this.state=this.signupStates[2]
+    })
   }
 
   postData(data)
   {
-    console.log(data)
+    this.showSpinner=true;
+    this.auth.emailSignUp(data.value.email,data.value.password).subscribe(next=>{console.log(next);
+    this.updateUserData(next.user,data);
+      this.showSpinner=false},error1 => {console.log(error1);
+      this.showSpinner=false;
+      if(error1.code == "auth/email-already-in-use")
+        this.state=this.signupStates[0];
+      else
+        this.state=this.signupStates[1]
+    }
+
+    )
+
   }
 
 }
 
 import {AbstractControl} from '@angular/forms';
+import {AuthService} from "../auth/auth.service";
+import {User} from "../core/model/user";
+import {fromPromise} from "rxjs/internal-compatibility";
 export class PasswordValidation {
 
   static MatchPassword(AC: AbstractControl) {
