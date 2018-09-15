@@ -3,7 +3,6 @@ import {CommonModule} from '@angular/common';
 import {ProjectMainViewComponentComponent} from './project-main-view-component.component';
 import {FormCreatorComponent} from './form-creator/form-creator.component';
 import { ViewFormListComponent } from './view-form-list/view-form-list.component';
-import {MatListModule} from "@angular/material";
 import {RouterModule} from "@angular/router";
 
 
@@ -34,14 +33,13 @@ import { ProjectMainComponent } from './project-main/project-main.component';
     MatButtonModule,
     MatListModule,
     MatSnackBarModule,
-    MatTooltipModule
-
-  ],
-  declarations: [ProjectMainViewComponentComponent, FormCreatorComponent, ProjectMainComponent]
+    MatTooltipModule,
     MatListModule,
     RouterModule
+
   ],
-  declarations: [ProjectMainViewComponentComponent, FormCreatorComponent, ViewFormListComponent]
+  declarations: [ProjectMainViewComponentComponent, FormCreatorComponent, ProjectMainComponent,ViewFormListComponent]
+
 })
 export class ProjectModule {
 }
