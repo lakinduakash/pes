@@ -7,6 +7,7 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 
 import { Observable, of } from 'rxjs';
 import { switchMap} from 'rxjs/operators';
+import {fromPromise} from "rxjs/internal-compatibility";
 
 interface User {
   uid: string;
@@ -22,6 +23,7 @@ export class AuthService {
 
   user: Observable<User>;
 
+
   constructor(
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
@@ -32,7 +34,7 @@ export class AuthService {
     this.user = this.afAuth.authState.pipe(
       switchMap(user => {
         if (user) {
-          return this.afs.doc<User>(`usersC/${user.uid}`).valueChanges()
+          return of(user)
         } else {
           return of(null)
         }
@@ -45,6 +47,16 @@ export class AuthService {
   googleLogin() {
     const provider = new auth.GoogleAuthProvider();
     return this.oAuthLogin(provider);
+  }
+
+  emailLogin(email,password)
+  {
+    return fromPromise(this.afAuth.auth.signInWithEmailAndPassword(email,password))
+  }
+
+  emailSignUp(email,password)
+  {
+    return fromPromise(this.afAuth.auth.createUserWithEmailAndPassword(email,password))
   }
 
   private oAuthLogin(provider) {
@@ -74,7 +86,7 @@ export class AuthService {
 
   signOut() {
     this.afAuth.auth.signOut().then(() => {
-      this.router.navigate(['/']);
+      this.router.navigate(['/login']);
     });
   }
 }
