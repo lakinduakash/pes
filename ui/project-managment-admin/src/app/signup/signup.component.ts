@@ -45,6 +45,7 @@ export class SignupComponent implements OnInit {
 
   };
     fromPromise(this.auth.updateUserData(user,u)).subscribe(next=>{
+      this.showSpinner=false;
       console.log("succsess");
       this.auth.sendVerificationEmail();
       this.state=this.signupStates[2]
@@ -56,7 +57,7 @@ export class SignupComponent implements OnInit {
     this.showSpinner=true;
     this.auth.emailSignUp(data.value.email,data.value.password).subscribe(next=>{console.log(next);
     this.updateUserData(next.user,data);
-      this.showSpinner=false},error1 => {console.log(error1);
+      },error1 => {console.log(error1);
       this.showSpinner=false;
       if(error1.code == "auth/email-already-in-use")
         this.state=this.signupStates[0];
