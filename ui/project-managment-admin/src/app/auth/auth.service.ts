@@ -5,17 +5,12 @@ import { auth } from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 
-import { Observable, of } from 'rxjs';
+import {Observable, of, Subject} from 'rxjs';
 import { switchMap} from 'rxjs/operators';
 import {fromPromise} from "rxjs/internal-compatibility";
+import {User} from "../core/model/user";
 
-interface User {
-  uid: string;
-  email: string;
-  photoURL?: string;
-  displayName?: string;
-  favoriteColor?: string;
-}
+
 
 
 @Injectable()
@@ -62,27 +57,34 @@ export class AuthService {
   private oAuthLogin(provider) {
     return this.afAuth.auth.signInWithPopup(provider)
       .then((credential) => {
-        this.updateUserData(credential.user)
+        const data: User = {
+          uid: credential.user.uid,
+          email: credential.user.email,
+          displayName: credential.user.displayName,
+          photoURL: credential.user.photoURL
+        };
+        this.updateUserData(credential.user,data)
       })
   }
 
 
-  private updateUserData(user) {
+  updateUserData(user,userData) {
     // Sets user data to firestore on login
 
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`usersC/${user.uid}`);
 
-    const data: User = {
-      uid: user.uid,
-      email: user.email,
-      displayName: user.displayName,
-      photoURL: user.photoURL
-    };
-
-    return userRef.set(data, { merge: true })
+    return userRef.set(userData, { merge: true })
 
   }
 
+  sendVerificationEmail()
+  {
+    let success:Subject<boolean>=new Subject();
+
+    this.afAuth.user.subscribe(next=>fromPromise(next.sendEmailVerification()).subscribe(next=>success.next(true),error=>success.next(false)));
+
+    return success as Observable<boolean>
+  }
 
   signOut() {
     this.afAuth.auth.signOut().then(() => {
