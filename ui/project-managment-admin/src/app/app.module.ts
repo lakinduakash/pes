@@ -30,7 +30,7 @@ import {NgDragDropModule} from "ng-drag-drop";
 import {
   MatButtonModule,
   MatCardModule,
-  MatInputModule,
+  MatInputModule, MatProgressBarModule,
   MatProgressSpinnerModule,
   MatRippleModule
 } from "@angular/material";
@@ -79,7 +79,9 @@ import {FlexLayoutModule} from "@angular/flex-layout";
     AuthModule,
     FlexLayoutModule,
     ReactiveFormsModule,
-    MatRippleModule
+    MatRippleModule,
+    MatProgressBarModule
+
 
 
   ],
