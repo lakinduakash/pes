@@ -5,7 +5,7 @@ import {FormCreatorComponent} from './form-creator/form-creator.component';
 import { ViewFormListComponent } from './view-form-list/view-form-list.component';
 import {
   MatButtonModule,
-  MatCardModule, MatDividerModule,
+  MatCardModule, MatDialogModule, MatDividerModule, MatExpansionModule,
   MatFormFieldModule, MatIconModule,
   MatInputModule,
   MatListModule, MatOptionModule,
@@ -14,6 +14,7 @@ import {
 import {RouterModule} from "@angular/router";
 import {SharedModule} from "../shared/shared.module";
 import {FormsModule} from "@angular/forms";
+import { CreatePresentationDialogComponent } from './create-presentation-dialog/create-presentation-dialog.component';
 
 
 @NgModule({
@@ -31,9 +32,13 @@ import {FormsModule} from "@angular/forms";
     FormsModule,
     MatOptionModule,
     MatSelectModule,
-    MatRippleModule
+    MatRippleModule,
+    MatExpansionModule,
+    MatDialogModule
   ],
-  declarations: [ProjectMainViewComponentComponent, FormCreatorComponent, ViewFormListComponent]
+  declarations: [ProjectMainViewComponentComponent, FormCreatorComponent, ViewFormListComponent, CreatePresentationDialogComponent]
+  ,
+  entryComponents:[CreatePresentationDialogComponent]
 })
 export class ProjectModule {
 }
