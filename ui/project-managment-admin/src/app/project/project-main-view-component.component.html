@@ -8,16 +8,24 @@
         Create or View Presentations
       </mat-card-title>
 
-        <mat-card-content>
-          <span class="marks" >
-            <mat-form-field>
-              <mat-select placeholder="Select marks">
-                <mat-option *ngFor=" let i of [1,2,3,4]" [value]="i">{{i}}</mat-option>
 
-              </mat-select>
-            </mat-form-field>
-          </span>
-      </mat-card-content>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Presentations
+              </mat-panel-title>
+              <mat-panel-description>
+                View list
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <p>Add or click existing presentations</p>
+            <button class="add-pr-buttun" mat-stroked-button mat-icon-button (click)="addPresentation()">
+              <mat-icon aria-label="Add presentation" class="add-icon">add</mat-icon>
+            </button>
+
+          </mat-expansion-panel>
+
 
     </mat-card>
   </div>
@@ -39,6 +47,18 @@
 
     </mat-card>
   </div>
+
+  <div class="flex-item">
+    <mat-card mat-ripple (click)="openCreateForm()">
+      <mat-card-title>
+        Create form
+      </mat-card-title>
+
+    </mat-card>
+  </div>
+
+
+
 
 
 </div>
