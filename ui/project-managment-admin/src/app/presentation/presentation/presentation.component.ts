@@ -1,4 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from "@angular/router";
+import {ProjectService} from "../../services/project.service";
+import {FormService} from "../../services/form.service";
 
 @Component({
   selector: 'app-presentation',
@@ -7,10 +10,30 @@ import {Component, OnInit} from '@angular/core';
 })
 export class PresentationComponent implements OnInit {
 
-  constructor() {
+  projectId
+  originalPId;
+  presentId;
+
+  constructor(private router: Router, private route: ActivatedRoute, private projectService: ProjectService, formService: FormService) {
   }
 
   ngOnInit() {
+    this.route.parent.params.subscribe(params => {
+      this.projectId = Number(params.id);
+      this.route.params.subscribe(next => {
+        this.presentId = next.id
+        this.projectService.getOriginalProjectId(this.projectId)
+          .subscribe(next => {
+            this.originalPId = next
+          })
+      })
+
+
+    });
+
   }
 
+  createForm() {
+    this.router.navigate(['/test'])
+  }
 }
