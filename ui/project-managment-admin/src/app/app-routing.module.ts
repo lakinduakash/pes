@@ -24,7 +24,20 @@ const routes: Routes = [
         children:
           [
             {path: '', component: ProjectMainViewComponentComponent, canActivate: [AuthGuard]},
-            {path: 'pre', component: PresentationComponent, canActivate: [AuthGuard]}
+            {
+              path: 'presentation',
+              children: [
+                {
+                  path: ':id',
+                  children: [
+                    {path: '', component: PresentationComponent, canActivate: [AuthGuard]},
+                    {path: 'form/:id', component: TestComponent, canActivate: [AuthGuard]}
+
+                  ]
+                }
+              ]
+            },
+
           ]
       },
       {path: '**', component: PageNotFoundComponent}
