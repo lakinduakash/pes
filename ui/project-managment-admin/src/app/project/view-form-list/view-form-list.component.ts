@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormService} from "../../services/form.service";
-import {FormModel} from "../../core/model/form-model";
 
 @Component({
   selector: 'app-view-form-list',
@@ -21,7 +20,6 @@ export class ViewFormListComponent implements OnInit {
 
     docs.docs.forEach(item=> this.formList.push(item.ref.id))
     console.log(this.formList)
-
 
   }
 

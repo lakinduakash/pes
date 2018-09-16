@@ -1,8 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {ProjectMainViewComponentComponent} from './project-main-view-component.component';
-import {FormCreatorComponent} from './form-creator/form-creator.component';
-import {ViewFormListComponent} from './view-form-list/view-form-list.component';
+import {PresentationComponent} from './presentation/presentation.component';
+import {SharedModule} from "../shared/shared.module";
 import {
   MatButtonModule,
   MatCardModule,
@@ -18,14 +17,13 @@ import {
   MatSelectModule
 } from "@angular/material";
 import {RouterModule} from "@angular/router";
-import {SharedModule} from "../shared/shared.module";
 import {FormsModule} from "@angular/forms";
-import {CreatePresentationDialogComponent} from './create-presentation-dialog/create-presentation-dialog.component';
-
+import {ProjectModule} from "../project/project.module";
 
 @NgModule({
   imports: [
     CommonModule,
+    SharedModule,
     MatListModule,
     RouterModule,
     SharedModule,
@@ -40,12 +38,11 @@ import {CreatePresentationDialogComponent} from './create-presentation-dialog/cr
     MatSelectModule,
     MatRippleModule,
     MatExpansionModule,
-    MatDialogModule
+    MatDialogModule,
+    ProjectModule
   ],
-  declarations: [ProjectMainViewComponentComponent, FormCreatorComponent, ViewFormListComponent, CreatePresentationDialogComponent],
-  exports: [ViewFormListComponent]
-  ,
-  entryComponents:[CreatePresentationDialogComponent]
+  declarations: [PresentationComponent],
+  exports: [PresentationComponent]
 })
-export class ProjectModule {
+export class PresentationModule {
 }

@@ -19,15 +19,24 @@ export class LoginComponent implements OnInit {
   password: string;
   showSpinner=false;
 
+  emailVerifiedStatus="";
+
   isHandest$;
   inFogotFassword=false;
   successResetSend;
 
   emailSentMassage="";
+  errorMassage="";
 
-  constructor(private authService:AuthService,private router:Router,private breakPointObserver:BreakpointObserver,private authf:AngularFireAuth) { }
+  constructor(private authService:AuthService,private router:Router,private breakPointObserver:BreakpointObserver,private authf:AngularFireAuth) {
+    this.authf.user.subscribe(next=>{
+      if(next !=null)
+        this.router.navigate(['/dashboard'])
+    })
+  }
 
   ngOnInit() {
+
     this.breakPointObserver.observe(Breakpoints.HandsetPortrait).subscribe(next=>this.isHandest$=next.matches)
   }
 
@@ -35,10 +44,28 @@ export class LoginComponent implements OnInit {
   {
     this.showSpinner=true;
     this.authService.emailLogin(this.email,this.password).subscribe(next=>{
-      this.router.navigate(['/dashboard']);
+
+      this.authf.user.subscribe(next=>{
+        if(next!=undefined && next.emailVerified)
+          this.router.navigate(['/dashboard']);
+        else
+        {
+          this.emailVerifiedStatus="Email not verified, first verify the email";
+          this.authf.auth.signOut()
+        }
+
+      });
+
       this.showSpinner=false
-    },error1 => {console.log(error1);
+    },error1 => {
+      console.log(error1);
+      this.errorMassage="User name or email not correct";
     this.showSpinner=false})
+  }
+
+  checkVerificationStus()
+  {
+
   }
 
   forgotPasswordClick()

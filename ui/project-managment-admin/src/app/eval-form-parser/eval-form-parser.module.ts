@@ -8,7 +8,7 @@ import {
   MatDividerModule,
   MatFormFieldModule,
   MatIconModule,
-  MatInputModule
+  MatInputModule, MatOptionModule, MatSelectModule
 } from "@angular/material";
 import {FormsModule} from "@angular/forms";
 import {SectionComponent} from "./section/section.component";
@@ -24,6 +24,8 @@ import {AttributeComponent} from "./attribute/attribute.component";
     MatButtonModule,
     MatIconModule,
     FormsModule,
+    MatOptionModule,
+    MatSelectModule
   ],
   declarations: [FormViewComponent,SectionComponent,AttributeComponent],
   exports:[FormViewComponent]

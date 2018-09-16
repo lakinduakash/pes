@@ -8,16 +8,24 @@ import {SectionAttribute} from "../../core/model/form-model";
 })
 export class AttributeComponent implements OnInit {
 
-  @Input('sectionAtrr')attr:SectionAttribute
+  @Input('sectionAtrr')attr:SectionAttribute;
 
   criteria;
   maxMarks;
+  numbers =[];
 
-  constructor() { }
+  constructor() {
+
+  }
 
   ngOnInit() {
-    this.criteria=this.attr.criteria
-    this.maxMarks=this.attr.maxMark
+    this.criteria=this.attr.criteria;
+    this.maxMarks=this.attr.maxMark;
+
+    for (let i=0;i<=this.maxMarks;i++)
+      this.numbers.push(i)
+
+    console.log(this.numbers)
   }
 
 }
