@@ -18,7 +18,6 @@ export class ProjectService {
   }
 
   createProject(projectCard) {
-    //this.fireDb.list('/project').push(projectCard);
     this.authS.user.subscribe(nextU=>{
       console.log(projectCard);
 
