@@ -14,6 +14,11 @@
 
 .menu-button
 {
-  float: right;
+  float: right !important;
   margin-right: 10px;
+}
+
+.toolbar-space
+{
+  flex: 1 1 auto;
 }
