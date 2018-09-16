@@ -1,3 +1,44 @@
-<p>
-  project-main-view-component works! {{id}}
-</p>
+<side-nav></side-nav>
+
+<div class="container">
+
+  <div class="flex-item">
+    <mat-card>
+      <mat-card-title>
+        Create or View Presentations
+      </mat-card-title>
+
+        <mat-card-content>
+          <span class="marks" >
+            <mat-form-field>
+              <mat-select placeholder="Select marks">
+                <mat-option *ngFor=" let i of [1,2,3,4]" [value]="i">{{i}}</mat-option>
+
+              </mat-select>
+            </mat-form-field>
+          </span>
+      </mat-card-content>
+
+    </mat-card>
+  </div>
+
+  <div class="flex-item">
+    <mat-card mat-ripple>
+      <mat-card-title>
+        Add students or groups
+      </mat-card-title>
+
+    </mat-card>
+  </div>
+
+  <div class="flex-item">
+    <mat-card mat-ripple>
+      <mat-card-title>
+        View final marks
+      </mat-card-title>
+
+    </mat-card>
+  </div>
+
+
+</div>
