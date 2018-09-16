@@ -1,8 +1,6 @@
 # pes  - Project Evaluation System
 Automate project evolution system for universities
 
-## Initialise project
-
 ### To Initialise server module
 Run following 
 ```
@@ -28,4 +26,6 @@ Run following
 ```
 Module will start at `localhost:4200`
 
+run``$ cd ui`` 
+``$ npm install``
 

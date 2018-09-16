@@ -1,0 +1,19 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      {{title}}
+    </mat-card-title>
+    <mat-card-subtitle>
+      {{description}}
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    <div *ngFor="let attr of attributeList">
+      <app-attribute-parser [sectionAtrr]="attr">
+
+      </app-attribute-parser>
+    </div>
+  </mat-card-content>
+
+</mat-card>

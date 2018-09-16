@@ -16,6 +16,8 @@ export class FormComponent implements OnInit {
   formDesc;
   id = 5;
 
+  private static lastSecId = 0;
+
 
   constructor(private formService: FormService) {
   }
@@ -30,6 +32,7 @@ export class FormComponent implements OnInit {
 
   onAddSectionClick() {
     let mSection = new Section();
+    mSection.id = FormComponent.lastSecId++;
 
     if (this.sectionList != undefined) {
       this.sectionList.push(mSection)
@@ -44,12 +47,6 @@ export class FormComponent implements OnInit {
 
   }
 
-  onRemoveSectionClick() {
-    if (this.sectionList != undefined && this.sectionList.length > 0) {
-      this.sectionList.splice(this.sectionList.length - 1, 1)
-    }
-
-  }
 
   renderSection() {
 
@@ -58,9 +55,10 @@ export class FormComponent implements OnInit {
   onSaveFormClick() {
     if (this.sectionList != undefined) {
 
-      this.sectionList = this.sectionList.map((obj) => {
-        return Object.assign({}, obj)
-      });
+      // this.sectionList = this.sectionList.map((obj) => {
+      //   return Object.assign({}, obj)
+      // });
+
       if (this.form != undefined) {
         this.form = {
           id: this.id,
@@ -68,7 +66,7 @@ export class FormComponent implements OnInit {
           sections: this.sectionList,
           name: this.formTitle
         } as FormModel;
-        this.formService.saveForm(this.form)
+        this.formService.saveForm(this.form).subscribe(next=>(console.log("saved")),error=>console.log("error)"))
       }
       else {
         this.form = {
@@ -80,6 +78,18 @@ export class FormComponent implements OnInit {
         this.formService.saveForm(this.form)
 
       }
+    }
+  }
+
+  deleteSection($event) {
+    let i = 0;
+    for (let sec of this.sectionList) {
+      if (sec.id == $event as number) {
+        this.sectionList.splice(i, 1)
+
+      }
+      i++;
+
     }
   }
 

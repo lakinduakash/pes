@@ -34,6 +34,7 @@ export class DialogOverviewExampleDialog {
     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData, private snackBar: MatSnackBar) {
 
+
   }
 
 

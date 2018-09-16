@@ -62,8 +62,9 @@ export class ProjectService {
     let ass = new Subject();
 
     let ob = from(this.fireStore.collection('lastProjectId').ref.doc('DhUGQJCUsgHpUMtCMshh').get());
+
     ob.subscribe(next => {
-      ass.next(next.data().last_id)
+      ass.next(next.data().last_id);
     });
 
     return ass
@@ -71,8 +72,6 @@ export class ProjectService {
 
   saveForm(form: FormModel) {
 
-    //let f=JSON.stringify(form)
-    //let k = f.replace(/\\/g, "");
 
 
     let i = this.fireStore.collection("form").add(form);

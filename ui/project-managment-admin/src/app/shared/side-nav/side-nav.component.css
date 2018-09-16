@@ -11,3 +11,9 @@
 .mat-list-item.active1 {
   background-color: cyan;
 }
+
+.menu-button
+{
+  float: right;
+  margin-right: 10px;
+}
