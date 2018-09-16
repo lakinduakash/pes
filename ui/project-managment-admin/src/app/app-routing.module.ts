@@ -10,12 +10,27 @@ import {LoginComponent} from "./login/login.component";
 import {FormViewComponent} from "./eval-form-parser/form-view.component";
 import {ViewFormListComponent} from "./project/view-form-list/view-form-list.component";
 import {AuthGuard} from "./auth/auth.guard";
+import {PresentationComponent} from "./presentation/presentation/presentation.component";
 
 
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
   {path: 'dashboard', component: DashboardComponent,  canActivate:[AuthGuard]},
-  {path: 'project/:id', component: ProjectMainViewComponentComponent,canActivate:[AuthGuard] },
+  {
+    path: 'project',
+    children: [
+      {
+        path: ':id',
+        children:
+          [
+            {path: '', component: ProjectMainViewComponentComponent, canActivate: [AuthGuard]},
+            {path: 'pre', component: PresentationComponent, canActivate: [AuthGuard]}
+          ]
+      },
+      {path: '**', component: PageNotFoundComponent}
+
+    ]
+  },
   {path: 'test', component: TestComponent},
   {path: 'view-form/:id', component: FormViewComponent,canActivate:[AuthGuard]},
   {path: 'create-form', component: TestComponent,canActivate:[AuthGuard]},
