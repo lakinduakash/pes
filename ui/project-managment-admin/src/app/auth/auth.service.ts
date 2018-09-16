@@ -16,7 +16,7 @@ import {User} from "../core/model/user";
 @Injectable()
 export class AuthService {
 
-  user: Observable<User>;
+  user:Observable<any>;
 
 
   constructor(
