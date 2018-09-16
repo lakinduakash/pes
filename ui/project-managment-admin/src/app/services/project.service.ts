@@ -116,8 +116,27 @@ export class ProjectService {
     return s as Observable<boolean>
   }
 
+  getOriginalProjectId(id: number) {
+    let s: Subject<string> = new Subject();
+    this.authS.user.subscribe(nextU => {
+      if (nextU != null) {
+        this.fireStore.collection(`usersC/${nextU.uid}/project`).ref.where('id', '==', id).onSnapshot(
+          next => {
+            console.log(id)
+            next.docs.forEach(item => {
+                console.log(item.id)
+                s.next(item.id)
+              }
+            )
+          },
+          error1 => s.error(error1),
+          () => s.complete())
+      }
 
+    })
 
+    return s as Observable<string>
 
+  }
 }
 
