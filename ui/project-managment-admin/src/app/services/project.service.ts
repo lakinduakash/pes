@@ -21,11 +21,12 @@ export class ProjectService {
     this.authS.user.subscribe(nextU=>{
       console.log(projectCard);
 
-      this.getLastId().subscribe(next => {
+      this.getLastId().subscribe(next => {if(nextU!=null) {
         projectCard.id = next as number;
         console.log(projectCard);
         this.fireStore.collection(`usersC/${nextU.uid}/project`).add(projectCard);
         this.updateLastId()
+      }
 
       });
 
@@ -39,17 +40,18 @@ export class ProjectService {
 
   deleteProject(id: number) {
 
-    this.authS.user.subscribe(nextU=> {
+    this.authS.user.subscribe(nextU=> {if(nextU!=null) {
       this.fireStore.collection(`usersC/${nextU.uid}/project`).ref.where('id', '==', id).onSnapshot(
         next => next.docs.forEach(item =>
           this.fireStore.collection(`usersC/${nextU.uid}/project`).ref.doc(item.id).delete()))
+    }
     })
   }
 
   getProjectList() {
     let sub = new Subject<ProjectCard[]>();
 
-    this.authS.user.subscribe(nextU=> {
+    this.authS.user.subscribe(nextU=> {if(nextU!=null) {
       let ref = this.fireStore.collection(`usersC/${nextU.uid}/project`);
 
 
@@ -63,7 +65,7 @@ export class ProjectService {
         );
         sub.next(arr)
       });
-    });
+    }});
 
     return sub.asObservable()
 
