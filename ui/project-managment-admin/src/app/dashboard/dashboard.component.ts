@@ -73,10 +73,12 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.renameTitleBar.setTitle("Project Dashboard");
-    this.projectService.getProjectList().subscribe(next => {
-      this.projectList = next;
-      this.updateList();
-    })
+
+      this.projectService.getProjectList().subscribe(next => {
+        this.projectList = next;
+        this.updateList();
+      })
+
   }
 
   updateList() {
