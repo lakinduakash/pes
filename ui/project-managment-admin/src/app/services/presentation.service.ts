@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import {AngularFirestore, DocumentReference, DocumentSnapshot} from "@angular/fire/firestore";
+import {Injectable} from '@angular/core';
+import {AngularFirestore, DocumentReference, QuerySnapshot} from "@angular/fire/firestore";
 import {AuthService} from "../auth/auth.service";
-import {BehaviorSubject, Observable, Observer, Subject} from "rxjs";
+import {Observable, Subject} from "rxjs";
 import {Presentation} from "../core/model/presentation";
 import {fromPromise} from "rxjs/internal-compatibility";
 
@@ -33,14 +33,14 @@ export class PresentationService {
         )}
       );
 
-    return s as Observable;
+    return s as Observable<DocumentReference>;
   }
 
   getPresentation(pid:number,id?:string)
   {
     if(id==undefined)
     {
-      let fpid:Subject=new Subject();
+      let fpid: Subject<QuerySnapshot<any>> = new Subject();
 
         this.fireStore.collection(`usersC/${this.uid}/project`).ref.where('id', '==', pid)
           .onSnapshot(next=>
@@ -52,18 +52,18 @@ export class PresentationService {
             )
           );
 
-      return fpid;
+      return fpid as Observable<QuerySnapshot<any>>;
     }
     else
     {
-      let fpid:Subject<DocumentSnapshot>=new Subject();
+      let fpid: Subject<any> = new Subject();
 
       this.fireStore.collection(`usersC/${this.uid}/project`).ref.where('id', '==', pid)
         .onSnapshot(next=>
           next.docs.forEach(item=>{
               this.fireStore.collection(`usersC/${this.uid}/project/${item.id}/presentation`).doc(id).get().subscribe(
                 next=>{
-                  fpid.next(next|undefined)
+                  fpid.next(next)
                 },error1 =>
                 {
                   fpid.error(error1)
@@ -73,7 +73,7 @@ export class PresentationService {
             }
           )
         );
-      return fpid;
+      return fpid as Observable<any>;
     }
   }
 
@@ -88,12 +88,31 @@ export class PresentationService {
         next.docs.forEach(item=>{
             fromPromise(this.fireStore.collection(`usersC/${this.uid}/project/${item.id}/presentation`).doc(id).delete()).
             subscribe(next=>
-              fpid.next(next|undefined)
+                fpid.next(next)
               ,error1 => fpid.next(error1)
             )
           }
         )
       );
     return fpid;
+  }
+
+  getPresentationList(pid: number) {
+    let fpid: Subject<QuerySnapshot<any>> = new Subject();
+
+
+    this.fireStore.collection(`usersC/${this.uid}/project`).ref.where('id', '==', pid)
+      .onSnapshot(next =>
+        next.docs.forEach(item => {
+            this.fireStore.collection(`usersC/${this.uid}/project/${item.id}/presentation`).ref.onSnapshot(
+              next => fpid.next(next)
+            )
+
+          }
+        )
+      );
+
+    return fpid as Observable<QuerySnapshot<any>>;
+
   }
 }
