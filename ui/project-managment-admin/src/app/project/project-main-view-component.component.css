@@ -18,8 +18,18 @@ mat-card
   background-color: rgba(80, 206, 255, 0.15);
 }
 
+mat-expansion-panel
+{
+  border-radius: 10px;
+}
+
 .flex-item
 {
   display: flex;
   justify-content: center;
+}
+
+.add-pr-buttun
+{
+  color: green;
 }
