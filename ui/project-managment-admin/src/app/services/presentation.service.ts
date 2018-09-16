@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import {AngularFirestore, DocumentReference} from "@angular/fire/firestore";
+import {AngularFirestore, DocumentReference, DocumentSnapshot} from "@angular/fire/firestore";
 import {AuthService} from "../auth/auth.service";
 import {BehaviorSubject, Observable, Observer, Subject} from "rxjs";
 import {Presentation} from "../core/model/presentation";
+import {fromPromise} from "rxjs/internal-compatibility";
 
 @Injectable({
   providedIn: 'root'
@@ -35,16 +36,17 @@ export class PresentationService {
     return s as Observable;
   }
 
-  getPresentation(pid,id?)
+  getPresentation(pid:number,id?:string)
   {
-    if(id!=undefined)
+    if(id==undefined)
     {
-      let fpid:Subject<any>;
+      let fpid:Subject=new Subject();
 
         this.fireStore.collection(`usersC/${this.uid}/project`).ref.where('id', '==', pid)
           .onSnapshot(next=>
             next.docs.forEach(item=>{
-              return this.fireStore.collection(`usersC/${this.uid}/project/${item.id}/presentation`).get()
+              this.fireStore.collection(`usersC/${this.uid}/project/${item.id}/presentation`).get().subscribe(next=>
+              fpid.next(next))
 
               }
             )
@@ -54,12 +56,44 @@ export class PresentationService {
     }
     else
     {
-      return this.fireStore.collection(`usersC/${this.uid}/projects`).get()
+      let fpid:Subject<DocumentSnapshot>=new Subject();
+
+      this.fireStore.collection(`usersC/${this.uid}/project`).ref.where('id', '==', pid)
+        .onSnapshot(next=>
+          next.docs.forEach(item=>{
+              this.fireStore.collection(`usersC/${this.uid}/project/${item.id}/presentation`).doc(id).get().subscribe(
+                next=>{
+                  fpid.next(next|undefined)
+                },error1 =>
+                {
+                  fpid.error(error1)
+                }
+              )
+
+            }
+          )
+        );
+      return fpid;
     }
   }
 
-  deletePresentation(pid,id)
-  {
 
+
+  deletePresentation(pid:number,id:string)
+  {
+    let fpid:Subject<any>=new Subject();
+
+    this.fireStore.collection(`usersC/${this.uid}/project`).ref.where('id', '==', pid)
+      .onSnapshot(next=>
+        next.docs.forEach(item=>{
+            fromPromise(this.fireStore.collection(`usersC/${this.uid}/project/${item.id}/presentation`).doc(id).delete()).
+            subscribe(next=>
+              fpid.next(next|undefined)
+              ,error1 => fpid.next(error1)
+            )
+          }
+        )
+      );
+    return fpid;
   }
 }
