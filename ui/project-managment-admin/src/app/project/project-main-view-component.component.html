@@ -27,7 +27,7 @@
             <mat-nav-list>
               <div *ngFor="let p of presentationList">
                 <mat-list-item>
-                  {{p.name}}
+                  <a routerLink="presentation/{{p.id}}">{{p.name}}</a>
                 </mat-list-item>
               </div>
 
