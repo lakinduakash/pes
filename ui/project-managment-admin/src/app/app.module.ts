@@ -30,12 +30,12 @@ import {NgDragDropModule} from "ng-drag-drop";
 import {
   MatButtonModule,
   MatCardModule,
-  MatInputModule, MatProgressBarModule,
+  MatInputModule,
+  MatProgressBarModule,
   MatProgressSpinnerModule,
   MatRippleModule
 } from "@angular/material";
 import {EvalFormParserModule} from "./eval-form-parser/eval-form-parser.module";
-
 
 
 import {AngularFireModule} from '@angular/fire';
@@ -45,7 +45,7 @@ import {AuthModule} from "./auth/auth.module";
 import {AuthGuard} from "./auth/auth.guard";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {FlexLayoutModule} from "@angular/flex-layout";
-
+import {PresentationModule} from "./presentation/presentation.module";
 
 
 @NgModule({
@@ -80,7 +80,8 @@ import {FlexLayoutModule} from "@angular/flex-layout";
     FlexLayoutModule,
     ReactiveFormsModule,
     MatRippleModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    PresentationModule
 
 
 
