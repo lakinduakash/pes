@@ -18,6 +18,7 @@ import {
 } from "@angular/material";
 import {RouterModule} from "@angular/router";
 import {FormsModule} from "@angular/forms";
+import {ProjectModule} from "../project/project.module";
 
 @NgModule({
   imports: [
@@ -37,7 +38,8 @@ import {FormsModule} from "@angular/forms";
     MatSelectModule,
     MatRippleModule,
     MatExpansionModule,
-    MatDialogModule
+    MatDialogModule,
+    ProjectModule
   ],
   declarations: [PresentationComponent],
   exports: [PresentationComponent]
