@@ -1,6 +1,6 @@
 <side-nav></side-nav>
 
-<div class="container">
+<div *ngIf="showPage" class="container">
 
   <div class="flex-item">
     <mat-card>
@@ -23,6 +23,15 @@
             <button class="add-pr-buttun" mat-stroked-button mat-icon-button (click)="addPresentation()">
               <mat-icon aria-label="Add presentation" class="add-icon">add</mat-icon>
             </button>
+
+            <mat-nav-list>
+              <div *ngFor="let p of presentationList">
+                <mat-list-item>
+                  {{p.name}}
+                </mat-list-item>
+              </div>
+
+            </mat-nav-list>
 
           </mat-expansion-panel>
 
