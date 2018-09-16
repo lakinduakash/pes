@@ -1,5 +1,5 @@
 <div class="container">
-  <mat-card [class.mat-elevation-z0]="isHandest$" >
+  <mat-card [class.mat-elevation-z0]="isHandest$" [class.mat-elevation-z7]="!isHandest$">
 
     <div *ngIf="state==signupStates[3] || state==signupStates[0] || state==signupStates[1]">
 
@@ -37,7 +37,8 @@
         <tr>
           <td><mat-form-field class="example-full-width">
             <input [formGroup]="signupFormGroup" matInput placeholder="Password" formControlName="password" type="password" name="password" required>
-            <mat-error *ngIf="signupFormGroup.controls.password.errors?.minLength">Password must be minimum 8 characters</mat-error>
+            <mat-hint *ngIf="signupFormGroup.controls.password.errors?.minLength">Password must be minimum 8 characters</mat-hint>
+            <mat-error>Password must be minimum 8 characters</mat-error>
           </mat-form-field></td>
         </tr>
         <tr>

@@ -9,6 +9,7 @@ mat-card{
   max-width: 500px;
   min-width: 400px;
   min-height: 350px;
+  border-radius: 10px;
 
 
 }
