@@ -5,6 +5,7 @@ import {AngularFirestore} from "angularfire2/firestore";
 import {from} from "rxjs/internal/observable/from";
 import {Subject} from "rxjs/internal/Subject";
 import {AuthService} from "../auth/auth.service";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -91,6 +92,31 @@ export class ProjectService {
       this.fireStore.collection('lastProjectId').doc('DhUGQJCUsgHpUMtCMshh').update({last_id: last_id})
     })
   }
+
+  isProjectExist(id)
+  {
+    let s:Subject<boolean> =new Subject();
+    this.authS.user.subscribe(nextU=> {
+      if (nextU != null) {
+        this.fireStore.collection(`usersC/${nextU.uid}/project`).ref.where('id', '==', id).onSnapshot(
+          next =>
+          {
+            if(next.docs.length==0)
+            {
+              s.next(false)
+            }
+            else
+            {
+              s.next(true)
+            }
+          }
+        )
+      }});
+
+    return s as Observable<boolean>
+  }
+
+
 
 
 }
