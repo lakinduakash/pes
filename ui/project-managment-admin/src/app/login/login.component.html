@@ -22,8 +22,7 @@
         </tr></table>
     </form>
 
-    <div fxLayoutAlign="center">
-      <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+    <div fxLayoutAlign="center" class="error-text">
       <mat-error>{{errorMassage}}</mat-error>
     </div>
 
@@ -78,6 +77,9 @@
     </div>
   </div>
 
+  <div class="pr-container">
+    <mat-progress-bar mode="indeterminate" [style.display]="showSpinner ? 'block' : 'none'"></mat-progress-bar>
+  </div>
 
 </mat-card>
 

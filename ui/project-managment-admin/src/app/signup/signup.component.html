@@ -31,7 +31,9 @@
 
 
             </mat-form-field>
+            <div class="error-text">
             <mat-error *ngIf="state==signupStates[0]">Email already registered</mat-error>
+            </div>
           </td>
         </tr>
         <tr>
@@ -58,7 +60,8 @@
 
         <tr fxLayoutAlign="center">
           <td>
-            <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+
+
             <div *ngIf="state==signupStates[1]">
               <p style="color: red"> Some error occurred, retry </p>
             </div>
@@ -87,8 +90,11 @@
       <p fxLayoutAlign="right"> <a routerLink="/login">Login</a></p>
     </div>
 
-
+    <div class="pr-container">
+      <mat-progress-bar mode="indeterminate" [style.display]="showSpinner ? 'block' : 'none'"></mat-progress-bar>
+    </div>
   </mat-card>
+
 
 
 </div>
