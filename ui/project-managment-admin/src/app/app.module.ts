@@ -27,7 +27,13 @@ import {ProjectModule} from "./project/project.module";
 import {TestComponent} from './test/test.component';
 import {EvalFormModule} from "./eval-form/eval-form.module";
 import {NgDragDropModule} from "ng-drag-drop";
-import {MatButtonModule, MatCardModule, MatInputModule, MatProgressSpinnerModule} from "@angular/material";
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatInputModule,
+  MatProgressSpinnerModule,
+  MatRippleModule
+} from "@angular/material";
 import {EvalFormParserModule} from "./eval-form-parser/eval-form-parser.module";
 
 
@@ -72,7 +78,8 @@ import {FlexLayoutModule} from "@angular/flex-layout";
     NgDragDropModule.forRoot(),
     AuthModule,
     FlexLayoutModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatRippleModule
 
 
   ],
