@@ -5,10 +5,10 @@ import {MAT_DIALOG_DATA, MatDialogRef, MatSnackBar} from "@angular/material";
 @Component({
   selector: 'dialog-overview-example-dialog',
   template: `
-    <h1 mat-dialog-title>Enter Project name</h1>
+    <h1 mat-dialog-title>Enter presentation name</h1>
     <div mat-dialog-content>
       <mat-form-field>
-        <input matInput placeholder="Project name" [(ngModel)]="data.name">
+        <input matInput placeholder="Presentation name" [(ngModel)]="data.name">
       </mat-form-field>
       <mat-form-field class="example-full-width">
         <textarea #inputDes matInput placeholder="Description" maxlength="50" [(ngModel)]="data.description"></textarea>
