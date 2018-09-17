@@ -13,7 +13,7 @@ import {
   MatInputModule
 } from "@angular/material";
 import {FormsModule} from "@angular/forms";
-import {NgDragDropModule} from 'ng-drag-drop';
+import {SharedModule} from "../shared/shared.module";
 
 
 @NgModule({
@@ -26,7 +26,7 @@ import {NgDragDropModule} from 'ng-drag-drop';
     MatButtonModule,
     MatIconModule,
     FormsModule,
-    NgDragDropModule
+    SharedModule
   ],
   declarations: [FormComponent, SectionComponent, AttributeComponent],
   exports: [FormComponent]

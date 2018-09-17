@@ -1,3 +1,8 @@
+<side-nav></side-nav>
+
+<div class="container">
+
+  <div class="flex-item">
 <mat-card class="form-main">
   <mat-card-title>
     <mat-form-field floatLabel="never">
@@ -11,10 +16,7 @@
   </mat-card-subtitle>
 
   <div class="section-space">
-    <ul droppable="true">
-
-    </ul>
-    <div *ngFor="let s of sectionList">
+    <div *ngFor="let s of sectionList" class="section-wrap">
 
       <app-section [section]="s" (deleteSection)="deleteSection($event)"></app-section>
 
@@ -27,4 +29,8 @@
   <button mat-stroked-button color="primary" class="button-space" (click)="onSaveFormClick()">Save form</button>
 
 </mat-card>
+
+  </div>
+
+</div>
 

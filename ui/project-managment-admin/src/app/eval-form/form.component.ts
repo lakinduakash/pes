@@ -12,7 +12,7 @@ export class FormComponent implements OnInit {
   @Input("sections") sectionList: Section[];
   @Input("formModel") form: FormModel;
 
-  formTitle;
+  formTitle = "Untitled";
   formDesc;
   id = 5;
 
