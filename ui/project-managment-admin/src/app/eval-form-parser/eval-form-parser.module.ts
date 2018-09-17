@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import { FormViewComponent } from './form-view.component';
+import {FormViewComponent} from './form-view.component';
 
 import {
   MatButtonModule,
@@ -8,11 +8,14 @@ import {
   MatDividerModule,
   MatFormFieldModule,
   MatIconModule,
-  MatInputModule, MatOptionModule, MatSelectModule
+  MatInputModule,
+  MatOptionModule,
+  MatSelectModule
 } from "@angular/material";
 import {FormsModule} from "@angular/forms";
 import {SectionComponent} from "./section/section.component";
 import {AttributeComponent} from "./attribute/attribute.component";
+import {SharedModule} from "../shared/shared.module";
 
 @NgModule({
   imports: [
@@ -25,7 +28,8 @@ import {AttributeComponent} from "./attribute/attribute.component";
     MatIconModule,
     FormsModule,
     MatOptionModule,
-    MatSelectModule
+    MatSelectModule,
+    SharedModule
   ],
   declarations: [FormViewComponent,SectionComponent,AttributeComponent],
   exports:[FormViewComponent]
