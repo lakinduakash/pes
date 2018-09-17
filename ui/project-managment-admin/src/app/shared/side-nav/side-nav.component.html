@@ -10,7 +10,22 @@
 
       <span class="toolbar-space"></span>
 
-      <span class="menu-button">
+  <span *ngIf="!mobileQuery.matches" style="display: inline-flex">
+
+  <button style="color: white" mat-menu-item (click)="logout()">
+    <mat-icon style="color: white">exit_to_app</mat-icon>
+    <span>Log out</span>
+  </button>
+
+  <button style="color: white; text-wrap: none" mat-menu-item (click)="logout()">
+    <mat-icon style="color: white">settings</mat-icon>
+    <span>Settings</span>
+  </button>
+    <span></span>
+
+ </span>
+
+  <span class="menu-button" *ngIf="mobileQuery.matches">
       <button  mat-icon-button [matMenuTriggerFor]="menu">
         <mat-icon>more_vert</mat-icon>
       </button>
@@ -20,10 +35,10 @@
 
     </mat-toolbar>
 
-<mat-sidenav-container class="side-nav-container">
+<mat-sidenav-container class="side-nav-container ">
   <mat-sidenav
     #drawer
-    class="sidenav"
+    class="sidenav mat-elevation-z20"
     mode="side"
     fixedInViewport="true"
     [style.margin-top]="mobileQuery.matches? '56px':'64px'"
