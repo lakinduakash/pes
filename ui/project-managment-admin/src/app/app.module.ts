@@ -26,6 +26,7 @@ import {SignupComponent} from './signup/signup.component';
 import {ProjectModule} from "./project/project.module";
 import {TestComponent} from './test/test.component';
 import {EvalFormModule} from "./eval-form/eval-form.module";
+import { ViewMarksComponent } from './view-marks-m/view-marks/view-marks.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import {EvalFormModule} from "./eval-form/eval-form.module";
     PageNotFoundComponent,
     SignupComponent,
     TestComponent,
+    ViewMarksComponent,
   ],
   imports: [
     BrowserModule,
