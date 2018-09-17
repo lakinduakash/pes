@@ -1,23 +1,84 @@
-<h1 class="text-center">
-    Project Management System
-</h1>
-<div class="card offset-md-3">
-        <div class="card-header">
-          Login
-        </div>
-        <div class="card-body">
-            <form action="" method="post">
-                <ul>
-                    <li>
-                        <input type="text" name="" id="" placeholder="Enter Username" class="form-control">
-                    </li>
-                    <li>
-                        <input type="password" name="" id="" placeholder="Enter Password" class="form-control">
-                    </li>
-                    <li>
-                        <input type="submit" value="Submit" class="btn btn-primary float-right">
-                    </li>
-                </ul>
-            </form>
-        </div>
-      </div>
+<div class="container">
+<mat-card [class.mat-elevation-z0]="isHandest$">
+
+    <div *ngIf="!inFogotFassword">
+    <mat-card-title fxLayoutAlign="center">Login- Project Evaluation System</mat-card-title>
+
+    <form fxLayoutAlign="center" class="example-form">
+      <table class="example-full-width" cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Username" [(ngModel)]="email" name="username" required>
+            </mat-form-field>
+
+            <mat-error>{{emailVerifiedStatus}}</mat-error>
+          </td>
+        </tr>
+        <tr>
+          <td><mat-form-field class="example-full-width">
+            <input matInput placeholder="Password" [(ngModel)]="password"type="password" name="password" required>
+          </mat-form-field></td>
+        </tr></table>
+    </form>
+
+    <div fxLayoutAlign="center">
+      <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+      <mat-error>{{errorMassage}}</mat-error>
+    </div>
+
+
+
+  <mat-card-actions fxLayoutAlign="center">
+
+    <button [disabled]="showSpinner" mat-raised-button (click)="login()" color="primary">Login</button>
+  </mat-card-actions>
+
+  <div class="login-bottom" fxLayoutAlign="center">
+    <p fxFlexAlign="left"><a routerLink="/signup"> Signup</a></p>
+  </div>
+  <span></span>
+  <div class="login-bottom" fxLayoutAlign="center">
+    <button class="fps" mat-flat-button (click)="forgotPasswordClick()">Forgot password?</button>
+
+  </div>
+
+  </div>
+
+  <div *ngIf="inFogotFassword">
+
+    <mat-card-title fxLayoutAlign="center">Enter your email</mat-card-title>
+    <form fxLayoutAlign="center" class="example-form">
+      <table class="example-full-width" cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="email" [(ngModel)]="email" name="femail" required>
+            </mat-form-field>
+          </td>
+        </tr>
+        </table>
+    </form>
+
+    <div fxLayoutAlign="center">
+      <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+    </div>
+
+    <div style="margin: 1px" fxLayoutAlign="center">
+      <p [style.color]="!successResetSend? 'red' :'black'">{{emailSentMassage}}</p>
+    </div>
+
+    <div class="button-container" fxLayoutAlign="center">
+      <button mat-flat-button (click)="sendRecoveryMail()">Send email</button>
+    </div>
+
+    <div class="button-container back" fxLayoutAlign="center">
+      <button mat-flat-button (click)="back()">Back</button>
+
+    </div>
+  </div>
+
+
+</mat-card>
+
+</div>
