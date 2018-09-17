@@ -18,8 +18,9 @@ export class PresentationComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.parent.params.subscribe(params => {
+    this.route.parent.parent.params.subscribe(params => {
       this.projectId = Number(params.id);
+      console.log(params)
       this.route.params.subscribe(next => {
         this.presentId = next.id
         this.projectService.getOriginalProjectId(this.projectId)
