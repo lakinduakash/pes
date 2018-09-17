@@ -1,5 +1,5 @@
 .section-main {
-  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 mat-form-field {
@@ -34,6 +34,10 @@ mat-form-field {
 .delete-icon {
   color: red;
 
+}
+
+mat-card {
+  border-radius: 10px;
 }
 
 
