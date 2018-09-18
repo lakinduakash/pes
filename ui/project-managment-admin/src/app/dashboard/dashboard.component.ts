@@ -104,6 +104,7 @@ export class DashboardComponent implements OnInit {
 
   createDialog() {
 
+    console.log(this.authService.cacheUser)
     this.renameTitleBar.setTitle("Add Project");
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
       width: '250px',
@@ -131,7 +132,7 @@ export class DashboardComponent implements OnInit {
 
       let card: ProjectCard = {
         id: this.id++,
-        owner: "Lakindu Akash",
+        owner: this.authService.cacheUser.email,
         cardTitle: dialogRef.componentInstance.data.name,
         description: dialogRef.componentInstance.data.description,
       } as ProjectCard;
