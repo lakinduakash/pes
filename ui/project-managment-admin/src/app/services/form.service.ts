@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {AngularFirestore, DocumentSnapshot, QuerySnapshot} from "@angular/fire/firestore";
+import {AngularFirestore, DocumentReference, DocumentSnapshot, QuerySnapshot} from "@angular/fire/firestore";
 import {fromPromise} from "rxjs/internal-compatibility";
 import {AuthService} from "../auth/auth.service";
 import {Observable, Subject} from "rxjs";
@@ -14,16 +14,22 @@ export class FormService {
   }
 
   saveForm(form, projectId: string, presentId: string) {
+    let a = new Subject<DocumentReference>()
+
     if (projectId == undefined)
-      return fromPromise(this.fireStore.collection('form').add(JSON.parse(JSON.stringify(form))))
+      fromPromise(this.fireStore.collection('form').add(JSON.parse(JSON.stringify(form)))).subscribe(
+        next => a.next(next)
+      )
     else {
       this.authService.user.subscribe(
         next => {
-          fromPromise(this.fireStore.collection(`usersC/${next.uid}/project/${projectId}/presentation/${presentId}/form`).add(JSON.parse(JSON.stringify(form))))
+          fromPromise(this.fireStore.collection(`usersC/${next.uid}/project/${projectId}/presentation/${presentId}/form`).add(JSON.parse(JSON.stringify(form)))).subscribe(next => a.next(next))
         }
       )
 
     }
+
+    return a as Observable<DocumentReference>
   }
 
   getLastId() {
@@ -54,5 +60,14 @@ export class FormService {
     )
 
     return a as Observable<QuerySnapshot<any>>
+  }
+
+  updateForm(projectId: string, presentId: string, documentPath: string, form) {
+    let a = new Subject<any>();
+    this.authService.user.subscribe(next =>
+      fromPromise(this.fireStore.collection(`usersC/${next.uid}/project/${projectId}/presentation/${presentId}/form`).doc(documentPath).update(JSON.parse(JSON.stringify(form)))).subscribe(next => a.next(next))
+    )
+
+    return a as Observable<any>
   }
 }
