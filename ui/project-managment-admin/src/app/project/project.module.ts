@@ -17,6 +17,7 @@ import {MatButtonModule,
   MatListModule,
   MatSnackBarModule,
   MatTooltipModule} from '@angular/material';
+  import {MatDialogModule} from '@angular/material/dialog';
 //import {SharedModule} from "../shared/shared.module";
 import { ProjectMainComponent } from './project-main/project-main.component';
 import { AddFullMarkComponent } from './add-full-mark/add-full-mark.component';
@@ -24,7 +25,7 @@ import { AddFullMarkComponent } from './add-full-mark/add-full-mark.component';
 @NgModule({
   imports: [
     CommonModule,
-
+    MatDialogModule,
     MatGridListModule,
     MatInputModule,
     MatDialogModule,
