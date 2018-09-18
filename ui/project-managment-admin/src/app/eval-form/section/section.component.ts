@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Section, SectionAttribute} from "../../core/model/form-model";
+import {FormEditEventService} from "../form-edit-event.service";
 
 @Component({
   selector: 'app-section',
@@ -19,9 +20,9 @@ export class SectionComponent implements OnInit {
   private static lastId = 0;
 
 
-
-
-  constructor() {
+  constructor(
+    public formEditEvent: FormEditEventService
+  ) {
   }
 
   ngOnInit() {
@@ -52,6 +53,8 @@ export class SectionComponent implements OnInit {
   saveFormDetails() {
     this.section.name = this.secTitle;
     this.section.description = this.secDesc
+    this.formEditEvent.event.emit()
+
   }
 
   delete() {

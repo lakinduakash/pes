@@ -14,6 +14,7 @@ import {
 } from "@angular/material";
 import {FormsModule} from "@angular/forms";
 import {SharedModule} from "../shared/shared.module";
+import {FormEditEventService} from "./form-edit-event.service";
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import {SharedModule} from "../shared/shared.module";
     SharedModule
   ],
   declarations: [FormComponent, SectionComponent, AttributeComponent],
-  exports: [FormComponent]
+  exports: [FormComponent],
+  providers: [FormEditEventService]
 })
 export class EvalFormModule {
 }
