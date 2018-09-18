@@ -35,6 +35,7 @@ export class AttributeComponent implements OnInit {
 
   delete() {
     this.deleteAttribute.emit(this.sectionA.id)
+    this.formEditEvent.event.emit()
   }
 
 }
