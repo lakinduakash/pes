@@ -13,13 +13,17 @@ export class FormComponent implements OnInit {
 
   @Input("sections") sectionList: Section[];
   @Input("formModel") form: FormModel;
+  @Input('DocRef') documentRef: string;
 
   formTitle = "Untitled";
   formDesc;
   id = 5;
 
+
   projectId
   presentId
+
+  saveOrUpdateButton = this.documentRef == undefined ? "Save" : "Update"
 
   private static lastSecId = 0;
 
@@ -57,9 +61,6 @@ export class FormComponent implements OnInit {
   }
 
 
-  renderSection() {
-
-  }
 
   onSaveFormClick() {
     if (this.sectionList != undefined) {
@@ -68,27 +69,79 @@ export class FormComponent implements OnInit {
       //   return Object.assign({}, obj)
       // });
 
-      if (this.form != undefined) {
-        this.form = {
-          id: this.id,
-          description: this.formDesc,
-          sections: this.sectionList,
-          name: this.formTitle
-        } as FormModel;
-        this.formService.saveForm(this.form, this.projectId, this.presentId).subscribe(next => (console.log("saved")), error => console.log("error)"))
-      }
-      else {
-        this.form = {
-          id: this.id,
-          description: this.formDesc,
-          sections: this.sectionList,
-          name: this.formTitle
-        } as FormModel;
-        this.formService.saveForm(this.form, this.projectId, this.presentId)
+      if (this.documentRef == undefined) {
+
+        if (this.form != undefined) {
+          this.form = {
+            id: this.id,
+            description: this.formDesc,
+            sections: this.sectionList,
+            name: this.formTitle
+          } as FormModel;
+          this.formService.saveForm(this.form, this.projectId, this.presentId).subscribe(next => {
+            this.documentRef = next.id
+            console.log("saved" + next.id)
+            this.saveOrUpdateButton = this.documentRef == undefined ? "Save" : "Update"
+          }, error => console.log("error)"))
+        }
+        else {
+          this.form = {
+            id: this.id,
+            description: this.formDesc,
+            sections: this.sectionList,
+            name: this.formTitle
+          } as FormModel;
+          this.formService.saveForm(this.form, this.projectId, this.presentId).subscribe(
+            next => {
+              this.documentRef = next.id
+              console.log("saved" + next.id)
+              this.saveOrUpdateButton = this.documentRef == undefined ? "Save" : "Update"
+            }
+          )
+
+        }
 
       }
+      else {
+        this.updateForm()
+      }
     }
+
+
   }
+
+  private updateForm() {
+
+
+    if (this.form != undefined) {
+      this.form = {
+        id: this.id,
+        description: this.formDesc,
+        sections: this.sectionList,
+        name: this.formTitle
+      } as FormModel;
+      this.formService.updateForm(this.projectId, this.presentId, this.documentRef, this.form).subscribe(next => {
+        (console.log("updated"))
+
+      }, error => console.log("error)"))
+    }
+    else {
+      this.form = {
+        id: this.id,
+        description: this.formDesc,
+        sections: this.sectionList,
+        name: this.formTitle
+      } as FormModel;
+      this.formService.updateForm(this.projectId, this.presentId, this.documentRef, this.form).subscribe(next => {
+        (console.log("updated"))
+
+      }, error => console.log("error)"))
+
+    }
+
+  }
+
+
 
   deleteSection($event) {
     let i = 0;
