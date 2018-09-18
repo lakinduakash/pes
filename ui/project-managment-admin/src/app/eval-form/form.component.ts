@@ -1,6 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormModel, Section} from "../core/model/form-model";
 import {FormService} from "../services/form.service";
+import {FormDataService} from "../services/form-data.service";
+import {RenameTitleBarService} from "../services/rename-title-bar.service";
 
 @Component({
   selector: 'app-form',
@@ -16,18 +18,25 @@ export class FormComponent implements OnInit {
   formDesc;
   id = 5;
 
+  projectId
+  presentId
+
   private static lastSecId = 0;
 
 
-  constructor(private formService: FormService) {
+  constructor(private formService: FormService, public formDataService: FormDataService, private titleBar: RenameTitleBarService) {
   }
 
   ngOnInit() {
+    this.titleBar.setTitle("Create new form")
     if (this.form != undefined) {
       this.formTitle = this.form.name;
       this.formDesc = this.form.description;
       this.id = this.form.id;
     }
+
+    this.projectId = this.formDataService.projectId
+    this.presentId = this.formDataService.presentationId
   }
 
   onAddSectionClick() {
@@ -66,7 +75,7 @@ export class FormComponent implements OnInit {
           sections: this.sectionList,
           name: this.formTitle
         } as FormModel;
-        this.formService.saveForm(this.form).subscribe(next=>(console.log("saved")),error=>console.log("error)"))
+        this.formService.saveForm(this.form, this.projectId, this.presentId).subscribe(next => (console.log("saved")), error => console.log("error)"))
       }
       else {
         this.form = {
@@ -75,7 +84,7 @@ export class FormComponent implements OnInit {
           sections: this.sectionList,
           name: this.formTitle
         } as FormModel;
-        this.formService.saveForm(this.form)
+        this.formService.saveForm(this.form, this.projectId, this.presentId)
 
       }
     }
