@@ -1,9 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {FormModel, Section} from "../core/model/form-model";
 import {FormService} from "../services/form.service";
 import {FormDataService} from "../services/form-data.service";
 import {RenameTitleBarService} from "../services/rename-title-bar.service";
 import {FormEditEventService} from "./form-edit-event.service";
+import {MatInput} from "@angular/material";
 
 @Component({
   selector: 'app-form',
@@ -15,16 +16,22 @@ export class FormComponent implements OnInit {
   @Input("sections") sectionList: Section[];
   @Input("formModel") form: FormModel;
   @Input('DocRef') documentRef: string;
+  @ViewChild('noUnderline') input: MatInput
 
   formTitle = "Untitled";
   formDesc;
-  id = 5;
+  maxFormMark
+  id = this.documentRef;
 
 
   projectId
   presentId
 
+
   saveOrUpdateButton = this.documentRef == undefined ? "Save" : "Update"
+  saveStatus = ""
+  currentTotalMarks = 0
+  warnMax = false
 
   private static lastSecId = 0;
 
@@ -43,9 +50,28 @@ export class FormComponent implements OnInit {
       this.id = this.form.id;
     }
 
+
     this.projectId = this.formDataService.projectId
     this.presentId = this.formDataService.presentationId
-    this.formEditEvent.event.subscribe(next => console.log("edited"))
+    this.formEditEvent.event.subscribe(next => {
+      this.saveStatus = "Changes not saved"
+      this.currentTotalMarks = 0
+      if (this.sectionList != undefined) {
+        for (let s of this.sectionList) {
+          if (s.attr != undefined) {
+            for (let k of s.attr) {
+              if (k.maxMark != undefined)
+                this.currentTotalMarks += k.maxMark
+            }
+          }
+        }
+      }
+
+      if (this.currentTotalMarks != this.maxFormMark)
+        this.warnMax = true
+      else
+        this.warnMax = false
+    })
 
   }
 
@@ -85,10 +111,12 @@ export class FormComponent implements OnInit {
 
         if (this.form.sections != undefined && this.sectionList.length > 0) {
 
+          this.saveStatus = "Saving ..."
           this.formService.saveForm(this.form, this.projectId, this.presentId).subscribe(next => {
             this.documentRef = next.id
             console.log("saved" + next.id)
             this.saveOrUpdateButton = this.documentRef == undefined ? "Save" : "Update"
+            this.saveStatus = "Changes saved as new document"
           }, error => console.log("error)"))
         }
         else {
@@ -111,8 +139,9 @@ export class FormComponent implements OnInit {
         sections: this.sectionList,
         name: this.formTitle
       } as FormModel;
+      this.saveStatus = "Saving ..."
       this.formService.updateForm(this.projectId, this.presentId, this.documentRef, this.form).subscribe(next => {
-        (console.log("updated"))
+        this.saveStatus = "Changes saved"
 
       }, error => console.log("error)"))
     }
@@ -120,6 +149,7 @@ export class FormComponent implements OnInit {
   }
 
   deleteSection($event) {
+    this.formEditEvent.event.emit()
     let i = 0;
     for (let sec of this.sectionList) {
       if (sec.id == $event as number) {
@@ -129,6 +159,10 @@ export class FormComponent implements OnInit {
       i++;
 
     }
+  }
+
+  updateFields() {
+    this.formEditEvent.event.emit()
   }
 
 }

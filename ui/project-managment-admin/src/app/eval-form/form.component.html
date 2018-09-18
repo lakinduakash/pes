@@ -4,14 +4,36 @@
 
   <div class="flex-item">
 <mat-card class="form-main">
+  <div style="display: flex; justify-content: flex-start">
+
+    <div class="status-header">
+      <mat-card-subtitle>
+        {{saveStatus}}
+      </mat-card-subtitle>
+    </div>
+
+    <div class="status-header">
+      <mat-card-subtitle [class]="warnMax?'warnClass':'okClass'">
+        Current total marks: {{currentTotalMarks}}
+      </mat-card-subtitle>
+    </div>
+
+  </div>
+
   <mat-card-title>
     <mat-form-field floatLabel="never">
-      <input [(ngModel)]="formTitle" matInput placeholder="Form Title">
+      <input [(ngModel)]="formTitle" matInput placeholder="Form Title" (keyup)="updateFields()">
     </mat-form-field>
   </mat-card-title>
   <mat-card-subtitle>
     <mat-form-field floatLabel="never">
-      <textarea [(ngModel)]="formDesc" matInput placeholder="Form Description"></textarea>
+      <textarea [(ngModel)]="formDesc" matInput placeholder="Form Description" (keyup)="updateFields()"></textarea>
+    </mat-form-field>
+  </mat-card-subtitle>
+
+  <mat-card-subtitle>
+    <mat-form-field floatLabel="never" class="maximum-form-mark">
+      <input [(ngModel)]="maxFormMark" matInput placeholder="Maximum mark" type="number" (keyup)="updateFields()">
     </mat-form-field>
   </mat-card-subtitle>
 
