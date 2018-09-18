@@ -1,16 +1,44 @@
-ul{
-    list-style-type:none
+.container
+{
+  display: flex;
+  justify-content: center;
 }
 
-.card{
-    width: 50%;
-    margin-top: 2cm;
+mat-card{
+  margin-top: 100px;
+  margin-bottom: 100px;
+  max-width: 400px;
+  min-height: 400px;
+  width: 400px;
+  border-radius: 10px;
 }
 
-input{
-    margin-bottom: 10px;
+mat-card-title
+{
+  text-align: center;
 }
 
-h1{
-    margin-top: 50px;
+.main{
+  margin: 0;
+}
+
+.fps
+{
+  background-color: #fff;
+  color: red;
+}
+
+.button-container
+{
+  margin-bottom:5px ;
+}
+
+.back>button{
+  background-color: #fff;
+  color: blueviolet;
+}
+
+mat-form-field
+{
+  min-width:350px;
 }

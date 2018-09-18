@@ -3,6 +3,7 @@ import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {RenameTitleBarService} from "../../services/rename-title-bar.service";
+import {AuthService} from "../../auth/auth.service";
 
 
 @Component({
@@ -19,7 +20,7 @@ export class SideNavComponent implements OnInit {
 
   navTitle;
 
-  constructor(private breakpointObserver: BreakpointObserver, private renameNavBarService: RenameTitleBarService) {
+  constructor(private breakpointObserver: BreakpointObserver, private renameNavBarService: RenameTitleBarService,private auth:AuthService) {
   }
 
   ngOnInit() {
@@ -27,6 +28,11 @@ export class SideNavComponent implements OnInit {
       .subscribe((navTitle: string) => {
         this.navTitle = navTitle;
       });
+  }
+
+  logout()
+  {
+    this.auth.signOut()
   }
 
 }

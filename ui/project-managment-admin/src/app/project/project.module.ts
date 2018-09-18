@@ -2,6 +2,10 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {ProjectMainViewComponentComponent} from './project-main-view-component.component';
 import {FormCreatorComponent} from './form-creator/form-creator.component';
+import { ViewFormListComponent } from './view-form-list/view-form-list.component';
+import {MatListModule} from "@angular/material";
+import {RouterModule} from "@angular/router";
+
 
 import {MatButtonModule,
   MatCardModule,
@@ -20,6 +24,7 @@ import { AddFullMarkComponent } from './add-full-mark/add-full-mark.component';
 @NgModule({
   imports: [
     CommonModule,
+
     MatGridListModule,
     MatInputModule,
     MatDialogModule,
@@ -33,7 +38,15 @@ import { AddFullMarkComponent } from './add-full-mark/add-full-mark.component';
     MatTooltipModule
 
   ],
+<<<<<<< HEAD
   declarations: [ProjectMainViewComponentComponent, FormCreatorComponent, ProjectMainComponent, AddFullMarkComponent]
+=======
+  declarations: [ProjectMainViewComponentComponent, FormCreatorComponent, ProjectMainComponent]
+    MatListModule,
+    RouterModule
+  ],
+  declarations: [ProjectMainViewComponentComponent, FormCreatorComponent, ViewFormListComponent]
+>>>>>>> f7e3ba533d2a1528108ac7bf7b651d3f118467fc
 })
 export class ProjectModule {
 }
