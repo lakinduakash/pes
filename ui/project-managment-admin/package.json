@@ -45,6 +45,8 @@
     "@types/jasminewd2": "~2.0.2",
     "@types/node": "^10.9.4",
     "codelyzer": "^4.4.4",
+    "electron": "^2.0.9",
+    "electron-packager": "^12.1.2",
     "jasmine-core": "~3.2.1",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "^3.0.0",
