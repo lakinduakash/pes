@@ -11,6 +11,7 @@ import {FormViewComponent} from "./eval-form-parser/form-view.component";
 import {ViewFormListComponent} from "./project/view-form-list/view-form-list.component";
 import {AuthGuard} from "./auth/auth.guard";
 import {PresentationComponent} from "./presentation/presentation/presentation.component";
+import {CanDeactivateGuard} from "./shared/can-deactivate-guard.service";
 
 
 const routes: Routes = [
@@ -46,7 +47,7 @@ const routes: Routes = [
   },
   {path: 'test', component: TestComponent},
   {path: 'view-form/:id', component: FormViewComponent,canActivate:[AuthGuard]},
-  {path: 'create-form', component: TestComponent,canActivate:[AuthGuard]},
+  {path: 'create-form', component: TestComponent, canActivate: [AuthGuard], canDeactivate: [CanDeactivateGuard]},
   {path: 'list-form', component: ViewFormListComponent,canActivate:[AuthGuard]},
   {path: 'signup', component: SignupComponent},
   {path: 'login', component: LoginComponent},
