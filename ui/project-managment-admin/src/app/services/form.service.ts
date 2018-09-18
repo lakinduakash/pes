@@ -13,7 +13,7 @@ export class FormService {
 
   }
 
-  saveForm(form, projectId?: string, presentId?: string) {
+  saveForm(form, projectId: string, presentId: string) {
     if (projectId == undefined)
       return fromPromise(this.fireStore.collection('form').add(JSON.parse(JSON.stringify(form))))
     else {
@@ -46,7 +46,7 @@ export class FormService {
 
   }
 
-  getAllForm(projectId?: string, presentId?: string) {
+  getAllForm(projectId: string, presentId: string) {
     let a = new Subject<QuerySnapshot<any>>();
     this.authService.user.subscribe(next =>
       this.fireStore.collection(`usersC/${next.uid}/project/${projectId}/presentation/${presentId}/form`).get().subscribe(next =>
