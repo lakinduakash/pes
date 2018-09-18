@@ -5,6 +5,7 @@ import {CreatePresentationDialogComponent} from "./create-presentation-dialog/cr
 import {PresentationService} from "../services/presentation.service";
 import {Presentation} from "../core/model/presentation";
 import {ProjectService} from "../services/project.service";
+import {RenameTitleBarService} from "../services/rename-title-bar.service";
 
 @Component({
   selector: 'app-project-main-view-component',
@@ -22,7 +23,8 @@ export class ProjectMainViewComponentComponent implements OnInit {
               private router: Router,
               public dialog: MatDialog,
               private presentationService: PresentationService,
-              private projectService: ProjectService) {
+              private projectService: ProjectService,
+              private titleBar: RenameTitleBarService) {
 
     this.route.paramMap.subscribe(next => {
       this.id = next.get('id')
@@ -44,6 +46,8 @@ export class ProjectMainViewComponentComponent implements OnInit {
 
   ngOnInit() {
 
+
+    this.titleBar.setTitle("Projects")
 
     this.presentationService.getPresentation(Number(this.id)).subscribe(
       next => {
