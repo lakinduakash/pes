@@ -46,6 +46,7 @@ import {AuthGuard} from "./auth/auth.guard";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {PresentationModule} from "./presentation/presentation.module";
+import {FormDataService} from "./services/form-data.service";
 
 
 @NgModule({
@@ -87,7 +88,7 @@ import {PresentationModule} from "./presentation/presentation.module";
 
   ],
   providers: [
-    RenameTitleBarService, ProjectService,AngularFireDatabase, AngularFirestore,AuthGuard,
+    RenameTitleBarService, ProjectService, AngularFireDatabase, AngularFirestore, AuthGuard, FormDataService
   ],
   bootstrap: [AppComponent],
   entryComponents: [DialogOverviewExampleDialog, ProjectCardComponent, AddProjectComponent]
