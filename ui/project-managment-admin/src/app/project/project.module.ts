@@ -15,6 +15,7 @@ import {MatButtonModule,
   MatTooltipModule} from '@angular/material';
 //import {SharedModule} from "../shared/shared.module";
 import { ProjectMainComponent } from './project-main/project-main.component';
+import { AddFullMarkComponent } from './add-full-mark/add-full-mark.component';
 
 @NgModule({
   imports: [
@@ -32,7 +33,7 @@ import { ProjectMainComponent } from './project-main/project-main.component';
     MatTooltipModule
 
   ],
-  declarations: [ProjectMainViewComponentComponent, FormCreatorComponent, ProjectMainComponent]
+  declarations: [ProjectMainViewComponentComponent, FormCreatorComponent, ProjectMainComponent, AddFullMarkComponent]
 })
 export class ProjectModule {
 }
