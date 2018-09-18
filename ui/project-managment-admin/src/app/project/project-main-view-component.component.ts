@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {MatDialog} from "@angular/material";
 import {CreatePresentationDialogComponent} from "./create-presentation-dialog/create-presentation-dialog.component";
@@ -6,18 +6,23 @@ import {PresentationService} from "../services/presentation.service";
 import {Presentation} from "../core/model/presentation";
 import {ProjectService} from "../services/project.service";
 import {RenameTitleBarService} from "../services/rename-title-bar.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-project-main-view-component',
   templateUrl: './project-main-view-component.component.html',
   styleUrls: ['./project-main-view-component.component.css']
 })
-export class ProjectMainViewComponentComponent implements OnInit {
+export class ProjectMainViewComponentComponent implements OnInit, OnDestroy {
 
   id: string;
   presentationList: PresentationData[] = []
 
   showPage = false
+
+  routS: Subscription
+  pexS: Subscription
+
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -26,12 +31,13 @@ export class ProjectMainViewComponentComponent implements OnInit {
               private projectService: ProjectService,
               private titleBar: RenameTitleBarService) {
 
-    this.route.paramMap.subscribe(next => {
+    this.routS = this.route.paramMap.subscribe(next => {
       this.id = next.get('id')
-      this.projectService.isProjectExist(Number(this.id)).subscribe(
+      console.log(this.id)
+      this.pexS = this.projectService.isProjectExist(Number(this.id)).subscribe(
         next => {
+          console.log(next)
           if (!next) {
-            this.router.navigate(['noProjectFound'])
           }
           else {
             this.showPage = true
@@ -115,7 +121,15 @@ export class ProjectMainViewComponentComponent implements OnInit {
     }
   }
 
+  ngOnDestroy(): void {
+
+    this.routS.unsubscribe()
+    this.pexS.unsubscribe()
+  }
+
 }
+
+
 
 interface PresentationData {
   id: string
