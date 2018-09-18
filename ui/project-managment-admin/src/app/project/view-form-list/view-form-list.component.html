@@ -1,7 +1,7 @@
 <mat-nav-list>
-  <div *ngFor="let docPath of formList">
+  <div *ngFor="let item of formList">
   <mat-list-item >
-    <a routerLink="/view-form/{{docPath}}">{{docPath}}</a>
+    <a routerLink="/view-form/{{item.id}}">{{item.data}}</a>
   </mat-list-item>
   </div>
 
