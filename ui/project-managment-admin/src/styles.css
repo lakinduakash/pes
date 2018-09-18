@@ -3,8 +3,24 @@
 
 body {
   margin: 0;
-  background-color: rgb(245, 247, 255);
+  background: rgb(246, 255, 253);
+  background: url("https://mdbootstrap.com/img/Photos/Others/architecture.jpg") no-repeat top center;
+
+  min-height: 100%;
+
 }
 .custom-modalbox >  mat-dialog-container {
   border-radius: 10px;
+}
+
+.bg11 {
+  /* The image used */
+
+  /* Half height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
