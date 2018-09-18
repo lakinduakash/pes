@@ -3,6 +3,7 @@ import {FormModel, Section} from "../core/model/form-model";
 import {FormService} from "../services/form.service";
 import {FormDataService} from "../services/form-data.service";
 import {RenameTitleBarService} from "../services/rename-title-bar.service";
+import {FormEditEventService} from "./form-edit-event.service";
 
 @Component({
   selector: 'app-form',
@@ -28,7 +29,10 @@ export class FormComponent implements OnInit {
   private static lastSecId = 0;
 
 
-  constructor(private formService: FormService, public formDataService: FormDataService, private titleBar: RenameTitleBarService) {
+  constructor(private formService: FormService,
+              public formDataService: FormDataService,
+              private titleBar: RenameTitleBarService,
+              public formEditEvent: FormEditEventService) {
   }
 
   ngOnInit() {
@@ -41,6 +45,8 @@ export class FormComponent implements OnInit {
 
     this.projectId = this.formDataService.projectId
     this.presentId = this.formDataService.presentationId
+    this.formEditEvent.event.subscribe(next => console.log("edited"))
+
   }
 
   onAddSectionClick() {
@@ -63,21 +69,22 @@ export class FormComponent implements OnInit {
 
 
   onSaveFormClick() {
-    if (this.sectionList != undefined) {
-
       // this.sectionList = this.sectionList.map((obj) => {
       //   return Object.assign({}, obj)
       // });
 
       if (this.documentRef == undefined) {
 
-        if (this.form != undefined) {
-          this.form = {
-            id: this.id,
-            description: this.formDesc,
-            sections: this.sectionList,
-            name: this.formTitle
-          } as FormModel;
+
+        this.form = {
+          id: this.id,
+          description: this.formDesc,
+          sections: this.sectionList,
+          name: this.formTitle
+        } as FormModel;
+
+        if (this.form.sections != undefined && this.sectionList.length > 0) {
+
           this.formService.saveForm(this.form, this.projectId, this.presentId).subscribe(next => {
             this.documentRef = next.id
             console.log("saved" + next.id)
@@ -85,35 +92,19 @@ export class FormComponent implements OnInit {
           }, error => console.log("error)"))
         }
         else {
-          this.form = {
-            id: this.id,
-            description: this.formDesc,
-            sections: this.sectionList,
-            name: this.formTitle
-          } as FormModel;
-          this.formService.saveForm(this.form, this.projectId, this.presentId).subscribe(
-            next => {
-              this.documentRef = next.id
-              console.log("saved" + next.id)
-              this.saveOrUpdateButton = this.documentRef == undefined ? "Save" : "Update"
-            }
-          )
-
+          console.log("empty sections")
         }
-
       }
       else {
         this.updateForm()
       }
-    }
-
 
   }
 
   private updateForm() {
 
 
-    if (this.form != undefined) {
+    if (this.form != undefined && this.documentRef != undefined) {
       this.form = {
         id: this.id,
         description: this.formDesc,
@@ -124,24 +115,9 @@ export class FormComponent implements OnInit {
         (console.log("updated"))
 
       }, error => console.log("error)"))
-    }
-    else {
-      this.form = {
-        id: this.id,
-        description: this.formDesc,
-        sections: this.sectionList,
-        name: this.formTitle
-      } as FormModel;
-      this.formService.updateForm(this.projectId, this.presentId, this.documentRef, this.form).subscribe(next => {
-        (console.log("updated"))
-
-      }, error => console.log("error)"))
-
     }
 
   }
-
-
 
   deleteSection($event) {
     let i = 0;
