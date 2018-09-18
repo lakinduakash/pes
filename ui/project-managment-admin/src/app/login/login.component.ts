@@ -28,6 +28,8 @@ export class LoginComponent implements OnInit {
   password: string;
   showSpinner=false;
 
+  logginStatus
+
   emailVerifiedStatus="";
 
   isHandest$;
@@ -38,10 +40,17 @@ export class LoginComponent implements OnInit {
   errorMassage="";
 
   constructor(private authService:AuthService,private router:Router,private breakPointObserver:BreakpointObserver,private authf:AngularFireAuth) {
+
     this.authf.user.subscribe(next=>{
-      if(next !=null)
-        this.router.navigate(['/dashboard'])
-    })
+      if (next != undefined && next.emailVerified)
+        this.router.navigate(['/dashboard']);
+      else {
+        //this.emailVerifiedStatus="Email not verified, first verify the email";
+        this.authf.auth.signOut()
+      }
+
+    });
+
   }
 
   ngOnInit() {
