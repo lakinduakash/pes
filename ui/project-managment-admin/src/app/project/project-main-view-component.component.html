@@ -3,7 +3,7 @@
 <div *ngIf="showPage" class="container">
 
   <div class="flex-item">
-    <mat-card>
+    <mat-card class="tr-card">
       <mat-card-title>
         Create or View Presentations
       </mat-card-title>
@@ -40,7 +40,7 @@
   </div>
 
   <div class="flex-item">
-    <mat-card mat-ripple>
+    <mat-card mat-ripple class="tr-card">
       <mat-card-title>
         Add students or groups
       </mat-card-title>
@@ -49,7 +49,7 @@
   </div>
 
   <div class="flex-item">
-    <mat-card mat-ripple>
+    <mat-card mat-ripple class="tr-card">
       <mat-card-title>
         View final marks
       </mat-card-title>
@@ -58,7 +58,7 @@
   </div>
 
   <div class="flex-item">
-    <mat-card mat-ripple (click)="openCreateForm()">
+    <mat-card mat-ripple (click)="openCreateForm()" class="tr-card">
       <mat-card-title>
         Create form
       </mat-card-title>

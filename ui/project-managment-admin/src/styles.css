@@ -3,24 +3,25 @@
 
 body {
   margin: 0;
-  background: rgb(246, 255, 253);
-  background: url("https://mdbootstrap.com/img/Photos/Others/architecture.jpg") no-repeat top center;
 
-  min-height: 100%;
 
 }
 .custom-modalbox >  mat-dialog-container {
   border-radius: 10px;
 }
 
-.bg11 {
-  /* The image used */
+html {
+  background: url("http://papers.co/wallpaper/papers.co-vx94-simple-architecture-blue-pattern-background-8-wallpaper.jpg") no-repeat center top fixed;
+  -webkit-background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+  -o-background-size: 100% 100%;
+  background-size: 100% 100%;
+}
 
-  /* Half height */
-  height: 100%;
-
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+/*
+https://www.hajarvillas.com/wp-content/uploads/2018/09/modern-architecture-photography-inspirational-abstract-design-as-modern-architecture-background-google-d0bfd180d0b5d182d180d0b0d0b3d0b0.jpg
+http://papers.co/wallpaper/papers.co-vx94-simple-architecture-blue-pattern-background-8-wallpaper.jpg
+ */
+.tr-card {
+  background-color: rgba(255, 247, 251, 0.71) !important;
 }
