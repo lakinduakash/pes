@@ -14,7 +14,15 @@ export class PresentationService {
 
   constructor(public fireStore: AngularFirestore,private authS:AuthService) {
 
-    authS.user.subscribe(next=>this.uid=next.uid)
+    authS.user.subscribe(
+      next => {
+        if (next != null)
+          this.uid = next.uid
+        else
+          this.uid = null
+
+      }
+    )
   }
 
   addPresentation(pid:number,data:Presentation)

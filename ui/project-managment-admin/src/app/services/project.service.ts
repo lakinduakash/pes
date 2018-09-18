@@ -118,8 +118,9 @@ export class ProjectService {
 
   getOriginalProjectId(id: number) {
     let s: Subject<string> = new Subject();
-    this.authS.user.subscribe(nextU => {
-      if (nextU != null) {
+    let nextU = this.authS.cacheUser
+
+    if (nextU != null) {
         this.fireStore.collection(`usersC/${nextU.uid}/project`).ref.where('id', '==', id).onSnapshot(
           next => {
             console.log(id)
@@ -132,8 +133,6 @@ export class ProjectService {
           error1 => s.error(error1),
           () => s.complete())
       }
-
-    })
 
     return s as Observable<string>
 
