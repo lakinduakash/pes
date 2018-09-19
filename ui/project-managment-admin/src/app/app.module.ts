@@ -26,9 +26,7 @@ import {SignupComponent} from './signup/signup.component';
 import {ProjectModule} from "./project/project.module";
 import {TestComponent} from './test/test.component';
 import {EvalFormModule} from "./eval-form/eval-form.module";
-<<<<<<< HEAD
-import { ViewMarksComponent } from './view-marks-m/view-marks/view-marks.component';
-=======
+
 import {NgDragDropModule} from "ng-drag-drop";
 import {
   MatButtonModule,
@@ -50,8 +48,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {PresentationModule} from "./presentation/presentation.module";
 import {FormDataService} from "./services/form-data.service";
+import { ViewMarksComponent } from './view-marks-m/view-marks/view-marks.component';
 
->>>>>>> e7caa4c67fd6308bdaa4b426be9952a604b65e16
 
 @NgModule({
   declarations: [

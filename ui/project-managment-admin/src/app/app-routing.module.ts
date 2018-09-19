@@ -7,19 +7,14 @@ import {ProjectMainViewComponentComponent} from "./project/project-main-view-com
 import {TestComponent} from "./test/test.component";
 import {SignupComponent} from "./signup/signup.component";
 import {LoginComponent} from "./login/login.component";
-<<<<<<< HEAD
-import { ViewMarksComponent } from './view-marks-m/view-marks/view-marks.component';
-=======
+
 import {FormViewComponent} from "./eval-form-parser/form-view.component";
 import {ViewFormListComponent} from "./project/view-form-list/view-form-list.component";
 import {AuthGuard} from "./auth/auth.guard";
-<<<<<<< HEAD
->>>>>>> e7caa4c67fd6308bdaa4b426be9952a604b65e16
-=======
+
 import {PresentationComponent} from "./presentation/presentation/presentation.component";
 import {CanDeactivateGuard} from "./shared/can-deactivate-guard.service";
->>>>>>> 4c46bab388291c8ecb0eb4ebcbf55996e092432f
-
+import { ViewMarksComponent } from './view-marks-m/view-marks/view-marks.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
@@ -58,7 +53,7 @@ const routes: Routes = [
   {path: 'list-form', component: ViewFormListComponent,canActivate:[AuthGuard]},
   {path: 'signup', component: SignupComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'viewm', component: ViewMarksComponent}
+  {path: 'viewmarks', component: ViewMarksComponent},
 ];
 
 @NgModule({
