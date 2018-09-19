@@ -26,6 +26,7 @@ import {SignupComponent} from './signup/signup.component';
 import {ProjectModule} from "./project/project.module";
 import {TestComponent} from './test/test.component';
 import {EvalFormModule} from "./eval-form/eval-form.module";
+
 import {NgDragDropModule} from "ng-drag-drop";
 import {
   MatButtonModule,
@@ -47,6 +48,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {PresentationModule} from "./presentation/presentation.module";
 import {FormDataService} from "./services/form-data.service";
+import { ViewMarksComponent } from './view-marks-m/view-marks/view-marks.component';
 
 
 @NgModule({
@@ -56,6 +58,7 @@ import {FormDataService} from "./services/form-data.service";
     PageNotFoundComponent,
     SignupComponent,
     TestComponent,
+    ViewMarksComponent,
   ],
   imports: [
     BrowserModule,
