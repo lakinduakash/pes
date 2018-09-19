@@ -39,15 +39,15 @@ import { AddFullMarkComponent } from './add-full-mark/add-full-mark.component';
     MatTooltipModule
 
   ],
-<<<<<<< HEAD
+
   declarations: [ProjectMainViewComponentComponent, FormCreatorComponent, ProjectMainComponent, AddFullMarkComponent]
-=======
+
   declarations: [ProjectMainViewComponentComponent, FormCreatorComponent, ProjectMainComponent]
     MatListModule,
     RouterModule
   ],
   declarations: [ProjectMainViewComponentComponent, FormCreatorComponent, ViewFormListComponent]
->>>>>>> f7e3ba533d2a1528108ac7bf7b651d3f118467fc
+
 })
 export class ProjectModule {
 }
