@@ -2,6 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import {FormModel, Section} from "../core/model/form-model";
 import {FormService} from "../services/form.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {FormDataService} from "../services/form-data.service";
+import {RenameTitleBarService} from "../services/rename-title-bar.service";
 
 
 @Component({
@@ -13,7 +15,9 @@ export class FormViewComponent implements OnInit {
 
   @Input('eval-form')evalForm
 
-  constructor(private formService:FormService,private route: ActivatedRoute, private router: Router) { }
+  constructor(private formService: FormService, private route: ActivatedRoute, private router: Router, private formDataService: FormDataService,
+              private titleBar: RenameTitleBarService) {
+  }
 
   form:FormModel
   sectionList:Section[];
@@ -24,10 +28,14 @@ export class FormViewComponent implements OnInit {
   private routeId: string;
 
   ngOnInit() {
+    this.titleBar.setTitle("Form view")
     this.route.paramMap.subscribe(next => this.routeId = next.get('id'))
     console.log(this.routeId)
 
-    this.formService.getForm(this.routeId).subscribe(next=>{this.form=next.data() as FormModel; this.printForm()},error1 => console.log(error1))
+    this.formService.getForm(this.routeId, this.formDataService.projectId, this.formDataService.presentationId).subscribe(next => {
+      this.form = next.data() as FormModel;
+      this.printForm()
+    }, error1 => console.log(error1))
 
   }
 
