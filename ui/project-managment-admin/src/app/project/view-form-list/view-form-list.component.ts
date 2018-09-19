@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormService} from "../../services/form.service";
-import {FormModel} from "../../core/model/form-model";
+import {FormDataService} from "../../services/form-data.service";
 
 @Component({
   selector: 'app-view-form-list',
@@ -9,19 +9,19 @@ import {FormModel} from "../../core/model/form-model";
 })
 export class ViewFormListComponent implements OnInit {
 
-  constructor(private formService:FormService) { }
+  constructor(private formService: FormService, public formData: FormDataService) {
+  }
 
   formList=[]
 
   ngOnInit() {
-    this.formService.getAllForm().subscribe(next=>this.initList(next))
+    this.formService.getAllForm(this.formData.projectId, this.formData.presentationId).subscribe(next => this.initList(next))
   }
 
   initList(docs){
 
-    docs.docs.forEach(item=> this.formList.push(item.ref.id))
+    docs.docs.forEach(item => this.formList.push({id: item.ref.id, data: item.data().name}))
     console.log(this.formList)
-
 
   }
 

@@ -1,5 +1,5 @@
 <div class="container">
-<mat-card [class.mat-elevation-z0]="isHandest$">
+  <mat-card [class.mat-elevation-z0]="isHandest$" [class.mat-elevation-z7]="!isHandest$" class="tr-card">
 
     <div *ngIf="!inFogotFassword">
     <mat-card-title fxLayoutAlign="center">Login- Project Evaluation System</mat-card-title>
@@ -9,7 +9,7 @@
         <tr>
           <td>
             <mat-form-field class="example-full-width">
-              <input matInput placeholder="Username" [(ngModel)]="email" name="username" required>
+              <input matInput placeholder="Email" [(ngModel)]="email" name="email" type="email" required>
             </mat-form-field>
 
             <mat-error>{{emailVerifiedStatus}}</mat-error>
@@ -22,8 +22,7 @@
         </tr></table>
     </form>
 
-    <div fxLayoutAlign="center">
-      <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+    <div fxLayoutAlign="center" class="error-text">
       <mat-error>{{errorMassage}}</mat-error>
     </div>
 
@@ -45,7 +44,7 @@
 
   </div>
 
-  <div *ngIf="inFogotFassword">
+  <div *ngIf="inFogotFassword" [@flyInOut]>
 
     <mat-card-title fxLayoutAlign="center">Enter your email</mat-card-title>
     <form fxLayoutAlign="center" class="example-form">
@@ -78,6 +77,9 @@
     </div>
   </div>
 
+  <div class="pr-container">
+    <mat-progress-bar mode="indeterminate" [style.display]="showSpinner ? 'block' : 'none'"></mat-progress-bar>
+  </div>
 
 </mat-card>
 
