@@ -8,43 +8,40 @@ import {LoginComponent} from './login/login.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {LayoutModule} from '@angular/cdk/layout';
 import {AppRoutingModule} from './app-routing.module';
-import {SharedModule} from "./shared/shared.module";
-import {HttpClientModule} from "@angular/common/http";
-import {RenameTitleBarService} from "./services/rename-title-bar.service";
-import {ProjectService} from "./services/project.service";
-import {ProjectCardComponent} from "./dashboard/project-card/project-card.component";
-import {AddProjectComponent} from "./dashboard/add-project-card/add-project.component";
-import {DialogOverviewExampleDialog} from "./dashboard/add-project-dialog/add-project-dialog.component";
-import {DashboardModule} from "./dashboard/dashboard.module";
+import {SharedModule} from './shared/shared.module';
+import {HttpClientModule} from '@angular/common/http';
+import {RenameTitleBarService} from './services/rename-title-bar.service';
+import {ProjectService} from './services/project.service';
+import {ProjectCardComponent} from './dashboard/project-card/project-card.component';
+import {AddProjectComponent} from './dashboard/add-project-card/add-project.component';
+import {DialogOverviewExampleDialog} from './dashboard/add-project-dialog/add-project-dialog.component';
+import {DashboardModule} from './dashboard/dashboard.module';
 
-import {environment} from "../environments/environment";
-import {AngularFireDatabase} from "@angular/fire/database";
-import {AngularFirestore, AngularFirestoreModule} from "@angular/fire/firestore";
+import {environment} from '../environments/environment';
+import {AngularFireDatabase} from '@angular/fire/database';
+import {AngularFirestore, AngularFirestoreModule} from '@angular/fire/firestore';
 
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {SignupComponent} from './signup/signup.component';
-import {ProjectModule} from "./project/project.module";
+import {ProjectModule} from './project/project.module';
 import {TestComponent} from './test/test.component';
-import {EvalFormModule} from "./eval-form/eval-form.module";
-<<<<<<< HEAD
-import { AddFullMarkComponent } from './test/add-full-mark/add-full-mark.component';
-=======
-import {NgDragDropModule} from "ng-drag-drop";
-import {MatButtonModule, MatCardModule, MatInputModule, MatProgressSpinnerModule} from "@angular/material";
-import {EvalFormParserModule} from "./eval-form-parser/eval-form-parser.module";
+import {EvalFormModule} from './eval-form/eval-form.module';
+
+import { AddFullMarkComponent } from './project/add-full-mark/add-full-mark.component';
+// import {NgDragDropModule} from "ng-drag-drop";
+import {MatButtonModule, MatCardModule, MatInputModule, MatProgressSpinnerModule} from '@angular/material';
+import {EvalFormParserModule} from './eval-form-parser/eval-form-parser.module';
 
 
 
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 
-import {AuthModule} from "./auth/auth.module";
-import {AuthGuard} from "./auth/auth.guard";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {FlexLayoutModule} from "@angular/flex-layout";
+import {AuthModule} from './auth/auth.module';
+import {AuthGuard} from './auth/auth.guard';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+// import {FlexLayoutModule} from '@angular/flex-layout';
 
-
->>>>>>> f7e3ba533d2a1528108ac7bf7b651d3f118467fc
 
 @NgModule({
   declarations: [
@@ -53,7 +50,6 @@ import {FlexLayoutModule} from "@angular/flex-layout";
     PageNotFoundComponent,
     SignupComponent,
     TestComponent,
-    AddFullMarkComponent,
   ],
   imports: [
     BrowserModule,
@@ -74,9 +70,9 @@ import {FlexLayoutModule} from "@angular/flex-layout";
     ProjectModule,
     EvalFormModule,
     EvalFormParserModule,
-    NgDragDropModule.forRoot(),
+    // NgDragDropModule.forRoot(),
     AuthModule,
-    FlexLayoutModule,
+    // FlexLayoutModule,
     ReactiveFormsModule
 
 

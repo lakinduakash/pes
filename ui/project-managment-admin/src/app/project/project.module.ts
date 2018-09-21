@@ -3,13 +3,13 @@ import {CommonModule} from '@angular/common';
 import {ProjectMainViewComponentComponent} from './project-main-view-component.component';
 import {FormCreatorComponent} from './form-creator/form-creator.component';
 import { ViewFormListComponent } from './view-form-list/view-form-list.component';
-import {MatListModule} from "@angular/material";
-import {RouterModule} from "@angular/router";
+//import {MatListModule} from "@angular/material";
+//import {RouterModule} from "@angular/router";
 
 
 import {MatButtonModule,
   MatCardModule,
-  MatDialogModule,
+  //MatDialogModule,
   MatFormFieldModule,
   MatGridListModule,
   MatIconModule,
@@ -21,6 +21,8 @@ import {MatButtonModule,
 //import {SharedModule} from "../shared/shared.module";
 import { ProjectMainComponent } from './project-main/project-main.component';
 import { AddFullMarkComponent } from './add-full-mark/add-full-mark.component';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
@@ -36,17 +38,14 @@ import { AddFullMarkComponent } from './add-full-mark/add-full-mark.component';
     MatButtonModule,
     MatListModule,
     MatSnackBarModule,
-    MatTooltipModule
-
-  ],
-
-  declarations: [ProjectMainViewComponentComponent, FormCreatorComponent, ProjectMainComponent, AddFullMarkComponent]
-
-  declarations: [ProjectMainViewComponentComponent, FormCreatorComponent, ProjectMainComponent]
-    MatListModule,
+    MatTooltipModule,
+    FormsModule,
     RouterModule
+
   ],
-  declarations: [ProjectMainViewComponentComponent, FormCreatorComponent, ViewFormListComponent]
+
+  declarations: [ProjectMainViewComponentComponent, FormCreatorComponent, ProjectMainComponent, AddFullMarkComponent, ViewFormListComponent]
+
 
 })
 export class ProjectModule {

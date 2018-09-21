@@ -11,11 +11,11 @@ import {
   MatFormFieldModule,
   MatIconModule,
   MatInputModule
-} from "@angular/material";
-import {FormsModule} from "@angular/forms";
+} from '@angular/material';
+import {FormsModule} from '@angular/forms';
 
 import { AddEvaluatorComponent } from './add-evaluator/add-evaluator.component';
-import {NgDragDropModule} from 'ng-drag-drop';
+//import {NgDragDropModule} from 'ng-drag-drop';
 
 
 @NgModule({
@@ -28,7 +28,7 @@ import {NgDragDropModule} from 'ng-drag-drop';
     MatButtonModule,
     MatIconModule,
     FormsModule,
-    NgDragDropModule
+    //NgDragDropModule
   ],
   declarations: [FormComponent, SectionComponent, AttributeComponent, AddEvaluatorComponent],
   exports: [FormComponent]
