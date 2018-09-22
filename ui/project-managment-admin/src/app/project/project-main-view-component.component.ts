@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {MatDialog} from "@angular/material";
 import {CreatePresentationDialogComponent} from "./create-presentation-dialog/create-presentation-dialog.component";
@@ -7,6 +7,8 @@ import {Presentation} from "../core/model/presentation";
 import {ProjectService} from "../services/project.service";
 import {RenameTitleBarService} from "../services/rename-title-bar.service";
 import {Subscription} from "rxjs";
+import * as csvJson from "csvjson";
+
 
 @Component({
   selector: 'app-project-main-view-component',
@@ -18,10 +20,14 @@ export class ProjectMainViewComponentComponent implements OnInit, OnDestroy {
   id: string;
   presentationList: PresentationData[] = []
 
+
   showPage = false
 
   routS: Subscription
   pexS: Subscription
+
+  @ViewChild('file') file;
+  public files: Set<File> = new Set();
 
 
   constructor(private route: ActivatedRoute,
@@ -129,6 +135,31 @@ export class ProjectMainViewComponentComponent implements OnInit, OnDestroy {
 
   openCreateForm() {
 
+  }
+
+  onFilesAdded() {
+    const files: { [key: string]: File } = this.file.nativeElement.files;
+    for (let key in files) {
+      if (!isNaN(parseInt(key))) {
+
+        this.files.add(files[key]);
+
+        let fileReader = new FileReader();
+
+        fileReader.onload = (e) => {
+          let options = {
+            delimiter: ',', // optional
+            quote: '"' // optional
+          };
+          //console.log(fileReader.result);
+          let a = csvJson.toObject(fileReader.result, options);
+          console.log(a)
+        }
+        this.files.forEach(item => fileReader.readAsText(item))
+
+
+      }
+    }
   }
 
 }
