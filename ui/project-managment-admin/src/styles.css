@@ -9,13 +9,12 @@ body {
 .custom-modalbox >  mat-dialog-container {
   border-radius: 10px;
 }
-
 html {
   background: url("http://papers.co/wallpaper/papers.co-vx94-simple-architecture-blue-pattern-background-8-wallpaper.jpg") no-repeat center top fixed;
   -webkit-background-size: 100% 100%;
   -moz-background-size: 100% 100%;
   -o-background-size: 100% 100%;
-  background-size: 100% 100%;
+  background-size: cover;
 }
 
 /*
