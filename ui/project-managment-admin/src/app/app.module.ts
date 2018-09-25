@@ -25,6 +25,17 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {SignupComponent} from './signup/signup.component';
 import {ProjectModule} from './project/project.module';
 import {TestComponent} from './test/test.component';
+import {EvalFormModule} from "./eval-form/eval-form.module";
+import {NgDragDropModule} from "ng-drag-drop";
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatInputModule,
+  MatProgressBarModule,
+  MatProgressSpinnerModule,
+  MatRippleModule
+} from "@angular/material";
+import {EvalFormParserModule} from "./eval-form-parser/eval-form-parser.module";
 import {EvalFormModule} from './eval-form/eval-form.module';
 
 import { AddFullMarkComponent } from './project/add-full-mark/add-full-mark.component';
@@ -37,10 +48,16 @@ import {EvalFormParserModule} from './eval-form-parser/eval-form-parser.module';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 
-import {AuthModule} from './auth/auth.module';
-import {AuthGuard} from './auth/auth.guard';
+
+import {AuthModule} from "./auth/auth.module";
+import {AuthGuard} from "./auth/auth.guard";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {FlexLayoutModule} from "@angular/flex-layout";
+import {PresentationModule} from "./presentation/presentation.module";
+import {FormDataService} from "./services/form-data.service";
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 // import {FlexLayoutModule} from '@angular/flex-layout';
+
 
 
 @NgModule({
@@ -72,13 +89,17 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     EvalFormParserModule,
     // NgDragDropModule.forRoot(),
     AuthModule,
-    // FlexLayoutModule,
+    FlexLayoutModule,
+    ReactiveFormsModule,
+    MatRippleModule,
+    MatProgressBarModule,
+    PresentationModule
     ReactiveFormsModule
 
 
   ],
   providers: [
-    RenameTitleBarService, ProjectService,AngularFireDatabase, AngularFirestore,AuthGuard,
+    RenameTitleBarService, ProjectService, AngularFireDatabase, AngularFirestore, AuthGuard, FormDataService
   ],
   bootstrap: [AppComponent],
   entryComponents: [DialogOverviewExampleDialog, ProjectCardComponent, AddProjectComponent]

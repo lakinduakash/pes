@@ -1,17 +1,37 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AuthService} from "../auth/auth.service";
+import {User} from "../core/model/user";
+import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
+import {animate, state, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css']
+  styleUrls: ['./signup.component.css'],
+  animations: [
+    trigger('flyInOut', [
+      state('in', style({transform: 'translateX(0)'})),
+      transition('void => *', [
+        style({transform: 'translateX(-100%)'}),
+        animate(170)
+      ]),
+
+    ])
+  ]
 })
 export class SignupComponent implements OnInit {
 
   signupFormGroup:FormGroup;
+  showSpinner=false;
+
+  signupStates=['ALREADY_R','ERROR','VERIFICATION_SEND','SIGNUP'];
+
+  state=this.signupStates[3];
+  isHandest$;
 
 
-  constructor(private fb:FormBuilder) {
+  constructor(private fb:FormBuilder,private auth:AuthService,private breakPointObserver:BreakpointObserver) {
 
     this.signupFormGroup=fb.group({
       fName:['',Validators.compose([Validators.required,Validators.maxLength(15),Validators.minLength(1)])],
@@ -28,21 +48,58 @@ export class SignupComponent implements OnInit {
 
   ngOnInit() {
 
+    this.breakPointObserver.observe(Breakpoints.HandsetPortrait).subscribe(next=>this.isHandest$=next.matches)
+
   }
 
-  signup()
+  updateUserData(user,data)
   {
+    const u:User={
+      uid: user.uid,
+    email: user.email,
+      displayName: data.value.fName + " " + data.value.lName
+
+
+  };
+
+    this.auth.sendVerificationEmail().subscribe(
+      next => {
+        console.log(user)
+        console.log(u)
+        this.auth.updateUserData(user, u).subscribe(next => {
+            this.showSpinner = false;
+            console.log("succsess");
+            this.state = this.signupStates[2]
+          },
+          error1 => {
+            console.log(error1)
+            this.showSpinner = false;
+          })
+      }
+    )
 
   }
 
   postData(data)
   {
-    console.log(data)
+    this.showSpinner=true;
+    this.auth.emailSignUp(data.value.email, data.value.password).subscribe(next => {
+        console.log(next);
+        this.updateUserData(next.user, data);
+      },error1 => {console.log(error1);
+      this.showSpinner=false;
+      if(error1.code == "auth/email-already-in-use")
+        this.state=this.signupStates[0];
+      else
+        this.state=this.signupStates[1]
+    }
+
+    )
+
   }
 
 }
 
-import {AbstractControl} from '@angular/forms';
 export class PasswordValidation {
 
   static MatchPassword(AC: AbstractControl) {

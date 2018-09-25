@@ -1,0 +1,59 @@
+<side-nav>
+</side-nav>
+
+<div class="container">
+
+  <div class="flex-item">
+    <mat-card class="tr-card">
+      <mat-card-title>
+        Create evaluation forms and assign
+      </mat-card-title>
+
+
+      <mat-expansion-panel (opened)="panelState=true" (closed)="panelState=false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Forms
+          </mat-panel-title>
+          <mat-panel-description>
+            View forms list
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <p>Add or click existing forms</p>
+        <button class="add-pr-buttun" mat-stroked-button mat-icon-button (click)="createForm()">
+          <mat-icon aria-label="Add presentation" class="add-icon">add</mat-icon>
+        </button>
+
+        <div *ngIf="panelState">
+          <app-view-form-list>
+
+          </app-view-form-list>
+        </div>
+
+      </mat-expansion-panel>
+
+
+    </mat-card>
+  </div>
+
+  <div class="flex-item">
+    <mat-card mat-ripple class="tr-card">
+      <mat-card-title>
+        Presentation control
+      </mat-card-title>
+
+    </mat-card>
+  </div>
+
+  <div class="flex-item">
+    <mat-card mat-ripple class="tr-card">
+      <mat-card-title>
+        View final marks
+      </mat-card-title>
+
+    </mat-card>
+  </div>
+
+
+</div>

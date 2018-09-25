@@ -5,6 +5,7 @@ import {LayoutModule} from '@angular/cdk/layout';
 import {MatButtonModule, MatIconModule, MatListModule, MatMenuModule, MatSidenavModule} from '@angular/material';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {SideNavComponent} from "./side-nav/side-nav.component";
+import {CanDeactivateGuard} from "./can-deactivate-guard.service";
 
 @NgModule({
   declarations: [
@@ -21,9 +22,9 @@ import {SideNavComponent} from "./side-nav/side-nav.component";
     MatListModule,
     MatMenuModule
   ],
-  providers: [],
+  providers: [CanDeactivateGuard],
   exports: [
-    SideNavComponent,
+    SideNavComponent
   ]
 })
 export class SharedModule {

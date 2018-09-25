@@ -11,11 +11,12 @@ import {
   MatFormFieldModule,
   MatIconModule,
   MatInputModule
-} from '@angular/material';
-import {FormsModule} from '@angular/forms';
-
+} from "@angular/material";
+import {FormsModule} from "@angular/forms";
+import {SharedModule} from "../shared/shared.module";
+import {FormEditEventService} from "./form-edit-event.service";
 import { AddEvaluatorComponent } from './add-evaluator/add-evaluator.component';
-//import {NgDragDropModule} from 'ng-drag-drop';
+
 
 
 @NgModule({
@@ -28,7 +29,6 @@ import { AddEvaluatorComponent } from './add-evaluator/add-evaluator.component';
     MatButtonModule,
     MatIconModule,
     FormsModule,
-    //NgDragDropModule
   ],
   declarations: [FormComponent, SectionComponent, AttributeComponent, AddEvaluatorComponent],
   exports: [FormComponent]

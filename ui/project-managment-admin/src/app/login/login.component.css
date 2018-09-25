@@ -42,3 +42,17 @@ mat-form-field
 {
   min-width:350px;
 }
+
+.pr-container
+{
+  display: block;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  min-height: 10px;
+}
+
+.error-text
+{
+  display: block;
+  min-height: 20px;
+}
