@@ -13,15 +13,44 @@ import { ProjectMainComponent } from './project/project-main/project-main.compon
 import {FormViewComponent} from "./eval-form-parser/form-view.component";
 import {ViewFormListComponent} from "./project/view-form-list/view-form-list.component";
 import {AuthGuard} from "./auth/auth.guard";
+import {PresentationComponent} from "./presentation/presentation/presentation.component";
+import {CanDeactivateGuard} from "./shared/can-deactivate-guard.service";
 
 
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
   {path: 'dashboard', component: DashboardComponent,  canActivate:[AuthGuard]},
-  {path: 'project/:id', component: ProjectMainViewComponentComponent,canActivate:[AuthGuard] },
+  {
+    path: 'project',
+    children: [
+      {
+        path: ':id',
+        children:
+          [
+            {path: '', component: ProjectMainViewComponentComponent, canActivate: [AuthGuard]},
+            {
+              path: 'presentation',
+              children: [
+                {
+                  path: ':id',
+                  children: [
+                    {path: '', component: PresentationComponent, canActivate: [AuthGuard]},
+                    {path: 'form/:id', component: TestComponent, canActivate: [AuthGuard]}
+
+                  ]
+                }
+              ]
+            },
+
+          ]
+      },
+      {path: '**', component: PageNotFoundComponent}
+
+    ]
+  },
   {path: 'test', component: TestComponent},
   {path: 'view-form/:id', component: FormViewComponent,canActivate:[AuthGuard]},
-  {path: 'create-form', component: TestComponent,canActivate:[AuthGuard]},
+  {path: 'create-form', component: TestComponent, canActivate: [AuthGuard], canDeactivate: [CanDeactivateGuard]},
   {path: 'list-form', component: ViewFormListComponent,canActivate:[AuthGuard]},
   {path: 'signup', component: SignupComponent},
   {path: 'login', component: LoginComponent},

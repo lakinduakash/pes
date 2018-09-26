@@ -2,22 +2,33 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../auth/auth.service";
 import {Router} from "@angular/router";
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
-import {Observable} from "rxjs";
-import {map} from "rxjs/operators";
 import {AngularFireAuth} from "@angular/fire/auth";
 import {fromPromise} from "rxjs/internal-compatibility";
+import {animate, state, style, transition, trigger} from "@angular/animations";
 
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  animations: [
+    trigger('flyInOut', [
+      state('in', style({transform: 'translateX(0)'})),
+      transition('void => *', [
+        style({transform: 'translateX(-100%)'}),
+        animate(170)
+      ]),
+
+    ])
+  ]
 })
 export class LoginComponent implements OnInit {
 
   email: string;
   password: string;
   showSpinner=false;
+
+  logginStatus
 
   emailVerifiedStatus="";
 
@@ -28,9 +39,22 @@ export class LoginComponent implements OnInit {
   emailSentMassage="";
   errorMassage="";
 
-  constructor(private authService:AuthService,private router:Router,private breakPointObserver:BreakpointObserver,private authf:AngularFireAuth) { }
+  constructor(private authService:AuthService,private router:Router,private breakPointObserver:BreakpointObserver,private authf:AngularFireAuth) {
+
+    this.authf.user.subscribe(next=>{
+      if (next != undefined && next.emailVerified)
+        this.router.navigate(['/dashboard']);
+      else {
+        //this.emailVerifiedStatus="Email not verified, first verify the email";
+        this.authf.auth.signOut()
+      }
+
+    });
+
+  }
 
   ngOnInit() {
+
     this.breakPointObserver.observe(Breakpoints.HandsetPortrait).subscribe(next=>this.isHandest$=next.matches)
   }
 

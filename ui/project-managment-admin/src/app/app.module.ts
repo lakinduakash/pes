@@ -27,9 +27,15 @@ import {ProjectModule} from "./project/project.module";
 import {TestComponent} from './test/test.component';
 import {EvalFormModule} from "./eval-form/eval-form.module";
 import {NgDragDropModule} from "ng-drag-drop";
-import {MatButtonModule, MatCardModule, MatInputModule, MatProgressSpinnerModule} from "@angular/material";
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatInputModule,
+  MatProgressBarModule,
+  MatProgressSpinnerModule,
+  MatRippleModule
+} from "@angular/material";
 import {EvalFormParserModule} from "./eval-form-parser/eval-form-parser.module";
-
 
 
 import {AngularFireModule} from '@angular/fire';
@@ -39,7 +45,8 @@ import {AuthModule} from "./auth/auth.module";
 import {AuthGuard} from "./auth/auth.guard";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {FlexLayoutModule} from "@angular/flex-layout";
-
+import {PresentationModule} from "./presentation/presentation.module";
+import {FormDataService} from "./services/form-data.service";
 
 
 @NgModule({
@@ -72,12 +79,16 @@ import {FlexLayoutModule} from "@angular/flex-layout";
     NgDragDropModule.forRoot(),
     AuthModule,
     FlexLayoutModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatRippleModule,
+    MatProgressBarModule,
+    PresentationModule
+
 
 
   ],
   providers: [
-    RenameTitleBarService, ProjectService,AngularFireDatabase, AngularFirestore,AuthGuard,
+    RenameTitleBarService, ProjectService, AngularFireDatabase, AngularFirestore, AuthGuard, FormDataService
   ],
   bootstrap: [AppComponent],
   entryComponents: [DialogOverviewExampleDialog, ProjectCardComponent, AddProjectComponent]

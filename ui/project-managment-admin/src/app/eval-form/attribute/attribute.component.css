@@ -26,3 +26,8 @@
   color: red;
 
 }
+
+.max-mark {
+  padding-left: 10px;
+  max-width: 80px;
+}

@@ -1,12 +1,14 @@
 <side-nav></side-nav>
+<div>
 
-<mat-grid-list [cols]="cols" rowHeight=250>
-  <mat-grid-tile *ngFor="let card of list" [@flyInOut]="state">
-    <app-dashboard-card-holder (remove)="removeProject($event)" (openProject)="openProject($event)" class="project-card"
-                               [projectCard]="card"></app-dashboard-card-holder>
-  </mat-grid-tile>
-  <mat-grid-tile>
-    <app-add-project class="project-card" (addProject)="onAddNewProjectClick()"></app-add-project>
-  </mat-grid-tile>
+  <mat-grid-list [cols]="cols" rowHeight=250>
+    <mat-grid-tile *ngFor="let card of list" [@flyInOut]="state">
+      <app-dashboard-card-holder (remove)="removeProject($event)" (openProject)="openProject($event)" class="project-card"
+                                 [projectCard]="card"></app-dashboard-card-holder>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <app-add-project class="project-card" (addProject)="onAddNewProjectClick()"></app-add-project>
+    </mat-grid-tile>
 
-</mat-grid-list>
+  </mat-grid-list>
+</div>

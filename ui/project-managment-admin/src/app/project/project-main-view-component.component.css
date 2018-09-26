@@ -1,0 +1,39 @@
+.container
+{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+mat-card
+{
+  border-radius: 10px;
+  min-width: 100px;
+  width:500px;
+  margin-top:20px;
+  margin-right: 20px;
+  margin-left: 20px;
+  min-height: 50px;
+}
+
+mat-expansion-panel
+{
+  border-radius: 10px;
+}
+
+.flex-item
+{
+  display: flex;
+  justify-content: center;
+}
+
+.add-pr-button
+{
+  color: green;
+}
+
+.upload-button {
+  border-radius: 10px;
+  border: solid 3px;
+}

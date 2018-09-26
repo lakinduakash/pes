@@ -1,6 +1,6 @@
 export class FormModel {
   $key: string;
-  id: number;
+  id: string;
   name: string;
   description: string;
   sections: Section[]

@@ -9,6 +9,7 @@ mat-card{
   max-width: 500px;
   min-width: 400px;
   min-height: 350px;
+  border-radius: 10px;
 
 
 }
@@ -21,4 +22,18 @@ mat-form-field
 mat-form-field
 {
   margin-bottom: 10px;
+}
+
+.pr-container
+{
+  display: block;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  min-height: 10px;
+}
+
+.error-text
+{
+  display: block;
+  min-height: 20px;
 }
