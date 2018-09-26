@@ -1,8 +1,15 @@
 <div class="attribute">
+  <span>
   <mat-form-field floatLabel="never" class="criteria">
-    <textarea matInput placeholder="criteria"></textarea>
+    <textarea [(ngModel)]="criteria" matInput placeholder="criteria" (keyup)="saveForm()"></textarea>
   </mat-form-field>
-  <mat-form-field floatLabel="never">
-    <input type="number" matInput placeholder="max">
+  <mat-form-field floatLabel="never" class="max-mark">
+    <input [(ngModel)]="maxMark" type="number" matInput placeholder="max" (keyup)="saveForm()">
   </mat-form-field>
+    </span>
+  <span>
+  <button class="delete" mat-icon-button (click)="delete()">
+    <mat-icon aria-label="Delete icon" class="delete-icon">delete</mat-icon>
+  </button>
+    </span>
 </div>

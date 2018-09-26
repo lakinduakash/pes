@@ -2,8 +2,10 @@
   margin: 10px 10px 10px 10px;
   max-width: 170px;
   min-height: 170px;
-  background-color: aliceblue;
+  background-color: #ffffff;
   width: 100%;
+  border-radius: 10px;
+
 }
 
 .project-card-header-title {

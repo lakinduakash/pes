@@ -9,6 +9,7 @@ import {DialogOverviewExampleDialog} from "./add-project-dialog/add-project-dial
 import {RemoveProjectDialogComponent} from "./remove-dialog/remove-project-dialog.component";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {Router} from "@angular/router";
+import {AuthService} from "../auth/auth.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -50,7 +51,8 @@ export class DashboardComponent implements OnInit {
     private resolver: ComponentFactoryResolver,
     private injector: Injector,
     private breakpointObserver: BreakpointObserver,
-    private snackBar: MatSnackBar) {
+    private snackBar: MatSnackBar,
+    private authService:AuthService) {
 
 
     let breakPoints = [
@@ -71,10 +73,12 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.renameTitleBar.setTitle("Project Dashboard");
-    this.projectService.getProjectList().subscribe(next => {
-      this.projectList = next;
-      this.updateList();
-    })
+
+      this.projectService.getProjectList().subscribe(next => {
+        this.projectList = next;
+        this.updateList();
+      })
+
   }
 
   updateList() {
@@ -100,9 +104,11 @@ export class DashboardComponent implements OnInit {
 
   createDialog() {
 
+    console.log(this.authService.cacheUser)
     this.renameTitleBar.setTitle("Add Project");
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
       width: '250px',
+      panelClass:'custom-modalbox',
       data: {name: "", description: ""}
     });
 
@@ -126,7 +132,7 @@ export class DashboardComponent implements OnInit {
 
       let card: ProjectCard = {
         id: this.id++,
-        owner: "Lakindu Akash",
+        owner: this.authService.cacheUser.email,
         cardTitle: dialogRef.componentInstance.data.name,
         description: dialogRef.componentInstance.data.description,
       } as ProjectCard;
@@ -155,7 +161,8 @@ export class DashboardComponent implements OnInit {
     }
 
     const dialogRef = this.dialog.open(RemoveProjectDialogComponent, {
-      width: '250px'
+      width: '250px',
+      panelClass:'custom-modalbox'
     });
 
     let undoPressed: boolean = false;

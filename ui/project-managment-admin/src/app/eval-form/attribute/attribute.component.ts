@@ -1,5 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {SectionAttribute} from "../../core/model/form-model";
+import {FormEditEventService} from "../form-edit-event.service";
 
 @Component({
   selector: 'app-attribute',
@@ -8,12 +9,33 @@ import {SectionAttribute} from "../../core/model/form-model";
 })
 export class AttributeComponent implements OnInit {
 
-  @Input("sectionAttributes") sectionA: SectionAttribute;
+  @Input("sectionAttribute") sectionA: SectionAttribute;
+  @Output('delete') deleteAttribute = new EventEmitter();
 
-  constructor() {
+  criteria;
+  maxMark;
+
+  constructor(public formEditEvent: FormEditEventService) {
   }
 
   ngOnInit() {
+    if (this.sectionA != undefined) {
+      this.sectionA.criteria = this.criteria;
+      this.sectionA.maxMark = this.maxMark
+    }
+  }
+
+  saveForm() {
+    if (this.sectionA != undefined) {
+      this.sectionA.criteria = this.criteria;
+      this.sectionA.maxMark = this.maxMark
+    }
+    this.formEditEvent.event.emit()
+  }
+
+  delete() {
+    this.deleteAttribute.emit(this.sectionA.id)
+    this.formEditEvent.event.emit()
   }
 
 }

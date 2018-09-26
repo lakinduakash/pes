@@ -2,9 +2,10 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {LayoutModule} from '@angular/cdk/layout';
-import {MatButtonModule, MatIconModule, MatListModule, MatSidenavModule} from '@angular/material';
+import {MatButtonModule, MatIconModule, MatListModule, MatMenuModule, MatSidenavModule} from '@angular/material';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {SideNavComponent} from "./side-nav/side-nav.component";
+import {CanDeactivateGuard} from "./can-deactivate-guard.service";
 
 @NgModule({
   declarations: [
@@ -19,10 +20,11 @@ import {SideNavComponent} from "./side-nav/side-nav.component";
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+    MatMenuModule
   ],
-  providers: [],
+  providers: [CanDeactivateGuard],
   exports: [
-    SideNavComponent,
+    SideNavComponent
   ]
 })
 export class SharedModule {

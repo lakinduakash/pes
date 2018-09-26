@@ -1,5 +1,5 @@
 .section-main {
-  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 mat-form-field {
@@ -19,6 +19,27 @@ mat-form-field {
   margin-top: 5px;
   margin-left: 5px;
 }
+
+.delete {
+  float: right;
+  opacity: 0.2;
+  transition: opacity 0.3s;
+}
+
+.delete:hover {
+  opacity: 1;
+
+}
+
+.delete-icon {
+  color: red;
+
+}
+
+mat-card {
+  border-radius: 10px;
+}
+
 
 
 

@@ -1,6 +1,9 @@
-<mat-card class="section-main">
+<mat-card class="section-main mat-elevation-z10">
 
   <mat-card-title>
+    <button class="delete" mat-icon-button (click)="delete()">
+      <mat-icon aria-label="Delete icon" class="delete-icon">delete</mat-icon>
+    </button>
     <div class="sec-input-field sec-title">
       <mat-form-field floatLabel="never">
         <input matInput [(ngModel)]="secTitle" (keyup)="saveFormDetails()" placeholder="Section title">
@@ -16,15 +19,17 @@
       </mat-form-field>
     </div>
   </mat-card-subtitle>
+
+
   <mat-divider></mat-divider>
   <div *ngFor="let a of section.attr">
-    <app-attribute></app-attribute>
+    <app-attribute (delete)="deleteCriteria($event)" [sectionAttribute]="a"></app-attribute>
   </div>
   <button mat-stroked-button color="primary" class="button-space" (click)="onAddCriteriaClick()">Add criteria</button>
-  <button mat-stroked-button color="secondary" class="button-space" (click)="onRemoveCriteriaClick()">Remove criteria
-  </button>
+
 
   <div>
 
   </div>
+
 </mat-card>

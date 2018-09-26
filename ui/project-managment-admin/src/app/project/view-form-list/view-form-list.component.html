@@ -1,0 +1,9 @@
+<mat-nav-list>
+  <div *ngFor="let item of formList">
+  <mat-list-item >
+    <a routerLink="/view-form/{{item.id}}">{{item.data}}</a>
+    <button mat-button> Edit Form</button>
+  </mat-list-item>
+  </div>
+
+</mat-nav-list>

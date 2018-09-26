@@ -1,4 +1,36 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
-body { margin: 0; }
+body {
+  margin: 0;
+
+
+}
+.custom-modalbox >  mat-dialog-container {
+  border-radius: 10px;
+}
+html {
+  background: url("http://papers.co/wallpaper/papers.co-vx94-simple-architecture-blue-pattern-background-8-wallpaper.jpg") no-repeat center top fixed;
+  -webkit-background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+  -o-background-size: 100% 100%;
+  background-size: cover;
+}
+
+/*
+https://www.hajarvillas.com/wp-content/uploads/2018/09/modern-architecture-photography-inspirational-abstract-design-as-modern-architecture-background-google-d0bfd180d0b5d182d180d0b0d0b3d0b0.jpg
+http://papers.co/wallpaper/papers.co-vx94-simple-architecture-blue-pattern-background-8-wallpaper.jpg
+ */
+.tr-card {
+  background-color: rgba(255, 247, 251, 0.71) !important;
+}
+
+@media only screen and (max-width: 768px) {
+  html {
+    background: url("http://papers.co/wallpaper/papers.co-vx94-simple-architecture-blue-pattern-background-33-iphone6-wallpaper.jpg") no-repeat center top fixed;
+    -webkit-background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    -o-background-size: 100% 100%;
+    background-size: 100% 100%;
+  }
+}
