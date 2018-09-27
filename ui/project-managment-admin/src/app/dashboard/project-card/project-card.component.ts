@@ -21,10 +21,12 @@ export class ProjectCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.id = this.cardDetails.id;
-    this.cardTitle = this.cardDetails.cardTitle;
-    this.description = this.cardDetails.description;
-    this.owner = this.cardDetails.owner;
+    if (this.cardDetails != undefined) {
+      this.id = this.cardDetails.id;
+      this.cardTitle = this.cardDetails.cardTitle;
+      this.description = this.cardDetails.description;
+      this.owner = this.cardDetails.owner;
+    }
   }
 
   removeProject() {
