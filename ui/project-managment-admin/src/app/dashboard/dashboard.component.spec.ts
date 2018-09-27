@@ -42,4 +42,9 @@ fdescribe('DashboardComponent', () => {
   fit('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  fit('tool bar title is correct', () => {
+    component.renameTitleBar.getTitle().subscribe(next => expect(next).toBe("Project Dashboard"))
+  })
+
 });
