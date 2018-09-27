@@ -93,7 +93,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     ReactiveFormsModule,
     MatRippleModule,
     MatProgressBarModule,
-    PresentationModule
+    PresentationModule,
     ReactiveFormsModule
 
 
