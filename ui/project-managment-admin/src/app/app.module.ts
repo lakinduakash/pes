@@ -83,15 +83,13 @@ import {FormDataService} from "./services/form-data.service";
     MatRippleModule,
     MatProgressBarModule,
     PresentationModule
-
-
-
   ],
   providers: [
     RenameTitleBarService, ProjectService, AngularFireDatabase, AngularFirestore, AuthGuard, FormDataService
   ],
   bootstrap: [AppComponent],
-  entryComponents: [DialogOverviewExampleDialog, ProjectCardComponent, AddProjectComponent]
+  entryComponents: [DialogOverviewExampleDialog, ProjectCardComponent, AddProjectComponent],
+  exports: []
 })
 export class AppModule {
 }
