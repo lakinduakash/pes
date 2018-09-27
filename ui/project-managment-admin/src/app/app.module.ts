@@ -93,3 +93,30 @@ import {FormDataService} from "./services/form-data.service";
 })
 export class AppModule {
 }
+
+export const exportModules = [
+  MatCardModule,
+  MatInputModule,
+  MatButtonModule,
+  FormsModule,
+  MatProgressSpinnerModule,
+  BrowserAnimationsModule,
+  LayoutModule,
+  AppRoutingModule,
+  SharedModule,
+  HttpClientModule,
+  DashboardModule,
+  AngularFireModule.initializeApp(environment.firebase, 'myApp'),
+  AngularFirestoreModule,
+  AngularFireAuthModule,
+  ProjectModule,
+  EvalFormModule,
+  EvalFormParserModule,
+  NgDragDropModule.forRoot(),
+  AuthModule,
+  FlexLayoutModule,
+  ReactiveFormsModule,
+  MatRippleModule,
+  MatProgressBarModule,
+  PresentationModule
+]
