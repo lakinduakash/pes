@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {ProjectCard} from "../core/model/project-card";
-import {AngularFireDatabase} from "angularfire2/database";
 import {AngularFirestore} from "angularfire2/firestore";
 import {from} from "rxjs/internal/observable/from";
 import {Subject} from "rxjs/internal/Subject";
@@ -13,8 +12,7 @@ import {Observable} from "rxjs";
 export class ProjectService {
 
 
-
-  constructor(public fireDb: AngularFireDatabase, public fireStore: AngularFirestore,private authS:AuthService) {
+  constructor(public fireStore: AngularFirestore, private authS: AuthService) {
 
   }
 
