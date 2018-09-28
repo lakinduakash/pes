@@ -14,6 +14,7 @@ import {
   MatInputModule,
   MatListModule,
   MatOptionModule,
+  MatProgressSpinnerModule,
   MatRippleModule,
   MatSelectModule
 } from "@angular/material";
@@ -40,7 +41,8 @@ import {CreatePresentationDialogComponent} from './create-presentation-dialog/cr
     MatSelectModule,
     MatRippleModule,
     MatExpansionModule,
-    MatDialogModule
+    MatDialogModule,
+    MatProgressSpinnerModule
   ],
   declarations: [ProjectMainViewComponentComponent, FormCreatorComponent, ViewFormListComponent, CreatePresentationDialogComponent],
   exports: [ViewFormListComponent]
