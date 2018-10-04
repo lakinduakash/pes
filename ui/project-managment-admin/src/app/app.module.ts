@@ -1,8 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import 'hammerjs';
-
-
 import {AppComponent} from './app.component';
 import {LoginComponent} from './login/login.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -16,45 +14,37 @@ import {ProjectCardComponent} from './dashboard/project-card/project-card.compon
 import {AddProjectComponent} from './dashboard/add-project-card/add-project.component';
 import {DialogOverviewExampleDialog} from './dashboard/add-project-dialog/add-project-dialog.component';
 import {DashboardModule} from './dashboard/dashboard.module';
-
 import {environment} from '../environments/environment';
 import {AngularFireDatabase} from '@angular/fire/database';
 import {AngularFirestore, AngularFirestoreModule} from '@angular/fire/firestore';
-
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {SignupComponent} from './signup/signup.component';
 import {ProjectModule} from './project/project.module';
 import {TestComponent} from './test/test.component';
-import {EvalFormModule} from "./eval-form/eval-form.module";
-import {NgDragDropModule} from "ng-drag-drop";
+import {EvalFormModule} from './eval-form/eval-form.module';
+import {NgDragDropModule} from 'ng-drag-drop';
 import {
   MatProgressBarModule,
   MatRippleModule
-} from "@angular/material";
+} from '@angular/material';
 // import {EvalFormParserModule} from "./eval-form-parser/eval-form-parser.module";
 // import {EvalFormModule} from './eval-form/eval-form.module';
-
 import { AddFullMarkComponent } from './project/add-full-mark/add-full-mark.component';
 // import {NgDragDropModule} from "ng-drag-drop";
 import {MatButtonModule, MatCardModule, MatInputModule, MatProgressSpinnerModule} from '@angular/material';
 // import {EvalFormParserModule} from './eval-form-parser/eval-form-parser.module';
-
-
-
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireAuthModule} from '@angular/fire/auth';
-
-
-import {AuthModule} from "./auth/auth.module";
-import {AuthGuard} from "./auth/auth.guard";
+import {AuthModule} from './auth/auth.module';
+import {AuthGuard} from './auth/auth.guard';
 // import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {FlexLayoutModule} from "@angular/flex-layout";
-import {PresentationModule} from "./presentation/presentation.module";
-import {FormDataService} from "./services/form-data.service";
+import {FlexLayoutModule} from '@angular/flex-layout';
+import {PresentationModule} from './presentation/presentation.module';
+import {FormDataService} from './services/form-data.service';
+import { EvalFormParserModule } from './eval-form-parser/eval-form-parser.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 // import {FlexLayoutModule} from '@angular/flex-layout';
-
-
 
 @NgModule({
   declarations: [
@@ -83,7 +73,7 @@ import {FormDataService} from "./services/form-data.service";
     ProjectModule,
     EvalFormModule,
     EvalFormParserModule,
-    // NgDragDropModule.forRoot(),
+    NgDragDropModule.forRoot(),
     AuthModule,
     FlexLayoutModule,
     ReactiveFormsModule,
