@@ -23,7 +23,8 @@ export class FormService {
     else {
       this.authService.user.subscribe(
         next => {
-          fromPromise(this.fireStore.collection(`usersC/${next.uid}/project/${projectId}/presentation/${presentId}/form`).add(JSON.parse(JSON.stringify(form)))).subscribe(next => a.next(next))
+          if (next != null)
+            fromPromise(this.fireStore.collection(`usersC/${next.uid}/project/${projectId}/presentation/${presentId}/form`).add(JSON.parse(JSON.stringify(form)))).subscribe(next => a.next(next))
         }
       )
 
@@ -44,9 +45,10 @@ export class FormService {
 
     let a = new Subject<any>();
 
-    this.authService.user.subscribe(next =>
-
-      this.fireStore.collection(`usersC/${next.uid}/project/${projectId}/presentation/${presentId}/form`).doc(id).get().subscribe(next => a.next(next))
+    this.authService.user.subscribe(next => {
+        if (next != null)
+          this.fireStore.collection(`usersC/${next.uid}/project/${projectId}/presentation/${presentId}/form`).doc(id).get().subscribe(next => a.next(next))
+      }
     )
     return a as Observable<DocumentSnapshot<any>>
 
@@ -54,9 +56,11 @@ export class FormService {
 
   getAllForm(projectId: string, presentId: string) {
     let a = new Subject<QuerySnapshot<any>>();
-    this.authService.user.subscribe(next =>
+    this.authService.user.subscribe(next => {
+        if (next != null)
       this.fireStore.collection(`usersC/${next.uid}/project/${projectId}/presentation/${presentId}/form`).get().subscribe(next =>
         a.next(next))
+      }
     )
 
     return a as Observable<QuerySnapshot<any>>
@@ -64,8 +68,10 @@ export class FormService {
 
   updateForm(projectId: string, presentId: string, documentPath: string, form) {
     let a = new Subject<any>();
-    this.authService.user.subscribe(next =>
-      fromPromise(this.fireStore.collection(`usersC/${next.uid}/project/${projectId}/presentation/${presentId}/form`).doc(documentPath).update(JSON.parse(JSON.stringify(form)))).subscribe(next => a.next(next))
+    this.authService.user.subscribe(next => {
+        if (next != null)
+          fromPromise(this.fireStore.collection(`usersC/${next.uid}/project/${projectId}/presentation/${presentId}/form`).doc(documentPath).update(JSON.parse(JSON.stringify(form)))).subscribe(next => a.next(next))
+      }
     )
 
     return a as Observable<any>

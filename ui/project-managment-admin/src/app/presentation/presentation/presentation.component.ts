@@ -17,6 +17,9 @@ export class PresentationComponent implements OnInit, OnDestroy {
 
   panelState: boolean
 
+  onceLoaded = false;
+
+
   constructor(private router: Router, private route: ActivatedRoute, private projectService: ProjectService, public formDataService: FormDataService, private titleBar: RenameTitleBarService) {
   }
 
@@ -49,5 +52,14 @@ export class PresentationComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
 
+  }
+
+  panelStateOpen() {
+    this.panelState = true
+    this.onceLoaded = true
+  }
+
+  panelStateClose() {
+    this.panelState = false
   }
 }

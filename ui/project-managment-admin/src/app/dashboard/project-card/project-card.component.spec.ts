@@ -1,14 +1,16 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {ProjectCardComponent} from './project-card.component';
+import {DashboardModule} from "../dashboard.module";
 
-describe('ProjectCardComponent', () => {
+fdescribe('ProjectCardComponent', () => {
   let component: ProjectCardComponent;
   let fixture: ComponentFixture<ProjectCardComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProjectCardComponent ]
+      declarations: [],
+      imports: [DashboardModule]
     })
     .compileComponents();
   }));
@@ -19,7 +21,7 @@ describe('ProjectCardComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  fit('should create', () => {
     expect(component).toBeTruthy();
   });
 });

@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {NgModule, NgZone, PLATFORM_ID} from '@angular/core';
 import 'hammerjs';
 
 
@@ -26,7 +26,6 @@ import {SignupComponent} from './signup/signup.component';
 import {ProjectModule} from "./project/project.module";
 import {TestComponent} from './test/test.component';
 import {EvalFormModule} from "./eval-form/eval-form.module";
-
 import {NgDragDropModule} from "ng-drag-drop";
 import {
   MatButtonModule,
@@ -43,12 +42,11 @@ import {AngularFireModule} from '@angular/fire';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 
 import {AuthModule} from "./auth/auth.module";
-import {AuthGuard} from "./auth/auth.guard";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {PresentationModule} from "./presentation/presentation.module";
 import {FormDataService} from "./services/form-data.service";
-import { ViewMarksComponent } from './view-marks-m/view-marks/view-marks.component';
+import {EvalFireStoreFactory, EvalFireStoreProviderService} from "./services/eval-fire-store-provider.service";
 
 
 @NgModule({
@@ -58,7 +56,6 @@ import { ViewMarksComponent } from './view-marks-m/view-marks/view-marks.compone
     PageNotFoundComponent,
     SignupComponent,
     TestComponent,
-    ViewMarksComponent,
   ],
   imports: [
     BrowserModule,
@@ -86,15 +83,41 @@ import { ViewMarksComponent } from './view-marks-m/view-marks/view-marks.compone
     MatRippleModule,
     MatProgressBarModule,
     PresentationModule
-
-
-
   ],
   providers: [
-    RenameTitleBarService, ProjectService, AngularFireDatabase, AngularFirestore, AuthGuard, FormDataService
+    RenameTitleBarService, ProjectService, AngularFireDatabase, AngularFirestore, FormDataService,
+    {provide: EvalFireStoreProviderService, deps: [PLATFORM_ID, NgZone], useFactory: EvalFireStoreFactory}
   ],
   bootstrap: [AppComponent],
-  entryComponents: [DialogOverviewExampleDialog, ProjectCardComponent, AddProjectComponent]
+  entryComponents: [DialogOverviewExampleDialog, ProjectCardComponent, AddProjectComponent],
+  exports: []
 })
 export class AppModule {
 }
+
+export const exportModules = [
+  MatCardModule,
+  MatInputModule,
+  MatButtonModule,
+  FormsModule,
+  MatProgressSpinnerModule,
+  BrowserAnimationsModule,
+  LayoutModule,
+  AppRoutingModule,
+  SharedModule,
+  HttpClientModule,
+  DashboardModule,
+  AngularFireModule.initializeApp(environment.firebase, 'myApp'),
+  AngularFirestoreModule,
+  AngularFireAuthModule,
+  ProjectModule,
+  EvalFormModule,
+  EvalFormParserModule,
+  NgDragDropModule.forRoot(),
+  AuthModule,
+  FlexLayoutModule,
+  ReactiveFormsModule,
+  MatRippleModule,
+  MatProgressBarModule,
+  PresentationModule
+]
