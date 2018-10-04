@@ -5,7 +5,6 @@ import {AppComponent} from './app.component';
 import {LoginComponent} from './login/login.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {LayoutModule} from '@angular/cdk/layout';
-import {AppRoutingModule} from './app-routing.module';
 import {SharedModule} from './shared/shared.module';
 import {HttpClientModule} from '@angular/common/http';
 import {RenameTitleBarService} from './services/rename-title-bar.service';
@@ -43,6 +42,7 @@ import {PresentationModule} from './presentation/presentation.module';
 import {FormDataService} from './services/form-data.service';
 import { EvalFormParserModule } from './eval-form-parser/eval-form-parser.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AppRoutingModule } from './app-routing.module';
 // import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 // import {FlexLayoutModule} from '@angular/flex-layout';
 
