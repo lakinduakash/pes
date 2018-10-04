@@ -20,7 +20,7 @@
             </mat-expansion-panel-header>
 
             <p>Add or click existing presentations</p>
-            <button class="add-pr-buttun" mat-stroked-button mat-icon-button (click)="addPresentation()">
+            <button class="add-pr-button" mat-stroked-button mat-icon-button (click)="addPresentation()">
               <mat-icon aria-label="Add presentation" class="add-icon">add</mat-icon>
             </button>
 
@@ -44,7 +44,9 @@
       <mat-card-title>
         Add students or groups
       </mat-card-title>
-
+      <input type="file" style="display: none" #file (change)="onFilesAdded()" accept=".csv,text/csv"/>
+      <button mat-button mat-stroked-button class="upload-button" (click)="clickAddFiles()">Upload csv file</button>
+      <p>{{fileName}}</p>
     </mat-card>
   </div>
 

@@ -28,7 +28,12 @@ mat-expansion-panel
   justify-content: center;
 }
 
-.add-pr-buttun
+.add-pr-button
 {
   color: green;
+}
+
+.upload-button {
+  border-radius: 10px;
+  border: solid 3px;
 }

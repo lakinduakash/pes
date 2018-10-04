@@ -9,13 +9,12 @@ body {
 .custom-modalbox >  mat-dialog-container {
   border-radius: 10px;
 }
-
 html {
   background: url("http://papers.co/wallpaper/papers.co-vx94-simple-architecture-blue-pattern-background-8-wallpaper.jpg") no-repeat center top fixed;
   -webkit-background-size: 100% 100%;
   -moz-background-size: 100% 100%;
   -o-background-size: 100% 100%;
-  background-size: 100% 100%;
+  background-size: cover;
 }
 
 /*
@@ -24,4 +23,14 @@ http://papers.co/wallpaper/papers.co-vx94-simple-architecture-blue-pattern-backg
  */
 .tr-card {
   background-color: rgba(255, 247, 251, 0.71) !important;
+}
+
+@media only screen and (max-width: 768px) {
+  html {
+    background: url("http://papers.co/wallpaper/papers.co-vx94-simple-architecture-blue-pattern-background-33-iphone6-wallpaper.jpg") no-repeat center top fixed;
+    -webkit-background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    -o-background-size: 100% 100%;
+    background-size: 100% 100%;
+  }
 }
