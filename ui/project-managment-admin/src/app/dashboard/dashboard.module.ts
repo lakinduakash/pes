@@ -45,7 +45,7 @@ import {RemoveProjectDialogComponent} from "./remove-dialog/remove-project-dialo
     ProjectCardComponent,
     DashboardCardHolderComponent,
     RemoveProjectDialogComponent],
-  entryComponents: [RemoveProjectDialogComponent]
+  entryComponents: [RemoveProjectDialogComponent, DialogOverviewExampleDialog]
 })
 export class DashboardModule {
 }

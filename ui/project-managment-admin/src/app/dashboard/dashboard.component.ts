@@ -46,13 +46,13 @@ export class DashboardComponent implements OnInit {
   constructor(
     public router: Router,
     public dialog: MatDialog,
-    private renameTitleBar: RenameTitleBarService,
-    private projectService: ProjectService,
-    private resolver: ComponentFactoryResolver,
-    private injector: Injector,
-    private breakpointObserver: BreakpointObserver,
-    private snackBar: MatSnackBar,
-    private authService:AuthService) {
+    public renameTitleBar: RenameTitleBarService,
+    public projectService: ProjectService,
+    public resolver: ComponentFactoryResolver,
+    public injector: Injector,
+    public breakpointObserver: BreakpointObserver,
+    public snackBar: MatSnackBar,
+    public authService: AuthService) {
 
 
     let breakPoints = [
