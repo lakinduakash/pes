@@ -80,7 +80,8 @@ import { AppRoutingModule } from './app-routing.module';
     MatRippleModule,
     MatProgressBarModule,
     PresentationModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
 
 
   ],
