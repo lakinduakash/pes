@@ -47,6 +47,7 @@ import {FlexLayoutModule} from "@angular/flex-layout";
 import {PresentationModule} from "./presentation/presentation.module";
 import {FormDataService} from "./services/form-data.service";
 import {EvalFireStoreFactory, EvalFireStoreProviderService} from "./services/eval-fire-store-provider.service";
+import {ComponentsModule} from "./components/components.module";
 
 
 @NgModule({
@@ -82,7 +83,9 @@ import {EvalFireStoreFactory, EvalFireStoreProviderService} from "./services/eva
     ReactiveFormsModule,
     MatRippleModule,
     MatProgressBarModule,
-    PresentationModule
+    PresentationModule,
+    ComponentsModule
+
   ],
   providers: [
     RenameTitleBarService, ProjectService, AngularFireDatabase, AngularFirestore, FormDataService,
