@@ -37,3 +37,7 @@ mat-expansion-panel
   border-radius: 10px;
   border: solid 3px;
 }
+
+.card {
+  padding-bottom: 20px;
+}

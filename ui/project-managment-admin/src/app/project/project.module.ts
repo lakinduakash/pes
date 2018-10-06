@@ -22,6 +22,7 @@ import {RouterModule} from "@angular/router";
 import {SharedModule} from "../shared/shared.module";
 import {FormsModule} from "@angular/forms";
 import {CreatePresentationDialogComponent} from './create-presentation-dialog/create-presentation-dialog.component';
+import {ComponentsModule} from "../components/components.module";
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import {CreatePresentationDialogComponent} from './create-presentation-dialog/cr
     MatRippleModule,
     MatExpansionModule,
     MatDialogModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    ComponentsModule
   ],
   declarations: [ProjectMainViewComponentComponent, FormCreatorComponent, ViewFormListComponent, CreatePresentationDialogComponent],
   exports: [ViewFormListComponent]

@@ -1,59 +1,80 @@
-<side-nav>
-</side-nav>
+<div class="wrapper">
+  <div class="sidebar" data-color="orange">
+    <app-sidebar></app-sidebar>
+  </div>
+  <div class="main-panel">
+    <app-navbar></app-navbar>
+    <div class="panel-header panel-header-sm">
+    </div>
+    <div class="main-content">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
 
-<div class="container">
+            <div class="container">
 
-  <div class="flex-item">
-    <mat-card class="tr-card">
-      <mat-card-title>
-        Create evaluation forms and assign
-      </mat-card-title>
+              <div class="flex-item">
+                <mat-card class="tr-card">
+                  <mat-card-title>
+                    Create evaluation forms and assign
+                  </mat-card-title>
 
 
-      <mat-expansion-panel (opened)="panelStateOpen()" (closed)="panelStateClose()">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Forms
-          </mat-panel-title>
-          <mat-panel-description>
-            View forms list
-          </mat-panel-description>
-        </mat-expansion-panel-header>
+                  <mat-expansion-panel (opened)="panelStateOpen()" (closed)="panelStateClose()">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        Forms
+                      </mat-panel-title>
+                      <mat-panel-description>
+                        View forms list
+                      </mat-panel-description>
+                    </mat-expansion-panel-header>
 
-        <p>Add or click existing forms</p>
-        <button class="add-pr-buttun" mat-stroked-button mat-icon-button (click)="createForm()">
-          <mat-icon aria-label="Add presentation" class="add-icon">add</mat-icon>
-        </button>
+                    <p>Add or click existing forms</p>
+                    <button class="add-pr-buttun" mat-stroked-button mat-icon-button (click)="createForm()">
+                      <mat-icon aria-label="Add presentation" class="add-icon">add</mat-icon>
+                    </button>
 
-        <div *ngIf="panelState || onceLoaded">
-          <app-view-form-list>
+                    <div *ngIf="panelState || onceLoaded">
+                      <app-view-form-list>
 
-          </app-view-form-list>
+                      </app-view-form-list>
+                    </div>
+
+                  </mat-expansion-panel>
+
+
+                </mat-card>
+              </div>
+
+              <div class="flex-item">
+                <mat-card mat-ripple class="tr-card">
+                  <mat-card-title>
+                    Presentation control
+                  </mat-card-title>
+
+                </mat-card>
+              </div>
+
+              <div class="flex-item">
+                <mat-card mat-ripple class="tr-card">
+                  <mat-card-title>
+                    View final marks
+                  </mat-card-title>
+
+                </mat-card>
+              </div>
+
+
+            </div>
+
+
+          </div>
         </div>
+      </div>
+    </div>
 
-      </mat-expansion-panel>
-
-
-    </mat-card>
+    <app-footer></app-footer>
   </div>
-
-  <div class="flex-item">
-    <mat-card mat-ripple class="tr-card">
-      <mat-card-title>
-        Presentation control
-      </mat-card-title>
-
-    </mat-card>
-  </div>
-
-  <div class="flex-item">
-    <mat-card mat-ripple class="tr-card">
-      <mat-card-title>
-        View final marks
-      </mat-card-title>
-
-    </mat-card>
-  </div>
-
-
 </div>
+
