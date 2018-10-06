@@ -20,6 +20,7 @@ import {ProjectCardComponent} from "./project-card/project-card.component";
 import {AddProjectComponent} from "./add-project-card/add-project.component";
 import {FormsModule} from "@angular/forms";
 import {RemoveProjectDialogComponent} from "./remove-dialog/remove-project-dialog.component";
+import {ComponentsModule} from "../components/components.module";
 
 @NgModule({
   imports: [
@@ -36,7 +37,8 @@ import {RemoveProjectDialogComponent} from "./remove-dialog/remove-project-dialo
     MatListModule,
     MatSnackBarModule,
     FormsModule,
-    MatTooltipModule
+    MatTooltipModule,
+    ComponentsModule
   ],
   declarations: [
     DashboardComponent,
