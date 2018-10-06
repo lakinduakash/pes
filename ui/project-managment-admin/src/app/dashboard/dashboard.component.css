@@ -26,4 +26,9 @@ mat-grid-list {
   margin-top: 5px;
 }
 
+.card-tile {
+  min-width: 300px;
+  min-height: 300px;
+  margin-bottom: 50px;
+}
 

@@ -59,8 +59,8 @@ export class DashboardComponent implements OnInit {
       {breakPointType: Breakpoints.XSmall, col: 1},
       {breakPointType: Breakpoints.Small, col: 2},
       {breakPointType: Breakpoints.Medium, col: 3},
-      {breakPointType: Breakpoints.Large, col: 5},
-      {breakPointType: Breakpoints.XLarge, col: 6}
+      {breakPointType: Breakpoints.Large, col: 3},
+      {breakPointType: Breakpoints.XLarge, col: 5}
     ];
 
     breakPoints.map(val => this.breakpointObserver.observe([val.breakPointType]).subscribe(result => {

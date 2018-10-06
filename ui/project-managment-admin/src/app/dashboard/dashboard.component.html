@@ -1,14 +1,36 @@
-<side-nav></side-nav>
-<div>
+<div class="wrapper">
+  <div class="sidebar" data-color="red">
+    <app-sidebar></app-sidebar>
+  </div>
+  <div class="main-panel">
+    <app-navbar></app-navbar>
 
-  <mat-grid-list [cols]="cols" rowHeight=250>
-    <mat-grid-tile *ngFor="let card of list" [@flyInOut]="state">
-      <app-dashboard-card-holder (remove)="removeProject($event)" (openProject)="openProject($event)" class="project-card"
-                                 [projectCard]="card"></app-dashboard-card-holder>
-    </mat-grid-tile>
-    <mat-grid-tile>
-      <app-add-project class="project-card" (addProject)="onAddNewProjectClick()"></app-add-project>
-    </mat-grid-tile>
+    <div class="panel-header panel-header-sm">
+    </div>
+    <div class="main-content">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div>
 
-  </mat-grid-list>
+              <mat-grid-list [cols]="cols" rowHeight=300>
+                <mat-grid-tile *ngFor="let card of list" [@flyInOut]="state" class="card-tile">
+                  <app-dashboard-card-holder (remove)="removeProject($event)" (openProject)="openProject($event)"
+                                             class="project-card"
+                                             [projectCard]="card"></app-dashboard-card-holder>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                  <app-add-project class="project-card" (addProject)="onAddNewProjectClick()"></app-add-project>
+                </mat-grid-tile>
+
+              </mat-grid-list>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <app-footer></app-footer>
+  </div>
 </div>
+
