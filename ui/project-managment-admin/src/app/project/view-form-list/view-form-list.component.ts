@@ -9,13 +9,20 @@ import {FormDataService} from "../../services/form-data.service";
 })
 export class ViewFormListComponent implements OnInit {
 
+  showSpinner = true
+
   constructor(private formService: FormService, public formData: FormDataService) {
   }
 
   formList=[]
 
   ngOnInit() {
-    this.formService.getAllForm(this.formData.projectId, this.formData.presentationId).subscribe(next => this.initList(next))
+
+    this.formService.getAllForm(this.formData.projectId, this.formData.presentationId).subscribe(next => {
+        this.initList(next)
+        this.showSpinner = false
+      },
+      error1 => this.showSpinner = false)
   }
 
   initList(docs){

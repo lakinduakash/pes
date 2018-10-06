@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {NgModule, NgZone, PLATFORM_ID} from '@angular/core';
 import 'hammerjs';
 
 
@@ -42,11 +42,11 @@ import {AngularFireModule} from '@angular/fire';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 
 import {AuthModule} from "./auth/auth.module";
-import {AuthGuard} from "./auth/auth.guard";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {PresentationModule} from "./presentation/presentation.module";
 import {FormDataService} from "./services/form-data.service";
+import {EvalFireStoreFactory, EvalFireStoreProviderService} from "./services/eval-fire-store-provider.service";
 
 
 @NgModule({
@@ -83,15 +83,14 @@ import {FormDataService} from "./services/form-data.service";
     MatRippleModule,
     MatProgressBarModule,
     PresentationModule
-
-
-
   ],
   providers: [
-    RenameTitleBarService, ProjectService, AngularFireDatabase, AngularFirestore, AuthGuard, FormDataService
+    RenameTitleBarService, ProjectService, AngularFireDatabase, AngularFirestore, FormDataService,
+    {provide: EvalFireStoreProviderService, deps: [PLATFORM_ID, NgZone], useFactory: EvalFireStoreFactory}
   ],
   bootstrap: [AppComponent],
-  entryComponents: [DialogOverviewExampleDialog, ProjectCardComponent, AddProjectComponent]
+  entryComponents: [DialogOverviewExampleDialog, ProjectCardComponent, AddProjectComponent],
+  exports: []
 })
 export class AppModule {
 }
