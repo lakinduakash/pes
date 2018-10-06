@@ -9,8 +9,8 @@ import {FormDataService} from "../../services/form-data.service";
 })
 export class ViewFormListComponent implements OnInit {
 
-  @Output('shareForm') share: EventEmitter = new EventEmitter()
-  @Output('editForm') edit: EventEmitter = new EventEmitter()
+  @Output('shareForm') share: EventEmitter<string> = new EventEmitter();
+  @Output('editForm') edit: EventEmitter<string> = new EventEmitter();
 
   showSpinner = true
 

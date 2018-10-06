@@ -20,6 +20,7 @@ import {RouterModule} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 import {ProjectModule} from "../project/project.module";
 import {ComponentsModule} from "../components/components.module";
+import {EvalListComponent} from './eval-list/eval-list.component';
 
 @NgModule({
   imports: [
@@ -43,7 +44,7 @@ import {ComponentsModule} from "../components/components.module";
     ProjectModule,
     ComponentsModule
   ],
-  declarations: [PresentationComponent],
+  declarations: [PresentationComponent, EvalListComponent],
   exports: [PresentationComponent]
 })
 export class PresentationModule {
