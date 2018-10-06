@@ -1,9 +1,9 @@
 .project-card {
   margin: 10px 10px 10px 10px;
-  max-width: 170px;
-  min-height: 170px;
+
+  width: 215px;
+  height: 215px;
   background-color: #ffffff;
-  width: 100%;
   border-radius: 10px;
 
 }
