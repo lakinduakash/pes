@@ -1,0 +1,13 @@
+<ol>
+  <li>
+    <mat-form-field>
+      <input matInput [(ngModel)]="name" placeholder="What's your name?">
+    </mat-form-field>
+  </li>
+  <li>
+    <button mat-raised-button (click)="openDialog()">Please Enter Full-Marks for this presantation</button>
+  </li>
+  <li *ngIf="mark">
+    Full Marks: <i>{{mark}}</i>
+  </li>
+</ol>
