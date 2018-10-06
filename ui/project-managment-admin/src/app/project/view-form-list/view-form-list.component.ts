@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormService} from "../../services/form.service";
 import {FormDataService} from "../../services/form-data.service";
 
@@ -8,6 +8,9 @@ import {FormDataService} from "../../services/form-data.service";
   styleUrls: ['./view-form-list.component.css']
 })
 export class ViewFormListComponent implements OnInit {
+
+  @Output('shareForm') share: EventEmitter = new EventEmitter()
+  @Output('editForm') edit: EventEmitter = new EventEmitter()
 
   showSpinner = true
 
@@ -33,5 +36,12 @@ export class ViewFormListComponent implements OnInit {
   }
 
 
+  shareForm(id) {
+    this.share.emit(id)
+  }
+
+  editForm(id) {
+    this.share.emit(id)
+  }
 
 }

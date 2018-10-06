@@ -2,7 +2,13 @@
   <div *ngFor="let item of formList">
   <mat-list-item >
     <a routerLink="/view-form/{{item.id}}">{{item.data}}</a>
-    <button mat-button> Edit Form</button>
+
+    <button mat-icon-button color="primary" class="f-button" (click)="shareForm(item.id)">
+      <mat-icon aria-label="Example icon-button with a heart icon">share</mat-icon>
+    </button>
+    <button mat-icon-button color="primary" (click)="editForm(item.id)">
+      <mat-icon aria-label="Example icon-button with a heart icon">create</mat-icon>
+    </button>
   </mat-list-item>
   </div>
 
