@@ -58,8 +58,8 @@ export class DashboardComponent implements OnInit {
     let breakPoints = [
       {breakPointType: Breakpoints.XSmall, col: 1},
       {breakPointType: Breakpoints.Small, col: 2},
-      {breakPointType: Breakpoints.Medium, col: 3},
-      {breakPointType: Breakpoints.Large, col: 3},
+      {breakPointType: Breakpoints.Medium, col: 2},
+      {breakPointType: Breakpoints.Large, col: 4},
       {breakPointType: Breakpoints.XLarge, col: 5}
     ];
 
