@@ -9,13 +9,14 @@ body {
 .custom-modalbox >  mat-dialog-container {
   border-radius: 10px;
 }
-html {
-  background: url("http://papers.co/wallpaper/papers.co-vx94-simple-architecture-blue-pattern-background-8-wallpaper.jpg") no-repeat center top fixed;
-  -webkit-background-size: 100% 100%;
-  -moz-background-size: 100% 100%;
-  -o-background-size: 100% 100%;
-  background-size: cover;
-}
+
+/*html {*/
+/*background: url("http://papers.co/wallpaper/papers.co-vx94-simple-architecture-blue-pattern-background-8-wallpaper.jpg") no-repeat center top fixed;*/
+/*-webkit-background-size: 100% 100%;*/
+/*-moz-background-size: 100% 100%;*/
+/*-o-background-size: 100% 100%;*/
+/*background-size: cover;*/
+/*}*/
 
 /*
 https://www.hajarvillas.com/wp-content/uploads/2018/09/modern-architecture-photography-inspirational-abstract-design-as-modern-architecture-background-google-d0bfd180d0b5d182d180d0b0d0b3d0b0.jpg
@@ -25,12 +26,282 @@ http://papers.co/wallpaper/papers.co-vx94-simple-architecture-blue-pattern-backg
   background-color: rgba(255, 247, 251, 0.71) !important;
 }
 
-@media only screen and (max-width: 768px) {
-  html {
-    background: url("http://papers.co/wallpaper/papers.co-vx94-simple-architecture-blue-pattern-background-33-iphone6-wallpaper.jpg") no-repeat center top fixed;
-    -webkit-background-size: 100% 100%;
-    -moz-background-size: 100% 100%;
-    -o-background-size: 100% 100%;
-    background-size: 100% 100%;
+/*@media only screen and (max-width: 768px) {*/
+/*html {*/
+/*background: url("http://papers.co/wallpaper/papers.co-vx94-simple-architecture-blue-pattern-background-33-iphone6-wallpaper.jpg") no-repeat center top fixed;*/
+/*-webkit-background-size: 100% 100%;*/
+/*-moz-background-size: 100% 100%;*/
+/*-o-background-size: 100% 100%;*/
+/*background-size: 100% 100%;*/
+/*}*/
+/*}*/
+
+/*.container-splash {*/
+/*display: flex;*/
+/*justify-content: center;*/
+/*align-items: center;*/
+/*height: 100vh;*/
+/*overflow: hidden;*/
+/*}*/
+
+/*.container-splash ul {*/
+/*display: flex;*/
+/*}*/
+/*.container-splash ul li {*/
+/*width: 20px;*/
+/*height: 20px;*/
+/*margin: 10px;*/
+/*list-style-type: none;*/
+/*transition: 0.5s all ease;*/
+/*}*/
+/*.container-splash ul li:nth-child(1) {*/
+/*animation: right-1 1s infinite alternate;*/
+/*background-color: #ddbf6d;*/
+/*animation-delay: 100ms;*/
+/*}*/
+/*@keyframes right-1 {*/
+/*0% {*/
+/*transform: translateY(-60px);*/
+/*}*/
+/*100% {*/
+/*transform: translateY(60px);*/
+/*}*/
+/*}*/
+/*.container-splash ul li:nth-child(2) {*/
+/*animation: right-2 1s infinite alternate;*/
+/*background-color: #e3af37;*/
+/*animation-delay: 200ms;*/
+/*}*/
+/*@keyframes right-2 {*/
+/*0% {*/
+/*transform: translateY(-70px);*/
+/*}*/
+/*100% {*/
+/*transform: translateY(70px);*/
+/*}*/
+/*}*/
+/*.container-splash ul li:nth-child(3) {*/
+/*animation: right-3 1s infinite alternate;*/
+/*background-color: #f16d32;*/
+/*animation-delay: 300ms;*/
+/*}*/
+/*@keyframes right-3 {*/
+/*0% {*/
+/*transform: translateY(-80px);*/
+/*}*/
+/*100% {*/
+/*transform: translateY(80px);*/
+/*}*/
+/*}*/
+/*.container-splash ul li:nth-child(4) {*/
+/*animation: right-4 1s infinite alternate;*/
+/*background-color: #f9462f;*/
+/*animation-delay: 400ms;*/
+/*}*/
+/*@keyframes right-4 {*/
+/*0% {*/
+/*transform: translateY(-90px);*/
+/*}*/
+/*100% {*/
+/*transform: translateY(90px);*/
+/*}*/
+/*}*/
+/*.container-splash ul li:nth-child(5) {*/
+/*animation: right-5 1s infinite alternate;*/
+/*background-color: #ff522c;*/
+/*animation-delay: 500ms;*/
+/*}*/
+/*@keyframes right-5 {*/
+/*0% {*/
+/*transform: translateY(-100px);*/
+/*}*/
+/*100% {*/
+/*transform: translateY(100px);*/
+/*}*/
+/*}*/
+
+.cssload-loader-inner {
+  bottom: 0;
+  height: 58px;
+  left: 0;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 97px;
+}
+
+.cssload-cssload-loader-line-wrap-wrap {
+  animation: cssload-spin 2300ms cubic-bezier(.175, .885, .32, 1.275) infinite;
+  -o-animation: cssload-spin 2300ms cubic-bezier(.175, .885, .32, 1.275) infinite;
+  -ms-animation: cssload-spin 2300ms cubic-bezier(.175, .885, .32, 1.275) infinite;
+  -webkit-animation: cssload-spin 2300ms cubic-bezier(.175, .885, .32, 1.275) infinite;
+  -moz-animation: cssload-spin 2300ms cubic-bezier(.175, .885, .32, 1.275) infinite;
+  box-sizing: border-box;
+  -o-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  height: 49px;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  transform-origin: 50% 100%;
+  -o-transform-origin: 50% 100%;
+  -ms-transform-origin: 50% 100%;
+  -webkit-transform-origin: 50% 100%;
+  -moz-transform-origin: 50% 100%;
+  width: 97px;
+}
+
+.cssload-loader-line-wrap {
+  border: 4px solid transparent;
+  border-radius: 100%;
+  -o-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  box-sizing: border-box;
+  -o-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  height: 97px;
+  left: 0;
+  margin: 0 auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 97px;
+}
+
+.cssload-cssload-loader-line-wrap-wrap:nth-child(1) {
+  animation-delay: -57.5ms;
+  -o-animation-delay: -57.5ms;
+  -ms-animation-delay: -57.5ms;
+  -webkit-animation-delay: -57.5ms;
+  -moz-animation-delay: -57.5ms;
+}
+
+.cssload-cssload-loader-line-wrap-wrap:nth-child(2) {
+  animation-delay: -115ms;
+  -o-animation-delay: -115ms;
+  -ms-animation-delay: -115ms;
+  -webkit-animation-delay: -115ms;
+  -moz-animation-delay: -115ms;
+}
+
+.cssload-cssload-loader-line-wrap-wrap:nth-child(3) {
+  animation-delay: -172.5ms;
+  -o-animation-delay: -172.5ms;
+  -ms-animation-delay: -172.5ms;
+  -webkit-animation-delay: -172.5ms;
+  -moz-animation-delay: -172.5ms;
+}
+
+.cssload-cssload-loader-line-wrap-wrap:nth-child(4) {
+  animation-delay: -230ms;
+  -o-animation-delay: -230ms;
+  -ms-animation-delay: -230ms;
+  -webkit-animation-delay: -230ms;
+  -moz-animation-delay: -230ms;
+}
+
+.cssload-cssload-loader-line-wrap-wrap:nth-child(5) {
+  animation-delay: -287.5ms;
+  -o-animation-delay: -287.5ms;
+  -ms-animation-delay: -287.5ms;
+  -webkit-animation-delay: -287.5ms;
+  -moz-animation-delay: -287.5ms;
+}
+
+.cssload-cssload-loader-line-wrap-wrap:nth-child(1) .cssload-loader-line-wrap {
+  border-color: rgb(234, 71, 71);
+  height: 88px;
+  width: 88px;
+  top: 7px;
+}
+
+.cssload-cssload-loader-line-wrap-wrap:nth-child(2) .cssload-loader-line-wrap {
+  border-color: rgb(234, 234, 71);
+  height: 74px;
+  width: 74px;
+  top: 14px;
+}
+
+.cssload-cssload-loader-line-wrap-wrap:nth-child(3) .cssload-loader-line-wrap {
+  border-color: rgb(71, 234, 71);
+  height: 60px;
+  width: 60px;
+  top: 20px;
+}
+
+.cssload-cssload-loader-line-wrap-wrap:nth-child(4) .cssload-loader-line-wrap {
+  border-color: rgb(71, 234, 234);
+  height: 47px;
+  width: 47px;
+  top: 27px;
+}
+
+.cssload-cssload-loader-line-wrap-wrap:nth-child(5) .cssload-loader-line-wrap {
+  border-color: rgb(71, 71, 234);
+  height: 33px;
+  width: 33px;
+  top: 34px;
+}
+
+@keyframes cssload-spin {
+  0%, 15% {
+    transform: rotate(0);
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@-o-keyframes cssload-spin {
+  0%, 15% {
+    -o-transform: rotate(0);
+    transform: rotate(0);
+  }
+  100% {
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@-ms-keyframes cssload-spin {
+  0%, 15% {
+    -ms-transform: rotate(0);
+    transform: rotate(0);
+  }
+  100% {
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes cssload-spin {
+  0%, 15% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@-moz-keyframes cssload-spin {
+  0%, 15% {
+    -moz-transform: rotate(0);
+    transform: rotate(0);
+  }
+  100% {
+    -moz-transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
