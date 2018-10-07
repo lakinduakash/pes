@@ -62,4 +62,8 @@ export class PresentationComponent implements OnInit, OnDestroy {
   panelStateClose() {
     this.panelState = false
   }
+
+  shareForm(event) {
+    console.log(event)
+  }
 }
