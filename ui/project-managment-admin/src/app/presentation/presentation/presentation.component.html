@@ -36,7 +36,7 @@
                     </button>
 
                     <div *ngIf="panelState || onceLoaded">
-                      <app-view-form-list>
+                      <app-view-form-list (shareForm)="shareForm($event)" (editForm)="editForm($event)">
 
                       </app-view-form-list>
                     </div>
@@ -73,6 +73,8 @@
         </div>
       </div>
     </div>
+
+    <app-eval-list></app-eval-list>
 
     <app-footer></app-footer>
   </div>
