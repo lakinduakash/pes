@@ -3,6 +3,8 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {ProjectService} from "../../services/project.service";
 import {FormDataService} from "../../services/form-data.service";
 import {RenameTitleBarService} from "../../services/rename-title-bar.service";
+import {MatDialog} from "@angular/material";
+import {EvalListComponent} from "../eval-list/eval-list.component";
 
 @Component({
   selector: 'app-presentation',
@@ -20,7 +22,12 @@ export class PresentationComponent implements OnInit, OnDestroy {
   onceLoaded = false;
 
 
-  constructor(private router: Router, private route: ActivatedRoute, private projectService: ProjectService, public formDataService: FormDataService, private titleBar: RenameTitleBarService) {
+  constructor(private router: Router,
+              private route: ActivatedRoute,
+              private projectService: ProjectService,
+              public formDataService: FormDataService,
+              private titleBar: RenameTitleBarService,
+              private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -64,6 +71,6 @@ export class PresentationComponent implements OnInit, OnDestroy {
   }
 
   shareForm(event) {
-    console.log(event)
+    this.dialog.open(EvalListComponent, {data: {formDoc: 'ss'}})
   }
 }
