@@ -21,6 +21,7 @@ import {FormsModule} from "@angular/forms";
 import {ProjectModule} from "../project/project.module";
 import {ComponentsModule} from "../components/components.module";
 import {EvalListComponent} from './eval-list/eval-list.component';
+import {EvalChooserDialogComponent} from './eval-chooser-dialog/eval-chooser-dialog.component';
 
 @NgModule({
   imports: [
@@ -42,10 +43,11 @@ import {EvalListComponent} from './eval-list/eval-list.component';
     MatExpansionModule,
     MatDialogModule,
     ProjectModule,
-    ComponentsModule
+    ComponentsModule,
   ],
-  declarations: [PresentationComponent, EvalListComponent],
-  exports: [PresentationComponent]
+  declarations: [PresentationComponent, EvalListComponent, EvalChooserDialogComponent],
+  exports: [PresentationComponent],
+  entryComponents: []
 })
 export class PresentationModule {
 }
