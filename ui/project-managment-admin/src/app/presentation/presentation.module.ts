@@ -47,7 +47,7 @@ import {EvalChooserDialogComponent} from './eval-chooser-dialog/eval-chooser-dia
   ],
   declarations: [PresentationComponent, EvalListComponent, EvalChooserDialogComponent],
   exports: [PresentationComponent],
-  entryComponents: []
+  entryComponents: [EvalListComponent]
 })
 export class PresentationModule {
 }
