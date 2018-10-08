@@ -71,6 +71,6 @@ export class PresentationComponent implements OnInit, OnDestroy {
   }
 
   shareForm(event) {
-    this.dialog.open(EvalListComponent, {data: {formDoc: 'ss'}})
+    this.dialog.open(EvalListComponent, {data: {formDoc: 'ss'}, panelClass: "custom-modalbox", width: "600px"})
   }
 }
