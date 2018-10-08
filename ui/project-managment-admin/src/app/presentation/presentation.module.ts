@@ -13,6 +13,7 @@ import {
   MatInputModule,
   MatListModule,
   MatOptionModule,
+  MatProgressSpinnerModule,
   MatRippleModule,
   MatSelectModule
 } from "@angular/material";
@@ -42,6 +43,8 @@ import {EvalChooserDialogComponent} from './eval-chooser-dialog/eval-chooser-dia
     MatRippleModule,
     MatExpansionModule,
     MatDialogModule,
+    MatDividerModule,
+    MatProgressSpinnerModule,
     ProjectModule,
     ComponentsModule,
   ],
