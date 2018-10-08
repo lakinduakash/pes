@@ -1,22 +1,21 @@
-<mat-card>
-  <mat-card-title>
-    Choose evaluator
-  </mat-card-title>
+<h2 mat-dialog-title>Choose Evaluator</h2>
+<mat-dialog-content>
 
-  <mat-card-content>
-
-    <mat-nav-list>
-
-      <mat-list-item>
-        A
-      </mat-list-item>
-      <mat-list-item>
-        B
-      </mat-list-item>
-    </mat-nav-list>
-
-
-  </mat-card-content>
-
-
-</mat-card>
+  <mat-spinner *ngIf="showSpin" [diameter]="50" [strokeWidth]="5"></mat-spinner>
+  <mat-selection-list #evals (selectionChange)="onSelection($event)" *ngIf="!showSpin">
+    <mat-list-option *ngFor="let i of evalList" style="padding-top: 5px" [value]="i">
+      <div>
+        {{i?.displayName}}<br>
+        <mat-card-subtitle>
+          {{i?.email}}
+        </mat-card-subtitle>
+      </div>
+      <mat-divider></mat-divider>
+    </mat-list-option>
+  </mat-selection-list>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+  <button mat-button [mat-dialog-close]="true">Assign</button>
+</mat-dialog-actions>

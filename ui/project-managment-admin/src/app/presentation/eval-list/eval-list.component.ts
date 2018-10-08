@@ -8,7 +8,8 @@ import {EvalService} from "../../services/eval.service";
 })
 export class EvalListComponent implements OnInit {
 
-  evalList = []
+  evalList = [];
+  showSpin = true;
 
   constructor(private evalS: EvalService) {
   }
@@ -17,8 +18,12 @@ export class EvalListComponent implements OnInit {
     this.evalS.getEvalList().subscribe(
       next => {
         next.docs.forEach(item => this.evalList.push(item.data()))
-        console.log(this.evalList)
-      })
+        this.showSpin = false
+      }, error1 => this.showSpin = false)
+  }
+
+  onSelection(e) {
+    console.log(e.option.value)
   }
 
 
