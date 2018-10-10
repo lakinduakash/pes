@@ -5,6 +5,9 @@ import {FormDataService} from "../../services/form-data.service";
 import {RenameTitleBarService} from "../../services/rename-title-bar.service";
 import {MatDialog} from "@angular/material";
 import {EvalListComponent} from "../eval-list/eval-list.component";
+import {EvalAssignService} from "../services/eval-assign.service";
+import {switchMap} from "rxjs/operators";
+import {of} from "rxjs";
 
 @Component({
   selector: 'app-presentation',
@@ -27,7 +30,8 @@ export class PresentationComponent implements OnInit, OnDestroy {
               private projectService: ProjectService,
               public formDataService: FormDataService,
               private titleBar: RenameTitleBarService,
-              private dialog: MatDialog) {
+              private dialog: MatDialog,
+              private evs: EvalAssignService) {
   }
 
   ngOnInit() {
@@ -71,6 +75,28 @@ export class PresentationComponent implements OnInit, OnDestroy {
   }
 
   shareForm(event) {
-    this.dialog.open(EvalListComponent, {data: {formDoc: 'ss'}, panelClass: "custom-modalbox", width: "600px"})
+
+    let dialogRef;
+
+    this.evs.getAssigneeList({id: event}).pipe(
+      switchMap(value => {
+        dialogRef = this.dialog.open(EvalListComponent, {data: value, panelClass: "custom-modalbox", width: "600px"});
+        return of(dialogRef)
+      }),
+      switchMap(
+        value => {
+          return dialogRef.componentInstance.onAssign
+
+        }
+      )
+    ).subscribe(
+      next => {
+        let k = dialogRef.componentInstance.selectedMap
+        let evalList = []
+        k.forEach(item => evalList.push(item))
+        this.evs.assignEvaluators({formId: event, evalList: evalList})
+
+      }
+    )
   }
 }
