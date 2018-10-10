@@ -3,6 +3,7 @@ import {ROUTES} from '../sidebar/sidebar.component';
 import {Location} from '@angular/common';
 import {Router} from '@angular/router';
 import {AuthService} from "../../auth/auth.service";
+import {NavBarTitleService} from "../services/nav-bar-title.service";
 
 @Component({
   selector: 'app-navbar',
@@ -18,7 +19,12 @@ export class NavbarComponent implements OnInit {
 
   public isCollapsed = true;
 
-  constructor(location: Location, private element: ElementRef, private router: Router, public auth: AuthService) {
+
+  constructor(location: Location,
+              private element: ElementRef,
+              private router: Router,
+              public auth: AuthService,
+              public navBarTitle: NavBarTitleService) {
     this.location = location;
     this.sidebarVisible = false;
   }
@@ -29,7 +35,7 @@ export class NavbarComponent implements OnInit {
     this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
     this.router.events.subscribe((event) => {
       this.sidebarClose();
-      var $layer: any = document.getElementsByClassName('close-layer')[0];
+      let $layer: any = document.getElementsByClassName('close-layer')[0];
       if ($layer) {
         $layer.remove();
         this.mobile_menu_visible = 0;
@@ -141,18 +147,7 @@ export class NavbarComponent implements OnInit {
   };
 
   getTitle() {
-    var titlee = this.location.prepareExternalUrl(this.location.path());
-    if (titlee.charAt(0) === '#') {
-      titlee = titlee.slice(2);
-    }
-    titlee = titlee.split('/').pop();
-
-    for (var item = 0; item < this.listTitles.length; item++) {
-      if (this.listTitles[item].path === titlee) {
-        return this.listTitles[item].title;
-      }
-    }
-    return 'Dashboard';
+    return this.navBarTitle.getTitle()
   }
 
   logout() {
