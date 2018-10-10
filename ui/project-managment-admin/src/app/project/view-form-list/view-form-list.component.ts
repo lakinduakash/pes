@@ -41,7 +41,7 @@ export class ViewFormListComponent implements OnInit {
   }
 
   editForm(id) {
-    this.share.emit(id)
+    this.edit.emit(id)
   }
 
 }
