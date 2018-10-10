@@ -2,12 +2,12 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {ProjectService} from "../../services/project.service";
 import {FormDataService} from "../../services/form-data.service";
-import {RenameTitleBarService} from "../../services/rename-title-bar.service";
 import {MatDialog} from "@angular/material";
 import {EvalListComponent} from "../eval-list/eval-list.component";
 import {EvalAssignService} from "../services/eval-assign.service";
 import {switchMap} from "rxjs/operators";
 import {of} from "rxjs";
+import {NavBarTitleService} from "../../components/services/nav-bar-title.service";
 
 @Component({
   selector: 'app-presentation',
@@ -29,13 +29,13 @@ export class PresentationComponent implements OnInit, OnDestroy {
               private route: ActivatedRoute,
               private projectService: ProjectService,
               public formDataService: FormDataService,
-              private titleBar: RenameTitleBarService,
+              private titleBar: NavBarTitleService,
               private dialog: MatDialog,
               private evs: EvalAssignService) {
   }
 
   ngOnInit() {
-    this.titleBar.setTitle("Presentations")
+    this.titleBar.setTitle("Presentation")
     this.route.parent.parent.params.subscribe(params => {
       this.projectId = Number(params.id);
       console.log(params)
@@ -62,7 +62,6 @@ export class PresentationComponent implements OnInit, OnDestroy {
 
 
   ngOnDestroy(): void {
-
   }
 
   panelStateOpen() {
