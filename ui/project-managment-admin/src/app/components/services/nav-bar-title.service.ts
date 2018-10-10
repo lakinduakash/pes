@@ -16,6 +16,6 @@ export class NavBarTitleService {
   }
 
   getTitle(): Observable<string> {
-    return this.title as Observable
+    return this.title as Observable<string>
   }
 }
