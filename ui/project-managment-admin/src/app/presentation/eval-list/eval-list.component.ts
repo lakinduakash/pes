@@ -1,7 +1,6 @@
 import {Component, EventEmitter, Inject, Input, OnInit} from '@angular/core';
 import {EvalService} from "../../services/eval.service";
 import {MAT_DIALOG_DATA} from "@angular/material";
-import {DialogData} from "../../dashboard/add-project-dialog/add-project-dialog.component";
 
 @Component({
   selector: 'app-eval-list',
@@ -29,7 +28,7 @@ export class EvalListComponent implements OnInit {
   ngOnInit() {
     this.evalS.getEvalList().subscribe(
       next => {
-        let k = this.data as any[]
+        let k = this.data.evalList
         console.log(k)
 
         next.docs.forEach(item => {
@@ -72,4 +71,8 @@ class Evaluator {
   email: string
   uid: string
 
+}
+
+export interface DialogData {
+  evalList: any[]
 }
