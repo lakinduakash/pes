@@ -9,6 +9,9 @@ body {
   border-radius: 10px;
 }
 
+*:focus {
+  outline: none !important;
+}
 /*html {*/
 /*background: url("http://papers.co/wallpaper/papers.co-vx94-simple-architecture-blue-pattern-background-8-wallpaper.jpg") no-repeat center top fixed;*/
 /*-webkit-background-size: 100% 100%;*/
@@ -22,7 +25,7 @@ https://www.hajarvillas.com/wp-content/uploads/2018/09/modern-architecture-photo
 http://papers.co/wallpaper/papers.co-vx94-simple-architecture-blue-pattern-background-8-wallpaper.jpg
  */
 .tr-card {
-  background-color: rgba(255, 247, 251, 0.71) !important;
+  background-color: rgba(255, 247, 251, 0.71);
 }
 
 /*@media only screen and (max-width: 768px) {*/
