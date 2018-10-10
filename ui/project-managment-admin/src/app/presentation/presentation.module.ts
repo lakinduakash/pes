@@ -22,7 +22,6 @@ import {FormsModule} from "@angular/forms";
 import {ProjectModule} from "../project/project.module";
 import {ComponentsModule} from "../components/components.module";
 import {EvalListComponent} from './eval-list/eval-list.component';
-import {EvalChooserDialogComponent} from './eval-chooser-dialog/eval-chooser-dialog.component';
 import {EvalAssignService} from "./services/eval-assign.service";
 
 @NgModule({
@@ -49,7 +48,7 @@ import {EvalAssignService} from "./services/eval-assign.service";
     ProjectModule,
     ComponentsModule,
   ],
-  declarations: [PresentationComponent, EvalListComponent, EvalChooserDialogComponent],
+  declarations: [PresentationComponent, EvalListComponent],
   exports: [PresentationComponent],
   entryComponents: [EvalListComponent],
   providers: [EvalAssignService]
