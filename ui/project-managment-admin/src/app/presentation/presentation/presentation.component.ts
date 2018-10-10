@@ -3,7 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {ProjectService} from "../../services/project.service";
 import {FormDataService} from "../../services/form-data.service";
 import {MatDialog} from "@angular/material";
-import {EvalListComponent} from "../eval-list/eval-list.component";
+import {DialogData, EvalListComponent} from "../eval-list/eval-list.component";
 import {EvalAssignService} from "../services/eval-assign.service";
 import {switchMap} from "rxjs/operators";
 import {of} from "rxjs";
@@ -79,7 +79,18 @@ export class PresentationComponent implements OnInit, OnDestroy {
 
     this.evs.getAssigneeList({id: event}).pipe(
       switchMap(value => {
-        dialogRef = this.dialog.open(EvalListComponent, {data: value, panelClass: "custom-modalbox", width: "600px"});
+        if (value != undefined)
+          dialogRef = this.dialog.open(EvalListComponent, {
+            data: {evalList: value} as DialogData,
+            panelClass: "custom-modalbox",
+            width: "600px"
+          });
+        else
+          dialogRef = this.dialog.open(EvalListComponent, {
+            data: {evalList: []} as DialogData,
+            panelClass: "custom-modalbox",
+            width: "600px"
+          });
         return of(dialogRef)
       }),
       switchMap(
