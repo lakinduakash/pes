@@ -23,6 +23,7 @@ import {ProjectModule} from "../project/project.module";
 import {ComponentsModule} from "../components/components.module";
 import {EvalListComponent} from './eval-list/eval-list.component';
 import {EvalChooserDialogComponent} from './eval-chooser-dialog/eval-chooser-dialog.component';
+import {EvalAssignService} from "./services/eval-assign.service";
 
 @NgModule({
   imports: [
@@ -50,7 +51,8 @@ import {EvalChooserDialogComponent} from './eval-chooser-dialog/eval-chooser-dia
   ],
   declarations: [PresentationComponent, EvalListComponent, EvalChooserDialogComponent],
   exports: [PresentationComponent],
-  entryComponents: [EvalListComponent]
+  entryComponents: [EvalListComponent],
+  providers: [EvalAssignService]
 })
 export class PresentationModule {
 }
