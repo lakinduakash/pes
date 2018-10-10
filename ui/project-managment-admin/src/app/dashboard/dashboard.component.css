@@ -17,6 +17,10 @@
   flex-direction: column;
 }
 
+mat-grid-tile {
+  min-width: 300px;
+}
+
 mat-grid-list {
   margin-top: 5px;
 }
