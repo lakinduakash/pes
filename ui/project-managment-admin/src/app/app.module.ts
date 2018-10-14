@@ -12,10 +12,6 @@ import {SharedModule} from "./shared/shared.module";
 import {HttpClientModule} from "@angular/common/http";
 import {RenameTitleBarService} from "./services/rename-title-bar.service";
 import {ProjectService} from "./services/project.service";
-import {ProjectCardComponent} from "./dashboard/project-card/project-card.component";
-import {AddProjectComponent} from "./dashboard/add-project-card/add-project.component";
-import {DialogOverviewExampleDialog} from "./dashboard/add-project-dialog/add-project-dialog.component";
-import {DashboardModule} from "./dashboard/dashboard.module";
 
 import {environment} from "../environments/environment";
 import {AngularFireDatabase} from "@angular/fire/database";
@@ -23,7 +19,6 @@ import {AngularFirestore, AngularFirestoreModule} from "@angular/fire/firestore"
 
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {SignupComponent} from './signup/signup.component';
-import {ProjectModule} from "./project/project.module";
 import {TestComponent} from './test/test.component';
 import {EvalFormModule} from "./eval-form/eval-form.module";
 import {NgDragDropModule} from "ng-drag-drop";
@@ -44,7 +39,6 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AuthModule} from "./auth/auth.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {FlexLayoutModule} from "@angular/flex-layout";
-import {PresentationModule} from "./presentation/presentation.module";
 import {FormDataService} from "./services/form-data.service";
 import {EvalFireStoreFactory, EvalFireStoreProviderService} from "./services/eval-fire-store-provider.service";
 import {ComponentsModule} from "./components/components.module";
@@ -60,21 +54,19 @@ import {ComponentsModule} from "./components/components.module";
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     MatCardModule,
     MatInputModule,
     MatButtonModule,
     FormsModule,
     MatProgressSpinnerModule,
-    BrowserAnimationsModule,
     LayoutModule,
     AppRoutingModule,
     SharedModule,
     HttpClientModule,
-    DashboardModule,
     AngularFireModule.initializeApp(environment.firebase, 'myApp'),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    ProjectModule,
     EvalFormModule,
     EvalFormParserModule,
     NgDragDropModule.forRoot(),
@@ -83,7 +75,6 @@ import {ComponentsModule} from "./components/components.module";
     ReactiveFormsModule,
     MatRippleModule,
     MatProgressBarModule,
-    PresentationModule,
     ComponentsModule
 
   ],
@@ -92,7 +83,7 @@ import {ComponentsModule} from "./components/components.module";
     {provide: EvalFireStoreProviderService, deps: [PLATFORM_ID, NgZone], useFactory: EvalFireStoreFactory}
   ],
   bootstrap: [AppComponent],
-  entryComponents: [DialogOverviewExampleDialog, ProjectCardComponent, AddProjectComponent],
+  entryComponents: [],
   exports: []
 })
 export class AppModule {
