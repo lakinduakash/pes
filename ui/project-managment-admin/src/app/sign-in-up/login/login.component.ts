@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from "../auth/auth.service";
+
 import {Router} from "@angular/router";
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 import {AngularFireAuth} from "@angular/fire/auth";
 import {fromPromise} from "rxjs/internal-compatibility";
 import {animate, state, style, transition, trigger} from "@angular/animations";
+import {AuthService} from "../../auth/auth.service";
 
 
 @Component({
