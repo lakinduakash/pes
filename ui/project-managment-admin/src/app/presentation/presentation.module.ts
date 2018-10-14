@@ -19,10 +19,10 @@ import {
 } from "@angular/material";
 import {RouterModule} from "@angular/router";
 import {FormsModule} from "@angular/forms";
-import {ProjectModule} from "../project/project.module";
 import {ComponentsModule} from "../components/components.module";
 import {EvalListComponent} from './eval-list/eval-list.component';
 import {EvalAssignService} from "./services/eval-assign.service";
+import {ViewFormListComponent} from "./view-form-list/view-form-list.component";
 
 @NgModule({
   imports: [
@@ -30,7 +30,6 @@ import {EvalAssignService} from "./services/eval-assign.service";
     SharedModule,
     MatListModule,
     RouterModule,
-    SharedModule,
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
@@ -45,10 +44,9 @@ import {EvalAssignService} from "./services/eval-assign.service";
     MatDialogModule,
     MatDividerModule,
     MatProgressSpinnerModule,
-    ProjectModule,
     ComponentsModule,
   ],
-  declarations: [PresentationComponent, EvalListComponent],
+  declarations: [PresentationComponent, EvalListComponent, ViewFormListComponent],
   exports: [PresentationComponent],
   entryComponents: [EvalListComponent],
   providers: [EvalAssignService]
