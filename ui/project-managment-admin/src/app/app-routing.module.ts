@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
+import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 
 import {TestComponent} from "./test/test.component";
@@ -18,7 +18,7 @@ const routes: Routes = [
     loadChildren: './project/project.module#ProjectModule'
   },
   {path: 'test', component: TestComponent},
-  {path: 'view-form/:id', component: FormViewComponent,canActivate:[AuthGuard]},
+  {path: 'form', component: FormViewComponent, canActivate: [AuthGuard]},
   {path: 'create-form', component: TestComponent, canActivate: [AuthGuard], canDeactivate: [CanDeactivateGuard]},
   {path: 'signup', component: SignupComponent},
   {path: 'login', component: LoginComponent},
@@ -26,7 +26,11 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, {//enableTracing: true, // <-- debugging purposes only
+      preloadingStrategy: PreloadAllModules
+    })
+  ],
   exports: [
     RouterModule
   ],

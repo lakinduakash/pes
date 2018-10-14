@@ -52,7 +52,7 @@ import {SignInUpModule} from "./sign-in-up/sign-in-up.module";
     NgDragDropModule.forRoot(),
     AuthModule,
     ComponentsModule,
-    SignInUpModule
+    SignInUpModule,
 
   ],
   providers: [
