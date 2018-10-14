@@ -1,6 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormService} from "../../services/form.service";
 import {FormDataService} from "../../services/form-data.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-view-form-list',
@@ -14,7 +15,7 @@ export class ViewFormListComponent implements OnInit {
 
   showSpinner = true
 
-  constructor(private formService: FormService, public formData: FormDataService) {
+  constructor(private formService: FormService, public formData: FormDataService, private router: Router) {
   }
 
   formList=[]
@@ -42,6 +43,15 @@ export class ViewFormListComponent implements OnInit {
 
   editForm(id) {
     this.edit.emit(id)
+  }
+
+  viewForm(id) {
+    this.router.navigate(['/form', {
+      form: id,
+      p: this.formData.projectId,
+      pr: this.formData.presentationId,
+      edit: true
+    }])
   }
 
 }
