@@ -4,11 +4,9 @@ import 'hammerjs';
 
 
 import {AppComponent} from './app.component';
-import {LoginComponent} from './login/login.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {LayoutModule} from '@angular/cdk/layout';
 import {AppRoutingModule} from './app-routing.module';
-import {SharedModule} from "./shared/shared.module";
 import {HttpClientModule} from "@angular/common/http";
 import {RenameTitleBarService} from "./services/rename-title-bar.service";
 import {ProjectService} from "./services/project.service";
@@ -18,18 +16,9 @@ import {AngularFireDatabase} from "@angular/fire/database";
 import {AngularFirestore, AngularFirestoreModule} from "@angular/fire/firestore";
 
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
-import {SignupComponent} from './signup/signup.component';
 import {TestComponent} from './test/test.component';
 import {EvalFormModule} from "./eval-form/eval-form.module";
 import {NgDragDropModule} from "ng-drag-drop";
-import {
-  MatButtonModule,
-  MatCardModule,
-  MatInputModule,
-  MatProgressBarModule,
-  MatProgressSpinnerModule,
-  MatRippleModule
-} from "@angular/material";
 import {EvalFormParserModule} from "./eval-form-parser/eval-form-parser.module";
 
 
@@ -37,32 +26,23 @@ import {AngularFireModule} from '@angular/fire';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 
 import {AuthModule} from "./auth/auth.module";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {FlexLayoutModule} from "@angular/flex-layout";
 import {FormDataService} from "./services/form-data.service";
 import {EvalFireStoreFactory, EvalFireStoreProviderService} from "./services/eval-fire-store-provider.service";
 import {ComponentsModule} from "./components/components.module";
+import {SignInUpModule} from "./sign-in-up/sign-in-up.module";
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
     PageNotFoundComponent,
-    SignupComponent,
     TestComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MatCardModule,
-    MatInputModule,
-    MatButtonModule,
-    FormsModule,
-    MatProgressSpinnerModule,
     LayoutModule,
     AppRoutingModule,
-    SharedModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase, 'myApp'),
     AngularFirestoreModule,
@@ -71,11 +51,8 @@ import {ComponentsModule} from "./components/components.module";
     EvalFormParserModule,
     NgDragDropModule.forRoot(),
     AuthModule,
-    FlexLayoutModule,
-    ReactiveFormsModule,
-    MatRippleModule,
-    MatProgressBarModule,
-    ComponentsModule
+    ComponentsModule,
+    SignInUpModule
 
   ],
   providers: [

@@ -3,8 +3,8 @@ import {RouterModule, Routes} from '@angular/router';
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 
 import {TestComponent} from "./test/test.component";
-import {SignupComponent} from "./signup/signup.component";
-import {LoginComponent} from "./login/login.component";
+import {SignupComponent} from "./sign-in-up/signup/signup.component";
+import {LoginComponent} from "./sign-in-up/login/login.component";
 import {FormViewComponent} from "./eval-form-parser/form-view.component";
 import {AuthGuard} from "./auth/auth.guard";
 import {CanDeactivateGuard} from "./shared/can-deactivate-guard.service";
