@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ViewFormListComponent } from './view-form-list.component';
+import {ViewFormListComponent} from './view-form-list.component';
 
 describe('ViewFormListComponent', () => {
   let component: ViewFormListComponent;
