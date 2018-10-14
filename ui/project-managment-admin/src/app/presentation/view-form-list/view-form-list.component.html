@@ -1,7 +1,10 @@
 <mat-nav-list>
   <div *ngFor="let item of formList">
   <mat-list-item >
-    <a routerLink="/view-form/{{item.id}}">{{item.data}}</a>
+    <span class="form-name" (click)="viewForm(item.id)">
+      {{item.data}}
+    </span>
+
 
     <button mat-icon-button color="primary" class="f-button" (click)="shareForm(item.id)">
       <mat-icon aria-label="Example icon-button with a heart icon">share</mat-icon>
