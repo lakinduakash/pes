@@ -25,8 +25,6 @@ import {FormsModule} from "@angular/forms";
 import {CreatePresentationDialogComponent} from './create-presentation-dialog/create-presentation-dialog.component';
 import {ComponentsModule} from "../components/components.module";
 import {AuthGuard} from "../auth/auth.guard";
-import {PresentationComponent} from "../presentation/presentation/presentation.component";
-import {PresentationModule} from "../presentation/presentation.module";
 
 const routes: Routes = [{
   path: ':id',
@@ -34,17 +32,7 @@ const routes: Routes = [{
     [
       {path: '', component: ProjectMainViewComponentComponent, canActivate: [AuthGuard]},
       {
-        path: 'presentation',
-        children: [
-          {
-            path: ':id',
-            children: [
-              {path: '', component: PresentationComponent, canActivate: [AuthGuard]},
-              //{path: 'form/:id', component: TestComponent, canActivate: [AuthGuard]}
-
-            ]
-          }
-        ]
+        path: 'presentation', loadChildren: '../presentation/presentation.module#PresentationModule'
       },
 
     ]
@@ -71,7 +59,6 @@ const routes: Routes = [{
     MatDialogModule,
     MatProgressSpinnerModule,
     ComponentsModule,
-    PresentationModule
 
   ],
   declarations: [ProjectMainViewComponentComponent, FormCreatorComponent, CreatePresentationDialogComponent],
