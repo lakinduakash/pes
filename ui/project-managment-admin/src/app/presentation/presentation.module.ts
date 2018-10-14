@@ -24,6 +24,7 @@ import {EvalAssignService} from "./services/eval-assign.service";
 import {ViewFormListComponent} from "./view-form-list/view-form-list.component";
 import {FormViewContainerComponent} from './form-view-container/form-view-container.component';
 import {AuthGuard} from "../auth/auth.guard";
+import {EvalFormParserModule} from "../eval-form-parser/eval-form-parser.module";
 
 const routes: Routes = [
   {
@@ -55,6 +56,7 @@ const routes: Routes = [
     MatDividerModule,
     MatProgressSpinnerModule,
     ComponentsModule,
+    EvalFormParserModule
   ],
   declarations: [PresentationComponent, EvalListComponent, ViewFormListComponent, FormViewContainerComponent],
   exports: [PresentationComponent],
