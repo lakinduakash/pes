@@ -1,36 +1,63 @@
 import {NgModule} from '@angular/core';
-import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
-import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
+import {RouterModule, Routes} from '@angular/router';
+import {DashboardComponent} from './dashboard/dashboard.component';
+import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
+import {ProjectMainViewComponentComponent} from './project/project-main-view-component.component';
+import {TestComponent} from './test/test.component';
+import {SignupComponent} from './signup/signup.component';
+import {LoginComponent} from './login/login.component';
+import {FormViewComponent} from './eval-form-parser/form-view.component';
+import {ViewFormListComponent} from './project/view-form-list/view-form-list.component';
+import {AuthGuard} from './auth/auth.guard';
+import {PresentationComponent} from './presentation/presentation/presentation.component';
+import {CanDeactivateGuard} from './shared/can-deactivate-guard.service';
+import { ProjectMainComponent } from './project/project-main/project-main.component';
 
-import {TestComponent} from "./test/test.component";
-import {SignupComponent} from "./sign-in-up/signup/signup.component";
-import {LoginComponent} from "./sign-in-up/login/login.component";
-import {FormViewComponent} from "./eval-form-parser/form-view.component";
-import {AuthGuard} from "./auth/auth.guard";
-import {CanDeactivateGuard} from "./shared/can-deactivate-guard.service";
 
 
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
-  {path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule', canActivate: [AuthGuard]},
+  {path: 'dashboard', component: DashboardComponent,  canActivate: [AuthGuard]},
   {
     path: 'project',
-    loadChildren: './project/project.module#ProjectModule'
+    children: [
+      {
+        path: ':id',
+        children:
+          [
+            {path: '', component: ProjectMainViewComponentComponent, canActivate: [AuthGuard]},
+            {
+              path: 'presentation',
+              children: [
+                {
+                  path: ':id',
+                  children: [
+                    {path: '', component: PresentationComponent, canActivate: [AuthGuard]},
+                    {path: 'form/:id', component: TestComponent, canActivate: [AuthGuard]}
+
+                  ]
+                }
+              ]
+            },
+
+          ]
+      },
+      {path: '**', component: PageNotFoundComponent}
+
+    ]
   },
   {path: 'test', component: TestComponent},
-  {path: 'form', component: FormViewComponent, canActivate: [AuthGuard]},
+  {path: 'view-form/:id', component: FormViewComponent,canActivate:[AuthGuard]},
   {path: 'create-form', component: TestComponent, canActivate: [AuthGuard], canDeactivate: [CanDeactivateGuard]},
+  {path: 'list-form', component: ViewFormListComponent,canActivate:[AuthGuard]},
   {path: 'signup', component: SignupComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'project-main', component: ProjectMainComponent,canActivate:[AuthGuard]},
   {path: '**', component: PageNotFoundComponent}
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes, {//enableTracing: true, // <-- debugging purposes only
-      preloadingStrategy: PreloadAllModules
-    })
-  ],
+  imports: [RouterModule.forRoot(routes)],
   exports: [
     RouterModule
   ],
