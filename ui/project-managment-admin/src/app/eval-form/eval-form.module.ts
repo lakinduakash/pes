@@ -15,8 +15,7 @@ import {
 import {FormsModule} from "@angular/forms";
 import {SharedModule} from "../shared/shared.module";
 import {FormEditEventService} from "./form-edit-event.service";
-import { AddEvaluatorComponent } from './add-evaluator/add-evaluator.component';
-
+import {ComponentsModule} from "../components/components.module";
 
 
 @NgModule({
@@ -29,9 +28,12 @@ import { AddEvaluatorComponent } from './add-evaluator/add-evaluator.component';
     MatButtonModule,
     MatIconModule,
     FormsModule,
+    SharedModule,
+    ComponentsModule
   ],
-  declarations: [FormComponent, SectionComponent, AttributeComponent, AddEvaluatorComponent],
-  exports: [FormComponent]
+  declarations: [FormComponent, SectionComponent, AttributeComponent],
+  exports: [FormComponent],
+  providers: [FormEditEventService]
 })
 export class EvalFormModule {
 }

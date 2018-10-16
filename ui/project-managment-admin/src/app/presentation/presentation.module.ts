@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {PresentationComponent} from './presentation/presentation.component';
-import {SharedModule} from "../shared/shared.module";
 import {
   MatButtonModule,
   MatCardModule,
@@ -13,20 +12,35 @@ import {
   MatInputModule,
   MatListModule,
   MatOptionModule,
+  MatProgressSpinnerModule,
   MatRippleModule,
   MatSelectModule
 } from "@angular/material";
-import {RouterModule} from "@angular/router";
+import {RouterModule, Routes} from "@angular/router";
 import {FormsModule} from "@angular/forms";
-import {ProjectModule} from "../project/project.module";
+import {ComponentsModule} from "../components/components.module";
+import {EvalListComponent} from './eval-list/eval-list.component';
+import {EvalAssignService} from "./services/eval-assign.service";
+import {ViewFormListComponent} from "./view-form-list/view-form-list.component";
+import {FormViewContainerComponent} from './form-view-container/form-view-container.component';
+import {AuthGuard} from "../auth/auth.guard";
+import {EvalFormParserModule} from "../eval-form-parser/eval-form-parser.module";
+
+const routes: Routes = [
+  {
+    path: ':id',
+    children: [
+      {path: '', component: PresentationComponent, canActivate: [AuthGuard]}
+    ]
+  }
+]
+
 
 @NgModule({
   imports: [
     CommonModule,
-    SharedModule,
     MatListModule,
-    RouterModule,
-    SharedModule,
+    RouterModule.forChild(routes),
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
@@ -39,10 +53,15 @@ import {ProjectModule} from "../project/project.module";
     MatRippleModule,
     MatExpansionModule,
     MatDialogModule,
-    ProjectModule
+    MatDividerModule,
+    MatProgressSpinnerModule,
+    ComponentsModule,
+    EvalFormParserModule
   ],
-  declarations: [PresentationComponent],
-  exports: [PresentationComponent]
+  declarations: [PresentationComponent, EvalListComponent, ViewFormListComponent, FormViewContainerComponent],
+  exports: [PresentationComponent],
+  entryComponents: [EvalListComponent],
+  providers: [EvalAssignService]
 })
 export class PresentationModule {
 }

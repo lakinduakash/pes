@@ -1,59 +1,84 @@
-<side-nav></side-nav>
+<div class="wrapper">
+  <div class="sidebar" data-color="orange">
+    <app-sidebar></app-sidebar>
+  </div>
+  <div class="main-panel">
+    <app-navbar></app-navbar>
+    <div class="panel-header panel-header-sm">
+    </div>
+    <div class="main-content">
+      <div class="row">
+        <div class="col-md-12">
 
-<div class="container">
+          <div class="container">
 
-  <div class="flex-item">
-    <mat-card class="form-main tr-card">
-  <div style="display: flex; justify-content: flex-start">
+            <div class="flex-item">
+              <mat-card class="form-main tr-card">
+                <div style="display: flex; justify-content: flex-start">
 
-    <div class="status-header">
-      <mat-card-subtitle>
-        {{saveStatus}}
-      </mat-card-subtitle>
+                  <div class="status-header">
+                    <mat-card-subtitle>
+                      {{saveStatus}}
+                    </mat-card-subtitle>
+                  </div>
+
+                  <div class="status-header">
+                    <mat-card-subtitle [class]="warnMax?'warnClass':'okClass'">
+                      Current total marks: {{currentTotalMarks}}
+                    </mat-card-subtitle>
+                  </div>
+
+                </div>
+
+                <mat-card-title>
+                  <mat-form-field floatLabel="never">
+                    <input [(ngModel)]="formTitle" matInput placeholder="Form Title" (keyup)="updateFields()">
+                  </mat-form-field>
+                </mat-card-title>
+                <mat-card-subtitle>
+                  <mat-form-field floatLabel="never">
+                    <textarea [(ngModel)]="formDesc" matInput placeholder="Form Description"
+                              (keyup)="updateFields()"></textarea>
+                  </mat-form-field>
+                </mat-card-subtitle>
+
+                <mat-card-subtitle>
+                  <mat-form-field floatLabel="never" class="maximum-form-mark">
+                    <input [(ngModel)]="maxFormMark" matInput placeholder="Maximum mark" type="number"
+                           (keyup)="updateFields()">
+                  </mat-form-field>
+                </mat-card-subtitle>
+
+                <div class="section-space">
+                  <div *ngFor="let s of sectionList" class="section-wrap">
+
+                    <app-section [section]="s" (deleteSection)="deleteSection($event)"></app-section>
+
+                  </div>
+
+
+                  <button mat-stroked-button color="primary" class="button-space" (click)="onAddSectionClick()">Add
+                    section
+                  </button>
+                </div>
+                <br>
+                <button mat-stroked-button color="primary" class="button-space" (click)="onSaveFormClick()">
+                  {{saveOrUpdateButton}}
+                </button>
+
+              </mat-card>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
     </div>
 
-    <div class="status-header">
-      <mat-card-subtitle [class]="warnMax?'warnClass':'okClass'">
-        Current total marks: {{currentTotalMarks}}
-      </mat-card-subtitle>
-    </div>
-
+    <app-footer></app-footer>
   </div>
-
-  <mat-card-title>
-    <mat-form-field floatLabel="never">
-      <input [(ngModel)]="formTitle" matInput placeholder="Form Title" (keyup)="updateFields()">
-    </mat-form-field>
-  </mat-card-title>
-  <mat-card-subtitle>
-    <mat-form-field floatLabel="never">
-      <textarea [(ngModel)]="formDesc" matInput placeholder="Form Description" (keyup)="updateFields()"></textarea>
-    </mat-form-field>
-  </mat-card-subtitle>
-
-  <mat-card-subtitle>
-    <mat-form-field floatLabel="never" class="maximum-form-mark">
-      <input [(ngModel)]="maxFormMark" matInput placeholder="Maximum mark" type="number" (keyup)="updateFields()">
-    </mat-form-field>
-  </mat-card-subtitle>
-
-  <div class="section-space">
-    <div *ngFor="let s of sectionList" class="section-wrap">
-
-      <app-section [section]="s" (deleteSection)="deleteSection($event)"></app-section>
-
-    </div>
-
-
-    <button mat-stroked-button color="primary" class="button-space" (click)="onAddSectionClick()">Add section</button>
-  </div>
-  <br>
-  <button mat-stroked-button color="primary" class="button-space" (click)="onSaveFormClick()">{{saveOrUpdateButton}}
-  </button>
-
-</mat-card>
-
-  </div>
-
 </div>
+
+
 

@@ -5,9 +5,9 @@ import {CreatePresentationDialogComponent} from "./create-presentation-dialog/cr
 import {PresentationService} from "../services/presentation.service";
 import {Presentation} from "../core/model/presentation";
 import {ProjectService} from "../services/project.service";
-import {RenameTitleBarService} from "../services/rename-title-bar.service";
 import {Subscription} from "rxjs";
 import * as csvJson from "csvjson";
+import {NavBarTitleService} from "../components/services/nav-bar-title.service";
 
 
 @Component({
@@ -38,7 +38,7 @@ export class ProjectMainViewComponentComponent implements OnInit, OnDestroy {
               public dialog: MatDialog,
               private presentationService: PresentationService,
               private projectService: ProjectService,
-              private titleBar: RenameTitleBarService,
+              private titleBar: NavBarTitleService,
               private snackBar: MatSnackBar) {
 
     this.routS = this.route.paramMap.subscribe(next => {
