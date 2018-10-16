@@ -1,7 +1,6 @@
 import {Component, ComponentFactoryResolver, Injector, OnInit, ViewChild} from '@angular/core';
 import {AddProjectComponent} from "./add-project-card/add-project.component";
 import {MatDialog, MatSnackBar} from "@angular/material";
-import {RenameTitleBarService} from "../services/rename-title-bar.service";
 import {ProjectService} from "../services/project.service";
 import {ProjectCard} from "../core/model/project-card";
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
@@ -10,6 +9,7 @@ import {RemoveProjectDialogComponent} from "./remove-dialog/remove-project-dialo
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {Router} from "@angular/router";
 import {AuthService} from "../auth/auth.service";
+import {NavBarTitleService} from "../components/services/nav-bar-title.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -46,7 +46,7 @@ export class DashboardComponent implements OnInit {
   constructor(
     public router: Router,
     public dialog: MatDialog,
-    public renameTitleBar: RenameTitleBarService,
+    public renameTitleBar: NavBarTitleService,
     public projectService: ProjectService,
     public resolver: ComponentFactoryResolver,
     public injector: Injector,
@@ -58,9 +58,9 @@ export class DashboardComponent implements OnInit {
     let breakPoints = [
       {breakPointType: Breakpoints.XSmall, col: 1},
       {breakPointType: Breakpoints.Small, col: 2},
-      {breakPointType: Breakpoints.Medium, col: 3},
-      {breakPointType: Breakpoints.Large, col: 5},
-      {breakPointType: Breakpoints.XLarge, col: 6}
+      {breakPointType: Breakpoints.Medium, col: 2},
+      {breakPointType: Breakpoints.Large, col: 4},
+      {breakPointType: Breakpoints.XLarge, col: 5}
     ];
 
     breakPoints.map(val => this.breakpointObserver.observe([val.breakPointType]).subscribe(result => {

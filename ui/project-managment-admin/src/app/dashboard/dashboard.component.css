@@ -4,14 +4,6 @@
   padding: 10px;
 }
 
-.wrapper {
-  display: grid;
-  grid-template-columns: 250px 250px 250px 250px;
-  grid-gap: 10px;
-
-}
-
-
 .project-card {
   height: 300px;
   width: 300px;
@@ -22,8 +14,17 @@
   flex-direction: column;
 }
 
+mat-grid-tile {
+  min-width: 300px;
+}
+
 mat-grid-list {
   margin-top: 5px;
 }
 
+.card-tile {
+  min-width: 300px;
+  min-height: 300px;
+  margin-bottom: 50px;
+}
 

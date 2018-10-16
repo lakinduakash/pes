@@ -1,15 +1,29 @@
 .project-card {
   margin: 10px 10px 10px 10px;
-  max-width: 170px;
-  min-height: 170px;
-  background-color: #ffffff;
-  width: 100%;
+  width: 215px;
+  height: 215px;
+  background: #bc4e9c; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #f80759, #bc4e9c); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #e10753, #914076); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
   border-radius: 10px;
+  color: white;
 
 }
 
-.project-card-header-title {
+.project-card * {
+  text-align: center;
+}
+
+.content-text {
+  font-weight: lighter;
   font-size: medium;
+}
+
+
+.project-card-header-title {
+  font-size: large;
+  font-weight: bold;
 }
 
 mat-card-content {

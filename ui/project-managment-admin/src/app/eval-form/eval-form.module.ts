@@ -15,6 +15,7 @@ import {
 import {FormsModule} from "@angular/forms";
 import {SharedModule} from "../shared/shared.module";
 import {FormEditEventService} from "./form-edit-event.service";
+import {ComponentsModule} from "../components/components.module";
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import {FormEditEventService} from "./form-edit-event.service";
     MatButtonModule,
     MatIconModule,
     FormsModule,
-    SharedModule
+    SharedModule,
+    ComponentsModule
   ],
   declarations: [FormComponent, SectionComponent, AttributeComponent],
   exports: [FormComponent],

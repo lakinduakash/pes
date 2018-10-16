@@ -13,37 +13,51 @@ import {RenameTitleBarService} from "../services/rename-title-bar.service";
 })
 export class FormViewComponent implements OnInit {
 
-  @Input('eval-form')evalForm
+  @Input('eval-form') evalForm: FormModel;
 
   constructor(private formService: FormService, private route: ActivatedRoute, private router: Router, private formDataService: FormDataService,
               private titleBar: RenameTitleBarService) {
   }
 
-  form:FormModel
+  form: FormModel;
   sectionList:Section[];
 
-  title
-  description
+  title;
+  description;
 
-  private routeId: string;
 
   ngOnInit() {
-    this.titleBar.setTitle("Form view")
-    this.route.paramMap.subscribe(next => this.routeId = next.get('id'))
-    console.log(this.routeId)
+    this.titleBar.setTitle("Form view");
 
-    this.formService.getForm(this.routeId, this.formDataService.projectId, this.formDataService.presentationId).subscribe(next => {
-      this.form = next.data() as FormModel;
-      this.printForm()
-    }, error1 => console.log(error1))
+    this.route.params.subscribe(
+      params => {
+        if (!(params['form'] && params['p'] && params['pr'])) {
+          this.router.navigate(['/not-found'])
+          return
+        }
+
+        this.formService.getForm(params['form'], params['p'], params['pr']).subscribe(next => {
+          this.form = next.data();
+
+          if (this.form == undefined) {
+            this.router.navigate(['/not-found'])
+            return
+          }
+          this.printForm()
+        }, error1 => {
+          console.log(error1)
+          this.router.navigate(['/not-found'])
+        })
+      }
+    )
 
   }
 
   printForm()
   {
-    console.log(this.form)
-    this.sectionList=this.form.sections
-    this.title=this.form.name
+    console.log(this.form);
+    this.sectionList = this.form.sections;
+    this.title = this.form.name;
     this.description=this.form.description
   }
 

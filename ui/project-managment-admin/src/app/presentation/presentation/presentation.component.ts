@@ -2,7 +2,12 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {ProjectService} from "../../services/project.service";
 import {FormDataService} from "../../services/form-data.service";
-import {RenameTitleBarService} from "../../services/rename-title-bar.service";
+import {MatDialog} from "@angular/material";
+import {DialogData, EvalListComponent} from "../eval-list/eval-list.component";
+import {EvalAssignService} from "../services/eval-assign.service";
+import {switchMap} from "rxjs/operators";
+import {of} from "rxjs";
+import {NavBarTitleService} from "../../components/services/nav-bar-title.service";
 
 @Component({
   selector: 'app-presentation',
@@ -20,11 +25,17 @@ export class PresentationComponent implements OnInit, OnDestroy {
   onceLoaded = false;
 
 
-  constructor(private router: Router, private route: ActivatedRoute, private projectService: ProjectService, public formDataService: FormDataService, private titleBar: RenameTitleBarService) {
+  constructor(private router: Router,
+              private route: ActivatedRoute,
+              private projectService: ProjectService,
+              public formDataService: FormDataService,
+              private titleBar: NavBarTitleService,
+              private dialog: MatDialog,
+              private evs: EvalAssignService) {
   }
 
   ngOnInit() {
-    this.titleBar.setTitle("Presentations")
+    this.titleBar.setTitle("Presentation")
     this.route.parent.parent.params.subscribe(params => {
       this.projectId = Number(params.id);
       console.log(params)
@@ -51,7 +62,6 @@ export class PresentationComponent implements OnInit, OnDestroy {
 
 
   ngOnDestroy(): void {
-
   }
 
   panelStateOpen() {
@@ -61,5 +71,42 @@ export class PresentationComponent implements OnInit, OnDestroy {
 
   panelStateClose() {
     this.panelState = false
+  }
+
+  shareForm(event) {
+
+    let dialogRef;
+
+    this.evs.getAssigneeList({id: event}).pipe(
+      switchMap(value => {
+        if (value != undefined)
+          dialogRef = this.dialog.open(EvalListComponent, {
+            data: {evalList: value} as DialogData,
+            panelClass: "custom-modalbox",
+            width: "600px"
+          });
+        else
+          dialogRef = this.dialog.open(EvalListComponent, {
+            data: {evalList: []} as DialogData,
+            panelClass: "custom-modalbox",
+            width: "600px"
+          });
+        return of(dialogRef)
+      }),
+      switchMap(
+        value => {
+          return dialogRef.componentInstance.onAssign
+
+        }
+      )
+    ).subscribe(
+      next => {
+        let k = dialogRef.componentInstance.selectedMap
+        let evalList = []
+        k.forEach(item => evalList.push(item))
+        this.evs.assignEvaluators({formId: event, evalList: evalList})
+
+      }
+    )
   }
 }

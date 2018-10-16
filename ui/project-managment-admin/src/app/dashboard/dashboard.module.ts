@@ -14,18 +14,22 @@ import {
   MatSnackBarModule,
   MatTooltipModule
 } from "@angular/material";
-import {SharedModule} from "../shared/shared.module";
+
 import {DashboardCardHolderComponent} from "./dashboard-card-holder/dashboard-card-holder.component";
 import {ProjectCardComponent} from "./project-card/project-card.component";
 import {AddProjectComponent} from "./add-project-card/add-project.component";
 import {FormsModule} from "@angular/forms";
 import {RemoveProjectDialogComponent} from "./remove-dialog/remove-project-dialog.component";
+import {ComponentsModule} from "../components/components.module";
+import {RouterModule, Routes} from "@angular/router";
 
+const routes: Routes = [
+  {path: '', component: DashboardComponent}
+]
 @NgModule({
   imports: [
     CommonModule,
     MatGridListModule,
-    SharedModule,
     MatInputModule,
     MatDialogModule,
     MatFormFieldModule,
@@ -36,7 +40,9 @@ import {RemoveProjectDialogComponent} from "./remove-dialog/remove-project-dialo
     MatListModule,
     MatSnackBarModule,
     FormsModule,
-    MatTooltipModule
+    MatTooltipModule,
+    ComponentsModule,
+    RouterModule.forChild(routes)
   ],
   declarations: [
     DashboardComponent,
@@ -45,7 +51,7 @@ import {RemoveProjectDialogComponent} from "./remove-dialog/remove-project-dialo
     ProjectCardComponent,
     DashboardCardHolderComponent,
     RemoveProjectDialogComponent],
-  entryComponents: [RemoveProjectDialogComponent, DialogOverviewExampleDialog]
+  entryComponents: [RemoveProjectDialogComponent, DialogOverviewExampleDialog, ProjectCardComponent]
 })
 export class DashboardModule {
 }
