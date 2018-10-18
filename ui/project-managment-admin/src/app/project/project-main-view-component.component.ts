@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {MatDialog, MatSnackBar} from "@angular/material";
 import {CreatePresentationDialogComponent} from "./create-presentation-dialog/create-presentation-dialog.component";
@@ -8,6 +8,7 @@ import {ProjectService} from "../services/project.service";
 import {Subscription} from "rxjs";
 import * as csvJson from "csvjson";
 import {NavBarTitleService} from "../components/services/nav-bar-title.service";
+import * as tableify from "tableify"
 
 
 @Component({
@@ -39,7 +40,8 @@ export class ProjectMainViewComponentComponent implements OnInit, OnDestroy {
               private presentationService: PresentationService,
               private projectService: ProjectService,
               private titleBar: NavBarTitleService,
-              private snackBar: MatSnackBar) {
+              private snackBar: MatSnackBar,
+              private render: Renderer2) {
 
     this.routS = this.route.paramMap.subscribe(next => {
       this.id = next.get('id')
@@ -164,6 +166,8 @@ export class ProjectMainViewComponentComponent implements OnInit, OnDestroy {
             duration: 2000,
           }).onAction().subscribe((next) => this.snackBar.dismiss());
           console.log(a)
+          let table = tableify(a)
+
         };
 
         fileReader.readAsText(files[0])
