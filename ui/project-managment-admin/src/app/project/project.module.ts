@@ -17,7 +17,8 @@ import {
   MatProgressSpinnerModule,
   MatRippleModule,
   MatSelectModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatTableModule
 } from "@angular/material";
 import {RouterModule, Routes} from "@angular/router";
 import {SharedModule} from "../shared/shared.module";
@@ -58,6 +59,7 @@ const routes: Routes = [{
     MatExpansionModule,
     MatDialogModule,
     MatProgressSpinnerModule,
+    MatTableModule,
     ComponentsModule,
 
   ],
