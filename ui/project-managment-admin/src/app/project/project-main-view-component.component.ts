@@ -200,7 +200,7 @@ export class ProjectMainViewComponentComponent implements OnInit, OnDestroy {
   }
 
   viewStudents() {
-    this.router.navigate(['students'])
+    this.router.navigate([`project/${this.id}/students`])
   }
 
 
