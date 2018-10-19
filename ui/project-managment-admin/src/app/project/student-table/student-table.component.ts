@@ -1,4 +1,8 @@
 import {Component, OnInit} from '@angular/core';
+import {filter} from "rxjs/operators";
+import {StudentTableService} from "../../services/student-table.service";
+import {ActivatedRoute} from "@angular/router";
+import {ProjectService} from "../../services/project.service";
 
 @Component({
   selector: 'app-student-table',
@@ -7,10 +11,22 @@ import {Component, OnInit} from '@angular/core';
 })
 export class StudentTableComponent implements OnInit {
 
-  constructor() {
+  id: string
+
+  constructor(private st: StudentTableService, public route: ActivatedRoute, private prService: ProjectService) {
   }
 
+
   ngOnInit() {
+    this.route.params.pipe(
+      filter(next => next.id != undefined)).subscribe(
+      next => this.prService.getOriginalProjectId(next.id).subscribe(next =>
+        this.st.getTable(next).subscribe(next =>
+          console.log(next.data())
+        ))
+    )
+
   }
+
 
 }
