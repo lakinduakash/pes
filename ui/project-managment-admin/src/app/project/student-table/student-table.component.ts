@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {filter} from "rxjs/operators";
+import {filter, tap} from "rxjs/operators";
 import {StudentTableService} from "../../services/student-table.service";
 import {ActivatedRoute} from "@angular/router";
 import {ProjectService} from "../../services/project.service";
@@ -19,12 +19,20 @@ export class StudentTableComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.pipe(
-      filter(next => next.id != undefined)).subscribe(
-      next => this.prService.getOriginalProjectId(next.id).subscribe(next =>
-        this.st.getTable(next).subscribe(next =>
-          console.log(next.data())
-        ))
-    )
+      filter(next => next.id != undefined),
+      tap(value => {
+          this.prService.getOriginalProjectId(Number(value.id)).subscribe(next => {
+            this.st.getTable(next).subscribe(next => console.log(next.data()))
+          })
+        }
+      )).subscribe()
+
+
+
+
+  }
+
+  printTable() {
 
   }
 
