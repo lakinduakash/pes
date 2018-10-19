@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {MatDialog, MatSnackBar} from "@angular/material";
 import {CreatePresentationDialogComponent} from "./create-presentation-dialog/create-presentation-dialog.component";
@@ -8,7 +8,9 @@ import {ProjectService} from "../services/project.service";
 import {Subscription} from "rxjs";
 import * as csvJson from "csvjson";
 import {NavBarTitleService} from "../components/services/nav-bar-title.service";
-import * as tableify from "tableify"
+import {StudentTableService} from "../services/student-table.service";
+import {tap} from "rxjs/operators";
+import {FormDataService} from "../services/form-data.service";
 
 
 @Component({
@@ -19,19 +21,20 @@ import * as tableify from "tableify"
 export class ProjectMainViewComponentComponent implements OnInit, OnDestroy {
 
   id: string;
+  id_original: string;
   presentationList: PresentationData[] = []
 
 
-  showPage = false
+  showPage = false;
 
-  routS: Subscription
-  pexS: Subscription
+  routS: Subscription;
+  pexS: Subscription;
 
   @ViewChild('file') file;
 
   public files: Set<File> = new Set();
 
-  fileName = ""
+  fileName = "";
 
 
   constructor(private route: ActivatedRoute,
@@ -41,7 +44,8 @@ export class ProjectMainViewComponentComponent implements OnInit, OnDestroy {
               private projectService: ProjectService,
               private titleBar: NavBarTitleService,
               private snackBar: MatSnackBar,
-              private render: Renderer2) {
+              private st: StudentTableService,
+              private formData: FormDataService) {
 
     this.routS = this.route.paramMap.subscribe(next => {
       this.id = next.get('id')
@@ -92,6 +96,13 @@ export class ProjectMainViewComponentComponent implements OnInit, OnDestroy {
         )
       }
     )
+
+    this.projectService.getOriginalProjectId(Number(this.id)).pipe(
+      tap(next => {
+        this.id_original = next;
+        this.formData.projectId = next
+      })
+    ).subscribe()
 
 
   }
@@ -165,8 +176,12 @@ export class ProjectMainViewComponentComponent implements OnInit, OnDestroy {
           this.snackBar.open("File uploaded", "Dismiss", {
             duration: 2000,
           }).onAction().subscribe((next) => this.snackBar.dismiss());
-          console.log(a)
-          let table = tableify(a)
+          console.log(a);
+
+          this.projectService.getOriginalProjectId(Number(this.id)).pipe(
+            tap(next => this.st.saveTable(next, a)),
+            tap(next => console.log(next))
+          ).subscribe()
 
         };
 
@@ -182,6 +197,10 @@ export class ProjectMainViewComponentComponent implements OnInit, OnDestroy {
 
   clickAddFiles() {
     this.file.nativeElement.click()
+  }
+
+  viewStudents() {
+    this.router.navigate(['students'])
   }
 
 
