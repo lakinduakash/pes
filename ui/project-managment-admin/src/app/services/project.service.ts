@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import {ProjectCard} from "../core/model/project-card";
-import {AngularFirestore} from "angularfire2/firestore";
 import {from} from "rxjs/internal/observable/from";
 import {Subject} from "rxjs/internal/Subject";
 import {AuthService} from "../auth/auth.service";
 import {Observable} from "rxjs";
+import {AngularFirestore} from "@angular/fire/firestore";
 
 @Injectable({
   providedIn: 'root'
