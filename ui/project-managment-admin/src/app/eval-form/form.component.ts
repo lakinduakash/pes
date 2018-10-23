@@ -24,8 +24,8 @@ export class FormComponent implements OnInit {
   id = this.documentRef;
 
 
-  projectId
-  presentId
+  projectId;
+  presentId;
 
 
   saveOrUpdateButton = this.documentRef == undefined ? "Save" : "Update"
