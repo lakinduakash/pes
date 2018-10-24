@@ -12,7 +12,10 @@ import {ProjectService} from "../../services/project.service";
 export class StudentTableComponent implements OnInit {
 
   id: string
+  available
+  data
 
+  displayedColumns: string[] = ['group', 'stu1', 'stu2', 'stu3', 'stu4'];
   constructor(private st: StudentTableService, public route: ActivatedRoute, private prService: ProjectService) {
   }
 
@@ -22,7 +25,11 @@ export class StudentTableComponent implements OnInit {
       filter(next => next.id != undefined),
       tap(value => {
           this.prService.getOriginalProjectId(Number(value.id)).subscribe(next => {
-            this.st.getTable(next).subscribe(next => console.log(next.data()))
+            this.st.getTable(next).subscribe(next => {
+              this.available = true
+              this.data = next.data().students
+            })
+
           })
         }
       )).subscribe()
