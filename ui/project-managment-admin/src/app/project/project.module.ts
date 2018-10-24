@@ -14,10 +14,12 @@ import {
   MatInputModule,
   MatListModule,
   MatOptionModule,
+  MatPaginatorModule,
   MatProgressSpinnerModule,
   MatRippleModule,
   MatSelectModule,
   MatSnackBarModule,
+  MatSortModule,
   MatTableModule
 } from "@angular/material";
 import {RouterModule, Routes} from "@angular/router";
@@ -27,6 +29,7 @@ import {CreatePresentationDialogComponent} from './create-presentation-dialog/cr
 import {ComponentsModule} from "../components/components.module";
 import {AuthGuard} from "../auth/auth.guard";
 import {StudentTableComponent} from './student-table/student-table.component';
+import {PersonValidatorService} from "./services/person-validator.service";
 
 const routes: Routes = [{
   path: ':id',
@@ -63,12 +66,15 @@ const routes: Routes = [{
     MatProgressSpinnerModule,
     MatTableModule,
     ComponentsModule,
+    MatSortModule,
+    MatPaginatorModule
 
   ],
   declarations: [ProjectMainViewComponentComponent, FormCreatorComponent, CreatePresentationDialogComponent, StudentTableComponent],
   exports: []
   ,
-  entryComponents:[CreatePresentationDialogComponent]
+  entryComponents: [CreatePresentationDialogComponent],
+  providers: [PersonValidatorService]
 })
 export class ProjectModule {
 }
