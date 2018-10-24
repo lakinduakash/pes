@@ -62,7 +62,8 @@
                   </button>
                   <p>{{fileName}}</p>
 
-                  <button mat-button mat-stroked-button class="upload-button" (click)="viewStudents()">View Students
+                  <button mat-button mat-stroked-button class="upload-button" [routerLink]="['./students']">View
+                    Students
                   </button>
                 </mat-card>
               </div>
@@ -86,10 +87,6 @@
               </div>
             </div>
 
-            <router-outlet name="project-o">
-
-            </router-outlet>
-
           </div>
         </div>
       </div>
@@ -98,4 +95,5 @@
     <app-footer></app-footer>
   </div>
 </div>
+
 
