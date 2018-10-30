@@ -9,16 +9,25 @@ import {MatPaginator, MatSort} from "@angular/material";
  * @template T
  */
 import {DataSource} from "@angular/cdk/table";
-import {BehaviorSubject, combineLatest, merge, of, Subscription} from "rxjs";
+import {BehaviorSubject, combineLatest, merge, of, Subject, Subscription} from "rxjs";
 import {_isNumberValue} from "@angular/cdk/coercion";
 import {map} from "rxjs/operators";
+import {TableElement} from "angular4-material-table";
 
 const MAX_SAFE_INTEGER = 9007199254740991;
 
 class EditMatDataSource<T> extends DataSource<T> {
 
+  private validatorService;
+  private config;
+  protected rowsSubject: BehaviorSubject<TableElement<T>[]>;
+  datasourceSubject: Subject<T[]>;
+  protected dataConstructor: new () => T;
+  protected dataKeys: any[];
+  protected currentData: any;
 
-  private readonly _data;
+
+  private readonly _data: BehaviorSubject;
   /** Stream emitting render data to the table (depends on ordered data changes). */
   private readonly _renderData;
   /** Stream that emits when a new filter string is set on the data source. */
@@ -362,6 +371,10 @@ class EditMatDataSource<T> extends DataSource<T> {
         this.paginator.pageIndex = Math.min(this.paginator.pageIndex, lastPageIndex);
       }
     });
+  }
+
+  update(data: T[]) {
+    this._data.next(data)
   }
 
   /**
