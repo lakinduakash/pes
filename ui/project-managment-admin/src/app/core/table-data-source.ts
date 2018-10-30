@@ -1,3 +1,4 @@
+import {MatPaginator, MatSort} from "@angular/material";
 /**
  * Data source that accepts a client-side data array and includes native support of filtering,
  * sorting (using MatSort), and pagination (using MatPaginator).
@@ -8,12 +9,82 @@
  * @template T
  */
 import {DataSource} from "@angular/cdk/table";
-import {BehaviorSubject, Subscription} from "rxjs";
+import {BehaviorSubject, combineLatest, merge, of, Subscription} from "rxjs";
+import {_isNumberValue} from "@angular/cdk/coercion";
+import {map} from "rxjs/operators";
 
-class EditMatDataSource extends DataSource {
+const MAX_SAFE_INTEGER = 9007199254740991;
+
+class EditMatDataSource<T> extends DataSource<T> {
+
+
+  private readonly _data;
+  /** Stream emitting render data to the table (depends on ordered data changes). */
+  private readonly _renderData;
+  /** Stream that emits when a new filter string is set on the data source. */
+  private readonly _filter;
+  /**
+   * Subscription to the changes that should trigger an update to the table's rendered rows, such
+   * as filtering, sorting, pagination, or base data changes.
+   */
+  _renderChangesSubscription: Subscription;
+  /**
+   * The filtered set of data that has been matched by the filter string, or all the data if there
+   * is no filter. Useful for knowing the set of data the table represents.
+   * For example, a 'selectAll()' function would likely want to select the set of filtered data
+   * shown to the user rather than all the data.
+   */
+  filteredData: T[];
+  /** Array of data that should be rendered by the table, where each object represents one row. */
+  data: T[];
+  /**
+   * Filter term that should be used to filter out objects from the data array. To override how
+   * data objects match to this filter string, provide a custom function for filterPredicate.
+   */
+  filter: string;
+  /**
+   * Instance of the MatSort directive used by the table to control its sorting. Sort changes
+   * emitted by the MatSort will trigger an update to the table's rendered data.
+   */
+  sort: MatSort | null;
+  private _sort;
+  /**
+   * Instance of the MatPaginator component used by the table to control what page of the data is
+   * displayed. Page changes emitted by the MatPaginator will trigger an update to the
+   * table's rendered data.
+   *
+   * Note that the data source uses the paginator's properties to calculate which page of data
+   * should be displayed. If the paginator receives its properties as template inputs,
+   * e.g. `[pageLength]=100` or `[pageIndex]=1`, then be sure that the paginator's view has been
+   * initialized before assigning it to this data source.
+   */
+  paginator: MatPaginator | null;
+  private _paginator;
+  /**
+   * Data accessor function that is used for accessing data properties for sorting through
+   * the default sortData function.
+   * This default function assumes that the sort header IDs (which defaults to the column name)
+   * matches the data's properties (e.g. column Xyz represents data['Xyz']).
+   * May be set to a custom function for different behavior.
+   * @param data Data object that is being accessed.
+   * @param sortHeaderId The name of the column that represents the data.
+   */
+  sortingDataAccessor: ((data: T, sortHeaderId: string) => string | number);
+  /**
+   * Gets a sorted copy of the data array based on the state of the MatSort. Called
+   * after changes are made to the filtered data or when sort changes are emitted from MatSort.
+   * By default, the function retrieves the active sort and its direction and compares data
+   * by retrieving data using the sortingDataAccessor. May be overridden for a custom implementation
+   * of data ordering.
+   * @param data The array of data that should be sorted.
+   * @param sort The connected MatSort that holds the current sort state.
+   */
+  sortData: ((data: T[], sort: MatSort) => T[]);
   /**
    * @param {?=} initialData
    */
+
+  filterPredicate: ((data: T, filter: string) => boolean);
 
   constructor(initialData = []) {
     super();
