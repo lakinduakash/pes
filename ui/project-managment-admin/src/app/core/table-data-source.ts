@@ -1,4 +1,4 @@
-import {MatPaginator, MatSort} from "@angular/material";
+import {MatSort} from "@angular/material";
 /**
  * Data source that accepts a client-side data array and includes native support of filtering,
  * sorting (using MatSort), and pagination (using MatPaginator).
@@ -9,25 +9,15 @@ import {MatPaginator, MatSort} from "@angular/material";
  * @template T
  */
 import {DataSource} from "@angular/cdk/table";
-import {BehaviorSubject, combineLatest, merge, of, Subject, Subscription} from "rxjs";
+import {BehaviorSubject, combineLatest, merge, of, Subscription} from "rxjs";
 import {_isNumberValue} from "@angular/cdk/coercion";
 import {map} from "rxjs/operators";
-import {TableElement} from "angular4-material-table";
 
 const MAX_SAFE_INTEGER = 9007199254740991;
 
 class EditMatDataSource<T> extends DataSource<T> {
 
-  private validatorService;
-  private config;
-  protected rowsSubject: BehaviorSubject<TableElement<T>[]>;
-  datasourceSubject: Subject<T[]>;
-  protected dataConstructor: new () => T;
-  protected dataKeys: any[];
-  protected currentData: any;
-
-
-  private readonly _data: BehaviorSubject;
+  private readonly _data: BehaviorSubject<any>;
   /** Stream emitting render data to the table (depends on ordered data changes). */
   private readonly _renderData;
   /** Stream that emits when a new filter string is set on the data source. */
@@ -45,17 +35,18 @@ class EditMatDataSource<T> extends DataSource<T> {
    */
   filteredData: T[];
   /** Array of data that should be rendered by the table, where each object represents one row. */
-  data: T[];
   /**
    * Filter term that should be used to filter out objects from the data array. To override how
    * data objects match to this filter string, provide a custom function for filterPredicate.
    */
-  filter: string;
+
+  //filter
   /**
    * Instance of the MatSort directive used by the table to control its sorting. Sort changes
    * emitted by the MatSort will trigger an update to the table's rendered data.
    */
-  sort: MatSort | null;
+
+
   private _sort;
   /**
    * Instance of the MatPaginator component used by the table to control what page of the data is
@@ -67,7 +58,6 @@ class EditMatDataSource<T> extends DataSource<T> {
    * e.g. `[pageLength]=100` or `[pageIndex]=1`, then be sure that the paginator's view has been
    * initialized before assigning it to this data source.
    */
-  paginator: MatPaginator | null;
   private _paginator;
   /**
    * Data accessor function that is used for accessing data properties for sorting through
