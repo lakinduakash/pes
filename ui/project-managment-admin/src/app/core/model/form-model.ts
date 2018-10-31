@@ -1,6 +1,6 @@
 export class FormModel {
   $key: string;
-  id: number;
+  id: string;
   name: string;
   description: string;
   sections: Section[]
@@ -22,6 +22,7 @@ export class Section {
 
 export class SectionAttribute {
   $key: string;
+  id: number;
   criteria: string;
   maxMark: number;
   currentMark: number;

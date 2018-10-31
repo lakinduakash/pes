@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {ProjectService} from "../services/project.service";
 
 @Component({
   selector: 'app-page-not-found',
@@ -9,7 +8,7 @@ import {ProjectService} from "../services/project.service";
 export class PageNotFoundComponent implements OnInit {
 
 
-  constructor(ps: ProjectService) {
+  constructor() {
   }
 
   ngOnInit() {

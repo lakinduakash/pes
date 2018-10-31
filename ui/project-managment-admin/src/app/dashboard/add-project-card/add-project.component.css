@@ -1,12 +1,23 @@
 .example-card {
   margin: 10px 10px 10px 10px;
-  max-width: 170px;
-  min-height: 170px;
+  max-width: 210px;
+  min-height: 210px;
   width: 100%;
+  border-radius: 10px;
 }
 
 .card-title {
   font-size: medium;
   font-weight: bold;
   font-style: normal;
+}
+
+mat-card-title {
+  text-align: center;
+}
+
+mat-card-content {
+  position: absolute;
+  top: 40%;
+  left: 35%;
 }

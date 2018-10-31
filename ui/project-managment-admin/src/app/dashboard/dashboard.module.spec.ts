@@ -1,13 +1,13 @@
 import {DashboardModule} from './dashboard.module';
 
-describe('DashboardModule', () => {
+fdescribe('DashboardModule', () => {
   let dashboardModule: DashboardModule;
 
   beforeEach(() => {
     dashboardModule = new DashboardModule();
   });
 
-  it('should create an instance', () => {
+  fit('should create an instance', () => {
     expect(dashboardModule).toBeTruthy();
   });
 });

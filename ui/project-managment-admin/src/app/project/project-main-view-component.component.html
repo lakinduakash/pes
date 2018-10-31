@@ -1,3 +1,99 @@
-<p>
-  project-main-view-component works! {{id}}
-</p>
+<div class="wrapper">
+  <div class="sidebar" data-color="orange">
+    <app-sidebar></app-sidebar>
+  </div>
+  <div class="main-panel">
+    <app-navbar></app-navbar>
+    <div class="panel-header panel-header-sm">
+    </div>
+    <div class="main-content">
+      <div class="row">
+        <div class="col-md-12">
+
+          <div>
+
+            <div *ngIf="showPage" class="container">
+
+              <div class="flex-item">
+                <mat-card class="tr-card">
+                  <mat-card-title>
+                    Create or View Presentations
+                  </mat-card-title>
+
+
+                  <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        Presentations
+                      </mat-panel-title>
+                      <mat-panel-description>
+                        View list
+                      </mat-panel-description>
+                    </mat-expansion-panel-header>
+
+                    <p>Add or click existing presentations</p>
+                    <button class="add-pr-button" mat-stroked-button mat-icon-button (click)="addPresentation()">
+                      <mat-icon aria-label="Add presentation" class="add-icon">add</mat-icon>
+                    </button>
+
+                    <mat-nav-list>
+                      <div *ngFor="let p of presentationList">
+                        <mat-list-item>
+                          <a routerLink="presentation/{{p.id}}">{{p.name}}</a>
+                        </mat-list-item>
+                      </div>
+
+                    </mat-nav-list>
+
+                  </mat-expansion-panel>
+
+
+                </mat-card>
+              </div>
+
+              <div class="flex-item">
+                <mat-card mat-ripple class="tr-card">
+                  <mat-card-title>
+                    Add students or groups
+                  </mat-card-title>
+                  <input type="file" style="display: none" #file (change)="onFilesAdded()" accept=".csv,text/csv"/>
+                  <button mat-button mat-stroked-button class="upload-button" (click)="clickAddFiles()">Upload csv
+                    file
+                  </button>
+                  <p>{{fileName}}</p>
+
+                  <button mat-button mat-stroked-button class="upload-button" [routerLink]="['./students']">View
+                    Students
+                  </button>
+                </mat-card>
+              </div>
+
+              <div class="flex-item">
+                <mat-card mat-ripple class="tr-card">
+                  <mat-card-title>
+                    View final marks
+                  </mat-card-title>
+
+                </mat-card>
+              </div>
+
+              <div class="flex-item">
+                <mat-card mat-ripple (click)="openCreateForm()" class="tr-card">
+                  <mat-card-title>
+                    Create form
+                  </mat-card-title>
+
+                </mat-card>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <app-footer></app-footer>
+  </div>
+</div>
+
+

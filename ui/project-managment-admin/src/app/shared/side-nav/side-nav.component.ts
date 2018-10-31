@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {BreakpointObserver, Breakpoints, MediaMatcher} from '@angular/cdk/layout';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {RenameTitleBarService} from "../../services/rename-title-bar.service";
+import {AuthService} from "../../auth/auth.service";
 
 
 @Component({
@@ -17,9 +18,18 @@ export class SideNavComponent implements OnInit {
       map(result => result.matches)
     );
 
+  mobileQuery: MediaQueryList;
+
+
+  private _mobileQueryListener: () => void;
+
   navTitle;
 
-  constructor(private breakpointObserver: BreakpointObserver, private renameNavBarService: RenameTitleBarService) {
+  constructor(private breakpointObserver: BreakpointObserver, private renameNavBarService: RenameTitleBarService, private auth: AuthService,
+              changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+    this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this.mobileQuery.addListener(this._mobileQueryListener);
   }
 
   ngOnInit() {
@@ -27,6 +37,11 @@ export class SideNavComponent implements OnInit {
       .subscribe((navTitle: string) => {
         this.navTitle = navTitle;
       });
+  }
+
+  logout()
+  {
+    this.auth.signOut()
   }
 
 }

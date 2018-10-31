@@ -11,7 +11,7 @@ export class AddProjectComponent implements OnInit {
   @Input() name = "Add new project";
 
 
-  constructor(public elRef: ElementRef, public renderer: Renderer2) {
+  constructor() {
   }
 
   ngOnInit() {

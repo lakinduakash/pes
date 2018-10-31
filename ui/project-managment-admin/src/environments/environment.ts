@@ -13,5 +13,14 @@ export const environment = {
     projectId: "my-first-firebase-1319e",
     storageBucket: "",
     messagingSenderId: "310316367899"
+  },
+
+  evalStoreConfig: {
+    apiKey: "AIzaSyA3IEmXc922u6k1E9Qp3URx56pa55BuFZs",
+    authDomain: "pes-eval.firebaseapp.com",
+    databaseURL: "https://pes-eval.firebaseio.com",
+    projectId: "pes-eval",
+    storageBucket: "pes-eval.appspot.com",
+    messagingSenderId: "721843620769"
   }
 };
