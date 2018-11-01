@@ -9,6 +9,7 @@
     <div class="main-content">
       <div class="row">
         <div class="col-md-12">
+
           <div>
 
             <div *ngIf="showPage" class="container">
@@ -61,7 +62,8 @@
                   </button>
                   <p>{{fileName}}</p>
 
-                  <button mat-button mat-stroked-button class="upload-button" (click)="viewStudents()">View Students
+                  <button mat-button mat-stroked-button class="upload-button" [routerLink]="['./students']">View
+                    Students
                   </button>
                 </mat-card>
               </div>
@@ -93,4 +95,5 @@
     <app-footer></app-footer>
   </div>
 </div>
+
 
