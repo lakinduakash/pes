@@ -35,6 +35,8 @@ export class DashboardComponent implements OnInit {
 
   state = 'in1col';
 
+  loadAnim = true
+
   projectList: ProjectCard[];
 
   list: ProjectCard[] = [];
@@ -77,6 +79,7 @@ export class DashboardComponent implements OnInit {
       this.projectService.getProjectList().subscribe(next => {
         this.projectList = next;
         this.updateList();
+        this.loadAnim = false;
       })
 
   }
