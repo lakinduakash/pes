@@ -33,12 +33,14 @@ export class EvalListComponent implements OnInit {
 
         next.docs.forEach(item => {
 
-          if (k.find(x => x.uid === item.data().uid)) {
+          let evalData = {uid: item.data().uid, displayName: item.data().displayName, email: item.data().email}
+
+          if (k.find(x => x.uid === evalData.uid)) {
             this.evalList.push({data: item.data(), selected: true})
-            this.selectedMap.set(item.data().uid, item.data())
+            this.selectedMap.set(item.data().uid, evalData)
           }
           else
-            this.evalList.push({data: item.data(), selected: false})
+            this.evalList.push({data: evalData, selected: false})
         })
         this.showSpin = false
       }, error1 => this.showSpin = false)
