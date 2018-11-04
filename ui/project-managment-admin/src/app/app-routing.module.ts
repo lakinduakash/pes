@@ -8,6 +8,7 @@ import {LoginComponent} from "./sign-in-up/login/login.component";
 import {FormViewComponent} from "./eval-form-parser/form-view.component";
 import {AuthGuard} from "./auth/auth.guard";
 import {CanDeactivateGuard} from "./shared/can-deactivate-guard.service";
+import {FormComponent} from "./eval-form/form.component";
 
 
 const routes: Routes = [
@@ -19,7 +20,7 @@ const routes: Routes = [
   },
   {path: 'test', component: TestComponent},
   {path: 'form', component: FormViewComponent, canActivate: [AuthGuard]},
-  {path: 'create-form', component: TestComponent, canActivate: [AuthGuard], canDeactivate: [CanDeactivateGuard]},
+  {path: 'create-form', component: FormComponent, canActivate: [AuthGuard], canDeactivate: [CanDeactivateGuard]},
   {path: 'signup', component: SignupComponent},
   {path: 'login', component: LoginComponent},
   {path: '**', component: PageNotFoundComponent}
