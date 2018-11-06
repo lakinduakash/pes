@@ -53,6 +53,22 @@
                     Presentation control
                   </mat-card-title>
 
+                  <mat-expansion-panel (opened)="panelStateOpen()" (closed)="panelStateClose()">
+                    <mat-expansion-panel-header>
+
+                      <mat-panel-title>
+                        Forms
+                      </mat-panel-title>
+                      <mat-panel-description>
+                        View forms list
+                      </mat-panel-description>
+                    </mat-expansion-panel-header>
+
+                    <p>Start, Stop presentations</p>
+
+
+                  </mat-expansion-panel>
+
                 </mat-card>
               </div>
 

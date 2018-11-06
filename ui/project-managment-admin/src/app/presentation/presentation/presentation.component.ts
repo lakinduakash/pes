@@ -8,6 +8,7 @@ import {EvalAssignService} from "../services/eval-assign.service";
 import {switchMap} from "rxjs/operators";
 import {of} from "rxjs";
 import {NavBarTitleService} from "../../components/services/nav-bar-title.service";
+import {PresentationControlService} from "../services/presentation-control.service";
 
 @Component({
   selector: 'app-presentation',
@@ -24,6 +25,8 @@ export class PresentationComponent implements OnInit, OnDestroy {
 
   onceLoaded = false;
 
+  groupList: any[];
+
 
   constructor(private router: Router,
               private route: ActivatedRoute,
@@ -31,7 +34,8 @@ export class PresentationComponent implements OnInit, OnDestroy {
               public formDataService: FormDataService,
               private titleBar: NavBarTitleService,
               private dialog: MatDialog,
-              private evs: EvalAssignService) {
+              private evs: EvalAssignService,
+              public presentControl: PresentationControlService) {
   }
 
   ngOnInit() {
@@ -47,6 +51,8 @@ export class PresentationComponent implements OnInit, OnDestroy {
 
             this.formDataService.presentationId = this.presentId;
             this.formDataService.projectId = this.originalPId;
+
+            this.presentControl.getGroupList(this.originalPId).subscribe(next => console.log(next))
           })
       })
 
