@@ -3,6 +3,8 @@ import {AngularFirestore} from "@angular/fire/firestore";
 import {getPath} from "../../core/model/firstore-path";
 import {BehaviorSubject, Observable, of, Subject} from "rxjs";
 import {AuthService} from "../../auth/auth.service";
+import {CurStateAndGroup} from "../presentation/presentation.component";
+import {STATES} from "../../core/model/prsentation-control";
 
 @Injectable({
   providedIn: 'root'
@@ -38,14 +40,20 @@ export class PresentationControlService {
     return s as Observable<string[]>
   }
 
-  getRealTimeStates(state, groupId, pid, presentId) {
-    let s = new Subject<any>();
+  getRealTimeStates(pid, presentId) {
+    let s = new Subject<CurStateAndGroup>();
     this.auth.user.subscribe(
       user => {
         if (user != null || user != undefined) {
           this.firestore.collection(getPath(user.uid, pid, presentId)).doc(presentId).snapshotChanges().subscribe(
             next => {
-              s.next(next.payload.data)
+              if (next.payload.get('currentState') == undefined)
+                this.setStates(STATES.finished, '', pid, presentId);
+              let p = {
+                currentState: next.payload.get('currentState'),
+                currentGroup: next.payload.get('currentGroup')
+              } as CurStateAndGroup
+              s.next(p)
 
 
             }
@@ -54,7 +62,7 @@ export class PresentationControlService {
       }
     )
 
-    return s as Observable<any>
+    return s as Observable<CurStateAndGroup>
   }
 
   setStates(state, groupId, pid, presentId) {
@@ -69,6 +77,32 @@ export class PresentationControlService {
       }
     )
 
+  }
+
+  setStartedTime(pid, presentId) {
+    this.auth.user.subscribe(
+      user => {
+        if (user != null || user != undefined) {
+          this.firestore.collection(getPath(user.uid, pid, presentId)).doc(presentId).update({
+            startTime: new Date()
+          })
+        }
+      }
+    )
+  }
+
+  getStartedTime(pid, presentId) {
+    let s = new Subject<any>()
+    this.auth.user.subscribe(
+      user => {
+        if (user != null || user != undefined) {
+          this.firestore.collection(getPath(user.uid, pid, presentId)).doc(presentId).snapshotChanges().subscribe(
+            next => s.next(next.payload.get('startTime'))
+          )
+        }
+      }
+    )
+    return s as Observable<any>
   }
 
   getFinishedList(pid, presentId) {
