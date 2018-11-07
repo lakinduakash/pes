@@ -4,4 +4,7 @@ export class CurrentPresentation {
   state
 }
 
-export const STATES = ['running', 'paused', 'finished', 'suspended'];
+
+export enum STATES {
+  running, paused, finished, suspended
+}
