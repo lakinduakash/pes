@@ -1,8 +1,8 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {ProjectService} from "../../services/project.service";
 import {FormDataService} from "../../services/form-data.service";
-import {MatDialog} from "@angular/material";
+import {MatDialog, MatSelect} from "@angular/material";
 import {DialogData, EvalListComponent} from "../eval-list/eval-list.component";
 import {EvalAssignService} from "../services/eval-assign.service";
 import {switchMap} from "rxjs/operators";
@@ -18,6 +18,8 @@ import {STATES} from "../../core/model/prsentation-control";
 })
 export class PresentationComponent implements OnInit, OnDestroy {
 
+  @ViewChild('matSelect') groupSelect: MatSelect
+
   projectId
   originalPId;
   presentId;
@@ -28,17 +30,23 @@ export class PresentationComponent implements OnInit, OnDestroy {
 
   groupList: any[];
 
+  groupListForSelect: GroupListItem[] = [];
+
   stateTitle = "No operations"
 
   disabledPauseButton = true;
   disabledCancelButton = true;
   disabledStartButton = true;
+  disabledGroupSelect = true;
 
   presentationState = STATES.finished;
 
   selectedGroup
 
   finishedList = [];
+
+  startedTime
+  time = 0
 
 
   constructor(private router: Router,
@@ -69,9 +77,22 @@ export class PresentationComponent implements OnInit, OnDestroy {
             this.presentControl.getFinishedList(this.originalPId, this.presentId).subscribe(next => this.finishedList = next)
             this.presentControl.getRealTimeStates(this.originalPId, this.presentId).subscribe(
               next => {
+                console.log(next.currentState)
+                if (next.currentGroup == undefined || next.currentGroup == '') {
+                  this.setButtonStates(this.presentationState, false)
+
+                }
+                else {
+                  if (next.currentState != undefined) {
+                    this.setButtonStates(next.currentState, this.isValidGroupSelected(next.currentGroup), "group " + next.currentGroup);
+                    this.selectedGroup = next.currentGroup
+                  }
+                }
+
 
               }
             )
+
           })
       })
 
@@ -138,21 +159,23 @@ export class PresentationComponent implements OnInit, OnDestroy {
 
 
   startPresentation() {
-    this.presentControl.setStates(STATES.suspended, "1", this.originalPId, this.presentId)
-    console.log(STATES.suspended)
-    if (this.presentationState == STATES.running) {
-      this.pausePresentation();
+    if (this.isValidGroupSelected(this.selectedGroup)) {
+      this.presentControl.setStates(STATES.running, this.selectedGroup, this.originalPId, this.presentId)
+      this.setButtonStates(STATES.running, true, "group" + this.selectedGroup)
+      this.presentControl.setStartedTime(this.originalPId, this.presentId)
     }
-    else if (this.presentationState == STATES.paused) {
-      this.startPresentation()
-    }
+
   }
 
   pausePresentation() {
-
+    this.presentControl.setStates(STATES.paused, this.selectedGroup, this.originalPId, this.presentId)
+    this.setButtonStates(STATES.paused, true, "group" + this.selectedGroup)
   }
 
   cancelPresentation() {
+
+    this.presentControl.setStates(STATES.suspended, this.selectedGroup, this.originalPId, this.presentId)
+    this.setButtonStates(STATES.suspended, true, "group" + this.selectedGroup)
 
   }
 
@@ -166,35 +189,43 @@ export class PresentationComponent implements OnInit, OnDestroy {
     this.disabledStartButton = false
   }
 
-  setButtonStates(state: STATES, validGroupSelected) {
+  setButtonStates(state: STATES, validGroupSelected, group?) {
     if (validGroupSelected) {
 
       switch (state) {
 
         case STATES.finished: {
-          this.disabledStartButton = false
+          this.stateTitle = "No presentation running, start new"
+          this.disabledStartButton = false;
           this.disabledPauseButton = true;
           this.disabledCancelButton = true;
+          this.disabledGroupSelect = false;
           break
         }
 
         case STATES.running: {
+          this.stateTitle = "Running presentation " + group
           this.disabledStartButton = true;
           this.disabledPauseButton = false;
           this.disabledCancelButton = false;
+          this.disabledGroupSelect = true;
           break
         }
 
         case STATES.paused: {
+          this.stateTitle = "Paused presentation " + group
           this.disabledStartButton = false;
           this.disabledPauseButton = true;
           this.disabledCancelButton = false;
+          this.disabledGroupSelect = true;
           break
         }
         case STATES.suspended: {
+          this.stateTitle = "Canceled presentation " + group + ", start again or start new one "
           this.disabledStartButton = false;
           this.disabledPauseButton = true;
           this.disabledCancelButton = true;
+          this.disabledGroupSelect = false;
         }
 
       }
@@ -204,22 +235,41 @@ export class PresentationComponent implements OnInit, OnDestroy {
       this.disabledStartButton = true;
       this.disabledPauseButton = true;
       this.disabledCancelButton = true;
+      this.disabledGroupSelect = false;
     }
   }
 
-  isValidGroupSelected() {
-    if (this.finishedList.find(next => this.selectedGroup == next)) {
-      return false
-    }
-    else {
-      return true
+  isValidGroupSelected(groupId) {
+    if (groupId == undefined || groupId === '')
+      return false;
+
+    return !this.finishedList.find(next => groupId == next);
+  }
+
+  initGroupList(groupList, finishedList) {
+    this.groupListForSelect = [];
+    for (let i of groupList) {
+      for (let k of finishedList) {
+        if (i === k)
+          this.groupListForSelect.push({groupId: i, disabled: true, status: 'finished'})
+        else
+          this.groupListForSelect.push({groupId: i, disabled: false})
+      }
     }
   }
+
 
 }
 
 export interface CurStateAndGroup {
-  currentSate?: STATES
+  currentState?: STATES
   currentGroup?
+
+}
+
+interface GroupListItem {
+  groupId
+  status?
+  disabled?
 
 }
