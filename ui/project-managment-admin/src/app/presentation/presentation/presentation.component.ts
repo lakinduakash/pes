@@ -5,8 +5,8 @@ import {FormDataService} from "../../services/form-data.service";
 import {MatDialog, MatSelect} from "@angular/material";
 import {DialogData, EvalListComponent} from "../eval-list/eval-list.component";
 import {EvalAssignService} from "../services/eval-assign.service";
-import {switchMap} from "rxjs/operators";
-import {of} from "rxjs";
+import {mapTo, switchMap} from "rxjs/operators";
+import {interval, of, Subscription} from "rxjs";
 import {NavBarTitleService} from "../../components/services/nav-bar-title.service";
 import {PresentationControlService} from "../services/presentation-control.service";
 import {STATES} from "../../core/model/prsentation-control";
@@ -45,7 +45,9 @@ export class PresentationComponent implements OnInit, OnDestroy {
 
   finishedList = [];
 
-  startedTime
+  source = interval(1000)
+
+  timeSub: Subscription
   time = ''
 
 
@@ -86,30 +88,39 @@ export class PresentationComponent implements OnInit, OnDestroy {
                   if (next.currentState != undefined) {
                     this.setButtonStates(next.currentState, this.isValidGroupSelected(next.currentGroup), "group " + next.currentGroup);
                     this.selectedGroup = next.currentGroup
+                    this.presentationState = next.currentState
                   }
+                }
+
+
+                let tiSub = this.presentControl.getStartedTime(this.originalPId, this.presentId).pipe(switchMap(
+                  next => interval(1000).pipe(mapTo(next))
+                  )
+                )
+
+                if (this.presentationState != 2 && this.presentationState != 3 && (this.timeSub == undefined || this.timeSub.closed)) {
+
+
+                  this.timeSub = tiSub.subscribe(val => {
+                    {
+                      let b = val
+                      let a = Date.now();
+                      let totalSecs = Math.trunc(a / 1000 - b.seconds)
+
+                      let minutes = Math.floor(totalSecs / 60);
+                      let seconds = totalSecs % 60;
+
+                      this.time = ' ' + minutes + " : " + seconds + ' '
+                    }
+                  })
+
                 }
 
 
               }
             )
 
-            this.presentControl.getStartedTime(this.originalPId, this.presentId).subscribe(
-              next => {
 
-                setInterval(() => {
-                  let b = next
-                  let a = Date.now();
-                  let totalSecs = Math.trunc(a / 1000 - b.seconds)
-
-                  let minutes = Math.floor(totalSecs / 60);
-                  let seconds = totalSecs % 60;
-
-                  this.time = ' ' + minutes + " : " + seconds + ' '
-
-
-                }, 1000);
-              }
-            )
 
           })
       })
@@ -181,6 +192,7 @@ export class PresentationComponent implements OnInit, OnDestroy {
       this.presentControl.setStates(STATES.running, this.selectedGroup, this.originalPId, this.presentId)
       this.setButtonStates(STATES.running, true, "group" + this.selectedGroup)
       this.presentControl.setStartedTime(this.originalPId, this.presentId)
+      this.presentationState = STATES.running
     }
 
   }
@@ -188,12 +200,16 @@ export class PresentationComponent implements OnInit, OnDestroy {
   pausePresentation() {
     this.presentControl.setStates(STATES.paused, this.selectedGroup, this.originalPId, this.presentId)
     this.setButtonStates(STATES.paused, true, "group" + this.selectedGroup)
+    this.presentationState = STATES.paused
   }
 
   cancelPresentation() {
 
     this.presentControl.setStates(STATES.suspended, this.selectedGroup, this.originalPId, this.presentId)
     this.setButtonStates(STATES.suspended, true, "group" + this.selectedGroup)
+    this.time = ''
+    this.presentationState = STATES.suspended
+    this.timeSub.unsubscribe()
 
   }
 
