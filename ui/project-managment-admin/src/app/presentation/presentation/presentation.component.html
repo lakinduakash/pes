@@ -57,18 +57,18 @@
                     <mat-expansion-panel-header>
 
                       <mat-panel-title>
-                        {{stateTitle}}
+                        <b>{{stateTitle}}</b>
                       </mat-panel-title>
                       <mat-panel-description>
                         Click to expand
                       </mat-panel-description>
                     </mat-expansion-panel-header>
 
-                    <p>Start, Stop presentations</p>
+                    <p *ngIf="currentState==STATES.running || currentState == STATES.paused">Started {{time}} ago</p>
 
                     <mat-form-field>
-                      <mat-select placeholder="Select Group" [(value)]="selectedGroup"
-                                  (selectionChange)="selectionChange($event)">
+                      <mat-select placeholder="Select Group" #matSelect [(value)]="selectedGroup"
+                                  (selectionChange)="selectionChange($event)" [disabled]="disabledGroupSelect">
                         <mat-option *ngFor="let i of groupList" [value]="i">
                           {{"group "+i}}
                         </mat-option>
