@@ -38,6 +38,8 @@ export class PresentationComponent implements OnInit, OnDestroy {
 
   selectedGroup
 
+  finishedList = [];
+
 
   constructor(private router: Router,
               private route: ActivatedRoute,
@@ -64,6 +66,12 @@ export class PresentationComponent implements OnInit, OnDestroy {
             this.formDataService.projectId = this.originalPId;
 
             this.presentControl.getGroupList(this.originalPId).subscribe(next => this.groupList = next)
+            this.presentControl.getFinishedList(this.originalPId, this.presentId).subscribe(next => this.finishedList = next)
+            this.presentControl.getRealTimeStates(this.originalPId, this.presentId).subscribe(
+              next => {
+
+              }
+            )
           })
       })
 
@@ -130,6 +138,8 @@ export class PresentationComponent implements OnInit, OnDestroy {
 
 
   startPresentation() {
+    this.presentControl.setStates(STATES.suspended, "1", this.originalPId, this.presentId)
+    console.log(STATES.suspended)
     if (this.presentationState == STATES.running) {
       this.pausePresentation();
     }
@@ -153,6 +163,63 @@ export class PresentationComponent implements OnInit, OnDestroy {
 
   selectionChange(event) {
     this.selectedGroup = event.value;
+    this.disabledStartButton = false
   }
+
+  setButtonStates(state: STATES, validGroupSelected) {
+    if (validGroupSelected) {
+
+      switch (state) {
+
+        case STATES.finished: {
+          this.disabledStartButton = false
+          this.disabledPauseButton = true;
+          this.disabledCancelButton = true;
+          break
+        }
+
+        case STATES.running: {
+          this.disabledStartButton = true;
+          this.disabledPauseButton = false;
+          this.disabledCancelButton = false;
+          break
+        }
+
+        case STATES.paused: {
+          this.disabledStartButton = false;
+          this.disabledPauseButton = true;
+          this.disabledCancelButton = false;
+          break
+        }
+        case STATES.suspended: {
+          this.disabledStartButton = false;
+          this.disabledPauseButton = true;
+          this.disabledCancelButton = true;
+        }
+
+      }
+
+    }
+    else {
+      this.disabledStartButton = true;
+      this.disabledPauseButton = true;
+      this.disabledCancelButton = true;
+    }
+  }
+
+  isValidGroupSelected() {
+    if (this.finishedList.find(next => this.selectedGroup == next)) {
+      return false
+    }
+    else {
+      return true
+    }
+  }
+
+}
+
+export interface CurStateAndGroup {
+  currentSate?: STATES
+  currentGroup?
 
 }
