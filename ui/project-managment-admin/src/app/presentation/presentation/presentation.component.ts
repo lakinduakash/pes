@@ -189,9 +189,11 @@ export class PresentationComponent implements OnInit, OnDestroy {
 
   startPresentation() {
     if (this.isValidGroupSelected(this.selectedGroup)) {
+
+      if (this.presentationState != STATES.paused)
+        this.presentControl.setStartedTime(this.originalPId, this.presentId)
       this.presentControl.setStates(STATES.running, this.selectedGroup, this.originalPId, this.presentId)
       this.setButtonStates(STATES.running, true, "group" + this.selectedGroup)
-      this.presentControl.setStartedTime(this.originalPId, this.presentId)
       this.presentationState = STATES.running
     }
 
