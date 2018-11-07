@@ -46,7 +46,7 @@ export class PresentationComponent implements OnInit, OnDestroy {
   finishedList = [];
 
   startedTime
-  time = 0
+  time = ''
 
 
   constructor(private router: Router,
@@ -90,6 +90,24 @@ export class PresentationComponent implements OnInit, OnDestroy {
                 }
 
 
+              }
+            )
+
+            this.presentControl.getStartedTime(this.originalPId, this.presentId).subscribe(
+              next => {
+
+                setInterval(() => {
+                  let b = next
+                  let a = Date.now();
+                  let totalSecs = Math.trunc(a / 1000 - b.seconds)
+
+                  let minutes = Math.floor(totalSecs / 60);
+                  let seconds = totalSecs % 60;
+
+                  this.time = ' ' + minutes + " : " + seconds + ' '
+
+
+                }, 1000);
               }
             )
 

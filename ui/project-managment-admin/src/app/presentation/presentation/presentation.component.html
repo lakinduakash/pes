@@ -64,7 +64,7 @@
                       </mat-panel-description>
                     </mat-expansion-panel-header>
 
-                    <p *ngIf="currentState==STATES.running || currentState == STATES.paused">Started {{time}} ago</p>
+                    <p>Started {{time}} ago</p>
 
                     <mat-form-field>
                       <mat-select placeholder="Select Group" #matSelect [(value)]="selectedGroup"
