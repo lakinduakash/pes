@@ -9,6 +9,7 @@ import {switchMap} from "rxjs/operators";
 import {of} from "rxjs";
 import {NavBarTitleService} from "../../components/services/nav-bar-title.service";
 import {PresentationControlService} from "../services/presentation-control.service";
+import {STATES} from "../../core/model/prsentation-control";
 
 @Component({
   selector: 'app-presentation',
@@ -26,6 +27,16 @@ export class PresentationComponent implements OnInit, OnDestroy {
   onceLoaded = false;
 
   groupList: any[];
+
+  stateTitle = "No operations"
+
+  disabledPauseButton = true;
+  disabledCancelButton = true;
+  disabledStartButton = true;
+
+  presentationState = STATES.finished;
+
+  selectedGroup
 
 
   constructor(private router: Router,
@@ -52,12 +63,13 @@ export class PresentationComponent implements OnInit, OnDestroy {
             this.formDataService.presentationId = this.presentId;
             this.formDataService.projectId = this.originalPId;
 
-            this.presentControl.getGroupList(this.originalPId).subscribe(next => console.log(next))
+            this.presentControl.getGroupList(this.originalPId).subscribe(next => this.groupList = next)
           })
       })
 
 
     });
+
 
   }
 
@@ -115,4 +127,32 @@ export class PresentationComponent implements OnInit, OnDestroy {
       }
     )
   }
+
+
+  startPresentation() {
+    if (this.presentationState == STATES.running) {
+      this.pausePresentation();
+    }
+    else if (this.presentationState == STATES.paused) {
+      this.startPresentation()
+    }
+  }
+
+  pausePresentation() {
+
+  }
+
+  cancelPresentation() {
+
+  }
+
+  finishPresentation() {
+
+  }
+
+
+  selectionChange(event) {
+    this.selectedGroup = event.value;
+  }
+
 }
