@@ -32,3 +32,7 @@ mat-expansion-panel {
 .play-button {
   display: block;
 }
+
+.main-panel .main-content {
+  margin-top: 0;
+}

@@ -9,7 +9,7 @@
     <div class="main-content">
       <div class="row">
         <div class="col-md-12">
-          <div class="card">
+          <div>
 
             <div class="container">
 
@@ -57,14 +57,14 @@
                     <mat-expansion-panel-header>
 
                       <mat-panel-title>
-                        <b>{{stateTitle}}</b>
+                        {{stateTitle}}
                       </mat-panel-title>
                       <mat-panel-description>
                         Click to expand
                       </mat-panel-description>
                     </mat-expansion-panel-header>
 
-                    <p>Started {{time}} ago</p>
+                    <p *ngIf="presentationState!=2 && presentationState!=3">Started {{time}} ago</p>
 
                     <mat-form-field>
                       <mat-select placeholder="Select Group" #matSelect [(value)]="selectedGroup"
