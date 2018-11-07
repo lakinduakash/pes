@@ -110,7 +110,7 @@ export class PresentationComponent implements OnInit, OnDestroy {
                       let minutes = Math.floor(totalSecs / 60);
                       let seconds = totalSecs % 60;
 
-                      this.time = ' ' + minutes + " : " + seconds + ' '
+                      this.time = ' ' + minutes + " minutes " + seconds + ' seconds '
                     }
                   })
 
@@ -229,7 +229,7 @@ export class PresentationComponent implements OnInit, OnDestroy {
       switch (state) {
 
         case STATES.finished: {
-          this.stateTitle = "No presentation running, start new"
+          this.stateTitle = "No presentation is running, start new"
           this.disabledStartButton = false;
           this.disabledPauseButton = true;
           this.disabledCancelButton = true;
@@ -255,7 +255,7 @@ export class PresentationComponent implements OnInit, OnDestroy {
           break
         }
         case STATES.suspended: {
-          this.stateTitle = "Canceled presentation " + group + ", start again or start new one "
+          this.stateTitle = "Canceled presentation on " + group
           this.disabledStartButton = false;
           this.disabledPauseButton = true;
           this.disabledCancelButton = true;
