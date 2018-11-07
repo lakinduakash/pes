@@ -48,7 +48,7 @@
               </div>
 
               <div class="flex-item">
-                <mat-card mat-ripple class="tr-card">
+                <mat-card class="tr-card">
                   <mat-card-title>
                     Presentation control
                   </mat-card-title>
@@ -57,14 +57,38 @@
                     <mat-expansion-panel-header>
 
                       <mat-panel-title>
-                        Forms
+                        {{stateTitle}}
                       </mat-panel-title>
                       <mat-panel-description>
-                        View forms list
+                        Click to expand
                       </mat-panel-description>
                     </mat-expansion-panel-header>
 
                     <p>Start, Stop presentations</p>
+
+                    <mat-form-field>
+                      <mat-select placeholder="Select Group" [(value)]="selectedGroup"
+                                  (selectionChange)="selectionChange($event)">
+                        <mat-option *ngFor="let i of groupList" [value]="i">
+                          {{"group "+i}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+
+                    <button mat-icon-button class="play-button" (click)="startPresentation()"
+                            [disabled]="disabledStartButton">
+                      <mat-icon aria-label="Start icon">play_arrow</mat-icon>
+                    </button>
+
+                    <button mat-icon-button class="play-button" (click)="pausePresentation()"
+                            [disabled]="disabledPauseButton">
+                      <mat-icon aria-label="Start icon">pause_circle_filled</mat-icon>
+                    </button>
+
+                    <button mat-icon-button class="play-button" (click)="cancelPresentation()"
+                            [disabled]="disabledCancelButton">
+                      <mat-icon aria-label="Stop icon">stop</mat-icon>
+                    </button>
 
 
                   </mat-expansion-panel>
