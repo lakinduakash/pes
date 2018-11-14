@@ -34,7 +34,6 @@ export class StudentTableComponent implements OnInit {
             this.st.getTable(next).subscribe(next => {
               this.available = true
               this.dataSource = new TableDataSource<any>(next.data().students, Object);
-              this.dataSource.paginator = this.paginator;
               this.dataSource.datasourceSubject.subscribe(personList => {
                 this.st.saveTable(this.id, personList)
               });
