@@ -4,7 +4,7 @@ import {StudentTableService} from "../../services/student-table.service";
 import {ActivatedRoute} from "@angular/router";
 import {ProjectService} from "../../services/project.service";
 import {TableDataSource} from "angular4-material-table";
-import {MatPaginator} from "@angular/material";
+import {MatPaginator, MatTableDataSource } from "@angular/material";
 
 @Component({
   selector: 'app-student-table',
