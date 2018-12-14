@@ -20,7 +20,7 @@ export class FormComponent implements OnInit {
 
   formTitle = "Untitled";
   formDesc;
-  maxFormMark
+  maxFormMark;
   id = this.documentRef;
 
 
@@ -29,9 +29,9 @@ export class FormComponent implements OnInit {
 
 
   saveOrUpdateButton = this.documentRef == undefined ? "Save" : "Update"
-  saveStatus = ""
+  saveStatus = "";
   currentTotalMarks = 0
-  warnMax = false
+  warnMax = false;
 
   private static lastSecId = 0;
 
