@@ -29,3 +29,5 @@ Module will start at `localhost:4200`
 run``$ cd ui`` 
 ``$ npm install``
 
+To fix compile error delete this `ui/project-managment-admin/node_modules/angular4-material-table/node_modules`
+

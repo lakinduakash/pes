@@ -13,6 +13,16 @@ import {PresentationComponent} from './presentation/presentation/presentation.co
 import {CanDeactivateGuard} from './shared/can-deactivate-guard.service';
 import { ProjectMainComponent } from './project/project-main/project-main.component';
 
+<<<<<<< HEAD
+=======
+import {TestComponent} from "./test/test.component";
+import {SignupComponent} from "./sign-in-up/signup/signup.component";
+import {LoginComponent} from "./sign-in-up/login/login.component";
+import {FormViewComponent} from "./eval-form-parser/form-view.component";
+import {AuthGuard} from "./auth/auth.guard";
+import {CanDeactivateGuard} from "./shared/can-deactivate-guard.service";
+import {FormComponent} from "./eval-form/form.component";
+>>>>>>> b804a99abc7f7372d6d621010e316f360cad4fc8
 
 
 const routes: Routes = [
@@ -47,9 +57,14 @@ const routes: Routes = [
     ]
   },
   {path: 'test', component: TestComponent},
+<<<<<<< HEAD
   {path: 'view-form/:id', component: FormViewComponent,canActivate:[AuthGuard]},
   {path: 'create-form', component: TestComponent, canActivate: [AuthGuard], canDeactivate: [CanDeactivateGuard]},
   {path: 'list-form', component: ViewFormListComponent,canActivate:[AuthGuard]},
+=======
+  {path: 'form', component: FormViewComponent, canActivate: [AuthGuard]},
+  {path: 'create-form', component: FormComponent, canActivate: [AuthGuard], canDeactivate: [CanDeactivateGuard]},
+>>>>>>> b804a99abc7f7372d6d621010e316f360cad4fc8
   {path: 'signup', component: SignupComponent},
   {path: 'login', component: LoginComponent},
   {path: 'project-main', component: ProjectMainComponent,canActivate:[AuthGuard]},

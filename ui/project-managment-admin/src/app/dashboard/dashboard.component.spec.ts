@@ -38,7 +38,7 @@ fdescribe('DashboardComponent', () => {
 
   fit('tool bar title is correct', () => {
     component.renameTitleBar.getTitle().subscribe(next => expect(next).toBe("Project Dashboard"))
-  })
+  });
 
   // fit('Dialog is opened when button clicked',()=>{
   //   //component.createDialog();
