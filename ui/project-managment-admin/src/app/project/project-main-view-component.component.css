@@ -49,11 +49,22 @@ mat-expansion-panel
 
 }
 
-.pr-list {
+.pr-list-container {
   width: 100%;
+}
+
+.pr-list {
+  margin-top: 5px;
 }
 
 mat-list-item {
   background: white;
 }
 
+.fab {
+  position: fixed;
+  bottom: 50px;
+  right: 15px;
+  width: 75px;
+  height: 75px;
+}

@@ -18,7 +18,7 @@
               <div class="flex-item">
 
 
-                <div class="pr-list">
+                <div class="pr-list-container">
                   <h4>Presentations</h4>
                   <hr>
 
@@ -28,7 +28,7 @@
                   <!--</button>-->
 
 
-                      <div *ngFor="let p of presentationList">
+                  <div *ngFor="let p of presentationList" class="pr-list">
 
                         <mat-accordion>
                           <mat-expansion-panel>
@@ -56,16 +56,8 @@
 
                             <mat-menu #menu="matMenu">
                               <button mat-menu-item>
-                                <mat-icon>dialpad</mat-icon>
-                                <span>{{p.name}}</span>
-                              </button>
-                              <button mat-menu-item disabled>
-                                <mat-icon>voicemail</mat-icon>
-                                <span>Check voicemail</span>
-                              </button>
-                              <button mat-menu-item>
-                                <mat-icon>notifications_off</mat-icon>
-                                <span>Disable alerts</span>
+                                <mat-icon>pen</mat-icon>
+                                <span>Edit</span>
                               </button>
                             </mat-menu>
 
@@ -128,6 +120,9 @@
         </div>
       </div>
     </div>
+
+    <button mat-fab color="warn" class="fab" matTooltip="Create new presentation" (click)="addPresentation()">New
+    </button>
 
     <app-footer></app-footer>
   </div>
