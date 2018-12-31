@@ -18,13 +18,13 @@ import {STATES} from "../../core/model/prsentation-control";
 })
 export class PresentationComponent implements OnInit, OnDestroy {
 
-  @ViewChild('matSelect') groupSelect: MatSelect
+  @ViewChild('matSelect') groupSelect: MatSelect;
 
-  projectId
+  projectId;
   originalPId;
   presentId;
 
-  panelState: boolean
+  panelState: boolean;
 
   onceLoaded = false;
 

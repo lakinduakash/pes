@@ -6,6 +6,10 @@
   width: 100%;
 }
 
+.main-content {
+  margin-top: 5px;
+}
+
 mat-card
 {
   border-radius: 10px;
@@ -26,6 +30,7 @@ mat-expansion-panel
 {
   display: flex;
   justify-content: center;
+  width: 100%;
 }
 
 .add-pr-button
@@ -44,10 +49,22 @@ mat-expansion-panel
 
 }
 
-.tr-card {
-  color: white;
-  background: #bc4e9c; /* fallback for old browsers */
-  background: -webkit-linear-gradient(to left, #f80759, #bc4e9c); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to left, #e10753, #914076); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+.pr-list-container {
+  width: 100%;
+}
 
+.pr-list {
+  margin-top: 5px;
+}
+
+mat-list-item {
+  background: white;
+}
+
+.fab {
+  position: fixed;
+  bottom: 50px;
+  right: 15px;
+  width: 75px;
+  height: 75px;
 }

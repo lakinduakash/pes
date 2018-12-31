@@ -13,6 +13,7 @@ import {
   MatIconModule,
   MatInputModule,
   MatListModule,
+  MatMenuModule,
   MatOptionModule,
   MatPaginatorModule,
   MatProgressSpinnerModule,
@@ -20,7 +21,8 @@ import {
   MatSelectModule,
   MatSnackBarModule,
   MatSortModule,
-  MatTableModule
+  MatTableModule,
+  MatTooltipModule
 } from "@angular/material";
 import {RouterModule, Routes} from "@angular/router";
 import {SharedModule} from "../shared/shared.module";
@@ -67,7 +69,9 @@ const routes: Routes = [{
     MatTableModule,
     ComponentsModule,
     MatSortModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatMenuModule,
+    MatTooltipModule
 
   ],
   declarations: [ProjectMainViewComponentComponent, FormCreatorComponent, CreatePresentationDialogComponent, StudentTableComponent],
