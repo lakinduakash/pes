@@ -6,6 +6,7 @@ import {FormCreatorComponent} from './form-creator/form-creator.component';
 import {
   MatButtonModule,
   MatCardModule,
+  MatDatepickerModule,
   MatDialogModule,
   MatDividerModule,
   MatExpansionModule,
@@ -26,7 +27,7 @@ import {
 } from "@angular/material";
 import {RouterModule, Routes} from "@angular/router";
 import {SharedModule} from "../shared/shared.module";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CreatePresentationDialogComponent} from './create-presentation-dialog/create-presentation-dialog.component';
 import {ComponentsModule} from "../components/components.module";
 import {AuthGuard} from "../auth/auth.guard";
@@ -71,7 +72,9 @@ const routes: Routes = [{
     MatSortModule,
     MatPaginatorModule,
     MatMenuModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatDatepickerModule,
+    ReactiveFormsModule
 
   ],
   declarations: [ProjectMainViewComponentComponent, FormCreatorComponent, CreatePresentationDialogComponent, StudentTableComponent],
