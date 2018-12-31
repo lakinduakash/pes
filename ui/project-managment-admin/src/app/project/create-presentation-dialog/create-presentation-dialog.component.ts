@@ -21,7 +21,7 @@ import {FormControl, Validators} from "@angular/forms";
 
 
       <mat-form-field class="example-full-width">
-        <input type="date" matInput [min]="minDate" [matDatepicker]="picker" placeholder="Schedule to"
+        <input matInput [min]="minDate" [matDatepicker]="picker" placeholder="Schedule to"
                [(ngModel)]="data.scheduledDate">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
@@ -75,6 +75,7 @@ export class CreatePresentationDialogComponent {
         duration: 2000,
       }).onAction().subscribe((next) => this.snackBar.dismiss());
     } else {
+      this.data.created = new Date()
       this.createClick.emit();
       this.dialogRef.close()
     }
@@ -89,4 +90,5 @@ export class DialogData {
   description: string
   scheduledDate
   markBias
+  created
 }
