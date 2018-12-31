@@ -13,6 +13,7 @@ import {
   MatIconModule,
   MatInputModule,
   MatListModule,
+  MatMenuModule,
   MatOptionModule,
   MatPaginatorModule,
   MatProgressSpinnerModule,
@@ -67,7 +68,8 @@ const routes: Routes = [{
     MatTableModule,
     ComponentsModule,
     MatSortModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatMenuModule
 
   ],
   declarations: [ProjectMainViewComponentComponent, FormCreatorComponent, CreatePresentationDialogComponent, StudentTableComponent],
