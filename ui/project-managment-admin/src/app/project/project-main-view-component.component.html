@@ -14,41 +14,70 @@
 
             <div *ngIf="showPage" class="container">
 
+
               <div class="flex-item">
-                <mat-card class="tr-card">
-                  <mat-card-title>
-                    Create or View Presentations
-                  </mat-card-title>
 
 
-                  <mat-expansion-panel>
-                    <mat-expansion-panel-header>
-                      <mat-panel-title>
-                        Presentations
-                      </mat-panel-title>
-                      <mat-panel-description>
-                        View list
-                      </mat-panel-description>
-                    </mat-expansion-panel-header>
+                <div class="pr-list-container">
+                  <h4>Presentations</h4>
+                  <hr>
 
-                    <p>Add or click existing presentations</p>
-                    <button class="add-pr-button" mat-stroked-button mat-icon-button (click)="addPresentation()">
-                      <mat-icon aria-label="Add presentation" class="add-icon">add</mat-icon>
-                    </button>
+                  <!--<p>Add or click existing presentations</p>-->
+                  <!--<button class="add-pr-button" mat-stroked-button mat-icon-button (click)="addPresentation()">-->
+                  <!--<mat-icon aria-label="Add presentation" class="add-icon">add</mat-icon>-->
+                  <!--</button>-->
 
-                    <mat-nav-list>
-                      <div *ngFor="let p of presentationList">
-                        <mat-list-item>
-                          <a routerLink="presentation/{{p.id}}">{{p.name}}</a>
-                        </mat-list-item>
+
+                  <div *ngFor="let p of presentationList" class="pr-list">
+
+                        <mat-accordion>
+                          <mat-expansion-panel>
+                            <mat-expansion-panel-header>
+                              <mat-panel-title>
+                                {{p.name}}
+                              </mat-panel-title>
+                              <mat-panel-description>
+                                Created on, Mark bias Sheduled
+                              </mat-panel-description>
+                            </mat-expansion-panel-header>
+
+
+                            <mat-form-field>
+                              <input matInput placeholder="Mark bias percentage" value="50%">
+                            </mat-form-field>
+
+                            <mat-form-field>
+                              <input matInput placeholder="Scheduled on">
+                            </mat-form-field>
+
+                            <button mat-icon-button [matMenuTriggerFor]="menu">
+                              <mat-icon>more_vert</mat-icon>
+                            </button>
+
+                            <mat-menu #menu="matMenu">
+                              <button mat-menu-item>
+                                <mat-icon>pen</mat-icon>
+                                <span>Edit</span>
+                              </button>
+                            </mat-menu>
+
+                          </mat-expansion-panel>
+                        </mat-accordion>
+
+
+                        <!--<mat-list-item>-->
+                        <!--<p mat-line>{{p.name}}</p>-->
+                        <!--<p mat-line>created on </p>-->
+                        <!--<button mat-icon-button [matMenuTriggerFor]="menu">-->
+                        <!--<mat-icon>more_vert</mat-icon>-->
+                        <!--</button>-->
+                        <!--</mat-list-item>-->
+
                       </div>
 
-                    </mat-nav-list>
 
-                  </mat-expansion-panel>
+                </div>
 
-
-                </mat-card>
               </div>
 
               <div class="flex-item">
@@ -91,6 +120,9 @@
         </div>
       </div>
     </div>
+
+    <button mat-fab color="warn" class="fab" matTooltip="Create new presentation" (click)="addPresentation()">New
+    </button>
 
     <app-footer></app-footer>
   </div>
