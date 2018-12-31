@@ -30,6 +30,7 @@ import {FormDataService} from "./services/form-data.service";
 import {EvalFireStoreFactory, EvalFireStoreProviderService} from "./services/eval-fire-store-provider.service";
 import {ComponentsModule} from "./components/components.module";
 import {SignInUpModule} from "./sign-in-up/sign-in-up.module";
+import {MatNativeDateModule} from "@angular/material";
 
 
 @NgModule({
@@ -53,11 +54,12 @@ import {SignInUpModule} from "./sign-in-up/sign-in-up.module";
     AuthModule,
     ComponentsModule,
     SignInUpModule,
+    MatNativeDateModule,
 
   ],
   providers: [
     RenameTitleBarService, ProjectService, AngularFireDatabase, AngularFirestore, FormDataService,
-    {provide: EvalFireStoreProviderService, deps: [PLATFORM_ID, NgZone], useFactory: EvalFireStoreFactory}
+    {provide: EvalFireStoreProviderService, deps: [PLATFORM_ID, NgZone], useFactory: EvalFireStoreFactory},
   ],
   bootstrap: [AppComponent],
   entryComponents: [],
