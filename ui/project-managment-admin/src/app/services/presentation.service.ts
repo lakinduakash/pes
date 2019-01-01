@@ -92,7 +92,7 @@ export class PresentationService {
     let fpid:Subject<any>=new Subject();
 
     this.fireStore.collection(`usersC/${this.uid}/project`).ref.where('id', '==', pid)
-      .onSnapshot(next=>
+      .get().then(next =>
         next.docs.forEach(item=>{
             fromPromise(this.fireStore.collection(`usersC/${this.uid}/project/${item.id}/presentation`).doc(id).delete()).
             subscribe(next=>
