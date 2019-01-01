@@ -7,5 +7,5 @@ export class EvalFireStoreProviderService extends AngularFirestore {
 }
 
 export function EvalFireStoreFactory(platformId: Object, zone: NgZone) {
-  return new AngularFirestore(environment.evalStoreConfig, 'evalStore', false, null, platformId, zone);
+  return new AngularFirestore(environment.evalStoreConfig, 'evalStore', false, null, platformId, zone, null);
 }
