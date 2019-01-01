@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {ProjectMainViewComponentComponent} from './project-main-view-component.component';
+import {ConfirmationDialog, ProjectMainViewComponentComponent} from './project-main-view-component.component';
 import {FormCreatorComponent} from './form-creator/form-creator.component';
 
 import {
@@ -79,10 +79,10 @@ const routes: Routes = [{
     FlexLayoutModule
 
   ],
-  declarations: [ProjectMainViewComponentComponent, FormCreatorComponent, CreatePresentationDialogComponent, StudentTableComponent],
+  declarations: [ProjectMainViewComponentComponent, FormCreatorComponent, CreatePresentationDialogComponent, StudentTableComponent, ConfirmationDialog],
   exports: []
   ,
-  entryComponents: [CreatePresentationDialogComponent],
+  entryComponents: [CreatePresentationDialogComponent, ConfirmationDialog],
   providers: [PersonValidatorService]
 })
 export class ProjectModule {
