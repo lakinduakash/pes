@@ -1,10 +1,9 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {FormModel, Section} from "../core/model/form-model";
+import {Component, Input, OnInit} from '@angular/core';
+import {FormModel, Section, SectionType} from "../core/model/form-model";
 import {FormService} from "../services/form.service";
 import {FormDataService} from "../services/form-data.service";
 import {RenameTitleBarService} from "../services/rename-title-bar.service";
 import {FormEditEventService} from "./form-edit-event.service";
-import {MatInput} from "@angular/material";
 
 @Component({
   selector: 'app-form',
@@ -16,11 +15,11 @@ export class FormComponent implements OnInit {
   @Input("sections") sectionList: Section[];
   @Input("formModel") form: FormModel;
   @Input('DocRef') documentRef: string;
-  @ViewChild('noUnderline') input: MatInput
 
   formTitle = "Untitled";
   formDesc;
   maxFormMark;
+  maxFormMarkIndividual;
   id = this.documentRef;
 
 
@@ -31,7 +30,9 @@ export class FormComponent implements OnInit {
   saveOrUpdateButton = this.documentRef == undefined ? "Save" : "Update"
   saveStatus = "";
   currentTotalMarks = 0
+  currentTotalMarksForIndividual = 0
   warnMax = false;
+  warnMaxIndividual = false;
 
   private static lastSecId = 0;
 
@@ -56,12 +57,23 @@ export class FormComponent implements OnInit {
     this.formEditEvent.event.subscribe(next => {
       this.saveStatus = "Changes not saved"
       this.currentTotalMarks = 0
+      this.currentTotalMarksForIndividual = 0
       if (this.sectionList != undefined) {
         for (let s of this.sectionList) {
-          if (s.attr != undefined) {
-            for (let k of s.attr) {
-              if (k.maxMark != undefined)
-                this.currentTotalMarks += k.maxMark
+
+          if (!s.type || s.type == SectionType.GROUP) {
+            if (s.attr != undefined) {
+              for (let k of s.attr) {
+                if (k.maxMark != undefined)
+                  this.currentTotalMarks += k.maxMark
+              }
+            }
+          } else {
+            if (s.attr != undefined) {
+              for (let k of s.attr) {
+                if (k.maxMark != undefined)
+                  this.currentTotalMarksForIndividual += k.maxMark
+              }
             }
           }
         }
@@ -71,6 +83,11 @@ export class FormComponent implements OnInit {
         this.warnMax = true
       else
         this.warnMax = false
+
+      if (this.currentTotalMarksForIndividual != this.maxFormMarkIndividual)
+        this.warnMaxIndividual = true
+      else
+        this.warnMaxIndividual = false
     })
 
   }
@@ -78,11 +95,30 @@ export class FormComponent implements OnInit {
   onAddSectionClick() {
     let mSection = new Section();
     mSection.id = FormComponent.lastSecId++;
+    mSection.type = SectionType.GROUP
 
     if (this.sectionList != undefined) {
       this.sectionList.push(mSection)
     }
     else {
+      this.sectionList = [];
+      this.sectionList.push(mSection)
+    }
+
+    console.log(this.sectionList)
+
+
+  }
+
+
+  onAddIndividualSectionClick() {
+    let mSection = new Section();
+    mSection.type = SectionType.INDIVIDUAL
+    mSection.id = FormComponent.lastSecId++;
+
+    if (this.sectionList != undefined) {
+      this.sectionList.push(mSection)
+    } else {
       this.sectionList = [];
       this.sectionList.push(mSection)
     }
