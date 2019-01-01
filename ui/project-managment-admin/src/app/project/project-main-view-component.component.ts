@@ -119,7 +119,14 @@ export class ProjectMainViewComponentComponent implements OnInit, OnDestroy {
     dialogRef.componentInstance.createClick.subscribe(
       next=>
       {
-          this.presentationService.addPresentation(Number(this.id),{name:dialogRef.componentInstance.data.name,description:dialogRef.componentInstance.data.description} as Presentation).subscribe(next => console.log(this.presentationList))
+        this.presentationService.addPresentation(Number(this.id),
+          {
+            name: dialogRef.componentInstance.data.name,
+            description: dialogRef.componentInstance.data.description,
+            markBias: dialogRef.componentInstance.data.markBias,
+            scheduledTo: dialogRef.componentInstance.data.scheduledDate,
+            created: dialogRef.componentInstance.data.created
+          } as Presentation).subscribe(next => console.log(this.presentationList))
 
       }
     )
