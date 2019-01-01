@@ -30,9 +30,9 @@
 
                   <div *ngFor="let p of presentationList" class="pr-list">
 
-                        <mat-accordion>
-                          <mat-expansion-panel>
-                            <mat-expansion-panel-header>
+                    <mat-accordion>
+                      <mat-expansion-panel>
+                        <mat-expansion-panel-header collapsedHeight="100px">
                               <mat-panel-title>
                                 {{p.name}}
                               </mat-panel-title>
@@ -40,6 +40,9 @@
                                 Created on, Mark bias Sheduled
                               </mat-panel-description>
                             </mat-expansion-panel-header>
+                        <mat-action-row>
+                          <button mat-button>Save</button>
+                        </mat-action-row>
 
 
                             <mat-form-field>
@@ -68,15 +71,6 @@
                           </mat-expansion-panel>
                         </mat-accordion>
 
-
-                        <!--<mat-list-item>-->
-                        <!--<p mat-line>{{p.name}}</p>-->
-                        <!--<p mat-line>created on </p>-->
-                        <!--<button mat-icon-button [matMenuTriggerFor]="menu">-->
-                        <!--<mat-icon>more_vert</mat-icon>-->
-                        <!--</button>-->
-                        <!--</mat-list-item>-->
-
                       </div>
 
 
@@ -90,36 +84,22 @@
                   <h4 align="center">Manage students</h4>
                   <hr>
 
-                  <input type="file" style="display: none" #file (change)="onFilesAdded()" accept=".csv,text/csv"/>
-                  <button align="center" mat-button mat-stroked-button class="upload-button" (click)="clickAddFiles()">
-                    Upload csv
-                    file
-                  </button>
-                  <p>{{fileName}}</p>
-
+                  <div fxLayoutAlign.lt-sm="center">
+                    <input type="file" style="display: none" #file (change)="onFilesAdded()" accept=".csv,text/csv"/>
+                    <button align="center" mat-button mat-stroked-button class="upload-button" (click)="clickAddFiles()">
+                      Upload csv file
+                    </button>
+                    <p>{{fileName}}</p>
+                  </div>
+                  <div fxLayoutAlign.lt-sm="center">
                   <button align="center" mat-button mat-stroked-button class="upload-button"
                           [routerLink]="['./students']">View
                     Students
                   </button>
+                  </div>
                 </div>
-              </div>
 
-              <div class="flex-item">
-                <mat-card mat-ripple class="tr-card">
-                  <mat-card-title>
-                    View final marks
-                  </mat-card-title>
 
-                </mat-card>
-              </div>
-
-              <div class="flex-item">
-                <mat-card mat-ripple (click)="openCreateForm()" class="tr-card">
-                  <mat-card-title>
-                    Create form
-                  </mat-card-title>
-
-                </mat-card>
               </div>
             </div>
 
@@ -129,6 +109,8 @@
     </div>
 
     <button mat-fab color="warn" class="fab" matTooltip="Create new presentation" (click)="addPresentation()">New
+    </button>
+    <button mat-fab color="primary" class="fab-2" matTooltip="Create new form" (click)="openCreateForm()">Form
     </button>
 
     <app-footer></app-footer>
