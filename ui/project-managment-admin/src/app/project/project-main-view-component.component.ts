@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {MatDialog, MatSnackBar} from "@angular/material";
+import {MatDialog, MatDialogRef, MatSnackBar} from "@angular/material";
 import {CreatePresentationDialogComponent} from "./create-presentation-dialog/create-presentation-dialog.component";
 import {PresentationService} from "../services/presentation.service";
 import {Presentation} from "../core/model/presentation";
@@ -210,7 +210,33 @@ export class ProjectMainViewComponentComponent implements OnInit, OnDestroy {
     this.router.navigate([`project/${this.id}/students`, {outlets: {pr: ['']}}])
   }
 
+  deletePresentation(presentId) {
+    let dialogRef = this.dialog.open(ConfirmationDialog, {width: '300px', panelClass: 'custom-modalbox'});
 
+    dialogRef.afterClosed().subscribe(next => {
+      if (dialogRef.componentInstance.yesClicked) {
+        this.presentationService.deletePresentation(Number(this.id), presentId).subscribe(
+          next => {
+            this.snackBar.open('Presentation deleted', 'Ok')
+            this.presentationService.getPresentation(Number(this.id)).subscribe(
+              next => {
+                this.presentationList = []
+                next.docs.forEach(
+                  item => this.presentationList.push({
+                    id: item.id,
+                    name: item.data().name,
+                    description: item.data().description
+                  })
+                )
+              }
+            )
+          }
+        )
+      }
+
+    })
+
+  }
 
 }
 
@@ -221,4 +247,44 @@ interface PresentationData {
   name: string
   description?: string
 
+}
+
+@Component({
+  selector: 'app-c-dialog',
+  template: `
+    <h1 mat-dialog-title>Delete Presentation?</h1>
+    <div mat-dialog-content>
+
+      This action cannot be undo.
+      All the content related to this presentation will be lost.
+      But calculated marks will be not changed. Do you want to delete?
+
+      <div mat-dialog-actions>
+        <button mat-button cdkFocusInitial (click)="onNoClick()">Cancel</button>
+        <button mat-button (click)="onYesClick()">Delete</button>
+      </div>
+    </div>
+  `
+})
+
+export class ConfirmationDialog implements OnInit {
+
+  yesClicked = false;
+
+  constructor(public dialogRef: MatDialogRef<ConfirmationDialog>) {
+
+  }
+
+
+  ngOnInit(): void {
+  }
+
+  onYesClick() {
+    this.yesClicked = true;
+    this.dialogRef.close()
+  }
+
+  onNoClick() {
+    this.dialogRef.close()
+  }
 }
