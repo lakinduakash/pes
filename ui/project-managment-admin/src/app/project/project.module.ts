@@ -33,6 +33,7 @@ import {ComponentsModule} from "../components/components.module";
 import {AuthGuard} from "../auth/auth.guard";
 import {StudentTableComponent} from './student-table/student-table.component';
 import {PersonValidatorService} from "./services/person-validator.service";
+import {FlexLayoutModule} from "@angular/flex-layout";
 
 const routes: Routes = [{
   path: ':id',
@@ -74,7 +75,8 @@ const routes: Routes = [{
     MatMenuModule,
     MatTooltipModule,
     MatDatepickerModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FlexLayoutModule
 
   ],
   declarations: [ProjectMainViewComponentComponent, FormCreatorComponent, CreatePresentationDialogComponent, StudentTableComponent],
