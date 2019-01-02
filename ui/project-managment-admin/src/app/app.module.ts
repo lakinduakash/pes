@@ -30,6 +30,7 @@ import {FormDataService} from "./services/form-data.service";
 import {EvalFireStoreFactory, EvalFireStoreProviderService} from "./services/eval-fire-store-provider.service";
 import {ComponentsModule} from "./components/components.module";
 import {SignInUpModule} from "./sign-in-up/sign-in-up.module";
+import { ViewMarksComponent } from './view-marks/view-marks.component';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import {SignInUpModule} from "./sign-in-up/sign-in-up.module";
     AppComponent,
     PageNotFoundComponent,
     TestComponent,
+    ViewMarksComponent,
   ],
   imports: [
     BrowserModule,

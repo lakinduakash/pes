@@ -8,12 +8,9 @@ import {LoginComponent} from "./sign-in-up/login/login.component";
 import {FormViewComponent} from "./eval-form-parser/form-view.component";
 import {AuthGuard} from "./auth/auth.guard";
 import {CanDeactivateGuard} from "./shared/can-deactivate-guard.service";
-<<<<<<< HEAD
-import { ViewMarksComponent } from './view-marks-m/view-marks/view-marks.component';
-=======
 import {FormComponent} from "./eval-form/form.component";
+import {ViewMarksComponent} from "./view-marks/view-marks.component";
 
->>>>>>> dd3955cfba588295e4611f507600e0cc38ac9069
 
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
@@ -27,7 +24,7 @@ const routes: Routes = [
   {path: 'create-form', component: FormComponent, canActivate: [AuthGuard], canDeactivate: [CanDeactivateGuard]},
   {path: 'signup', component: SignupComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'viewmarks', component: ViewMarksComponent},
+  {path: 'viewM', component: ViewMarksComponent},
 ];
 
 @NgModule({
