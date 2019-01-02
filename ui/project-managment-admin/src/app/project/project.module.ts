@@ -1,11 +1,12 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {ProjectMainViewComponentComponent} from './project-main-view-component.component';
+import {ConfirmationDialog, ProjectMainViewComponentComponent} from './project-main-view-component.component';
 import {FormCreatorComponent} from './form-creator/form-creator.component';
 
 import {
   MatButtonModule,
   MatCardModule,
+  MatDatepickerModule,
   MatDialogModule,
   MatDividerModule,
   MatExpansionModule,
@@ -26,12 +27,13 @@ import {
 } from "@angular/material";
 import {RouterModule, Routes} from "@angular/router";
 import {SharedModule} from "../shared/shared.module";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CreatePresentationDialogComponent} from './create-presentation-dialog/create-presentation-dialog.component';
 import {ComponentsModule} from "../components/components.module";
 import {AuthGuard} from "../auth/auth.guard";
 import {StudentTableComponent} from './student-table/student-table.component';
 import {PersonValidatorService} from "./services/person-validator.service";
+import {FlexLayoutModule} from "@angular/flex-layout";
 
 const routes: Routes = [{
   path: ':id',
@@ -71,13 +73,16 @@ const routes: Routes = [{
     MatSortModule,
     MatPaginatorModule,
     MatMenuModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatDatepickerModule,
+    ReactiveFormsModule,
+    FlexLayoutModule
 
   ],
-  declarations: [ProjectMainViewComponentComponent, FormCreatorComponent, CreatePresentationDialogComponent, StudentTableComponent],
+  declarations: [ProjectMainViewComponentComponent, FormCreatorComponent, CreatePresentationDialogComponent, StudentTableComponent, ConfirmationDialog],
   exports: []
   ,
-  entryComponents: [CreatePresentationDialogComponent],
+  entryComponents: [CreatePresentationDialogComponent, ConfirmationDialog],
   providers: [PersonValidatorService]
 })
 export class ProjectModule {

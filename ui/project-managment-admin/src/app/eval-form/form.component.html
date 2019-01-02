@@ -28,6 +28,12 @@
                     </mat-card-subtitle>
                   </div>
 
+                  <div class="status-header">
+                    <mat-card-subtitle [class]="warnMaxIndividual?'warnClass':'okClass'">
+                      Current total marks Individual: {{currentTotalMarksForIndividual}}
+                    </mat-card-subtitle>
+                  </div>
+
                 </div>
 
                 <mat-card-title>
@@ -47,6 +53,12 @@
                     <input [(ngModel)]="maxFormMark" matInput placeholder="Maximum mark" type="number"
                            (keyup)="updateFields()">
                   </mat-form-field>
+
+                  <mat-form-field floatLabel="never" class="maximum-form-mark">
+                    <input [(ngModel)]="maxFormMarkIndividual" matInput placeholder="Maximum mark Individual"
+                           type="number"
+                           (keyup)="updateFields()">
+                  </mat-form-field>
                 </mat-card-subtitle>
 
                 <div class="section-space">
@@ -58,7 +70,12 @@
 
 
                   <button mat-stroked-button color="primary" class="button-space" (click)="onAddSectionClick()">Add
-                    section
+                    Group section
+                  </button>
+
+                  <button mat-stroked-button color="primary" class="button-space"
+                          (click)="onAddIndividualSectionClick()">Add
+                    Individual Section
                   </button>
                 </div>
                 <br>
