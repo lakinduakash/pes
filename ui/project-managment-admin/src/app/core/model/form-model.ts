@@ -15,6 +15,7 @@ export class Section {
   description: string;
   maxMarks: number;
   currentMark: number;
+  type: SectionType
   attr: SectionAttribute[]
 
 
@@ -32,3 +33,6 @@ export class SectionAttribute {
   }
 
 }
+
+
+export const enum SectionType {INDIVIDUAL = 1, GROUP = 2};

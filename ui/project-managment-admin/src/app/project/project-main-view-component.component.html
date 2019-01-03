@@ -19,7 +19,7 @@
 
 
                 <div class="pr-list-container">
-                  <h4>Presentations</h4>
+                  <h4 align="center">Presentations</h4>
                   <hr>
 
                   <!--<p>Add or click existing presentations</p>-->
@@ -30,9 +30,9 @@
 
                   <div *ngFor="let p of presentationList" class="pr-list">
 
-                        <mat-accordion>
-                          <mat-expansion-panel>
-                            <mat-expansion-panel-header>
+                    <mat-accordion>
+                      <mat-expansion-panel>
+                        <mat-expansion-panel-header collapsedHeight="100px">
                               <mat-panel-title>
                                 {{p.name}}
                               </mat-panel-title>
@@ -40,6 +40,10 @@
                                 Created on, Mark bias Sheduled
                               </mat-panel-description>
                             </mat-expansion-panel-header>
+                        <mat-action-row>
+                          <button mat-button>Save</button>
+                          <button mat-button [routerLink]="['./presentation',p.id]">Open</button>
+                        </mat-action-row>
 
 
                             <mat-form-field>
@@ -56,22 +60,17 @@
 
                             <mat-menu #menu="matMenu">
                               <button mat-menu-item>
-                                <mat-icon>pen</mat-icon>
+                                <mat-icon>pencil</mat-icon>
                                 <span>Edit</span>
+                              </button>
+                              <button mat-menu-item (click)="deletePresentation(p.id)">
+                                <mat-icon>bin</mat-icon>
+                                <span>Delete</span>
                               </button>
                             </mat-menu>
 
                           </mat-expansion-panel>
                         </mat-accordion>
-
-
-                        <!--<mat-list-item>-->
-                        <!--<p mat-line>{{p.name}}</p>-->
-                        <!--<p mat-line>created on </p>-->
-                        <!--<button mat-icon-button [matMenuTriggerFor]="menu">-->
-                        <!--<mat-icon>more_vert</mat-icon>-->
-                        <!--</button>-->
-                        <!--</mat-list-item>-->
 
                       </div>
 
@@ -81,38 +80,27 @@
               </div>
 
               <div class="flex-item">
-                <mat-card mat-ripple class="tr-card">
-                  <mat-card-title>
-                    Add students or groups
-                  </mat-card-title>
-                  <input type="file" style="display: none" #file (change)="onFilesAdded()" accept=".csv,text/csv"/>
-                  <button mat-button mat-stroked-button class="upload-button" (click)="clickAddFiles()">Upload csv
-                    file
-                  </button>
-                  <p>{{fileName}}</p>
 
-                  <button mat-button mat-stroked-button class="upload-button" [routerLink]="['./students']">View
+                <div class="pr-list-container">
+                  <h4 align="center">Manage students</h4>
+                  <hr>
+
+                  <div fxLayoutAlign.lt-sm="center">
+                    <input type="file" style="display: none" #file (change)="onFilesAdded()" accept=".csv,text/csv"/>
+                    <button align="center" mat-button mat-stroked-button class="upload-button" (click)="clickAddFiles()">
+                      Upload csv file
+                    </button>
+                    <p>{{fileName}}</p>
+                  </div>
+                  <div fxLayoutAlign.lt-sm="center">
+                  <button align="center" mat-button mat-stroked-button class="upload-button"
+                          [routerLink]="['./students']">View
                     Students
                   </button>
-                </mat-card>
-              </div>
+                  </div>
+                </div>
 
-              <div class="flex-item">
-                <mat-card mat-ripple class="tr-card">
-                  <mat-card-title>
-                    View final marks
-                  </mat-card-title>
 
-                </mat-card>
-              </div>
-
-              <div class="flex-item">
-                <mat-card mat-ripple (click)="openCreateForm()" class="tr-card">
-                  <mat-card-title>
-                    Create form
-                  </mat-card-title>
-
-                </mat-card>
               </div>
             </div>
 
@@ -122,6 +110,8 @@
     </div>
 
     <button mat-fab color="warn" class="fab" matTooltip="Create new presentation" (click)="addPresentation()">New
+    </button>
+    <button mat-fab color="primary" class="fab-2" matTooltip="Create new form" (click)="openCreateForm()">Form
     </button>
 
     <app-footer></app-footer>

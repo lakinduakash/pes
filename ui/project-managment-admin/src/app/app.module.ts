@@ -30,6 +30,7 @@ import {FormDataService} from "./services/form-data.service";
 import {EvalFireStoreFactory, EvalFireStoreProviderService} from "./services/eval-fire-store-provider.service";
 import {ComponentsModule} from "./components/components.module";
 import {SignInUpModule} from "./sign-in-up/sign-in-up.module";
+import {MatNativeDateModule} from "@angular/material";
 
 import { ViewMarksComponent } from './view-marks/view-marks.component';
 import { ViewmarksService } from './services/viewmarks.service';
@@ -57,6 +58,7 @@ import { ViewmarksService } from './services/viewmarks.service';
     AuthModule,
     ComponentsModule,
     SignInUpModule,
+    MatNativeDateModule,
 
   ],
   providers: [
