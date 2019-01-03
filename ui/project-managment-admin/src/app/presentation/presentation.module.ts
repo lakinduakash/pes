@@ -13,6 +13,7 @@ import {
   MatListModule,
   MatOptionModule,
   MatProgressSpinnerModule,
+  MatRadioModule,
   MatRippleModule,
   MatSelectModule
 } from "@angular/material";
@@ -55,6 +56,7 @@ const routes: Routes = [
     MatDialogModule,
     MatDividerModule,
     MatProgressSpinnerModule,
+    MatRadioModule,
     ComponentsModule,
     EvalFormParserModule
   ],

@@ -63,7 +63,15 @@
 
                 <div class="section-space">
                   <div *ngFor="let s of sectionList" class="section-wrap">
+                    <div *ngIf="!s.type || s.type==2" class="section-wrap">
+                      <h5 style="color: #920b43">Group mark based section</h5>
+                      <hr>
+                    </div>
 
+                    <div *ngIf="s.type==1" class="section-wrap">
+                      <h5 style="color: #920b43">Individual member mark based section</h5>
+                      <hr>
+                    </div>
                     <app-section [section]="s" (deleteSection)="deleteSection($event)"></app-section>
 
                   </div>

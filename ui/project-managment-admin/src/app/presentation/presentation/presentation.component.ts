@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {ProjectService} from "../../services/project.service";
 import {FormDataService} from "../../services/form-data.service";
-import {MatDialog, MatSelect} from "@angular/material";
+import {MatDialog, MatDialogRef, MatSelect} from "@angular/material";
 import {DialogData, EvalListComponent} from "../eval-list/eval-list.component";
 import {EvalAssignService} from "../services/eval-assign.service";
 import {mapTo, switchMap} from "rxjs/operators";
@@ -149,21 +149,24 @@ export class PresentationComponent implements OnInit, OnDestroy {
     this.panelState = false
   }
 
-  shareForm(event) {
+  shareForm(formId) {
 
-    let dialogRef;
+    let dialogRef: MatDialogRef<EvalListComponent>;
 
-    this.evs.getAssigneeList({id: event}).pipe(
+    let oldEval;
+
+    this.evs.getAssignee(formId).pipe(
       switchMap(value => {
+        oldEval = {evaluator: value, formId: formId}
         if (value != undefined)
           dialogRef = this.dialog.open(EvalListComponent, {
-            data: {evalList: value} as DialogData,
+            data: {eval: value} as DialogData,
             panelClass: "custom-modalbox",
             width: "600px"
           });
         else
           dialogRef = this.dialog.open(EvalListComponent, {
-            data: {evalList: []} as DialogData,
+            data: {eval: {displayName: 'None'}} as DialogData,
             panelClass: "custom-modalbox",
             width: "600px"
           });
@@ -177,10 +180,8 @@ export class PresentationComponent implements OnInit, OnDestroy {
       )
     ).subscribe(
       next => {
-        let k = dialogRef.componentInstance.selectedMap
-        let evalList = []
-        k.forEach(item => evalList.push(item))
-        this.evs.assignEvaluators({formId: event, evalList: evalList})
+        let k = dialogRef.componentInstance.selectedEval
+        this.evs.assignEvaluators({formId: formId, evaluator: k}, oldEval)
 
       }
     )

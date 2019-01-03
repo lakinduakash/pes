@@ -14,61 +14,68 @@ export class EvalAssignService {
   constructor(private formService: FormService, private fs: AngularFirestore, private formData: FormDataService, private as: AuthService) {
   }
 
-  assignEvaluators(data: AssigneeData) {
-    this.formService.updateForm(this.formData.projectId, this.formData.presentationId, data.formId, {assign: data.evalList})
-    data.evalList.forEach(
-      item => {
-        this.fs.collection('usersE').doc(item.uid).update(
-          {
-            presentations: firebase.firestore.FieldValue.arrayUnion(
-              {
-                formId: data.formId,
-                projectId: this.formData.projectId,
-                presentId: this.formData.presentationId,
-                uid: this.as.cacheUser.uid
-              } as EvalPresentationData
-            )
-          }
-        )
-      }
-    )
+  assignEvaluators(data: AssigneeData, oldValue: AssigneeData) {
+    this.formService.updateForm(this.formData.projectId, this.formData.presentationId, data.formId, {assign: data.evaluator});
+
+    if (data.evaluator.uid) {
+      this.fs.collection('usersE').doc(data.evaluator.uid).update(
+        {
+          presentations: firebase.firestore.FieldValue.arrayUnion(
+            {
+              formId: data.formId,
+              projectId: this.formData.projectId,
+              presentId: this.formData.presentationId,
+              uid: this.as.cacheUser.uid
+            } as EvalPresentationData
+          )
+        }
+      ).then(then => {
+      })
+
+      this.removeFormFromEvaluator(oldValue)
+    } else {
+      this.removeFormFromEvaluator(oldValue)
+    }
+  }
+
+
+  removeFormFromEvaluator(data: AssigneeData) {
+
+    if (data.evaluator && data.evaluator.uid) {
+      this.fs.collection('usersE').doc(data.evaluator.uid).update(
+        {
+          presentations: firebase.firestore.FieldValue.arrayRemove(
+            {
+              formId: data.formId,
+              projectId: this.formData.projectId,
+              presentId: this.formData.presentationId,
+              uid: this.as.cacheUser.uid
+            } as EvalPresentationData
+          )
+        })
+    }
 
 
   }
 
 
-  removeFormFromEvaluator(data) {
-    data.evalList.forEach(
-      item => {
-        this.fs.collection('usersE').doc(item.uid).update(
-          {
-            presentations: firebase.firestore.FieldValue.arrayRemove(
-              {
-                formId: data.formId,
-                projectId: this.formData.projectId,
-                presentId: this.formData.presentationId,
-                uid: this.as.cacheUser.uid
-              } as EvalPresentationData
-            )
-          })
-      }
-    )
-  }
-
-  getAssigneeList(data) {
+  getAssignee(formId) {
     let s = new Subject<any>();
-    this.formService.getForm(data.id, this.formData.projectId, this.formData.presentationId).subscribe(
+    this.formService.getForm(formId, this.formData.projectId, this.formData.presentationId).subscribe(
       next => s.next(next.data().assign)
     )
+
     return s as Observable<any>
   }
 
 
+
 }
 
-export interface AssigneeData {
+export class AssigneeData {
+
   formId: string
-  evalList: any[]
+  evaluator: any
 }
 
 export interface EvalPresentationData {
