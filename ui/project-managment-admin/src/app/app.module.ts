@@ -30,7 +30,9 @@ import {FormDataService} from "./services/form-data.service";
 import {EvalFireStoreFactory, EvalFireStoreProviderService} from "./services/eval-fire-store-provider.service";
 import {ComponentsModule} from "./components/components.module";
 import {SignInUpModule} from "./sign-in-up/sign-in-up.module";
+
 import { ViewMarksComponent } from './view-marks/view-marks.component';
+import { ViewmarksService } from './services/viewmarks.service';
 
 
 @NgModule({
@@ -58,7 +60,7 @@ import { ViewMarksComponent } from './view-marks/view-marks.component';
 
   ],
   providers: [
-    RenameTitleBarService, ProjectService, AngularFireDatabase, AngularFirestore, FormDataService,
+    RenameTitleBarService, ProjectService, AngularFireDatabase, AngularFirestore, FormDataService, ViewmarksService,
     {provide: EvalFireStoreProviderService, deps: [PLATFORM_ID, NgZone], useFactory: EvalFireStoreFactory}
   ],
   bootstrap: [AppComponent],
