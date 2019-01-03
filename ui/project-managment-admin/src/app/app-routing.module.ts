@@ -9,6 +9,7 @@ import {FormViewComponent} from "./eval-form-parser/form-view.component";
 import {AuthGuard} from "./auth/auth.guard";
 import {CanDeactivateGuard} from "./shared/can-deactivate-guard.service";
 import {FormComponent} from "./eval-form/form.component";
+import {MarkingViewComponent} from "./marking-view/marking-view/marking-view.component";
 
 
 const routes: Routes = [
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path: 'create-form', component: FormComponent, canActivate: [AuthGuard], canDeactivate: [CanDeactivateGuard]},
   {path: 'signup', component: SignupComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'marks', component: MarkingViewComponent},
   {path: '**', component: PageNotFoundComponent}
 ];
 
