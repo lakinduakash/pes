@@ -1,0 +1,15 @@
+<p>
+  view-marks works!
+</p>
+
+<div *ngIf="marks?.length > 0; else noItems">
+  <p *ngFor="let mark of marks">
+    {{mark.name}} <br>
+    {{mark.description}} <br>
+    {{mark.sections[0].attr[0].maxMark}}
+  </p>
+</div>
+
+<ng-template #noItems>
+  There are no items
+</ng-template>

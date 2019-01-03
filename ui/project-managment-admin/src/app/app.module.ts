@@ -32,12 +32,16 @@ import {ComponentsModule} from "./components/components.module";
 import {SignInUpModule} from "./sign-in-up/sign-in-up.module";
 import {MatNativeDateModule} from "@angular/material";
 
+import { ViewMarksComponent } from './view-marks/view-marks.component';
+import { ViewmarksService } from './services/viewmarks.service';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     PageNotFoundComponent,
     TestComponent,
+    ViewMarksComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,8 +62,8 @@ import {MatNativeDateModule} from "@angular/material";
 
   ],
   providers: [
-    RenameTitleBarService, ProjectService, AngularFireDatabase, AngularFirestore, FormDataService,
-    {provide: EvalFireStoreProviderService, deps: [PLATFORM_ID, NgZone], useFactory: EvalFireStoreFactory},
+    RenameTitleBarService, ProjectService, AngularFireDatabase, AngularFirestore, FormDataService, ViewmarksService,
+    {provide: EvalFireStoreProviderService, deps: [PLATFORM_ID, NgZone], useFactory: EvalFireStoreFactory}
   ],
   bootstrap: [AppComponent],
   entryComponents: [],
