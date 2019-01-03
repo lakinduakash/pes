@@ -153,8 +153,11 @@ export class PresentationComponent implements OnInit, OnDestroy {
 
     let dialogRef: MatDialogRef<EvalListComponent>;
 
+    let oldEval;
+
     this.evs.getAssignee(formId).pipe(
       switchMap(value => {
+        oldEval = {evaluator: value, formId: formId}
         if (value != undefined)
           dialogRef = this.dialog.open(EvalListComponent, {
             data: {eval: value} as DialogData,
@@ -178,7 +181,7 @@ export class PresentationComponent implements OnInit, OnDestroy {
     ).subscribe(
       next => {
         let k = dialogRef.componentInstance.selectedEval
-        this.evs.assignEvaluators({formId: formId, eval: k})
+        this.evs.assignEvaluators({formId: formId, evaluator: k}, oldEval)
 
       }
     )
