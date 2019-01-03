@@ -31,6 +31,7 @@ import {EvalFireStoreFactory, EvalFireStoreProviderService} from "./services/eva
 import {ComponentsModule} from "./components/components.module";
 import {SignInUpModule} from "./sign-in-up/sign-in-up.module";
 import {MatNativeDateModule} from "@angular/material";
+import {MarkingViewModule} from "./marking-view/marking-view.module";
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import {MatNativeDateModule} from "@angular/material";
     ComponentsModule,
     SignInUpModule,
     MatNativeDateModule,
+    MarkingViewModule
 
   ],
   providers: [
