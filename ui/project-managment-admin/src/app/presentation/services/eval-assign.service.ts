@@ -15,10 +15,9 @@ export class EvalAssignService {
   }
 
   assignEvaluators(data: AssigneeData) {
-    this.formService.updateForm(this.formData.projectId, this.formData.presentationId, data.formId, {assign: data.evalList})
-    data.evalList.forEach(
-      item => {
-        this.fs.collection('usersE').doc(item.uid).update(
+    this.formService.updateForm(this.formData.projectId, this.formData.presentationId, data.formId, {assign: data.eval});
+
+    this.fs.collection('usersE').doc(data.eval.uid).update(
           {
             presentations: firebase.firestore.FieldValue.arrayUnion(
               {
@@ -30,10 +29,6 @@ export class EvalAssignService {
             )
           }
         )
-      }
-    )
-
-
   }
 
 
@@ -55,7 +50,8 @@ export class EvalAssignService {
     )
   }
 
-  getAssigneeList(data) {
+
+  getAssignee(data) {
     let s = new Subject<any>();
     this.formService.getForm(data.id, this.formData.projectId, this.formData.presentationId).subscribe(
       next => s.next(next.data().assign)
@@ -64,11 +60,13 @@ export class EvalAssignService {
   }
 
 
+
 }
 
 export interface AssigneeData {
   formId: string
   evalList: any[]
+  eval?
 }
 
 export interface EvalPresentationData {
