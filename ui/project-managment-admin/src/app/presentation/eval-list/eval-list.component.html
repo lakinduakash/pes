@@ -2,17 +2,28 @@
 <mat-dialog-content>
 
   <mat-spinner *ngIf="showSpin" [diameter]="50" [strokeWidth]="5"></mat-spinner>
-  <mat-selection-list #evals (selectionChange)="onSelection($event)" *ngIf="!showSpin">
-    <mat-list-option *ngFor="let i of evalList" style="margin-top: 5px" [value]="i.data" [selected]="i.selected">
+
+  <mat-radio-group #rgroup [(ngModel)]="selectedEval" (change)="onSelection($event)">
+    <mat-radio-button *ngFor="let i of evalList" style="margin-top: 5px" [value]="i">
       <div>
-        {{i.data?.displayName}}<br>
+        {{i?.displayName}}<br>
         <mat-card-subtitle>
-          {{i.data?.email}}
+          {{i?.email}}
         </mat-card-subtitle>
       </div>
-      <mat-divider></mat-divider>
-    </mat-list-option>
-  </mat-selection-list>
+    </mat-radio-button>
+  </mat-radio-group>
+  <!--<mat-selection-list #evals (selectionChange)="onSelection($event)" *ngIf="!showSpin">-->
+  <!--<mat-list-option *ngFor="let i of evalList" style="margin-top: 5px" [value]="i.data" [selected]="i.selected">-->
+  <!--<div>-->
+  <!--{{i.data?.displayName}}<br>-->
+  <!--<mat-card-subtitle>-->
+  <!--{{i.data?.email}}-->
+  <!--</mat-card-subtitle>-->
+  <!--</div>-->
+  <!--<mat-divider></mat-divider>-->
+  <!--</mat-list-option>-->
+  <!--</mat-selection-list>-->
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button mat-dialog-close>Cancel</button>

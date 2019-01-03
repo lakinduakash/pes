@@ -2,3 +2,13 @@ mat-spinner {
   margin-left: auto;
   margin-right: auto;
 }
+
+mat-radio-group {
+  display: inline-flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+mat-radio-button {
+  margin-bottom: 5px;
+}
