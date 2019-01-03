@@ -1,3 +1,13 @@
 <p>
   view-marks works!
 </p>
+
+<div *ngIf="marks?.length > 0; else noItems">
+  <ul *ngFor="let mark of marks">
+    <li>{{mark.section}}</li>
+  </ul>
+</div>
+
+<ng-template #noItems>
+  There are no items
+</ng-template>

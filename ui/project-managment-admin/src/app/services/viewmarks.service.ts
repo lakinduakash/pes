@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from "@angular/fire/firestore";
 import { Observable } from 'rxjs';
+import { Marks } from '../interfaces/marks';
 
 
 @Injectable({
@@ -8,8 +9,8 @@ import { Observable } from 'rxjs';
 })
 export class ViewmarksService {
 
-  markList: AngularFirestoreCollection<marks>;
-  mList: Observable<marks[]>;
+  markList: AngularFirestoreCollection<Marks>;
+  mList: Observable<Marks[]>;
 
   constructor(public afs: AngularFirestore) {
     this.mList = this.afs.collection('form').valueChanges();
@@ -20,9 +21,4 @@ export class ViewmarksService {
   }
 
   
-}
-
-interface marks{
-    description?: string;
-    name?: string;
 }
