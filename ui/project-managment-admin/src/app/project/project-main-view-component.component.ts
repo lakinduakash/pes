@@ -259,11 +259,12 @@ interface PresentationData {
       All the content related to this presentation will be lost.
       But calculated marks will be not changed. Do you want to delete?
 
+    </div>
       <div mat-dialog-actions>
         <button mat-button cdkFocusInitial (click)="onNoClick()">Cancel</button>
         <button mat-button (click)="onYesClick()">Delete</button>
       </div>
-    </div>
+
   `
 })
 
