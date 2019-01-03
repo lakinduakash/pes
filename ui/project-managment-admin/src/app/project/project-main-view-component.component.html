@@ -1,3 +1,4 @@
+
 <div class="wrapper">
   <div class="sidebar" data-color="orange">
     <app-sidebar></app-sidebar>
@@ -86,8 +87,8 @@
                   <hr>
 
                   <div fxLayoutAlign.lt-sm="center">
-                    <input type="file" style="display: none" #file (change)="onFilesAdded()" accept=".csv,text/csv"/>
-                    <button align="center" mat-button mat-stroked-button class="upload-button" (click)="clickAddFiles()">
+                    <button align="center" mat-button mat-stroked-button class="upload-button"
+                            (click)="clickAddFiles(file)">
                       Upload csv file
                     </button>
                     <p>{{fileName}}</p>
@@ -114,6 +115,7 @@
     <button mat-fab color="primary" class="fab-2" matTooltip="Create new form" (click)="openCreateForm()">Form
     </button>
 
+    <input type="file" style="display: none" #file (change)="onFilesAdded()" accept=".csv,text/csv"/>
     <app-footer></app-footer>
   </div>
 </div>
