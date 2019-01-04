@@ -2,24 +2,9 @@ import {Component, EventEmitter, Inject, Input, Output} from "@angular/core";
 import {MAT_DIALOG_DATA, MatDialogRef, MatSnackBar} from "@angular/material";
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'dialog-overview-example-dialog',
-  template: `
-    <h1 mat-dialog-title>Enter Project name</h1>
-    <div mat-dialog-content>
-      <mat-form-field>
-        <input matInput placeholder="Project name" [(ngModel)]="data.name">
-      </mat-form-field>
-      <mat-form-field class="example-full-width">
-        <textarea #inputDes matInput placeholder="Description" maxlength="50" [(ngModel)]="data.description"></textarea>
-        <mat-hint align="end">{{inputDes.value?.length || 0}}/50</mat-hint>
-      </mat-form-field>
-
-    </div>
-    <div mat-dialog-actions>
-      <button mat-button (click)="onNoClick()">Cancel</button>
-      <button mat-button cdkFocusInitial (click)="onCreateClick()">Create</button>
-    </div>
-  `
+  templateUrl: `./add-project-dialog.component.html`
 })
 export class DialogOverviewExampleDialog {
 
