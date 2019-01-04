@@ -1,5 +1,4 @@
-import {Component, ComponentFactoryResolver, Injector, OnInit, ViewChild} from '@angular/core';
-import {AddProjectComponent} from "./add-project-card/add-project.component";
+import {Component, ComponentFactoryResolver, Injector, OnInit} from '@angular/core';
 import {MatDialog, MatSnackBar} from "@angular/material";
 import {ProjectService} from "../services/project.service";
 import {ProjectCard} from "../core/model/project-card";
@@ -31,7 +30,7 @@ import {NavBarTitleService} from "../components/services/nav-bar-title.service";
 
 export class DashboardComponent implements OnInit {
 
-  @ViewChild('addNew') addProject: AddProjectComponent;
+  //@ViewChild('addNew') addProject: AddProjectComponent;
 
   state = 'in1col';
 
