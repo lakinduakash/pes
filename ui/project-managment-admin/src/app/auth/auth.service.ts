@@ -14,9 +14,9 @@ import {User} from "../core/model/user";
 @Injectable()
 export class AuthService {
 
-  user:Observable<any>;
+  user: Observable<any>;
 
-  cacheUser
+  cacheUser;
 
 
   constructor(
@@ -29,13 +29,13 @@ export class AuthService {
     this.user = this.afAuth.authState.pipe(
       switchMap(user => {
         if (user) {
-          this.cacheUser = user
-          return of(user)
+          this.cacheUser = user;
+          return of(user);
         } else {
-          return of(null)
+          return of(null);
         }
       })
-    )
+    );
   }
 
 
@@ -45,14 +45,12 @@ export class AuthService {
     return this.oAuthLogin(provider);
   }
 
-  emailLogin(email,password)
-  {
-    return fromPromise(this.afAuth.auth.signInWithEmailAndPassword(email,password))
+  emailLogin(email, password) {
+    return fromPromise(this.afAuth.auth.signInWithEmailAndPassword(email, password));
   }
 
-  emailSignUp(email,password)
-  {
-    return fromPromise(this.afAuth.auth.createUserWithEmailAndPassword(email,password))
+  emailSignUp(email, password) {
+    return fromPromise(this.afAuth.auth.createUserWithEmailAndPassword(email, password));
   }
 
   private oAuthLogin(provider) {
@@ -64,31 +62,31 @@ export class AuthService {
           displayName: credential.user.displayName,
           photoURL: credential.user.photoURL
         };
-        this.updateUserData(credential.user,data)
-      })
+        this.updateUserData(credential.user, data);
+      });
   }
 
 
-  updateUserData(user,userData) {
+  updateUserData(user, userData) {
     // Sets user data to firestore on login
 
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`usersC/${user.uid}`);
 
-    return fromPromise(userRef.set(userData, {merge: true})) as Observable<any>
+    return fromPromise(userRef.set(userData, {merge: true})) as Observable<any>;
 
   }
 
-  sendVerificationEmail()
-  {
-    let success:Subject<boolean>=new Subject();
+  sendVerificationEmail() {
+    const success: Subject<boolean> = new Subject();
 
     this.afAuth.user.subscribe(
       next => {
-        if (next != null)
-          fromPromise(next.sendEmailVerification()).subscribe(next => success.next(true), error => success.next(false))
+        if (next != null) {
+          fromPromise(next.sendEmailVerification()).subscribe( next => success.next(true), error => success.next(false));
+        }
       });
 
-    return success as Observable<boolean>
+    return success as Observable<boolean>;
   }
 
   signOut() {
