@@ -91,12 +91,14 @@ export class ProjectService {
     })
   }
 
-  isProjectExist(id)
+  isProjectExist(id_not_original?, oid?)
   {
     let s:Subject<boolean> =new Subject();
     this.authS.user.subscribe(nextU=> {
       if (nextU != null) {
-        this.fireStore.collection(`usersC/${nextU.uid}/project`).ref.where('id', '==', id).onSnapshot(
+
+        if (id_not_original)
+          this.fireStore.collection(`usersC/${nextU.uid}/project`).ref.where('id', '==', id_not_original).onSnapshot(
           next =>
           {
             if(next.docs.length==0)
@@ -109,10 +111,19 @@ export class ProjectService {
             }
           }
         )
+
+        else if (oid) {
+          this.fireStore.collection(`usersC/${nextU.uid}/project`).doc(oid).get().subscribe(
+            next => {
+              s.next(next.exists)
+            }
+          )
+        }
       }});
 
     return s as Observable<boolean>
   }
+
 
   getOriginalProjectId(id: number) {
     let s: Subject<string> = new Subject();
