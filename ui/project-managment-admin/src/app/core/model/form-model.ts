@@ -4,6 +4,11 @@ export class FormModel {
   name: string;
   description: string;
   sections: Section[]
+  totalMarks: number
+  individualMaxMark: number
+  individualMarkMap
+  currentMark: number
+  assign: { uid, email, displayName }
 
 
 }
