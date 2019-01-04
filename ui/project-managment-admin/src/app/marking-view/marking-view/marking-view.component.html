@@ -11,6 +11,32 @@
         <div class="col-md-12">
 
 
+          <h1>Results</h1>
+
+          <div *ngFor="let data of tableObjects">
+
+            <p>{{data.group}}</p>
+
+            <table mat-table [dataSource]="data.dataSource" class="mat-elevation-z8">
+
+              <ng-container [matColumnDef]="column" *ngFor="let column of data.colsDef">
+                <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+                <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="data.colsDef"></tr>
+              <tr mat-row *matRowDef="let row; columns: data.colsDef;"></tr>
+            </table>
+          </div>
+
+          <div *ngFor="let data of tableObjects">
+
+            <p *ngFor="let column of data.colds">
+              {{column}}
+            </p>
+
+
+          </div>
         </div>
       </div>
     </div>
