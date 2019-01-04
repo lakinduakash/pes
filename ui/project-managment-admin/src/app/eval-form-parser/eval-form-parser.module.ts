@@ -16,6 +16,7 @@ import {FormsModule} from "@angular/forms";
 import {SectionComponent} from "./section/section.component";
 import {AttributeComponent} from "./attribute/attribute.component";
 import {SharedModule} from "../shared/shared.module";
+import {ComponentsModule} from "../components/components.module";
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import {SharedModule} from "../shared/shared.module";
     FormsModule,
     MatOptionModule,
     MatSelectModule,
-    SharedModule
+    SharedModule,
+    ComponentsModule
   ],
   declarations: [FormViewComponent,SectionComponent,AttributeComponent],
   exports:[FormViewComponent]

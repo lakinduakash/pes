@@ -1,23 +1,43 @@
-<div class="container">
+<div class="wrapper">
+  <div class="sidebar" data-color="orange">
+    <app-sidebar></app-sidebar>
+  </div>
+  <div class="main-panel">
+    <app-navbar></app-navbar>
+    <div class="panel-header panel-header-sm">
+    </div>
+    <div class="main-content">
+      <div class="row">
+        <div class="col-md-12">
 
-  <div class="flex-item">
+          <div class="container">
 
-    <mat-card class="main-card">
-      <div class="form-card-header">
-  <mat-card-title>
-    {{title}}
-  </mat-card-title>
-  <mat-card-subtitle>
-    {{description}}
-  </mat-card-subtitle>
+            <div class="flex-item">
+
+              <mat-card class="main-card">
+                <div class="form-card-header">
+                  <mat-card-title>
+                    {{title}}
+                  </mat-card-title>
+                  <mat-card-subtitle>
+                    {{description}}
+                  </mat-card-subtitle>
+                </div>
+
+                <div *ngFor="let sec of sectionList">
+                  <app-section-parser [section]="sec"></app-section-parser>
+                </div>
+
+              </mat-card>
+            </div>
+
+          </div>
+
+        </div>
       </div>
+    </div>
 
-  <div *ngFor="let sec of sectionList">
-    <app-section-parser [section]="sec"> </app-section-parser>
+    <app-footer></app-footer>
   </div>
-
-</mat-card>
-  </div>
-
 </div>
 
