@@ -24,7 +24,7 @@ const routes: Routes = [
   {path: 'create-form', component: FormComponent, canActivate: [AuthGuard], canDeactivate: [CanDeactivateGuard]},
   {path: 'signup', component: SignupComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'marks', component: MarkingViewComponent},
+  {path: 'marks/:oid', component: MarkingViewComponent},
   {path: '**', component: PageNotFoundComponent}
 ];
 
