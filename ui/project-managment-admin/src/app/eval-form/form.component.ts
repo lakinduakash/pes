@@ -142,7 +142,9 @@ export class FormComponent implements OnInit {
           id: this.id,
           description: this.formDesc,
           sections: this.sectionList,
-          name: this.formTitle
+          name: this.formTitle,
+          totalMarks: this.maxFormMark,
+          individualMaxMark: this.maxFormMarkIndividual
         } as FormModel;
 
         if (this.form.sections != undefined && this.sectionList.length > 0) {
