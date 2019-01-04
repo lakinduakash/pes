@@ -1,16 +1,24 @@
+// from angular core
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {MatDialog, MatDialogRef, MatSnackBar} from "@angular/material";
+
+// sub components
 import {CreatePresentationDialogComponent} from "./create-presentation-dialog/create-presentation-dialog.component";
+
+// services
 import {PresentationService} from "../services/presentation.service";
-import {Presentation} from "../core/model/presentation";
 import {ProjectService} from "../services/project.service";
-import {Subscription} from "rxjs";
-import * as csvJson from "csvjson";
 import {NavBarTitleService} from "../components/services/nav-bar-title.service";
 import {StudentTableService} from "../services/student-table.service";
-import {tap} from "rxjs/operators";
 import {FormDataService} from "../services/form-data.service";
+
+import {Subscription} from "rxjs";
+import * as csvJson from "csvjson";
+import {tap} from "rxjs/operators";
+
+// from models
+import {Presentation} from "../core/model/presentation";
 
 
 @Component({

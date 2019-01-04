@@ -30,6 +30,7 @@ export class SidebarComponent implements OnInit {
     this.menuItems = ROUTES.filter(menuItem => menuItem);
   }
 
+ // mobile device ekkda kiyala check karanna
   isMobileMenu() {
     if (window.innerWidth > 991) {
       return false;
