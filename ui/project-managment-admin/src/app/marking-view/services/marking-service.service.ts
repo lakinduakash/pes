@@ -67,6 +67,24 @@ export class MarkingService {
     return s as Observable<GroupMarkPresentation>
   }
 
+  getAllPresentationIds(projectId) {
+
+    let s = new Subject<string[]>();
+    this.auth.user.subscribe(
+      user => {
+        if (user != null) {
+          this.fireStore.collection(getPath(user.uid, projectId) + `/${projectId}`).ref.get().then(docs => {
+              let arr = []
+              docs.forEach(item => arr.push(item.id))
+              s.next(arr)
+            }
+          )
+        }
+      }
+    )
+
+    return s as Observable<any[]>
+  }
 
 }
 
