@@ -52,8 +52,8 @@ export class ProjectMainViewComponentComponent implements OnInit, OnDestroy {
       console.log(this.id)
       this.pexS = this.projectService.isProjectExist(Number(this.id)).subscribe(
         next => {
-          console.log(next)
           if (!next) {
+            this.router.navigate(['notfound'])
           }
           else {
             this.showPage = true
