@@ -10,7 +10,8 @@ import {
   MatDividerModule,
   MatFormFieldModule,
   MatIconModule,
-  MatInputModule
+  MatInputModule,
+  MatSlideToggleModule
 } from "@angular/material";
 import {FormsModule} from "@angular/forms";
 import {SharedModule} from "../shared/shared.module";
@@ -29,7 +30,8 @@ import {ComponentsModule} from "../components/components.module";
     MatIconModule,
     FormsModule,
     SharedModule,
-    ComponentsModule
+    ComponentsModule,
+    MatSlideToggleModule
   ],
   declarations: [FormComponent, SectionComponent, AttributeComponent],
   exports: [FormComponent],

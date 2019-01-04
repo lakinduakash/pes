@@ -22,10 +22,16 @@ export class AttributeComponent implements OnInit {
     this.criteria=this.attr.criteria;
     this.maxMarks=this.attr.maxMark;
 
-    for (let i=0;i<=this.maxMarks;i++)
-      this.numbers.push(i)
+    if (this.attr.isDecimal) {
+      for (let i = 0; i <= this.maxMarks; i = i + 0.5) {
+        this.numbers.push(i)
+      }
+    } else {
+      for (let i = 0; i <= this.maxMarks; i++)
+        this.numbers.push(i)
+    }
 
-    console.log(this.numbers)
+
   }
 
 }

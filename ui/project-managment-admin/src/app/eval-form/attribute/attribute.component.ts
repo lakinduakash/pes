@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {SectionAttribute} from "../../core/model/form-model";
 import {FormEditEventService} from "../form-edit-event.service";
+import {MatButtonToggleChange} from "@angular/material";
 
 @Component({
   selector: 'app-attribute',
@@ -14,6 +15,8 @@ export class AttributeComponent implements OnInit {
 
   criteria;
   maxMark;
+
+  isDecimal = false
 
   constructor(public formEditEvent: FormEditEventService) {
   }
@@ -29,6 +32,7 @@ export class AttributeComponent implements OnInit {
     if (this.sectionA != undefined) {
       this.sectionA.criteria = this.criteria;
       this.sectionA.maxMark = this.maxMark
+      this.sectionA.isDecimal = this.isDecimal
     }
     this.formEditEvent.event.emit()
   }
@@ -36,6 +40,10 @@ export class AttributeComponent implements OnInit {
   delete() {
     this.deleteAttribute.emit(this.sectionA.id)
     this.formEditEvent.event.emit()
+  }
+
+  enableDec(event: MatButtonToggleChange) {
+    //this.sectionA.isDecimal=this.isDecimal
   }
 
 }

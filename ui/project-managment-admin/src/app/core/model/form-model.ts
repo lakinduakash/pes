@@ -32,6 +32,7 @@ export class SectionAttribute {
   criteria: string;
   maxMark: number;
   currentMark: number;
+  isDecimal: boolean
 
 
   constructor() {

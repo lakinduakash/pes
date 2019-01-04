@@ -7,9 +7,14 @@
     <input [(ngModel)]="maxMark" type="number" matInput placeholder="max" (keyup)="saveForm()">
   </mat-form-field>
     </span>
+
+  <span>
+  <mat-slide-toggle [checked]="isDecimal" (change)="enableDec($event)"> Enable decimal (by 0.5)</mat-slide-toggle>
+  </span>
   <span>
   <button class="delete" mat-icon-button (click)="delete()">
     <mat-icon aria-label="Delete icon" class="delete-icon">delete</mat-icon>
   </button>
     </span>
+
 </div>
