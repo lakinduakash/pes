@@ -4,6 +4,7 @@ import {AngularFirestore, CollectionReference} from "@angular/fire/firestore";
 import {ProjectService} from "../../services/project.service";
 import {from, Observable, Subject} from "rxjs";
 import {getPath} from "../../core/model/firstore-path";
+import {FormModel} from "../../core/model/form-model";
 
 @Injectable({
   providedIn: 'root'
@@ -73,9 +74,9 @@ export class MarkingService {
     this.auth.user.subscribe(
       user => {
         if (user != null) {
-          this.fireStore.collection(getPath(user.uid, projectId) + `/${projectId}`).ref.get().then(docs => {
+          this.fireStore.collection(getPath(user.uid, projectId, 'dup')).get().subscribe(docs => {
               let arr = []
-              docs.forEach(item => arr.push(item.id))
+            docs.forEach(item => arr.push(item.id));
               s.next(arr)
             }
           )
@@ -91,6 +92,6 @@ export class MarkingService {
 export class GroupMarkPresentation {
   presentId
   group: string
-  forms: any[]
+  forms: FormModel[]
 }
 
