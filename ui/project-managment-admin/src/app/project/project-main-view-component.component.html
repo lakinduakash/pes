@@ -38,24 +38,30 @@
                                 {{p.name}}
                               </mat-panel-title>
                               <mat-panel-description>
-                                Created on, Mark bias Sheduled
+                                Created on {{p.created?.seconds * 1000|date:'MM-dd-yyyy'}} <br>Mark bias:{{p?.markBias}}
+                                % <br>Scheduled on
+                                {{p.scheduledTo?.seconds * 1000|date:'MM-dd-yyyy'}}
                               </mat-panel-description>
                             </mat-expansion-panel-header>
                         <mat-action-row>
-                          <button mat-button>Save</button>
+                          <button mat-button (click)="saveUpdates(p.id)">Save Changes</button>
                           <button mat-button [routerLink]="['./presentation',p.id]">Open</button>
                         </mat-action-row>
 
 
-                            <mat-form-field>
-                              <input matInput placeholder="Mark bias percentage" value="50%">
+                        <mat-form-field style="margin-right:10px ">
+                          <input matInput placeholder="Mark bias percentage" [value]="p.markBias" [formControl]="mark"
+                                 [(ngModel)]="markingBias">
                             </mat-form-field>
 
                             <mat-form-field>
-                              <input matInput placeholder="Scheduled on">
+                              <input matInput [min]="minDate" [matDatepicker]="picker" placeholder="Schedule to"
+                                     [value]="scheduledOn" [(ngModel)]="scheduledOn">
+                              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                              <mat-datepicker #picker></mat-datepicker>
                             </mat-form-field>
 
-                            <button mat-icon-button [matMenuTriggerFor]="menu">
+                        <button style="float: right" mat-icon-button [matMenuTriggerFor]="menu">
                               <mat-icon>more_vert</mat-icon>
                             </button>
 
@@ -86,7 +92,7 @@
                   <h4 align="center">Manage students</h4>
                   <hr>
 
-                  <div fxLayoutAlign.lt-sm="center">
+                  <div fxLayoutAlign.lt-sm="center" style="margin-bottom: 8px">
                     <button align="center" mat-button mat-stroked-button class="upload-button"
                             (click)="clickAddFiles(file)">
                       Upload csv file
@@ -95,7 +101,7 @@
                   </div>
                   <div fxLayoutAlign.lt-sm="center">
                   <button align="center" mat-button mat-stroked-button class="upload-button"
-                          [routerLink]="['./students']">View
+                          [routerLink]="['./students']">View Groups
                     Students
                   </button>
                   </div>
@@ -111,7 +117,7 @@
                   <hr>
 
                   <button align="center" mat-button mat-stroked-button class="upload-button"
-                          [routerLink]="['/marks',id_original]">View
+                          [routerLink]="['/marks',id_original]">View results for current evaluations
                   </button>
                 </div>
 

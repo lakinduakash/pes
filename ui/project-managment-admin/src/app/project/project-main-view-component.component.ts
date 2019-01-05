@@ -3,7 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {MatDialog, MatDialogRef, MatSnackBar} from "@angular/material";
 import {CreatePresentationDialogComponent} from "./create-presentation-dialog/create-presentation-dialog.component";
 import {PresentationService} from "../services/presentation.service";
-import {Presentation} from "../core/model/presentation";
+import {PresentationData} from "../core/model/presentation";
 import {ProjectService} from "../services/project.service";
 import {Subscription} from "rxjs";
 import * as csvJson from "csvjson";
@@ -11,6 +11,7 @@ import {NavBarTitleService} from "../components/services/nav-bar-title.service";
 import {StudentTableService} from "../services/student-table.service";
 import {tap} from "rxjs/operators";
 import {FormDataService} from "../services/form-data.service";
+import {FormControl, Validators} from "@angular/forms";
 
 
 @Component({
@@ -35,6 +36,13 @@ export class ProjectMainViewComponentComponent implements OnInit, OnDestroy {
   public files: Set<File> = new Set();
 
   fileName = "";
+
+  scheduledOn
+  markingBias
+
+  minDate = new Date()
+
+  mark = new FormControl();
 
 
   constructor(private route: ActivatedRoute,
@@ -78,7 +86,10 @@ export class ProjectMainViewComponentComponent implements OnInit, OnDestroy {
           item => this.presentationList.push({
             id: item.id,
             name: item.data().name,
-            description: item.data().description
+            description: item.data().description,
+            markBias: item.data().markBias,
+            scheduledTo: item.data().scheduledDate,
+            created: item.data().created
           })
         )
       }
@@ -104,6 +115,8 @@ export class ProjectMainViewComponentComponent implements OnInit, OnDestroy {
       })
     ).subscribe()
 
+    this.mark.setValidators([Validators.max(100), Validators.min(0), Validators.required])
+
 
   }
 
@@ -126,11 +139,15 @@ export class ProjectMainViewComponentComponent implements OnInit, OnDestroy {
             markBias: dialogRef.componentInstance.data.markBias,
             scheduledTo: dialogRef.componentInstance.data.scheduledDate,
             created: dialogRef.componentInstance.data.created
-          } as Presentation).subscribe(next => console.log(this.presentationList))
+          } as PresentationData).subscribe(next => console.log(this.presentationList))
 
       }
     )
 
+
+  }
+
+  saveUpdates(prid) {
 
   }
 
@@ -144,10 +161,24 @@ export class ProjectMainViewComponentComponent implements OnInit, OnDestroy {
       }
 
       if (canBeAdded)
-        this.presentationList.push({id: item.id, name: item.data().name, description: item.data().description})
+        this.presentationList.push({
+          id: item.id,
+          name: item.data().name,
+          description: item.data().description,
+          markBias: item.data().markBias,
+          created: item.data().created,
+          scheduledTo: item.data().scheduledTo
+        })
     }
     else {
-      this.presentationList.push({id: item.id, name: item.data().name, description: item.data().description})
+      this.presentationList.push({
+        id: item.id,
+        name: item.data().name,
+        description: item.data().description,
+        markBias: item.data().markBias,
+        created: item.data().created,
+        scheduledTo: item.data().scheduledTo
+      })
     }
   }
 
@@ -225,7 +256,10 @@ export class ProjectMainViewComponentComponent implements OnInit, OnDestroy {
                   item => this.presentationList.push({
                     id: item.id,
                     name: item.data().name,
-                    description: item.data().description
+                    description: item.data().description,
+                    markBias: item.data().markBias,
+                    created: item.data().created,
+                    scheduledTo: item.data().scheduledTo
                   })
                 )
               }
@@ -240,14 +274,6 @@ export class ProjectMainViewComponentComponent implements OnInit, OnDestroy {
 
 }
 
-
-
-interface PresentationData {
-  id: string
-  name: string
-  description?: string
-
-}
 
 @Component({
   selector: 'app-c-dialog',
