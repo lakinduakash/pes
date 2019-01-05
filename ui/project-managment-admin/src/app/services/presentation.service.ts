@@ -2,8 +2,9 @@ import {Injectable} from '@angular/core';
 import {AngularFirestore, DocumentReference, QuerySnapshot} from "@angular/fire/firestore";
 import {AuthService} from "../auth/auth.service";
 import {Observable, Subject} from "rxjs";
-import {Presentation} from "../core/model/presentation";
+
 import {fromPromise} from "rxjs/internal-compatibility";
+import {PresentationData} from "../core/model/presentation";
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,7 @@ export class PresentationService {
     )
   }
 
-  addPresentation(pid:number,data:Presentation)
+  addPresentation(pid: number, data: PresentationData)
   {
     let s:Subject<DocumentReference>=new Subject<DocumentReference>();
 
@@ -83,6 +84,21 @@ export class PresentationService {
         );
       return fpid as Observable<any>;
     }
+  }
+
+  getPresentationByOriginalProjectId(opid, prid) {
+    let fpid: Subject<any> = new Subject();
+
+
+    this.fireStore.collection(`usersC/${this.uid}/project/${opid}/presentation`).doc(prid).get().subscribe(
+      next => {
+        fpid.next(next.data())
+      }, error1 => {
+        fpid.error(error1)
+      }
+    )
+
+    return fpid as Observable<any>;
   }
 
 
