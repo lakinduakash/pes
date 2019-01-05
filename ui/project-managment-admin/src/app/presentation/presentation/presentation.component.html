@@ -92,6 +92,20 @@
                       <mat-icon aria-label="Stop icon">stop</mat-icon>
                     </button>
 
+                    <div style="margin-top: 10px">
+
+                      <h5>Submission status on current group</h5>
+                      <hr>
+
+                      <mat-list>
+                        <mat-list-item *ngFor="let e of submittedEvals"><span matLine>{{e.displayName}}</span>
+                          <span matLine>{{e.email}}</span>
+                        </mat-list-item>
+                      </mat-list>
+
+
+                    </div>
+
 
                   </mat-expansion-panel>
 

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {AngularFirestore} from "@angular/fire/firestore";
+import {AngularFirestore, DocumentChangeAction} from "@angular/fire/firestore";
 import {getPath} from "../../core/model/firstore-path";
 import {BehaviorSubject, Observable, of, Subject} from "rxjs";
 import {AuthService} from "../../auth/auth.service";
@@ -140,6 +140,22 @@ export class PresentationControlService {
       }
     )
 
+  }
+
+
+  getSubmissionStatus(pid, presentId, group) {
+    let s = new Subject<DocumentChangeAction<any>[]>()
+    this.auth.user.subscribe(
+      user => {
+        if (user != null || user != undefined) {
+          return this.firestore.collection(`/usersC/${user.uid}/project/${pid}/mark/${group}/${presentId}`).snapshotChanges().subscribe(next => {
+            s.next(next)
+          })
+        }
+      }
+    )
+
+    return s as Observable<DocumentChangeAction<any>[]>
   }
 
 

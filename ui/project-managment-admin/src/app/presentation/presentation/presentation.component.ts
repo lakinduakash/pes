@@ -30,6 +30,8 @@ export class PresentationComponent implements OnInit, OnDestroy {
 
   groupList: any[];
 
+  submittedEvals = []
+
   groupListForSelect: GroupListItem[] = [];
 
   stateTitle = "No operations"
@@ -116,10 +118,13 @@ export class PresentationComponent implements OnInit, OnDestroy {
 
                 }
 
+                this.presentControl.getSubmissionStatus(this.originalPId, this.presentId, 'group ' + next.currentGroup).subscribe(item => {
+                  this.submittedEvals = [];
+                  item.forEach(val => this.submittedEvals.push(val.payload.doc.data().assign))
+                })
 
               }
             )
-
 
 
           })
