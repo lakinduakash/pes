@@ -38,6 +38,7 @@
 mat-card-content {
   align-content: center;
   overflow-wrap: break-word;
+  height: 80px;
 
 }
 
