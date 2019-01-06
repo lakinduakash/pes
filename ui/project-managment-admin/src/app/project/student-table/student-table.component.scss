@@ -2,6 +2,10 @@ table {
   width: 100%;
 }
 
+.table-container {
+  border-radius: 8px;
+}
+
 // For table's disabled input.
 .mat-input-element:disabled {
   color: rgba(0, 0, 0, 1);
@@ -15,5 +19,9 @@ table {
 /deep/ .mat-form-field-disabled .mat-form-field-underline {
   background-image: none !important;
   display: none;
+}
+
+.main-content {
+  margin-top: 10px;
 }
 

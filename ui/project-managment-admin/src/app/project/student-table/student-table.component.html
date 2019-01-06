@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <div class="sidebar" data-color="orange">
+  <div class="sidebar" data-color="blue">
     <app-sidebar></app-sidebar>
   </div>
   <div class="main-panel">
@@ -10,7 +10,10 @@
       <div class="row">
         <div class="col-md-12">
 
-          <div *ngIf="available">
+          <h2>Groups</h2>
+          <hr>
+
+          <div *ngIf="available" class="table-container">
 
             <!--<table mat-table [dataSource]="data" class="mat-elevation-z8">
 
