@@ -13,13 +13,16 @@
 
           <div>
 
+            <h1>Available projects</h1>
+            <hr>
+
             <mat-grid-list [cols]="cols" rowHeight=500>
                 <mat-grid-tile *ngFor="let card of list" [@flyInOut]="state" class="card-tile">
                   <app-dashboard-card-holder (remove)="removeProject($event)" (openProject)="openProject($event)"
                                              class="project-card"
                                              [projectCard]="card"></app-dashboard-card-holder>
                 </mat-grid-tile>
-                <mat-grid-tile>
+              <mat-grid-tile *ngIf="!loadAnim && list.length==0">
                   <app-add-project class="project-card" (addProject)="onAddNewProjectClick()"></app-add-project>
                 </mat-grid-tile>
 
@@ -43,6 +46,10 @@
         </div>
       </div>
     </div>
+
+    <button mat-fab class="fab" (click)="onAddNewProjectClick()" matTooltip="create new project">
+      <mat-icon>add</mat-icon>
+    </button>
 
     <app-footer></app-footer>
   </div>

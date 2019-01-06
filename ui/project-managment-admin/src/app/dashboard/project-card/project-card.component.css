@@ -25,20 +25,18 @@
 .content-text {
   font-weight: lighter;
   font-size: medium;
-  text-align: center;
+  text-align: center !important;
 }
-
-
 
 
 .project-card-header-title {
   font-size: large;
   font-weight: lighter;
+  text-align: center;
 }
 
 mat-card-content {
   align-content: center;
-  height: 100px;
   overflow-wrap: break-word;
 
 }
