@@ -13,7 +13,7 @@
 
           <div>
 
-              <mat-grid-list [cols]="cols" rowHeight=300>
+            <mat-grid-list [cols]="cols" rowHeight=500>
                 <mat-grid-tile *ngFor="let card of list" [@flyInOut]="state" class="card-tile">
                   <app-dashboard-card-holder (remove)="removeProject($event)" (openProject)="openProject($event)"
                                              class="project-card"

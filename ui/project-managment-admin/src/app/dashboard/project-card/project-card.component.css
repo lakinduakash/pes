@@ -1,13 +1,20 @@
 .project-card {
   margin: 10px 10px 10px 10px;
-  width: 215px;
-  height: 215px;
-  background: #bc4e9c; /* fallback for old browsers */
-  background: -webkit-linear-gradient(to left, #f80759, #bc4e9c); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to left, #e10753, #914076); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+  width: 250px;
+  height: 350px;
   border-radius: 10px;
-  color: white;
+  color: black;
+  -webkit-box-shadow: 0 0 70px -12px rgba(0, 0, 0, 0.59);
+  -moz-box-shadow: 0px 0px 70px -12px rgba(0, 0, 0, 0.59);
+  box-shadow: 0px 0px 70px -12px rgba(0, 0, 0, 0.59);
+  transition: 300ms ease-in-out;
+
+}
+
+.project-card:hover {
+  -webkit-box-shadow: 0 0 63px 2px rgba(160, 139, 247, 1);
+  -moz-box-shadow: 0px 0px 63px 2px rgba(160, 139, 247, 1);
+  box-shadow: 0px 0px 63px 2px rgba(160, 139, 247, 1);
 
 }
 
@@ -18,18 +25,65 @@
 .content-text {
   font-weight: lighter;
   font-size: medium;
+  text-align: center;
 }
+
+
 
 
 .project-card-header-title {
   font-size: large;
-  font-weight: bold;
+  font-weight: lighter;
 }
 
 mat-card-content {
   align-content: center;
-  max-height: 50px;
-  min-height: 50px;
+  height: 100px;
   overflow-wrap: break-word;
 
+}
+
+.btn {
+  box-sizing: border-box;
+  -webkit-box-shadow: 5px 11px 70px -12px rgba(0, 0, 0, 0.59);
+  -moz-box-shadow: 5px 11px 70px -12px rgba(0, 0, 0, 0.59);
+  box-shadow: 5px 11px 70px -12px rgba(0, 0, 0, 0.59);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  border-radius: 0.6em;
+  color: #fff !important;
+  cursor: pointer;
+  display: flex;
+  text-align: center !important;
+  align-self: center;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+  margin: 5px;
+  padding: 1em 2.8em;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.btn:hover, .btn:focus {
+  color: #fff;
+  outline: 0;
+}
+
+.second {
+  border-radius: 3em;
+  color: #fff;
+  background: #007fff;
+  background-size: 100%;
+  transition: 300ms ease-in-out;
+}
+
+.second:hover {
+  background: #4ea5ef;
+  -webkit-box-shadow: 7px 3px 63px 2px rgb(134, 164, 247);
+  -moz-box-shadow: 7px 3px 63px 2px rgba(160, 139, 247, 1);
+  box-shadow: 7px 3px 63px 2px rgb(136, 175, 247);
 }

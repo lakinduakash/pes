@@ -41,7 +41,7 @@ export class DashboardComponent implements OnInit {
   list: ProjectCard[] = [];
 
   data: number = 0;
-  cols = 5;
+  cols = 4;
   id = 1001;
 
   constructor(
@@ -60,8 +60,8 @@ export class DashboardComponent implements OnInit {
       {breakPointType: Breakpoints.XSmall, col: 1},
       {breakPointType: Breakpoints.Small, col: 2},
       {breakPointType: Breakpoints.Medium, col: 2},
-      {breakPointType: Breakpoints.Large, col: 4},
-      {breakPointType: Breakpoints.XLarge, col: 5}
+      {breakPointType: Breakpoints.Large, col: 3},
+      {breakPointType: Breakpoints.XLarge, col: 4}
     ];
 
     breakPoints.map(val => this.breakpointObserver.observe([val.breakPointType]).subscribe(result => {
