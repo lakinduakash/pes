@@ -42,6 +42,7 @@ export class CreatePresentationDialogComponent {
 
   minDate = new Date();
 
+
   mark = new FormControl();
 
 
@@ -50,6 +51,7 @@ export class CreatePresentationDialogComponent {
     @Inject(MAT_DIALOG_DATA) public data: DialogData, private snackBar: MatSnackBar) {
 
     this.mark.setValidators([Validators.max(100), Validators.min(0), Validators.required])
+    this.data.scheduledDate = new Date()
 
   }
 
@@ -75,7 +77,7 @@ export class CreatePresentationDialogComponent {
         duration: 2000,
       }).onAction().subscribe((next) => this.snackBar.dismiss());
     } else {
-      this.data.created = new Date()
+      this.data.created = new Date();
       this.createClick.emit();
       this.dialogRef.close()
     }
