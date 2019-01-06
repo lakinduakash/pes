@@ -1,6 +1,6 @@
 
 <div class="wrapper">
-  <div class="sidebar" data-color="orange">
+  <div class="sidebar" data-color="blue">
     <app-sidebar></app-sidebar>
   </div>
   <div class="main-panel">
@@ -22,11 +22,6 @@
                 <div class="pr-list-container">
                   <h4 align="center">Presentations</h4>
                   <hr>
-
-                  <!--<p>Add or click existing presentations</p>-->
-                  <!--<button class="add-pr-button" mat-stroked-button mat-icon-button (click)="addPresentation()">-->
-                  <!--<mat-icon aria-label="Add presentation" class="add-icon">add</mat-icon>-->
-                  <!--</button>-->
 
 
                   <div *ngFor="let p of presentationList" class="pr-list">
@@ -130,9 +125,9 @@
       </div>
     </div>
 
-    <button mat-fab color="warn" class="fab" matTooltip="Create new presentation" (click)="addPresentation()">New
-    </button>
-    <button mat-fab color="primary" class="fab-2" matTooltip="Create new form" (click)="openCreateForm()">Form
+
+    <button mat-fab class="fab" (click)="addPresentation()" matTooltip="create new prsentation">
+      <mat-icon>add</mat-icon>
     </button>
 
     <input type="file" style="display: none" #file (change)="onFilesAdded()" accept=".csv,text/csv"/>
