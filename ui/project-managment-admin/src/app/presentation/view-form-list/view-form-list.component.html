@@ -1,6 +1,6 @@
 <mat-nav-list>
   <div *ngFor="let item of formList">
-  <mat-list-item >
+    <mat-list-item>
     <span class="form-name" (click)="viewForm(item.id)">
       {{item.data}}
     </span>
@@ -13,6 +13,7 @@
       <mat-icon aria-label="Example icon-button with a heart icon">create</mat-icon>
     </button>
   </mat-list-item>
+    <mat-divider></mat-divider>
   </div>
 
 </mat-nav-list>
