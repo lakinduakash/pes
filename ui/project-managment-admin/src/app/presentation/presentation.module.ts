@@ -16,7 +16,8 @@ import {
   MatProgressSpinnerModule,
   MatRadioModule,
   MatRippleModule,
-  MatSelectModule
+  MatSelectModule,
+  MatTooltipModule
 } from "@angular/material";
 import {RouterModule, Routes} from "@angular/router";
 import {FormsModule} from "@angular/forms";
@@ -64,7 +65,8 @@ const routes: Routes = [
     EvalFormParserModule,
     FlexLayoutModule,
     SharedModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatTooltipModule
   ],
   declarations: [PresentationComponent, EvalListComponent, ViewFormListComponent, FormViewContainerComponent],
   exports: [PresentationComponent],
