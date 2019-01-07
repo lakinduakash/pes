@@ -94,12 +94,13 @@ export class ProjectMainViewComponentComponent implements OnInit, OnDestroy {
             name: item.data().name,
             description: item.data().description,
             markBias: item.data().markBias,
-            scheduledTo: item.data().scheduledDate,
+            scheduledTo: item.data().scheduledTo,
             created: item.data().created
           })
         )
 
         this.listLoaded = true
+        console.log(this.presentationList)
       }, error => {
         this.error = true
       },
