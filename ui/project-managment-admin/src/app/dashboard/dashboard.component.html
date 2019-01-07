@@ -17,12 +17,12 @@
             <h2>Overview</h2>
             <hr>
 
-            <h2 style="color: #007fff" *ngIf="currentState"> No content! try running presentation</h2>
+            <h2 style="color: #007fff" *ngIf="currentState==null"> No content! try running presentation</h2>
 
             <div fxLayoutAlign="center">
 
               <div>
-                <mat-card class="overview-card" *ngIf="currentState">
+                <mat-card class="overview-card" *ngIf="!(currentState==null)">
 
                   <div fxLayoutAlign="center" style="margin-top: 20px">
                     <app-loading-anim-color>
@@ -35,7 +35,7 @@
                     <p class="not-running-text">No presentation running</p>
                   </div>
 
-                  <div fxLayoutAlign="center" style="margin-top:15px" *ngIf="currentState==0 || currentState==2">
+                  <div fxLayoutAlign="center" style="margin-top:15px" *ngIf="currentState==0 || currentState==1">
                     <p class="running-text">
                       Presentation running
                     </p>
