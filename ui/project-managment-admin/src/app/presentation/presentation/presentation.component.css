@@ -31,6 +31,7 @@ mat-expansion-panel {
 
 .play-button {
   display: block;
+  margin: 10px;
 }
 
 .main-panel .main-content {
@@ -89,4 +90,11 @@ mat-expansion-panel {
 
 .form-container {
   width: 100%;
+}
+
+.clock {
+  font-weight: 900;
+  font-family: 'Lato', sans-serif;
+  font-size: 50px;
+  color: #007aef;
 }

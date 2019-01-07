@@ -50,7 +50,10 @@ export class PresentationComponent implements OnInit, OnDestroy {
   source = interval(1000)
 
   timeSub: Subscription
-  time = ''
+  time = '';
+
+  timeMin = 0
+  timeSec = 0
 
 
   constructor(private router: Router,
@@ -111,6 +114,9 @@ export class PresentationComponent implements OnInit, OnDestroy {
 
                       let minutes = Math.floor(totalSecs / 60);
                       let seconds = totalSecs % 60;
+
+                      this.timeMin = minutes
+                      this.timeSec = seconds
 
                       this.time = ' ' + minutes + " minutes " + seconds + ' seconds '
                     }
@@ -215,7 +221,9 @@ export class PresentationComponent implements OnInit, OnDestroy {
 
     this.presentControl.setStates(STATES.suspended, this.selectedGroup, this.originalPId, this.presentId)
     this.setButtonStates(STATES.suspended, true, "group" + this.selectedGroup)
-    this.time = ''
+    this.time = '';
+    this.timeMin = 0
+    this.timeSec = 0
     this.presentationState = STATES.suspended
     this.timeSub.unsubscribe()
 

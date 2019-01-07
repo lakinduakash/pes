@@ -54,11 +54,25 @@
 
                     <mat-card-content>
 
-                      <div style="height: 50px; width: 100%;margin-top: 20px;margin-left: 80px">
+                      <div style="height: 50px; width: 80%;margin-top: 20px;margin-left: 80px">
 
                         <app-loading-anim-color *ngIf="presentationState == 0">
 
                         </app-loading-anim-color>
+
+                        <mat-progress-bar mode="query" color="primary" *ngIf="presentationState==1"></mat-progress-bar>
+
+                      </div>
+
+                      <div style="height: 60px; width: 80%;margin-top: 20px;margin-left: 80px">
+
+                        Time<p class="clock"> {{timeMin}}:{{timeSec}}</p>
+
+                      </div>
+
+                      <div style="height: 60px; width: 80%;margin-top: 20px;margin-left: 80px">
+
+                        <p class="clock"> No: {{selectedGroup}}</p>
 
                       </div>
 
@@ -68,7 +82,7 @@
                         <mat-expansion-panel-header>
 
                           <mat-panel-title>
-                            {{stateTitle}}
+                            <p style="color: #007fff; font-size: x-large">{{stateTitle}}</p>
                           </mat-panel-title>
                           <mat-panel-description *ngIf="!panelState">
                             Click to expand details
@@ -89,19 +103,28 @@
                         </mat-form-field>
 
                         <button mat-icon-button class="play-button" (click)="startPresentation()"
+                                matTooltip="Start presentation"
                                 [disabled]="disabledStartButton">
-                          <mat-icon aria-label="Start icon">play_arrow</mat-icon>
+                          <mat-icon aria-label="Start icon" style=" font-size: 50px">play_arrow</mat-icon>
                         </button>
+
+                        <p style="color: #007fff;display: inline; margin-left: 30px">Start</p>
 
                         <button mat-icon-button class="play-button" (click)="pausePresentation()"
+                                matTooltip="Pause presentation"
                                 [disabled]="disabledPauseButton">
-                          <mat-icon aria-label="Start icon">pause_circle_filled</mat-icon>
+                          <mat-icon aria-label="Start icon" style=" font-size: 50px">pause_circle_filled</mat-icon>
                         </button>
 
+                        <p style="color: #007fff;display: inline; margin-left: 30px">Pause</p>
+
                         <button mat-icon-button class="play-button" (click)="cancelPresentation()"
+                                matTooltip="Stop presentation"
                                 [disabled]="disabledCancelButton">
-                          <mat-icon aria-label="Stop icon">stop</mat-icon>
+                          <mat-icon aria-label="Stop icon" style=" font-size: 50px">stop</mat-icon>
                         </button>
+
+                        <p style="color: #007fff;display: inline; margin-left: 30px">Stop</p>
 
                         <div style="margin-top: 10px">
 
@@ -119,8 +142,6 @@
 
 
                       </mat-expansion-panel>
-
-                      <mat-progress-bar mode="query" color="accent" *ngIf="presentationState==1"></mat-progress-bar>
 
                     </mat-card-content>
 
