@@ -24,7 +24,8 @@ import {LoadingAnimColorComponent} from './loading-anim-color/loading-anim-color
   ],
   providers: [CanDeactivateGuard],
   exports: [
-    SideNavComponent
+    SideNavComponent,
+    LoadingAnimColorComponent
   ]
 })
 export class SharedModule {
