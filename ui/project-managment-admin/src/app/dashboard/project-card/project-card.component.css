@@ -38,7 +38,7 @@
 mat-card-content {
   align-content: center;
   overflow-wrap: break-word;
-  height: 80px;
+  height: 70px;
 
 }
 
@@ -85,4 +85,19 @@ mat-card-content {
   -webkit-box-shadow: 7px 3px 63px 2px rgb(134, 164, 247);
   -moz-box-shadow: 7px 3px 63px 2px rgba(160, 139, 247, 1);
   box-shadow: 7px 3px 63px 2px rgb(136, 175, 247);
+}
+
+.remove {
+  border-radius: 3em;
+  color: #fff;
+  background: #ff0062;
+  background-size: 100%;
+  transition: 300ms ease-in-out;
+}
+
+.remove:hover {
+  background: #ef3eb2;
+  -webkit-box-shadow: 7px 3px 60px 2px rgb(247, 0, 185);
+  -moz-box-shadow: 7px 3px 60px 2px rgba(160, 139, 247, 1);
+  box-shadow: 7px 3px 50px 2px rgb(247, 0, 185);
 }
