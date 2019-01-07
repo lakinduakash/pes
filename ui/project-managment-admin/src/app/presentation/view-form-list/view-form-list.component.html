@@ -22,6 +22,12 @@
   <mat-spinner [diameter]="50" [strokeWidth]="5" [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
 </div>
 
+<div *ngIf="formList.length==0 && !showSpinner">
+  <h2 style="color: #007fff">
+    No forms found! create new form and assign them by tapping fab button below
+  </h2>
+</div>
+
 <!--<mat-menu #menu="matMenu">
   <button mat-menu-item (click)="shareForm()">
     <mat-icon>share</mat-icon>
