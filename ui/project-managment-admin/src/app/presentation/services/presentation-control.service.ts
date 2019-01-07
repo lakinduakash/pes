@@ -72,6 +72,14 @@ export class PresentationControlService {
           this.firestore.collection(getPath(user.uid, pid, presentId)).doc(presentId).update({
             currentState: state,
             currentGroup: groupId
+          });
+
+          let id = user.uid;
+          this.firestore.collection(`usersC`).doc(id).update({
+            currentState: state,
+            currentGroup: groupId,
+            presentId: presentId,
+            projectId: pid
           })
         }
       }
