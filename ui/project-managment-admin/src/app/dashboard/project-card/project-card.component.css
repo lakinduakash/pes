@@ -32,7 +32,8 @@
 .project-card-header-title {
   font-size: large;
   font-weight: lighter;
-  text-align: center;
+  text-align: center !important;
+  width: 70%;
 }
 
 mat-card-content {
