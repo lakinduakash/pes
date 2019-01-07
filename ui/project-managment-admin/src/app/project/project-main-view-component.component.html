@@ -105,9 +105,50 @@
                     Upload csv file that contains students groups
                   </p><br>
 
+
+                  <div class="container" *ngIf="!groupUploaded">
+
+                    <div class="flex-item" fxLayoutAlign="center">
+                      <p style="color: #2CA8FF; font-size: larger; font-weight: bold;text-align: center">
+                        Step 1
+                      </p><br>
+
+                    </div>
+
+                    <div class="flex-item" fxLayoutAlign="center">
+
+
+                      <img src="../../assets/img/s1.png" alt="step 1">
+
+                    </div>
+
+                    <div class="flex-item" fxLayoutAlign="center">
+                      <p style="color: #2CA8FF; font-size: larger; font-weight: bold;text-align: center">
+                        Step 2
+
+
+                      </p><br>
+                    </div>
+
+                    <div class="flex-item" fxLayoutAlign="center">
+                      <img src="../../assets/img/s2.png" alt="step 2">
+                    </div>
+
+                  </div>
+
+
+                </div>
+
+              </div>
+
+
+              <div class="flex-item">
+
+                <div class="pr-list-container">
+
                   <div fxLayoutAlign="center" style="margin-bottom: 8px">
                     <a *ngIf="!groupUploaded" align="center" mat-button mat-stroked-button class="btn second"
-                            (click)="clickAddFiles(file)">
+                       (click)="clickAddFiles(file)">
                       Upload csv file
                     </a>
                     <p>{{fileName}}</p>
@@ -119,14 +160,16 @@
 
                   </div>
 
+
                   <div fxLayoutAlign="center">
 
                     <a *ngIf="groupUploaded" align="center" mat-button mat-stroked-button class="btn second"
                        [routerLink]="['./students']">View Students Groups
                     </a>
                   </div>
-                </div>
 
+
+                </div>
 
               </div>
 

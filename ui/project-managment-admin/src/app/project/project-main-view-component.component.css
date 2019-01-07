@@ -145,3 +145,9 @@ mat-list-item {
   -moz-box-shadow: 7px 3px 63px 2px rgba(160, 139, 247, 1);
   box-shadow: 7px 3px 63px 2px rgb(136, 175, 247);
 }
+
+img {
+  display: block;
+  width: 480px;
+
+}
