@@ -3,7 +3,8 @@
 
     <div *ngIf="state==signupStates[3] || state==signupStates[0] || state==signupStates[1]">
 
-    <mat-card-title fxLayoutAlign="center">Signup-Project Evaluation System</mat-card-title>
+      <mat-card-title fxLayoutAlign="center" class="sign">Project Evaluation Admin</mat-card-title>
+      <mat-card-title fxLayoutAlign="center" class="sign">Sign Up</mat-card-title>
 
     <form [formGroup]="signupFormGroup" fxLayoutAlign="center" class="example-form" (ngSubmit)="postData(signupFormGroup)">
       <table class="example-full-width" cellspacing="0">
