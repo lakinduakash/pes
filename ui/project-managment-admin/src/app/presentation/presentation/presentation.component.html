@@ -49,12 +49,12 @@
                   <hr>
                   <mat-card class="tr-card">
                     <mat-card-title>
-                      Presentation control
+                      Control panel
                     </mat-card-title>
 
                     <mat-card-content>
 
-                      <div style="height: 50px; width: 80%;margin-top: 20px;margin-left: 80px">
+                      <div style="height: 50px; width: 100%;margin-top: 20px;" fxLayoutAlign="center">
 
                         <app-loading-anim-color *ngIf="presentationState == 0">
 
@@ -64,17 +64,27 @@
 
                       </div>
 
-                      <div style="height: 60px; width: 80%;margin-top: 20px;margin-left: 80px">
+                      <mat-divider></mat-divider>
+                      <div style="height: 60px; width: 100%;margin-top: 20px;" fxLayoutAlign="center">
 
-                        Time<p class="clock"> {{timeMin}}:{{timeSec}}</p>
+                        <p style="text-align: center">Timer (min: sec)</p>
+
+                      </div>
+
+                      <div style="height: 60px; width: 100%;margin-top: 5px;" fxLayoutAlign="center">
+
+                        <p class="clock"> {{timeMin}}:{{timeSec}}</p>
 
                       </div>
 
-                      <div style="height: 60px; width: 80%;margin-top: 20px;margin-left: 80px">
+                      <div style="height: 60px; width: 100%;margin-top: 20px; margin-bottom: 20px"
+                           fxLayoutAlign="center">
 
-                        <p class="clock"> No: {{selectedGroup}}</p>
+                        <p class="clock"> Group No: {{selectedGroup}}</p>
 
                       </div>
+
+                      <mat-divider></mat-divider>
 
 
                       <mat-expansion-panel (opened)="panelStateOpen()" (closed)="panelStateClose()"
