@@ -20,7 +20,28 @@
 
               <div>
                 <mat-card class="overview-card">
-                  a
+
+                  <div fxLayoutAlign="center" style="margin-top: 20px">
+                    <app-loading-anim-color>
+
+                    </app-loading-anim-color>
+                  </div>
+
+                  <div fxLayoutAlign="center" style="margin-top: 20px"
+                       *ngIf="currentState && (currentState!=2 || currentState!=3)">
+                    <p class="not-running-text">No presentation running</p>
+                  </div>
+
+                  <div fxLayoutAlign="center" style="margin-top:15px" *ngIf="currentState==0 || currentState==2">
+                    <p class="running-text">
+                      A presentation running
+                    </p>
+                  </div>
+
+                  <a class="btn second" style="margin-top: 15px;text-align: center"
+                     *ngIf="currentState==0 || currentState==2" [routerLink]="quickLink">Jump to control</a>
+
+
                 </mat-card>
               </div>
 

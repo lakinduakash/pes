@@ -45,6 +45,14 @@ export class DashboardComponent implements OnInit {
   cols = 4;
   id = 1001;
 
+  quickLink = ''
+
+
+  currentState
+  currentGroup
+  currentPresentation
+  currentProject
+
   constructor(
     public router: Router,
     public dialog: MatDialog,
@@ -80,6 +88,19 @@ export class DashboardComponent implements OnInit {
         this.updateList();
         this.loadAnim = false;
       })
+
+    this.runningPs.getRealTimeStates().subscribe(val => {
+
+      this.currentGroup = val.currentGroup
+      this.currentState = val.currentState
+      this.currentProject = val.projectId
+      this.currentGroup = val.presentId
+
+      this.quickLink = `/project/${val.projectId}/presentation/${val.presentId}`
+
+    })
+
+
 
   }
 

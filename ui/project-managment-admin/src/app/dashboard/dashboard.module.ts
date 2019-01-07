@@ -23,6 +23,7 @@ import {RemoveProjectDialogComponent} from "./remove-dialog/remove-project-dialo
 import {ComponentsModule} from "../components/components.module";
 import {RouterModule, Routes} from "@angular/router";
 import {FlexLayoutModule} from "@angular/flex-layout";
+import {SharedModule} from "../shared/shared.module";
 
 const routes: Routes = [
   {path: '', component: DashboardComponent}
@@ -44,7 +45,8 @@ const routes: Routes = [
     MatTooltipModule,
     ComponentsModule,
     RouterModule.forChild(routes),
-    FlexLayoutModule
+    FlexLayoutModule,
+    SharedModule
   ],
   declarations: [
     DashboardComponent,
