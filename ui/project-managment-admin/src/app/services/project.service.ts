@@ -146,5 +146,23 @@ export class ProjectService {
     return s as Observable<string>
 
   }
+
+  getProjectDoc(opid) {
+    let s: Subject<any> = new Subject();
+    let nextU = this.authS.cacheUser
+
+    if (nextU != null) {
+      this.fireStore.collection(`usersC/${nextU.uid}/project`).doc(opid).get().subscribe(
+        next => {
+
+          s.next(next.data())
+        }
+        ,
+        error1 => s.error(error1),
+        () => s.complete())
+    }
+
+    return s as Observable<any>
+  }
 }
 
