@@ -17,7 +17,7 @@ export class ViewFormListComponent implements OnInit {
   @Input('presentid') prid
   @Input('formDetails') fetchDetail: Observable<boolean>;
 
-  showSpinner = true
+  showSpinner = true;
 
   constructor(private formService: FormService, private router: Router, public evalAssignService: EvalAssignService) {
   }
