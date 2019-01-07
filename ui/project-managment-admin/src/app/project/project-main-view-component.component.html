@@ -23,6 +23,19 @@
                   <h4 align="center">Presentations</h4>
                   <hr>
 
+                  <div *ngIf="presentationList.length==0 && listLoaded" fxLayoutAlign="center">
+
+                    <p style="color: #2CA8FF; font-size: larger; font-weight: bold; text-align: center"><strong>No
+                      presentations found!</strong>
+                      Before creating any presentation make sure you have uploaded student group file below,
+                      then tap button on corner to add new presentations</p>
+                  </div>
+
+                  <div *ngIf="!listLoaded" fxLayoutAlign="center">
+
+                    <mat-spinner></mat-spinner>
+                  </div>
+
 
                   <div *ngFor="let p of presentationList" class="pr-list">
 
@@ -62,7 +75,7 @@
 
                             <mat-menu #menu="matMenu">
                               <button mat-menu-item>
-                                <mat-icon>pencil</mat-icon>
+                                <mat-icon>create</mat-icon>
                                 <span>Edit</span>
                               </button>
                               <button mat-menu-item (click)="deletePresentation(p.id)">
@@ -72,6 +85,7 @@
                             </mat-menu>
 
                           </mat-expansion-panel>
+                      <div class="u-bar"></div>
                         </mat-accordion>
 
                       </div>
@@ -87,18 +101,29 @@
                   <h4 align="center">Manage students</h4>
                   <hr>
 
-                  <div fxLayoutAlign.lt-sm="center" style="margin-bottom: 8px">
-                    <button align="center" mat-button mat-stroked-button class="upload-button"
+                  <p style="color: #2CA8FF; font-size: larger; font-weight: bold;text-align: center">
+                    Upload csv file that contains students groups
+                  </p><br>
+
+                  <div fxLayoutAlign="center" style="margin-bottom: 8px">
+                    <a *ngIf="!groupUploaded" align="center" mat-button mat-stroked-button class="btn second"
                             (click)="clickAddFiles(file)">
                       Upload csv file
-                    </button>
+                    </a>
                     <p>{{fileName}}</p>
+
+                    <p *ngIf="groupUploaded" align="center">
+                      Group uploaded
+                    </p>
+
+
                   </div>
-                  <div fxLayoutAlign.lt-sm="center">
-                  <button align="center" mat-button mat-stroked-button class="upload-button"
-                          [routerLink]="['./students']">View Groups
-                    Students
-                  </button>
+
+                  <div fxLayoutAlign="center">
+
+                    <a *ngIf="groupUploaded" align="center" mat-button mat-stroked-button class="btn second"
+                       [routerLink]="['./students']">View Students Groups
+                    </a>
                   </div>
                 </div>
 
@@ -111,9 +136,21 @@
                   <h4 align="center">Evaluation results</h4>
                   <hr>
 
-                  <button align="center" mat-button mat-stroked-button class="upload-button"
-                          [routerLink]="['/marks',id_original]">View results for current evaluations
-                  </button>
+                  <div fxLayoutAlign="center">
+
+                    <a align="center" mat-button mat-stroked-button class="btn second"
+                       matTooltip="View result for current evaluations"
+                       [routerLink]="['/marks',id_original]">View results</a>
+                    <br>
+
+                  </div>
+
+                  <div fxLayoutAlign="center">
+                    <p style="color: #2CA8FF; font-size: larger; font-weight: bold;text-align: center">
+                      View results for current evaluations
+                    </p>
+                  </div>
+
                 </div>
 
 
@@ -126,7 +163,7 @@
     </div>
 
 
-    <button mat-fab class="fab" (click)="addPresentation()" matTooltip="create new prsentation">
+    <button mat-fab class="fab" (click)="addPresentationButtonClick()" matTooltip="create new prsentation">
       <mat-icon>add</mat-icon>
     </button>
 

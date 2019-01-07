@@ -26,6 +26,10 @@ mat-expansion-panel
   border-radius: 10px;
 }
 
+mat-accordion {
+  height: 120px;
+}
+
 .flex-item
 {
   display: flex;
@@ -90,4 +94,54 @@ mat-list-item {
 .fab > mat-icon {
   width: 50px;
   height: 50px
+}
+
+.u-bar {
+  height: 2px;
+  background: #00bbff;
+}
+
+.btn {
+  box-sizing: border-box;
+  -webkit-box-shadow: 5px 11px 70px -12px rgba(0, 0, 0, 0.59);
+  -moz-box-shadow: 5px 11px 70px -12px rgba(0, 0, 0, 0.59);
+  box-shadow: 5px 11px 70px -12px rgba(0, 0, 0, 0.59);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  border-radius: 0.6em;
+  color: #fff !important;
+  cursor: pointer;
+  display: flex;
+  text-align: center !important;
+  align-self: center;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+  margin: 5px;
+  padding: 1em 2.8em;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.btn:hover, .btn:focus {
+  color: #fff;
+  outline: 0;
+}
+
+.second {
+  border-radius: 3em;
+  color: #fff;
+  background: #007fff;
+  background-size: 100%;
+  transition: 300ms ease-in-out;
+}
+
+.second:hover {
+  background: #4ea5ef;
+  -webkit-box-shadow: 7px 3px 63px 2px rgb(134, 164, 247);
+  -moz-box-shadow: 7px 3px 63px 2px rgba(160, 139, 247, 1);
+  box-shadow: 7px 3px 63px 2px rgb(136, 175, 247);
 }

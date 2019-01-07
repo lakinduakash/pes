@@ -5,7 +5,7 @@ import {CreatePresentationDialogComponent} from "./create-presentation-dialog/cr
 import {PresentationService} from "../services/presentation.service";
 import {PresentationData} from "../core/model/presentation";
 import {ProjectService} from "../services/project.service";
-import {Subscription} from "rxjs";
+import {Observable, Subscription} from "rxjs";
 import * as csvJson from "csvjson";
 import {NavBarTitleService} from "../components/services/nav-bar-title.service";
 import {StudentTableService} from "../services/student-table.service";
@@ -23,13 +23,19 @@ export class ProjectMainViewComponentComponent implements OnInit, OnDestroy {
 
   id: string;
   id_original: string;
+  oid: Observable<string> = new Observable();
   presentationList: PresentationData[] = []
 
 
   showPage = false;
 
+  groupUploaded = false;
+
   routS: Subscription;
   pexS: Subscription;
+
+  listLoaded = false;
+  error = false
 
   @ViewChild('file') file;
 
@@ -57,7 +63,6 @@ export class ProjectMainViewComponentComponent implements OnInit, OnDestroy {
 
     this.routS = this.route.paramMap.subscribe(next => {
       this.id = next.get('id')
-      console.log(this.id)
       this.pexS = this.projectService.isProjectExist(Number(this.id)).subscribe(
         next => {
           if (!next) {
@@ -68,6 +73,7 @@ export class ProjectMainViewComponentComponent implements OnInit, OnDestroy {
           }
         }
       )
+
 
     })
 
@@ -92,6 +98,14 @@ export class ProjectMainViewComponentComponent implements OnInit, OnDestroy {
             created: item.data().created
           })
         )
+
+        this.listLoaded = true
+      }, error => {
+        this.error = true
+      },
+
+      () => {
+        this.listLoaded = true
       }
     )
 
@@ -112,8 +126,20 @@ export class ProjectMainViewComponentComponent implements OnInit, OnDestroy {
       tap(next => {
         this.id_original = next;
         this.formData.projectId = next
+
+        this.projectService.getProjectDoc(this.id_original).subscribe(next => {
+          if (next.students) {
+            this.groupUploaded = true
+          }
+        })
       })
     ).subscribe()
+
+    this.oid.subscribe(next => {
+
+      this.projectService.getProjectDoc(next).subscribe(next => console.log(next))
+
+    })
 
     this.mark.setValidators([Validators.max(100), Validators.min(0), Validators.required])
 
@@ -145,6 +171,14 @@ export class ProjectMainViewComponentComponent implements OnInit, OnDestroy {
     )
 
 
+  }
+
+  addPresentationButtonClick() {
+    if (this.groupUploaded)
+      this.addPresentation()
+    else {
+      this.snackBar.open('First upload the group csv file', 'dismiss')
+    }
   }
 
   saveUpdates(prid) {
@@ -219,7 +253,7 @@ export class ProjectMainViewComponentComponent implements OnInit, OnDestroy {
           this.projectService.getOriginalProjectId(Number(this.id)).pipe(
             tap(next => this.st.saveTable(next, a)),
             tap(next => console.log(next))
-          ).subscribe()
+          ).subscribe(next => this.groupUploaded = true)
 
         };
 
