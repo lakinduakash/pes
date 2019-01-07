@@ -14,13 +14,13 @@ export class EvalListComponent implements OnInit {
   onAssign: EventEmitter<any> = new EventEmitter<any>()
 
   evalList = [{displayName: 'None'}];
-  private showSpin = true;
+  showSpin = true;
 
   selectedEval
 
   oldSelectedEval
 
-  private selectionChanged = false
+  selectionChanged = false
 
   buttonName = 'Assign'
 
@@ -68,7 +68,7 @@ export class EvalListComponent implements OnInit {
   }
 
 
-  private assign() {
+  assign() {
     if (this.selectionChanged)
       this.onAssign.emit()
   }
