@@ -22,6 +22,7 @@ import {FormsModule} from "@angular/forms";
 import {RemoveProjectDialogComponent} from "./remove-dialog/remove-project-dialog.component";
 import {ComponentsModule} from "../components/components.module";
 import {RouterModule, Routes} from "@angular/router";
+import {FlexLayoutModule} from "@angular/flex-layout";
 
 const routes: Routes = [
   {path: '', component: DashboardComponent}
@@ -42,7 +43,8 @@ const routes: Routes = [
     FormsModule,
     MatTooltipModule,
     ComponentsModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    FlexLayoutModule
   ],
   declarations: [
     DashboardComponent,

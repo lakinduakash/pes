@@ -175,3 +175,8 @@ mat-grid-list {
     transform: translateX(15px);
   }
 }
+
+.overview-card {
+  width: 600px;
+  height: 350px;
+}
