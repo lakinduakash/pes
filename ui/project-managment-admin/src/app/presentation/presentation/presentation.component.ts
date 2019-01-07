@@ -55,6 +55,8 @@ export class PresentationComponent implements OnInit, OnDestroy {
   timeMin = 0
   timeSec = 0
 
+  pLoaded = false;
+
 
   constructor(private router: Router,
               private route: ActivatedRoute,
@@ -76,9 +78,10 @@ export class PresentationComponent implements OnInit, OnDestroy {
         this.projectService.getOriginalProjectId(this.projectId)
           .subscribe(next => {
             this.originalPId = next
-
             this.formDataService.presentationId = this.presentId;
             this.formDataService.projectId = this.originalPId;
+
+            this.pLoaded = true;
 
             this.presentControl.getGroupList(this.originalPId).subscribe(next => this.groupList = next)
             this.presentControl.getFinishedList(this.originalPId, this.presentId).subscribe(next => this.finishedList = next)

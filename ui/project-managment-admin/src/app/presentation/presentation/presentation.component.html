@@ -25,8 +25,8 @@
                   <mat-card class="tr-card">
 
 
-                    <div>
-                      <app-view-form-list (shareForm)="shareForm($event)">
+                    <div *ngIf="pLoaded">
+                      <app-view-form-list (shareForm)="shareForm($event)" [opid]="originalPId" [presentid]="presentId">
 
                       </app-view-form-list>
                     </div>
@@ -71,7 +71,7 @@
 
                       </div>
 
-                      <div style="height: 60px; width: 100%;margin-top: 5px;" fxLayoutAlign="center">
+                      <div class='cloc-wrap' fxLayoutAlign="center">
 
                         <p class="clock"> {{timeMin}}:{{timeSec}}</p>
 
@@ -89,7 +89,7 @@
 
                       <mat-expansion-panel (opened)="panelStateOpen()" (closed)="panelStateClose()"
                                            class="mat-elevation-z0">
-                        <mat-expansion-panel-header>
+                        <mat-expansion-panel-header collapsedHeight="130px">
 
                           <mat-panel-title>
                             <p style="color: #007fff; font-size: x-large">{{stateTitle}}</p>

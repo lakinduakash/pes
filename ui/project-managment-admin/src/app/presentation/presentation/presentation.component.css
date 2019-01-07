@@ -75,12 +75,27 @@ mat-expansion-panel {
     transition: 200ms;
 
   }
+
+  .clock {
+    font-weight: 700;
+    font-family: 'Lato', sans-serif;
+    font-size: 32px;
+    color: #007aef;
+  }
+
+  .clock-wrap {
+    height: 40px;
+    width: 100%;
+    margin-top: 5px;
+  }
+
 }
 
 .fab:hover {
   transform: rotate(50deg);
   width: 70px;
   height: 70px;
+
 }
 
 .fab > mat-icon {
@@ -97,4 +112,10 @@ mat-expansion-panel {
   font-family: 'Lato', sans-serif;
   font-size: 50px;
   color: #007aef;
+}
+
+.clock-wrap {
+  height: 60px;
+  width: 100%;
+  margin-top: 5px;
 }
