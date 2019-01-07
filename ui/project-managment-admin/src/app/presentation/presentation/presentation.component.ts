@@ -263,7 +263,7 @@ export class PresentationComponent implements OnInit, OnDestroy {
           break
         }
         case STATES.suspended: {
-          this.stateTitle = "Canceled presentation on " + group
+          this.stateTitle = "Stopped presentation on " + group
           this.disabledStartButton = false;
           this.disabledPauseButton = true;
           this.disabledCancelButton = true;
