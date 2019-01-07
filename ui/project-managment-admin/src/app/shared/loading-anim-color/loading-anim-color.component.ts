@@ -12,5 +12,4 @@ export class LoadingAnimColorComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }
