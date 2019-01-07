@@ -9,7 +9,8 @@
     </span>
 
   <span>
-  <mat-slide-toggle [checked]="isDecimal" (change)="enableDec($event)"> Enable decimal (by 0.5)</mat-slide-toggle>
+  <mat-slide-toggle [(ngModel)]="isDecimal"
+                    (change)="enableDec($event);saveForm();"> Enable decimal (by 0.5)</mat-slide-toggle>
   </span>
   <span>
   <button class="delete" mat-icon-button (click)="delete()">

@@ -33,6 +33,7 @@ export class AttributeComponent implements OnInit {
       this.sectionA.criteria = this.criteria;
       this.sectionA.maxMark = this.maxMark
       this.sectionA.isDecimal = this.isDecimal
+      console.log(this.isDecimal)
     }
     this.formEditEvent.event.emit()
   }
@@ -43,7 +44,7 @@ export class AttributeComponent implements OnInit {
   }
 
   enableDec(event: MatButtonToggleChange) {
-    //this.sectionA.isDecimal=this.isDecimal
+    this.sectionA.isDecimal = this.isDecimal
   }
 
 }
