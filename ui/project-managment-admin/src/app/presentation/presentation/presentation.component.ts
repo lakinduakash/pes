@@ -207,7 +207,7 @@ export class PresentationComponent implements OnInit, OnDestroy {
 
       if (this.presentationState != STATES.paused)
         this.presentControl.setStartedTime(this.originalPId, this.presentId)
-      this.presentControl.setStates(STATES.running, this.selectedGroup, this.originalPId, this.presentId)
+      this.presentControl.setStates(STATES.running, this.selectedGroup, this.originalPId, this.presentId, this.projectId)
       this.setButtonStates(STATES.running, true, "group" + this.selectedGroup)
       this.presentationState = STATES.running
     }
@@ -215,14 +215,14 @@ export class PresentationComponent implements OnInit, OnDestroy {
   }
 
   pausePresentation() {
-    this.presentControl.setStates(STATES.paused, this.selectedGroup, this.originalPId, this.presentId)
+    this.presentControl.setStates(STATES.paused, this.selectedGroup, this.originalPId, this.presentId, this.projectId)
     this.setButtonStates(STATES.paused, true, "group" + this.selectedGroup)
     this.presentationState = STATES.paused
   }
 
   cancelPresentation() {
 
-    this.presentControl.setStates(STATES.suspended, this.selectedGroup, this.originalPId, this.presentId)
+    this.presentControl.setStates(STATES.suspended, this.selectedGroup, this.originalPId, this.presentId, this.projectId)
     this.setButtonStates(STATES.suspended, true, "group" + this.selectedGroup)
     this.time = '';
     this.timeMin = 0

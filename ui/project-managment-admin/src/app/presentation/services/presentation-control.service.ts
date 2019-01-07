@@ -65,7 +65,7 @@ export class PresentationControlService {
     return s as Observable<CurStateAndGroup>
   }
 
-  setStates(state, groupId, pid, presentId) {
+  setStates(state, groupId, pid, presentId, nProjectId) {
     this.auth.user.subscribe(
       user => {
         if (user != null || user != undefined) {
@@ -79,7 +79,7 @@ export class PresentationControlService {
             currentState: state,
             currentGroup: groupId,
             presentId: presentId,
-            projectId: pid
+            projectId: nProjectId
           })
         }
       }
