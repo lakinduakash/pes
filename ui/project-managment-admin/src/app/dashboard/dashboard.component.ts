@@ -9,6 +9,7 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
 import {Router} from "@angular/router";
 import {AuthService} from "../auth/auth.service";
 import {NavBarTitleService} from "../components/services/nav-bar-title.service";
+import {RunningPresentationService} from "../services/running-presentation.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -51,7 +52,8 @@ export class DashboardComponent implements OnInit {
     public projectService: ProjectService,
     public breakpointObserver: BreakpointObserver,
     public snackBar: MatSnackBar,
-    public authService: AuthService) {
+    public authService: AuthService,
+    public runningPs: RunningPresentationService) {
 
 
     let breakPoints = [
