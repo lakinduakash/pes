@@ -59,6 +59,11 @@
                            type="number"
                            (keyup)="updateFields()">
                   </mat-form-field>
+
+                  <mat-form-field floatLabel="never" class="maximum-form-mark">
+                    <input [(ngModel)]="bias" matInput placeholder="bias average %" type="number"
+                           (keyup)="updateFields()">
+                  </mat-form-field>
                 </mat-card-subtitle>
 
                 <div class="section-space">

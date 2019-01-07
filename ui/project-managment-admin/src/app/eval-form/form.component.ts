@@ -4,6 +4,7 @@ import {FormService} from "../services/form.service";
 import {FormDataService} from "../services/form-data.service";
 import {RenameTitleBarService} from "../services/rename-title-bar.service";
 import {FormEditEventService} from "./form-edit-event.service";
+import {MatDialog, MatDialogRef} from "@angular/material";
 
 @Component({
   selector: 'app-form',
@@ -36,11 +37,14 @@ export class FormComponent implements OnInit {
 
   private static lastSecId = 0;
 
+  bias = 0
+
 
   constructor(private formService: FormService,
               public formDataService: FormDataService,
               private titleBar: RenameTitleBarService,
-              public formEditEvent: FormEditEventService) {
+              public formEditEvent: FormEditEventService,
+              public dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -144,10 +148,14 @@ export class FormComponent implements OnInit {
           sections: this.sectionList,
           name: this.formTitle,
           totalMarks: this.maxFormMark,
-          individualMaxMark: this.maxFormMarkIndividual
+          individualMaxMark: this.maxFormMarkIndividual,
+          bias: this.bias
         } as FormModel;
 
-        if (this.form.sections != undefined && this.sectionList.length > 0) {
+        if (this.form.sections != undefined && this.sectionList.length > 0 &&
+          this.currentTotalMarksForIndividual == this.maxFormMarkIndividual &&
+          this.currentTotalMarks == this.maxFormMark
+        ) {
 
           this.saveStatus = "Saving ..."
           this.formService.saveForm(this.form, this.projectId, this.presentId).subscribe(next => {
@@ -158,7 +166,7 @@ export class FormComponent implements OnInit {
           }, error => console.log("error)"))
         }
         else {
-          console.log("empty sections")
+          this.dialog.open(ConfirmationDialog, {width: '250px', height: '250px'})
         }
       }
       else {
@@ -202,5 +210,45 @@ export class FormComponent implements OnInit {
   updateFields() {
     this.formEditEvent.event.emit()
   }
+
+}
+
+
+// @ts-ignore
+@Component({
+  selector: 'app-c-dialog',
+  template: `
+    <h1 mat-dialog-title>Invalid data</h1>
+    <div mat-dialog-content>
+      Some data are invalid, please check again before save
+    </div>
+
+    <div mat-dialog-actions>
+      <button mat-button cdkFocusInitial (click)="onNoClick()">Cancel</button>
+    </div>
+  `
+})
+
+export class ConfirmationDialog implements OnInit {
+
+  yesClicked = false;
+
+  constructor(public dialogRef: MatDialogRef<ConfirmationDialog>) {
+
+  }
+
+
+  ngOnInit(): void {
+  }
+
+  onYesClick() {
+    this.yesClicked = true;
+    this.dialogRef.close()
+  }
+
+  onNoClick() {
+    this.dialogRef.close()
+  }
+
 
 }
