@@ -1,4 +1,4 @@
-import {Component, ComponentFactoryResolver, Injector, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatDialog, MatSnackBar} from "@angular/material";
 import {ProjectService} from "../services/project.service";
 import {ProjectCard} from "../core/model/project-card";
@@ -49,8 +49,6 @@ export class DashboardComponent implements OnInit {
     public dialog: MatDialog,
     public renameTitleBar: NavBarTitleService,
     public projectService: ProjectService,
-    public resolver: ComponentFactoryResolver,
-    public injector: Injector,
     public breakpointObserver: BreakpointObserver,
     public snackBar: MatSnackBar,
     public authService: AuthService) {
