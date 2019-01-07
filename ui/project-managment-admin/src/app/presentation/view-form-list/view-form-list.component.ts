@@ -1,7 +1,8 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormService} from "../../services/form.service";
-import {FormDataService} from "../../services/form-data.service";
 import {Router} from "@angular/router";
+import {Observable} from "rxjs";
+import {EvalAssignService} from "../services/eval-assign.service";
 
 @Component({
   selector: 'app-view-form-list',
@@ -12,26 +13,38 @@ export class ViewFormListComponent implements OnInit {
 
   @Output('shareForm') share: EventEmitter<string> = new EventEmitter();
   @Output('editForm') edit: EventEmitter<string> = new EventEmitter();
+  @Input('opid') pid
+  @Input('presentid') prid
+  @Input('formDetails') fetchDetail: Observable<boolean>;
 
   showSpinner = true
 
-  constructor(private formService: FormService, public formData: FormDataService, private router: Router) {
+  constructor(private formService: FormService, private router: Router, public evalAssignService: EvalAssignService) {
   }
 
   formList=[]
 
   ngOnInit() {
 
-    this.formService.getAllForm(this.formData.projectId, this.formData.presentationId).subscribe(next => {
-        this.initList(next)
-        this.showSpinner = false
-      },
-      error1 => this.showSpinner = false)
+    this.evalAssignService.reload.subscribe(next => {
+        this.formService.getAllForm(this.pid, this.prid).subscribe(next => {
+            this.initList(next)
+            this.showSpinner = false
+          },
+          error1 => this.showSpinner = false)
+      }
+    )
+
   }
 
   initList(docs){
+    this.formList = []
 
-    docs.docs.forEach(item => this.formList.push({id: item.ref.id, data: item.data().name}))
+    docs.docs.forEach(item => this.formList.push({
+      id: item.ref.id,
+      data: item.data().name,
+      assign: item.data().assign.email
+    }))
     console.log(this.formList)
 
   }
@@ -48,8 +61,8 @@ export class ViewFormListComponent implements OnInit {
   viewForm(id) {
     this.router.navigate(['/form', {
       form: id,
-      p: this.formData.projectId,
-      pr: this.formData.presentationId,
+      p: this.pid,
+      pr: this.prid,
       edit: true
     }])
   }

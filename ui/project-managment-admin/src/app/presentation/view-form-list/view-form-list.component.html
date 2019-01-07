@@ -1,12 +1,12 @@
 <mat-nav-list>
   <div *ngFor="let item of formList">
     <mat-list-item>
-    <span class="form-name" (click)="viewForm(item.id)">
+    <span matLine class="form-name" (click)="viewForm(item.id)">
       {{item.data}}
     </span>
+      <span matLine>{{item?.assign}}</span>
 
-
-    <button mat-icon-button color="primary" class="f-button" (click)="shareForm(item.id)">
+      <button mat-icon-button color="primary" class="f-button" (click)="shareForm(item.id)">
       <mat-icon aria-label="Example icon-button with a heart icon">share</mat-icon>
     </button>
     <button mat-icon-button color="primary" (click)="editForm(item.id)">
