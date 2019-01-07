@@ -40,11 +40,22 @@ export class ViewFormListComponent implements OnInit {
   initList(docs){
     this.formList = []
 
-    docs.docs.forEach(item => this.formList.push({
-      id: item.ref.id,
-      data: item.data().name,
-      assign: item.data().assign.email
-    }))
+    docs.docs.forEach(item => {
+
+      if (item.data().assign) {
+        this.formList.push({
+          id: item.ref.id,
+          data: item.data().name,
+          assign: item.data().assign.email
+        })
+      } else {
+        this.formList.push({
+          id: item.ref.id,
+          data: item.data().name,
+          assign: null
+        })
+      }
+    })
     console.log(this.formList)
 
   }
