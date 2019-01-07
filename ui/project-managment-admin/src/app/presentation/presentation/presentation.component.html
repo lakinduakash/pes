@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <div class="sidebar" data-color="orange">
+  <div class="sidebar" data-color="blue">
     <app-sidebar></app-sidebar>
   </div>
   <div class="main-panel">
@@ -17,101 +17,115 @@
 
               <div class="flex-item">
 
+                <div class='form-container'>
 
-                <mat-card class="tr-card">
-                  <mat-card-title>
-                    Create evaluation forms and assign
-                  </mat-card-title>
+                  <h4 align="center">Evaluation forms</h4>
+                  <hr>
+
+                  <mat-card class="tr-card">
 
 
-                  <mat-expansion-panel (opened)="panelStateOpen()" (closed)="panelStateClose()">
-                    <mat-expansion-panel-header>
-                      <mat-panel-title>
-                        Forms
-                      </mat-panel-title>
-                      <mat-panel-description>
-                        View forms list
-                      </mat-panel-description>
-                    </mat-expansion-panel-header>
-
-                    <p>Add or click existing forms</p>
-                    <button class="add-pr-buttun" mat-stroked-button mat-icon-button (click)="createForm()">
-                      <mat-icon aria-label="Add presentation" class="add-icon">add</mat-icon>
-                    </button>
-
-                    <div *ngIf="panelState || onceLoaded">
+                    <div>
                       <app-view-form-list (shareForm)="shareForm($event)" (editForm)="editForm($event)">
 
                       </app-view-form-list>
                     </div>
 
-                  </mat-expansion-panel>
+
+                  </mat-card>
 
 
-                </mat-card>
+                </div>
+
+
               </div>
 
               <div class="flex-item">
-                <mat-card class="tr-card">
-                  <mat-card-title>
-                    Presentation control
-                  </mat-card-title>
-
-                  <mat-expansion-panel (opened)="panelStateOpen()" (closed)="panelStateClose()">
-                    <mat-expansion-panel-header>
-
-                      <mat-panel-title>
-                        {{stateTitle}}
-                      </mat-panel-title>
-                      <mat-panel-description>
-                        Click to expand
-                      </mat-panel-description>
-                    </mat-expansion-panel-header>
-
-                    <p *ngIf="presentationState!=2 && presentationState!=3">Started {{time}} ago</p>
-
-                    <mat-form-field>
-                      <mat-select placeholder="Select Group" #matSelect [(value)]="selectedGroup"
-                                  (selectionChange)="selectionChange($event)" [disabled]="disabledGroupSelect">
-                        <mat-option *ngFor="let i of groupList" [value]="i">
-                          {{"group "+i}}
-                        </mat-option>
-                      </mat-select>
-                    </mat-form-field>
-
-                    <button mat-icon-button class="play-button" (click)="startPresentation()"
-                            [disabled]="disabledStartButton">
-                      <mat-icon aria-label="Start icon">play_arrow</mat-icon>
-                    </button>
-
-                    <button mat-icon-button class="play-button" (click)="pausePresentation()"
-                            [disabled]="disabledPauseButton">
-                      <mat-icon aria-label="Start icon">pause_circle_filled</mat-icon>
-                    </button>
-
-                    <button mat-icon-button class="play-button" (click)="cancelPresentation()"
-                            [disabled]="disabledCancelButton">
-                      <mat-icon aria-label="Stop icon">stop</mat-icon>
-                    </button>
-
-                    <div style="margin-top: 10px">
-
-                      <h5>Submission status on current group</h5>
-                      <hr>
-
-                      <mat-list>
-                        <mat-list-item *ngFor="let e of submittedEvals"><span matLine>{{e.displayName}}</span>
-                          <span matLine>{{e.email}}</span>
-                        </mat-list-item>
-                      </mat-list>
 
 
-                    </div>
+                <div class='form-container'>
+
+                  <h4 align="center">Control presentation</h4>
+                  <hr>
+                  <mat-card class="tr-card">
+                    <mat-card-title>
+                      Presentation control
+                    </mat-card-title>
+
+                    <mat-card-content>
+
+                      <div style="height: 50px; width: 100%;margin-top: 20px;margin-left: 80px">
+
+                        <app-loading-anim-color *ngIf="presentationState == 0">
+
+                        </app-loading-anim-color>
+
+                      </div>
 
 
-                  </mat-expansion-panel>
+                      <mat-expansion-panel (opened)="panelStateOpen()" (closed)="panelStateClose()"
+                                           class="mat-elevation-z0">
+                        <mat-expansion-panel-header>
 
-                </mat-card>
+                          <mat-panel-title>
+                            {{stateTitle}}
+                          </mat-panel-title>
+                          <mat-panel-description *ngIf="!panelState">
+                            Click to expand details
+                          </mat-panel-description>
+
+                        </mat-expansion-panel-header>
+
+                        <p *ngIf="presentationState!=2 && presentationState!=3">Started {{time}} ago</p>
+
+
+                        <mat-form-field>
+                          <mat-select placeholder="Select Group" #matSelect [(value)]="selectedGroup"
+                                      (selectionChange)="selectionChange($event)" [disabled]="disabledGroupSelect">
+                            <mat-option *ngFor="let i of groupList" [value]="i">
+                              {{"group "+i}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+
+                        <button mat-icon-button class="play-button" (click)="startPresentation()"
+                                [disabled]="disabledStartButton">
+                          <mat-icon aria-label="Start icon">play_arrow</mat-icon>
+                        </button>
+
+                        <button mat-icon-button class="play-button" (click)="pausePresentation()"
+                                [disabled]="disabledPauseButton">
+                          <mat-icon aria-label="Start icon">pause_circle_filled</mat-icon>
+                        </button>
+
+                        <button mat-icon-button class="play-button" (click)="cancelPresentation()"
+                                [disabled]="disabledCancelButton">
+                          <mat-icon aria-label="Stop icon">stop</mat-icon>
+                        </button>
+
+                        <div style="margin-top: 10px">
+
+                          <h5>Submission status on current group</h5>
+                          <hr>
+
+                          <mat-list>
+                            <mat-list-item *ngFor="let e of submittedEvals"><span matLine>{{e.displayName}}</span>
+                              <span matLine>{{e.email}}</span>
+                            </mat-list-item>
+                          </mat-list>
+
+
+                        </div>
+
+
+                      </mat-expansion-panel>
+
+                      <mat-progress-bar mode="query" color="accent" *ngIf="presentationState==1"></mat-progress-bar>
+
+                    </mat-card-content>
+
+                  </mat-card>
+                </div>
               </div>
 
 
