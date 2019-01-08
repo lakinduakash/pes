@@ -12,6 +12,16 @@ export class RunningPresentationService {
   }
 
 
+  /**
+   * Get project specific presentation state from user document of running project
+   * This will emit value to subscribers whenever new value is available
+   * It will return object as {
+      currentState,
+      currentGroup,
+      presentId,
+      projectId
+    }
+   */
   getRealTimeStates() {
     let s = new Subject<{
       currentState,

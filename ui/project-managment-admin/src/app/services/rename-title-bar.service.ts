@@ -13,10 +13,17 @@ export class RenameTitleBarService {
   constructor() {
   }
 
+  /**
+   * get the nav bar title
+   */
   getTitle(): Observable<string> {
     return this.navTitle$.asObservable();
   }
 
+  /**
+   * set the nav bar title
+   * @param title injected title
+   */
   setTitle(title) {
     this.navTitle$.next(title);
   }
