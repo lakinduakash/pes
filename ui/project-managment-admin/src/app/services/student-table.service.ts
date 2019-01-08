@@ -13,6 +13,11 @@ export class StudentTableService {
   constructor(private auth: AuthService, private fs: AngularFirestore) {
   }
 
+  /**
+   * Save student group table to database
+   * @param projectId original project id
+   * @param tableData json format of the student list
+   */
   saveTable(projectId, tableData) {
     return this.auth.user.pipe(
       filter(value => value != null)
@@ -23,6 +28,10 @@ export class StudentTableService {
 
   }
 
+  /**
+   * Retrieve the table from firebase
+   * @param projectId original project id
+   */
   getTable(projectId) {
     let s: Subject<any> = new Subject<any>()
     return this.auth.user.pipe(
