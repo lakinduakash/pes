@@ -7,6 +7,7 @@ import {Observable} from "rxjs/internal/Observable";
 })
 export class RenameTitleBarService {
 
+  //BehaviorSubject always return default value at when subscribing, then new values will be emmited on next() call on this subject
   private navTitle$: BehaviorSubject<string> = new BehaviorSubject<string>('Project Evaluation System');
 
 
