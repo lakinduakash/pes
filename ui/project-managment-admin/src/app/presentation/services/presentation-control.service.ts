@@ -14,6 +14,10 @@ export class PresentationControlService {
   constructor(public firestore: AngularFirestore, private auth: AuthService) {
   }
 
+  /**
+   *
+   * @param pid
+   */
   getGroupList(pid) {
 
     let s: BehaviorSubject<string[]> = new BehaviorSubject([])
