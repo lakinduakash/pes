@@ -16,13 +16,21 @@ export class EvalAssignService {
   constructor(private formService: FormService, private fs: AngularFirestore, private formData: FormDataService, private as: AuthService) {
   }
 
-
+  /**
+   * Assign evaluator to specific form
+   * @param data eval data
+   * @param oldValue if form has previously assigned we hav to remove it
+   */
   assignEvaluators(data: AssigneeData, oldValue: AssigneeData) {
+
+    //Update form
     this.formService.updateForm(this.formData.projectId, this.formData.presentationId, data.formId, {assign: data.evaluator});
 
+    //Evaluator have selected
     if (data.evaluator.uid) {
       this.fs.collection('usersE').doc(data.evaluator.uid).update(
         {
+          //Find array and join the new value to array if not exist
           presentations: firebase.firestore.FieldValue.arrayUnion(
             {
               formId: data.formId,
@@ -33,16 +41,24 @@ export class EvalAssignService {
           )
         }
       ).then(then => {
+        //Reload the list
         this.reload.next(true)
       })
 
+      //Remove old value
       this.removeFormFromEvaluator(oldValue)
     } else {
+
       this.removeFormFromEvaluator(oldValue)
+      this.reload.next(true)
     }
   }
 
 
+  /**
+   * Remove old value assignee data in both form and eval collection
+   * @param data
+   */
   removeFormFromEvaluator(data: AssigneeData) {
 
     if (data.evaluator && data.evaluator.uid) {
@@ -63,6 +79,10 @@ export class EvalAssignService {
   }
 
 
+  /**
+   * Get assignee data from form
+   * @param formId
+   */
   getAssignee(formId) {
     let s = new Subject<any>();
     this.formService.getForm(formId, this.formData.projectId, this.formData.presentationId).subscribe(
