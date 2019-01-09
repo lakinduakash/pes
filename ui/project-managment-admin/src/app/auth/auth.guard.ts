@@ -10,13 +10,19 @@ export class AuthGuard implements CanActivate, CanLoad {
   constructor(private auth: AuthService, private router: Router) {}
 
 
+  /**
+   * This function will return observable according to users logged in status.
+   * This route guard is used used routing to control access to paths
+   * @param next
+   * @param state
+   */
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> {
 
 
     return this.auth.user.pipe(
-    take(1),
+      take(1),
       map(user => !!user),
       tap(loggedIn => {
         if (!loggedIn) {
@@ -24,7 +30,7 @@ export class AuthGuard implements CanActivate, CanLoad {
           this.router.navigate(['/login']);
         }
       })
-  )
+    )
   }
 
   canLoad(route: Route): Observable<boolean> | Promise<boolean> | boolean {

@@ -14,6 +14,7 @@ import {User} from "../core/model/user";
 @Injectable()
 export class AuthService {
 
+  //Main authentication variable that used in other services
   user:Observable<any>;
 
   cacheUser
@@ -39,19 +40,29 @@ export class AuthService {
   }
 
 
-
+  /**
+   * Google login authenticate
+   */
   googleLogin() {
     const provider = new auth.GoogleAuthProvider();
     return this.oAuthLogin(provider);
   }
 
-  emailLogin(email,password)
-  {
+  /**
+   * Access firebase authentication and log in with email and password (Onlyused this method in project)
+   * @param email
+   * @param password
+   */
+  emailLogin(email, password) {
     return fromPromise(this.afAuth.auth.signInWithEmailAndPassword(email,password))
   }
 
-  emailSignUp(email,password)
-  {
+  /**
+   * Email and password signup
+   * @param email
+   * @param password
+   */
+  emailSignUp(email, password) {
     return fromPromise(this.afAuth.auth.createUserWithEmailAndPassword(email,password))
   }
 
@@ -74,12 +85,15 @@ export class AuthService {
 
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`usersC/${user.uid}`);
 
+    //Add other details of user as document in firebase
     return fromPromise(userRef.set(userData, {merge: true})) as Observable<any>
 
   }
 
-  sendVerificationEmail()
-  {
+  /**
+   * Send verification email after creating new email
+   */
+  sendVerificationEmail() {
     let success:Subject<boolean>=new Subject();
 
     this.afAuth.user.subscribe(
@@ -91,6 +105,9 @@ export class AuthService {
     return success as Observable<boolean>
   }
 
+  /**
+   * Sign out the user and redirect user to login page
+   */
   signOut() {
     this.afAuth.auth.signOut().then(() => {
       this.router.navigate(['/login']);

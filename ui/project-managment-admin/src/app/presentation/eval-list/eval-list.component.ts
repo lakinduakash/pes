@@ -31,32 +31,45 @@ export class EvalListComponent implements OnInit {
   ngOnInit() {
 
 
+    //Get current eval list
     this.evalS.getEvalList().subscribe(
       next => {
+        //Get dialog data
         let knew = this.data.eval;
 
+        //For each doc
         next.docs.forEach(item => {
 
 
+
           let evalData = {uid: item.data().uid, displayName: item.data().displayName, email: item.data().email}
+          //Push each eval data to lis
           this.evalList.push(evalData)
 
+          //If evaluator have uid then None will show in evaluator list
           if (knew.uid) {
             if (evalData.uid == knew.uid) {
               this.selectedEval = evalData
             }
           } else {
+            //Set display name None
             this.selectedEval = {displayName: 'None'}
           }
 
         });
+        //Finish loading
         this.showSpin = false
 
+        //Select selected eval
         this.oldSelectedEval = this.selectedEval
       }, error1 => this.showSpin = false)
 
   }
 
+  /**
+   * This function will be executed when new evaluator selected from list
+   * @param e
+   */
   onSelection(e: MatRadioChange) {
     if (this.oldSelectedEval.displayName !== this.selectedEval.displayName) {
       this.selectionChanged = true
@@ -68,6 +81,9 @@ export class EvalListComponent implements OnInit {
   }
 
 
+  /**
+   * Let parrent know assign button is clicked
+   */
   assign() {
     if (this.selectionChanged)
       this.onAssign.emit()
@@ -75,6 +91,9 @@ export class EvalListComponent implements OnInit {
 
 }
 
+/**
+ * Model for Evaluato details
+ */
 class Evaluator {
   displayName: string
   email: string
@@ -82,6 +101,9 @@ class Evaluator {
 
 }
 
+/**
+ * Model for dialog data
+ */
 export interface DialogData {
   evalList: any[]
   eval

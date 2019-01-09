@@ -16,6 +16,7 @@ export class EvalAssignService {
   constructor(private formService: FormService, private fs: AngularFirestore, private formData: FormDataService, private as: AuthService) {
   }
 
+
   assignEvaluators(data: AssigneeData, oldValue: AssigneeData) {
     this.formService.updateForm(this.formData.projectId, this.formData.presentationId, data.formId, {assign: data.evaluator});
 

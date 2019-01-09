@@ -24,29 +24,36 @@ export class PresentationComponent implements OnInit, OnDestroy {
   originalPId;
   presentId;
 
+  //Expansion panel opened
   panelState: boolean;
 
   onceLoaded = false;
 
+  //List of groups
   groupList: any[];
 
   submittedEvals = []
 
   groupListForSelect: GroupListItem[] = [];
 
+  //State tha shown in presentation control panenl
   stateTitle = "No operations"
 
+  //Buttons disabled status
   disabledPauseButton = true;
   disabledCancelButton = true;
   disabledStartButton = true;
   disabledGroupSelect = true;
 
+  //Current presentation state
   presentationState = STATES.finished;
 
+  //Selected group that evaluating now
   selectedGroup
 
   finishedList = [];
 
+  //Timer source
   source = interval(1000)
 
   timeSub: Subscription
@@ -55,6 +62,7 @@ export class PresentationComponent implements OnInit, OnDestroy {
   timeMin = 0
   timeSec = 0
 
+  //Presentation id and projectId loaded
   pLoaded = false;
 
 
@@ -69,31 +77,53 @@ export class PresentationComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    //Set the title bar
     this.titleBar.setTitle("Presentation")
+
+    //Get route parameters
     this.route.parent.parent.params.subscribe(params => {
+
+      //Get simplified project id
       this.projectId = Number(params.id);
       console.log(params)
+      //then Get presentation id
       this.route.params.subscribe(next => {
+
+        //Assign id to global variable
         this.presentId = next.id
+
+        //Get original project doc id from simplified id
         this.projectService.getOriginalProjectId(this.projectId)
           .subscribe(next => {
+            //Assign project id id
             this.originalPId = next
+
+            //Update values in form data service
             this.formDataService.presentationId = this.presentId;
             this.formDataService.projectId = this.originalPId;
 
+            //Now loaded the presentation id and project id
             this.pLoaded = true;
 
+            //Get group list from and assign it
             this.presentControl.getGroupList(this.originalPId).subscribe(next => this.groupList = next)
+
             this.presentControl.getFinishedList(this.originalPId, this.presentId).subscribe(next => this.finishedList = next)
+
+            //Fetch realtime states and listen for changes
             this.presentControl.getRealTimeStates(this.originalPId, this.presentId).subscribe(
               next => {
                 console.log(next.currentState)
+                //Check there is no state is saved
                 if (next.currentGroup == undefined || next.currentGroup == '') {
+                  //Set states of buttons
                   this.setButtonStates(this.presentationState, false)
 
                 }
                 else {
+                  //If there is a state saved
                   if (next.currentState != undefined) {
+
                     this.setButtonStates(next.currentState, this.isValidGroupSelected(next.currentGroup), "group " + next.currentGroup);
                     this.selectedGroup = next.currentGroup
                     this.presentationState = next.currentState
@@ -101,23 +131,32 @@ export class PresentationComponent implements OnInit, OnDestroy {
                 }
 
 
+                //Timer object
+                //Get previously saved started time
                 let tiSub = this.presentControl.getStartedTime(this.originalPId, this.presentId).pipe(switchMap(
+                  //Set start value to timer
                   next => interval(1000).pipe(mapTo(next))
                   )
                 )
 
+                //If presentation state is not stopped and finished and time subject have undefined or not started then start it
                 if (this.presentationState != 2 && this.presentationState != 3 && (this.timeSub == undefined || this.timeSub.closed)) {
 
-
+                  //Start the timer
                   this.timeSub = tiSub.subscribe(val => {
                     {
                       let b = val
+                      //Get current date
                       let a = Date.now();
+                      //Get the total seconds from starting point
                       let totalSecs = Math.trunc(a / 1000 - b.seconds)
 
+                      //Get the minutes count
                       let minutes = Math.floor(totalSecs / 60);
+                      //Get the rest of seconds
                       let seconds = totalSecs % 60;
 
+                      //Set timer value in ui
                       this.timeMin = minutes
                       this.timeSec = seconds
 
@@ -127,6 +166,7 @@ export class PresentationComponent implements OnInit, OnDestroy {
 
                 }
 
+                //Get the submission status who have submitted the evaluation form for selected group and add it to list, Then show it in the ui
                 this.presentControl.getSubmissionStatus(this.originalPId, this.presentId, 'group ' + next.currentGroup).subscribe(item => {
                   this.submittedEvals = [];
                   item.forEach(val => this.submittedEvals.push(val.payload.doc.data().assign))
@@ -145,6 +185,9 @@ export class PresentationComponent implements OnInit, OnDestroy {
 
   }
 
+  /**
+   * Navigate user to create form
+   */
   createForm() {
 
     this.router.navigate(['/create-form'])
@@ -163,14 +206,21 @@ export class PresentationComponent implements OnInit, OnDestroy {
     this.panelState = false
   }
 
+  /**
+   * Assign form to evaluator
+   * @param formId
+   */
   shareForm(formId) {
 
     let dialogRef: MatDialogRef<EvalListComponent>;
 
     let oldEval;
 
+    //Get assignee list of that form id (Only one assignee in new version)
     this.evs.getAssignee(formId).pipe(
       switchMap(value => {
+
+        //Send that data to opening dialog
         oldEval = {evaluator: value, formId: formId}
         if (value != undefined)
           dialogRef = this.dialog.open(EvalListComponent, {
@@ -179,6 +229,7 @@ export class PresentationComponent implements OnInit, OnDestroy {
             width: "600px"
           });
         else
+        //If no assignee have assigned
           dialogRef = this.dialog.open(EvalListComponent, {
             data: {eval: {displayName: 'None'}} as DialogData,
             panelClass: "custom-modalbox",
@@ -202,6 +253,10 @@ export class PresentationComponent implements OnInit, OnDestroy {
   }
 
 
+  /**
+   * Method to execute when play button clicked
+   * This will execute all the needed methods to execute (Such as database operations)
+   */
   startPresentation() {
     if (this.isValidGroupSelected(this.selectedGroup)) {
 
@@ -214,11 +269,20 @@ export class PresentationComponent implements OnInit, OnDestroy {
 
   }
 
+  /**
+   * Method to execute when pause button clicked
+   *
+   */
   pausePresentation() {
     this.presentControl.setStates(STATES.paused, this.selectedGroup, this.originalPId, this.presentId, this.projectId)
     this.setButtonStates(STATES.paused, true, "group" + this.selectedGroup)
     this.presentationState = STATES.paused
   }
+
+  /**
+   * Method to execute when stop button clicked
+   *
+   */
 
   cancelPresentation() {
 
@@ -232,16 +296,26 @@ export class PresentationComponent implements OnInit, OnDestroy {
 
   }
 
+
   finishPresentation() {
 
   }
 
-
+  /**
+   * On group selected
+   * @param event
+   */
   selectionChange(event) {
     this.selectedGroup = event.value;
     this.disabledStartButton = false
   }
 
+  /**
+   * Control all the button states (disabled or enabled)
+   * @param state
+   * @param validGroupSelected
+   * @param group
+   */
   setButtonStates(state: STATES, validGroupSelected, group?) {
     if (validGroupSelected) {
 
@@ -283,8 +357,7 @@ export class PresentationComponent implements OnInit, OnDestroy {
 
       }
 
-    }
-    else {
+    } else {
       this.disabledStartButton = true;
       this.disabledPauseButton = true;
       this.disabledCancelButton = true;
@@ -292,6 +365,10 @@ export class PresentationComponent implements OnInit, OnDestroy {
     }
   }
 
+  /**
+   * Check valid group selected
+   * @param groupId
+   */
   isValidGroupSelected(groupId) {
     if (groupId == undefined || groupId === '')
       return false;
@@ -299,6 +376,7 @@ export class PresentationComponent implements OnInit, OnDestroy {
     return !this.finishedList.find(next => groupId == next);
   }
 
+  //Not used
   initGroupList(groupList, finishedList) {
     this.groupListForSelect = [];
     for (let i of groupList) {
