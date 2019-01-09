@@ -9,6 +9,10 @@ import {EvalAssignService} from "../services/eval-assign.service";
   templateUrl: './view-form-list.component.html',
   styleUrls: ['./view-form-list.component.css']
 })
+
+/**
+ * List of forms that available in project
+ */
 export class ViewFormListComponent implements OnInit {
 
   @Output('shareForm') share: EventEmitter<string> = new EventEmitter();
@@ -26,6 +30,7 @@ export class ViewFormListComponent implements OnInit {
 
   ngOnInit() {
 
+    //On reload get all the assigned status
     this.evalAssignService.reload.subscribe(next => {
         this.formService.getAllForm(this.pid, this.prid).subscribe(next => {
             this.initList(next)
@@ -37,6 +42,10 @@ export class ViewFormListComponent implements OnInit {
 
   }
 
+  /**
+   * Initialise list to show
+   * @param docs list of docs
+   */
   initList(docs){
     this.formList = []
 

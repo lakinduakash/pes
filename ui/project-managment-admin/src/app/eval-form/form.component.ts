@@ -11,6 +11,10 @@ import {MatDialog, MatDialogRef} from "@angular/material";
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css']
 })
+
+/**
+ * Each form have list of sections and each section have list of attributes
+ */
 export class FormComponent implements OnInit {
 
   //Template bindings

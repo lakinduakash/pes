@@ -15,7 +15,7 @@ export class PresentationControlService {
   }
 
   /**
-   *
+   *Get list of groups particular project
    * @param pid
    */
   getGroupList(pid) {
@@ -44,6 +44,12 @@ export class PresentationControlService {
     return s as Observable<string[]>
   }
 
+  /**
+   * Get real time states of presentation. That is saved as number
+   * Model of state is saved as Enum
+   * @param pid
+   * @param presentId
+   */
   getRealTimeStates(pid, presentId) {
     let s = new Subject<CurStateAndGroup>();
     this.auth.user.subscribe(
@@ -51,6 +57,8 @@ export class PresentationControlService {
         if (user != null || user != undefined) {
           this.firestore.collection(getPath(user.uid, pid, presentId)).doc(presentId).snapshotChanges().subscribe(
             next => {
+              //Get specific attribute when new changes
+              //
               if (next.payload.get('currentState') == undefined)
                 this.setStates(STATES.finished, '', pid, presentId);
               let p = {
@@ -69,6 +77,14 @@ export class PresentationControlService {
     return s as Observable<CurStateAndGroup>
   }
 
+  /**
+   * Set new states
+   * @param state state number
+   * @param groupId Current group
+   * @param pid project id original
+   * @param presentId
+   * @param nProjectId
+   */
   setStates(state, groupId, pid, presentId, nProjectId = 154) {
     this.auth.user.subscribe(
       user => {
@@ -91,6 +107,11 @@ export class PresentationControlService {
 
   }
 
+  /**
+   * Set started time in presentation doc
+   * @param pid
+   * @param presentId
+   */
   setStartedTime(pid, presentId) {
     this.auth.user.subscribe(
       user => {
@@ -103,6 +124,11 @@ export class PresentationControlService {
     )
   }
 
+  /**
+   * Get started time
+   * @param pid
+   * @param presentId
+   */
   getStartedTime(pid, presentId) {
     let s = new Subject<any>()
     this.auth.user.subscribe(
@@ -117,6 +143,11 @@ export class PresentationControlService {
     return s as Observable<any>
   }
 
+  /**
+   * Get list of group currently submitted
+   * @param pid
+   * @param presentId
+   */
   getFinishedList(pid, presentId) {
     let s = new Subject<any>();
     this.auth.user.subscribe(
@@ -154,6 +185,13 @@ export class PresentationControlService {
 
   }
 
+  /**
+   * Get list of evaluators that have submitted the presentation
+   * It updates in the real time
+   * @param pid
+   * @param presentId
+   * @param group
+   */
 
   getSubmissionStatus(pid, presentId, group) {
     let s = new Subject<DocumentChangeAction<any>[]>()
