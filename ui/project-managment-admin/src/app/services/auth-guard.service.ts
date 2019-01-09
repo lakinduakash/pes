@@ -5,6 +5,9 @@ import {Observable} from "rxjs/internal/Observable";
 @Injectable({
   providedIn: 'root'
 })
+/**
+ * This class is moved to auth module, Refer that
+ */
 
 export class AuthGuardService implements CanActivate {
 
