@@ -9,6 +9,7 @@ export class FormModel {
   individualMarkMap
   currentMark: number
   assign: { uid, email, displayName }
+  bias: number
 
 
 }

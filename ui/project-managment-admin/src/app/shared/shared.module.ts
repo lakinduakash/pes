@@ -5,10 +5,12 @@ import {MatButtonModule, MatIconModule, MatListModule, MatMenuModule, MatSidenav
 import {SideNavComponent} from "./side-nav/side-nav.component";
 import {CanDeactivateGuard} from "./can-deactivate-guard.service";
 import {CommonModule} from "@angular/common";
+import {LoadingAnimColorComponent} from './loading-anim-color/loading-anim-color.component';
 
 @NgModule({
   declarations: [
     SideNavComponent,
+    LoadingAnimColorComponent,
   ],
   imports: [
     CommonModule,
@@ -22,7 +24,8 @@ import {CommonModule} from "@angular/common";
   ],
   providers: [CanDeactivateGuard],
   exports: [
-    SideNavComponent
+    SideNavComponent,
+    LoadingAnimColorComponent
   ]
 })
 export class SharedModule {

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Subject} from "rxjs";
 
 @Injectable({
@@ -12,6 +12,9 @@ export class FormSavedStatusService {
 
   toggle$ = this._toggle.asObservable();
 
+  /**
+   *
+   */
   toggle() {
     this._toggle.next();
   }

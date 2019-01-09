@@ -42,7 +42,8 @@ mat-card {
 }
 
 .maximum-form-mark {
-  max-width: 120px;
+  max-width: 150px;
+  margin-right: 10px;
 }
 
 .status-header {
@@ -56,4 +57,8 @@ mat-card {
 
 .warnClass {
   color: red;
+}
+
+.main-content {
+  margin-top: 10px;
 }

@@ -32,6 +32,7 @@ import {ComponentsModule} from "./components/components.module";
 import {SignInUpModule} from "./sign-in-up/sign-in-up.module";
 import {MatNativeDateModule} from "@angular/material";
 import {MarkingViewModule} from "./marking-view/marking-view.module";
+import {RunningPresentationService} from "./services/running-presentation.service";
 
 
 @NgModule({
@@ -60,7 +61,7 @@ import {MarkingViewModule} from "./marking-view/marking-view.module";
 
   ],
   providers: [
-    RenameTitleBarService, ProjectService, AngularFireDatabase, AngularFirestore, FormDataService,
+    RenameTitleBarService, ProjectService, AngularFireDatabase, AngularFirestore, FormDataService, RunningPresentationService,
     {provide: EvalFireStoreProviderService, deps: [PLATFORM_ID, NgZone], useFactory: EvalFireStoreFactory},
   ],
   bootstrap: [AppComponent],

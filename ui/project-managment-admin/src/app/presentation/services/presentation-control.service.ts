@@ -65,13 +65,21 @@ export class PresentationControlService {
     return s as Observable<CurStateAndGroup>
   }
 
-  setStates(state, groupId, pid, presentId) {
+  setStates(state, groupId, pid, presentId, nProjectId = 154) {
     this.auth.user.subscribe(
       user => {
         if (user != null || user != undefined) {
           this.firestore.collection(getPath(user.uid, pid, presentId)).doc(presentId).update({
             currentState: state,
             currentGroup: groupId
+          });
+
+          let id = user.uid;
+          this.firestore.collection(`usersC`).doc(id).update({
+            currentState: state,
+            currentGroup: groupId,
+            presentId: presentId,
+            projectId: nProjectId
           })
         }
       }

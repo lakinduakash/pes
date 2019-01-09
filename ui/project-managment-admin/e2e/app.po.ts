@@ -6,6 +6,6 @@ export class AppPage {
   }
 
   getParagraphText() {
-    return element(by.cssContainingText('button', 'Login')).isPresent();
+    return element(by.cssContainingText('a', 'Login')).isPresent();
   }
 }

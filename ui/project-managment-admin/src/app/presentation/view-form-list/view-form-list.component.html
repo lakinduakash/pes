@@ -1,24 +1,31 @@
 <mat-nav-list>
   <div *ngFor="let item of formList">
-  <mat-list-item >
-    <span class="form-name" (click)="viewForm(item.id)">
+    <mat-list-item>
+    <span matLine class="form-name" (click)="viewForm(item.id)">
       {{item.data}}
     </span>
+      <span matLine>{{item?.assign}}</span>
 
-
-    <button mat-icon-button color="primary" class="f-button" (click)="shareForm(item.id)">
+      <button mat-icon-button color="primary" class="f-button" (click)="shareForm(item.id)">
       <mat-icon aria-label="Example icon-button with a heart icon">share</mat-icon>
     </button>
     <button mat-icon-button color="primary" (click)="editForm(item.id)">
       <mat-icon aria-label="Example icon-button with a heart icon">create</mat-icon>
     </button>
   </mat-list-item>
+    <mat-divider></mat-divider>
   </div>
 
 </mat-nav-list>
 
 <div fxLayoutAlign="center">
   <mat-spinner [diameter]="50" [strokeWidth]="5" [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+</div>
+
+<div *ngIf="formList.length==0 && !showSpinner">
+  <h4 style="color: #007fff; text-align: center">
+    No forms found! create new form and assign them by tapping fab button below
+  </h4>
 </div>
 
 <!--<mat-menu #menu="matMenu">

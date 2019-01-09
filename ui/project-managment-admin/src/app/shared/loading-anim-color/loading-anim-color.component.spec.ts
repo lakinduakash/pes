@@ -1,20 +1,20 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {FormCreatorComponent} from './form-creator.component';
+import {LoadingAnimColorComponent} from './loading-anim-color.component';
 
-describe('FormCreatorComponent', () => {
-  let component: FormCreatorComponent;
-  let fixture: ComponentFixture<FormCreatorComponent>;
+describe('LoadingAnimColorComponent', () => {
+  let component: LoadingAnimColorComponent;
+  let fixture: ComponentFixture<LoadingAnimColorComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [FormCreatorComponent]
+      declarations: [LoadingAnimColorComponent]
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FormCreatorComponent);
+    fixture = TestBed.createComponent(LoadingAnimColorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

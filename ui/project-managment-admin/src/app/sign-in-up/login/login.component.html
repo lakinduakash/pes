@@ -1,8 +1,10 @@
 <div class="container-login">
-  <mat-card [class.mat-elevation-z0]="isHandest$" [class.mat-elevation-z7]="!isHandest$" class="tr-card">
+  <mat-card [class.mat-elevation-z0]="isHandest$" [class.mat-elevation-z8]="!isHandest$" class="tr-card">
 
     <div *ngIf="!inFogotFassword">
-    <mat-card-title fxLayoutAlign="center">Login- Project Evaluation System</mat-card-title>
+
+      <mat-card-title fxLayoutAlign="center" class="sign">Project Evaluation Admin</mat-card-title>
+      <mat-card-title fxLayoutAlign="center" class="sign">Login</mat-card-title>
 
     <form fxLayoutAlign="center" class="example-form">
       <table class="example-full-width" cellspacing="0">
@@ -30,11 +32,12 @@
 
   <mat-card-actions fxLayoutAlign="center">
 
-    <button [disabled]="showSpinner" mat-raised-button (click)="login()" color="primary">Login</button>
+
+    <a (click)="login()" class="fancy-button bg-gradient1"><span><i class="fa fa-wheelchair-alt"></i>Login</span></a>
   </mat-card-actions>
 
   <div class="login-bottom" fxLayoutAlign="center">
-    <p fxFlexAlign="left"><a routerLink="/signup"> Signup</a></p>
+    <p fxFlexAlign="left"><a routerLink="/signup"> Sign Up</a></p>
   </div>
   <span></span>
   <div class="login-bottom" fxLayoutAlign="center">
@@ -46,7 +49,7 @@
 
   <div *ngIf="inFogotFassword" [@flyInOut]>
 
-    <mat-card-title fxLayoutAlign="center">Enter your email</mat-card-title>
+    <mat-card-title fxLayoutAlign="center" class="sign">Enter your email</mat-card-title>
     <form fxLayoutAlign="center" class="example-form">
       <table class="example-full-width" cellspacing="0">
         <tr>
@@ -80,3 +83,4 @@
 </mat-card>
 
 </div>
+

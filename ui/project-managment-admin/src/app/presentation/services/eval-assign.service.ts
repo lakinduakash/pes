@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {FormService} from "../../services/form.service";
 import {AngularFirestore} from "@angular/fire/firestore";
 import {FormDataService} from "../../services/form-data.service";
-import {Observable, Subject} from "rxjs";
+import {BehaviorSubject, Observable, Subject} from "rxjs";
 import * as firebase from "firebase";
 import {AuthService} from "../../auth/auth.service";
 
@@ -10,6 +10,8 @@ import {AuthService} from "../../auth/auth.service";
   providedIn: 'root'
 })
 export class EvalAssignService {
+
+  public reload: BehaviorSubject<boolean> = new BehaviorSubject(true)
 
   constructor(private formService: FormService, private fs: AngularFirestore, private formData: FormDataService, private as: AuthService) {
   }
@@ -30,6 +32,7 @@ export class EvalAssignService {
           )
         }
       ).then(then => {
+        this.reload.next(true)
       })
 
       this.removeFormFromEvaluator(oldValue)

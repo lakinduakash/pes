@@ -1,6 +1,6 @@
 
 <div class="wrapper">
-  <div class="sidebar" data-color="orange">
+  <div class="sidebar" data-color="blue">
     <app-sidebar></app-sidebar>
   </div>
   <div class="main-panel">
@@ -11,16 +11,54 @@
       <div class="row">
         <div class="col-md-12">
 
+
           <div>
 
-              <mat-grid-list [cols]="cols" rowHeight=300>
+            <h2>Overview</h2>
+            <hr>
+
+            <h2 style="color: #007fff" *ngIf="currentState==null"> No content! try running presentation</h2>
+
+            <div fxLayoutAlign="center">
+
+              <div>
+                <mat-card class="overview-card" *ngIf="!(currentState==null)">
+
+                  <div fxLayoutAlign="center" style="margin-top: 20px">
+                    <app-loading-anim-color>
+
+                    </app-loading-anim-color>
+                  </div>
+
+                  <div fxLayoutAlign="center" style="margin-top: 20px"
+                       *ngIf="currentState && (currentState!=2 || currentState!=3)">
+                    <p class="not-running-text">No presentation running</p>
+                  </div>
+
+                  <div fxLayoutAlign="center" style="margin-top:15px" *ngIf="currentState==0 || currentState==1">
+                    <p class="running-text">
+                      Presentation running
+                    </p>
+                  </div>
+
+                  <a class="btn second" style="margin-top: 15px;text-align: center"
+                     *ngIf="currentState==0 || currentState==2" [routerLink]="quickLink">Jump to control</a>
+
+
+                </mat-card>
+              </div>
+
+            </div>
+
+
+            <h2>Available projects</h2>
+            <hr>
+
+            <mat-grid-list [cols]="cols" rowHeight=500>
                 <mat-grid-tile *ngFor="let card of list" [@flyInOut]="state" class="card-tile">
                   <app-dashboard-card-holder (remove)="removeProject($event)" (openProject)="openProject($event)"
                                              class="project-card"
                                              [projectCard]="card"></app-dashboard-card-holder>
-                </mat-grid-tile>
-                <mat-grid-tile>
-                  <app-add-project class="project-card" (addProject)="onAddNewProjectClick()"></app-add-project>
                 </mat-grid-tile>
 
               </mat-grid-list>
@@ -28,7 +66,17 @@
 
         </div>
 
-        <div class="container-c" *ngIf="loadAnim">
+        <div class="container-c" *ngIf="list.length==0 && !loadAnim">
+          <div class="cloud front">
+            <h2 style="color: #007fff">
+              No projects! Add new by tapping fab button
+            </h2>
+          </div>
+        </div>
+
+        <div class="container-c" *ngIf="loadAnim || list.length==0">
+
+
           <div class="cloud front">
             <span class="left-front"></span>
             <span class="right-front"></span>
@@ -43,6 +91,10 @@
         </div>
       </div>
     </div>
+
+    <button mat-fab class="fab" (click)="onAddNewProjectClick()" matTooltip="create new project">
+      <mat-icon>add</mat-icon>
+    </button>
 
     <app-footer></app-footer>
   </div>

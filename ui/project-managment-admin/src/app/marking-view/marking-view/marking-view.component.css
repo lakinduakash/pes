@@ -2,6 +2,20 @@
   margin-top: 10px;
 }
 
+
 table {
-  width: 100%;
+  width: 98%;
+  border-collapse: collapse;
+  border-color: rgba(243, 245, 247, 0);
+  border-radius: 1em;
+  overflow: hidden;
+  margin-bottom: 8px;
+  margin-left: 2px;
+  margin-right: 2px;
+
+}
+
+th, td {
+  padding: 1em;
+  margin-right: 5px;
 }

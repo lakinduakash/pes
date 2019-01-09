@@ -1,4 +1,4 @@
-import {Component, ComponentFactoryResolver, Injector, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatDialog, MatSnackBar} from "@angular/material";
 import {ProjectService} from "../services/project.service";
 import {ProjectCard} from "../core/model/project-card";
@@ -9,6 +9,7 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
 import {Router} from "@angular/router";
 import {AuthService} from "../auth/auth.service";
 import {NavBarTitleService} from "../components/services/nav-bar-title.service";
+import {RunningPresentationService} from "../services/running-presentation.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -41,27 +42,34 @@ export class DashboardComponent implements OnInit {
   list: ProjectCard[] = [];
 
   data: number = 0;
-  cols = 5;
+  cols = 4;
   id = 1001;
+
+  quickLink = ''
+
+
+  currentState
+  currentGroup
+  currentPresentation
+  currentProject
 
   constructor(
     public router: Router,
     public dialog: MatDialog,
     public renameTitleBar: NavBarTitleService,
     public projectService: ProjectService,
-    public resolver: ComponentFactoryResolver,
-    public injector: Injector,
     public breakpointObserver: BreakpointObserver,
     public snackBar: MatSnackBar,
-    public authService: AuthService) {
+    public authService: AuthService,
+    public runningPs: RunningPresentationService) {
 
 
     let breakPoints = [
       {breakPointType: Breakpoints.XSmall, col: 1},
       {breakPointType: Breakpoints.Small, col: 2},
       {breakPointType: Breakpoints.Medium, col: 2},
-      {breakPointType: Breakpoints.Large, col: 4},
-      {breakPointType: Breakpoints.XLarge, col: 5}
+      {breakPointType: Breakpoints.Large, col: 3},
+      {breakPointType: Breakpoints.XLarge, col: 4}
     ];
 
     breakPoints.map(val => this.breakpointObserver.observe([val.breakPointType]).subscribe(result => {
@@ -80,6 +88,19 @@ export class DashboardComponent implements OnInit {
         this.updateList();
         this.loadAnim = false;
       })
+
+    this.runningPs.getRealTimeStates().subscribe(val => {
+
+      this.currentGroup = val.currentGroup
+      this.currentState = val.currentState
+      this.currentProject = val.projectId
+      this.currentGroup = val.presentId
+
+      this.quickLink = `/project/${val.projectId}/presentation/${val.presentId}`
+
+    })
+
+
 
   }
 

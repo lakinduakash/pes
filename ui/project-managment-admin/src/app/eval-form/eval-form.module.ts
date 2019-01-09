@@ -1,12 +1,13 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {FormComponent} from './form.component';
+import {ConfirmationDialog, FormComponent} from './form.component';
 import {SectionComponent} from './section/section.component';
 import {AttributeComponent} from './attribute/attribute.component';
 
 import {
   MatButtonModule,
   MatCardModule,
+  MatDialogModule,
   MatDividerModule,
   MatFormFieldModule,
   MatIconModule,
@@ -31,11 +32,13 @@ import {ComponentsModule} from "../components/components.module";
     FormsModule,
     SharedModule,
     ComponentsModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatDialogModule
   ],
-  declarations: [FormComponent, SectionComponent, AttributeComponent],
+  declarations: [FormComponent, SectionComponent, AttributeComponent, ConfirmationDialog],
   exports: [FormComponent],
-  providers: [FormEditEventService]
+  providers: [FormEditEventService],
+  entryComponents: [ConfirmationDialog]
 })
 export class EvalFormModule {
 }

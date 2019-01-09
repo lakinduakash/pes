@@ -1,3 +1,7 @@
+.main-panel .main-content {
+  margin-top: 0;
+}
+
 .grid-container {
   display: grid;
   grid-gap: 10px;
@@ -5,7 +9,7 @@
 }
 
 .project-card {
-  height: 300px;
+  height: 350px;
   width: 300px;
   position: relative;
   display: flex;
@@ -16,6 +20,7 @@
 
 mat-grid-tile {
   min-width: 300px;
+  min-height: 350px;
 }
 
 mat-grid-list {
@@ -113,6 +118,37 @@ mat-grid-list {
   position: absolute;
 }
 
+.fab {
+  position: fixed;
+  right: 50px;
+  bottom: 100px;
+  z-index: 999;
+  transition: 200ms;
+
+}
+
+@media only screen and (max-width: 600px) {
+  .fab {
+    position: fixed;
+    right: 10px;
+    bottom: 50px;
+    z-index: 999;
+    transition: 200ms;
+
+  }
+}
+
+.fab:hover {
+  transform: rotate(50deg);
+  width: 70px;
+  height: 70px;
+}
+
+.fab > mat-icon {
+  width: 50px;
+  height: 50px
+}
+
 .sunshine {
   animation: sunshines 2s infinite;
 }
@@ -140,4 +176,72 @@ mat-grid-list {
   }
 }
 
+.overview-card {
+  width: 300px;
+  height: 250px;
+  margin-bottom: 25px;
+}
 
+
+.btn {
+  box-sizing: border-box;
+  -webkit-box-shadow: 5px 11px 70px -12px rgba(0, 0, 0, 0.59);
+  -moz-box-shadow: 5px 11px 70px -12px rgba(0, 0, 0, 0.59);
+  box-shadow: 5px 11px 70px -12px rgba(0, 0, 0, 0.59);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  border-radius: 0.6em;
+  color: #fff !important;
+  cursor: pointer;
+  display: flex;
+  text-align: center !important;
+  align-self: center;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+  margin: 5px;
+  padding: 1em 2.8em;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.btn:hover, .btn:focus {
+  color: #fff;
+  outline: 0;
+}
+
+.second {
+  border-radius: 3em;
+  color: #fff;
+  background: #007fff;
+  background-size: 100%;
+  transition: 300ms ease-in-out;
+}
+
+.second:hover {
+  background: #4ea5ef;
+  -webkit-box-shadow: 7px 3px 63px 2px rgb(134, 164, 247);
+  -moz-box-shadow: 7px 3px 63px 2px rgba(160, 139, 247, 1);
+  box-shadow: 7px 3px 63px 2px rgb(136, 175, 247);
+}
+
+.running-text {
+  font-size: xx-large;
+  font-weight: bold;
+  text-align: center;
+  color: #01b3ce;
+}
+
+.not-running-text {
+  font-size: xx-large;
+  font-weight: bold;
+  text-align: center;
+  color: #797d7f;
+}
+
+h2 {
+  text-align: center;
+}

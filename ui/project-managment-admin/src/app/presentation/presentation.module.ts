@@ -12,10 +12,12 @@ import {
   MatInputModule,
   MatListModule,
   MatOptionModule,
+  MatProgressBarModule,
   MatProgressSpinnerModule,
   MatRadioModule,
   MatRippleModule,
-  MatSelectModule
+  MatSelectModule,
+  MatTooltipModule
 } from "@angular/material";
 import {RouterModule, Routes} from "@angular/router";
 import {FormsModule} from "@angular/forms";
@@ -26,6 +28,8 @@ import {ViewFormListComponent} from "./view-form-list/view-form-list.component";
 import {FormViewContainerComponent} from './form-view-container/form-view-container.component';
 import {AuthGuard} from "../auth/auth.guard";
 import {EvalFormParserModule} from "../eval-form-parser/eval-form-parser.module";
+import {FlexLayoutModule} from "@angular/flex-layout";
+import {SharedModule} from "../shared/shared.module";
 
 const routes: Routes = [
   {
@@ -58,7 +62,11 @@ const routes: Routes = [
     MatProgressSpinnerModule,
     MatRadioModule,
     ComponentsModule,
-    EvalFormParserModule
+    EvalFormParserModule,
+    FlexLayoutModule,
+    SharedModule,
+    MatProgressBarModule,
+    MatTooltipModule
   ],
   declarations: [PresentationComponent, EvalListComponent, ViewFormListComponent, FormViewContainerComponent],
   exports: [PresentationComponent],

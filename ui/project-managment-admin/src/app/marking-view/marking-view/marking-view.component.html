@@ -1,8 +1,8 @@
 <div class="wrapper">
-  <div class="sidebar" data-color="orange">
+  <div class="sidebar" data-color="blue">
     <app-sidebar></app-sidebar>
   </div>
-  <div class="main-panel">
+  <div class=" main-panel">
     <app-navbar></app-navbar>
     <div class="panel-header panel-header-sm">
     </div>
@@ -21,7 +21,7 @@
 
                   <p>{{data.group}}</p>
 
-                  <table mat-table [dataSource]="data.dataSource" class="mat-elevation-z8">
+                  <table mat-table [dataSource]="data.dataSource" class="mat-elevation-z2">
 
                     <ng-container [matColumnDef]="column" *ngFor="let column of data.colsDef">
                       <th mat-header-cell *matHeaderCellDef> {{column}} </th>
