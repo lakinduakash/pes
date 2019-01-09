@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {ConfirmationDialog, ProjectMainViewComponentComponent} from './project-main-view-component.component';
-import {FormCreatorComponent} from './form-creator/form-creator.component';
 
 import {
   MatButtonModule,
@@ -79,7 +78,7 @@ const routes: Routes = [{
     FlexLayoutModule
 
   ],
-  declarations: [ProjectMainViewComponentComponent, FormCreatorComponent, CreatePresentationDialogComponent, StudentTableComponent, ConfirmationDialog],
+  declarations: [ProjectMainViewComponentComponent, CreatePresentationDialogComponent, StudentTableComponent, ConfirmationDialog],
   exports: []
   ,
   entryComponents: [CreatePresentationDialogComponent, ConfirmationDialog],
