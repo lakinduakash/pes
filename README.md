@@ -1,6 +1,9 @@
 # pes  - Project Evaluation System
-Automate project evolution system for universities
+Automate presentation evaluation system for universities
 
+View demo at https://ultimatex.ml/
+
+![Sample screenshot](https://github.com/lakinduakash/pes/blob/master/docs/Screenshot%20from%202019-03-28%2003-25-28.png)
 ### To Initialise server module
 Run following 
 ```
